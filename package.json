@@ -1,0 +1,26 @@
+{
+  "name": "@orkait-ai/frontend-mcp",
+  "version": "1.0.0",
+  "description": "Unified MCP server for frontend libraries: React Flow, Motion for React, and more",
+  "main": "dist/index.js",
+  "bin": {
+    "frontend-mcp": "dist/index.js"
+  },
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "tsc --watch"
+  },
+  "author": "Orkait",
+  "license": "MIT",
+  "engines": { "node": ">=18" },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.17.0",
+    "zod": "^3.23.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.5.0"
+  }
+}
