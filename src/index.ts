@@ -14,7 +14,7 @@ import { designTokensPlugin } from "./plugins/design-tokens/index.js";
 import { uiUxPlugin } from "./plugins/ui-ux/index.js";
 
 const server = new McpServer({
-  name: "unified-mcp",
+  name: "hyperstack",
   version: "1.0.0",
 });
 
