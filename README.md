@@ -5,7 +5,6 @@
 **One MCP server. Every library your AI needs. Zero conflicts.**
 
 <p>
-  <a href="https://github.com/orkait/unified-mcp/actions/workflows/ci.yml"><img src="https://github.com/orkait/unified-mcp/actions/workflows/ci.yml/badge.svg" alt="CI" /></a>
   <img src="https://img.shields.io/badge/license-MIT-blue?style=flat-square" alt="MIT" />
   <a href="https://github.com/orkait/unified-mcp/stargazers"><img src="https://img.shields.io/github/stars/orkait/unified-mcp?style=flat-square&color=f0c040" alt="Stars" /></a>
   <img src="https://img.shields.io/badge/TypeScript-5-3178c6?style=flat-square&logo=typescript&logoColor=white" alt="TypeScript" />
