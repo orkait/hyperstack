@@ -1,0 +1,1 @@
+func (s *Service) FetchUser(id string) (*User, error) { ... } // no cancellation possible

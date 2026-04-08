@@ -1,0 +1,1 @@
+row := db.QueryRowContext(ctx, "SELECT * FROM users WHERE id = $1", id)

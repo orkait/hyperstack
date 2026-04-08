@@ -1,0 +1,1 @@
+let sum: u32 = numbers.clone().into_iter().sum(); // unnecessary clone

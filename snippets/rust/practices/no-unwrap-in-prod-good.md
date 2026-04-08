@@ -1,0 +1,1 @@
+let value = map.get(&key)?;  // returns None/Err to caller

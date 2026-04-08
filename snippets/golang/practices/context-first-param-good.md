@@ -1,0 +1,1 @@
+func (s *Service) FetchUser(ctx context.Context, id string) (*User, error) { ... }
