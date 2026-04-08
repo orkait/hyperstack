@@ -1,0 +1,1 @@
+fn process(data: &[u8]) -> usize { data.len() }

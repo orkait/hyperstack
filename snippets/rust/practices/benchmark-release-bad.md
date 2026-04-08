@@ -1,0 +1,1 @@
+cargo build && time ./target/debug/app  # debug perf is irrelevant

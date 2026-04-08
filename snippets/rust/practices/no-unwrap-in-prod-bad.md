@@ -1,0 +1,1 @@
+let value = map.get(&key).unwrap(); // panics in production

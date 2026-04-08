@@ -1,0 +1,32 @@
+"use client";
+
+import { useLenis } from "lenis/react";
+
+interface NavLinkProps {
+  href: string;
+  children: React.ReactNode;
+  offset?: number;
+  duration?: number;
+}
+
+export function NavLink({ href, children, offset = -80, duration = 1.2 }: NavLinkProps) {
+  const lenis = useLenis();
+
+  function handleClick(e: React.MouseEvent<HTMLAnchorElement>) {
+    e.preventDefault();
+    lenis?.scrollTo(href, {
+      offset,
+      duration,
+      easing: (t) => 1 - Math.pow(1 - t, 4),
+    });
+  }
+
+  return (
+    <a href={href} onClick={handleClick} className="nav-link">
+      {children}
+    </a>
+  );
+}
+
+// Usage:
+// <NavLink href="#features" offset={-96}>Features</NavLink>

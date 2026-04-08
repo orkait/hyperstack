@@ -5,13 +5,30 @@ import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js"
 import { loadPlugins } from "./registry.js";
 import { reactflowPlugin } from "./plugins/reactflow/index.js";
 import { motionPlugin } from "./plugins/motion/index.js";
+import { lenisPlugin } from "./plugins/lenis/index.js";
+import { reactPlugin } from "./plugins/react/index.js";
+import { echoPlugin } from "./plugins/echo/index.js";
+import { golangPlugin } from "./plugins/golang/index.js";
+import { rustPlugin } from "./plugins/rust/index.js";
+import { designTokensPlugin } from "./plugins/design-tokens/index.js";
+import { uiUxPlugin } from "./plugins/ui-ux/index.js";
 
 const server = new McpServer({
   name: "unified-mcp",
   version: "1.0.0",
 });
 
-loadPlugins(server, [reactflowPlugin, motionPlugin]);
+loadPlugins(server, [
+  reactflowPlugin,
+  motionPlugin,
+  lenisPlugin,
+  reactPlugin,
+  echoPlugin,
+  golangPlugin,
+  rustPlugin,
+  designTokensPlugin,
+  uiUxPlugin,
+]);
 
 async function main() {
   const transport = new StdioServerTransport();

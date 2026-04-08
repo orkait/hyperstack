@@ -1,0 +1,1 @@
+fn process(data: Vec<u8>) -> usize { data.len() } // forces caller to clone or give up ownership
