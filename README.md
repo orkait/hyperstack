@@ -92,6 +92,16 @@ git clone https://github.com/orkait/hyperstack.git ~/.claude/skills/hyperstack
 | **rust** | Rust best practices | 4 | 18 practices (good/bad pairs), ownership guide, cheatsheet |
 | **design-tokens** | Tailwind v4 + OKLCH token system | 7 | 10 token categories, 8 build procedures, color ramp templates |
 | **ui-ux** | UI/UX design principles | 6 | Typography, color, spacing, elevation, motion, a11y, component patterns |
+| **behaviour-analysis** | Interaction & State Audits | 2 | Heuristics, state inventory, edge case sweeps |
+| **design-patterns-skill** | Core Programming Principles | 2 | Clean Code, Pragmatic Programmer patterns |
+| **engineering-discipline** | Senior SDE-3 Framework | 2 | Architecture reasoning, verification gates |
+| **excalidraw** | Architecture Diagrams | 2 | Automated diagram generation guidelines |
+| **frame-animator** | Character Animation | 2 | Frame-based tick animation and expressions |
+| **golang-design-pattern** | Go Design Patterns | 2 | Patterns adapted for Go's philosophy |
+| **pinchtab** | Browser Automation | 2 | Web scraping and browser testing guidelines |
+| **react-pro-coder** | Senior React/Next.js SDE | 2 | RSC-first constraints, core web vitals |
+| **readme-writer** | Project Documentation | 2 | Evidence-based README generation |
+| **security-review** | Security Audits | 2 | OWASP review, vulnerability checklists |
 
 ---
 
