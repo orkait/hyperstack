@@ -263,7 +263,7 @@ Add the following to your MCP config (`~/.claude.json` or Cursor config):
         "--rm",
         "--memory=256m",
         "--cpus=0.5",
-        "ghcr.io/orkait/hyperstack:main"
+        "superorkait/hyperstack:main"
       ]
     }
   }
