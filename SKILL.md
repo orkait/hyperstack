@@ -62,28 +62,6 @@ triggers:
   - typography scale
   - color contrast
   - wcag
-  - behaviour analysis
-  - state audit
-  - nielsen heuristics
-  - design patterns
-  - clean code
-  - engineering discipline
-  - code review
-  - architecture diagram
-  - excalidraw
-  - frame animation
-  - golang patterns
-  - pinchtab automation
-  - web scraping
-  - browser testing
-  - react pro
-  - rsc constraints
-  - core web vitals
-  - readme generation
-  - project documentation
-  - security review
-  - owasp
-  - vulnerability check
 activation:
   mode: fuzzy
   priority: high
@@ -469,26 +447,3 @@ Elevation: 5 levels distinguished by bg-color not just borders; dark mode uses l
 Motion: exits faster than entrances (subtract 50-100ms); ease-out entering, ease-in exiting, ease-in-out repositioning; never linear; details via ui_ux_get_principle duration-rules
 
 Pre-ship: run ui_ux_get_checklist for each domain before shipping a new component or page
-
----
-
-## Additional Engineering Skills
-
-Hyperstack also bundles 10 specialized engineering skills that do not rely on standard API references but instead provide comprehensive guidelines, checklists, and principles. 
-
-For each of these skills, you can:
-1. List all available documents: `[skill_name]_list_docs()`
-2. Get the content of a specific document: `[skill_name]_get_doc({ path: "..." })` (Always start by reading `SKILL.txt`)
-
-| Skill Prefix | Focus Area |
-|--------------|------------|
-| `behaviour_analysis` | UI/UX state audits, Nielsen heuristics |
-| `design_patterns_skill` | Clean Code, Pragmatic Programmer concepts |
-| `engineering_discipline`| Architecture reasoning, verification gates |
-| `excalidraw` | Automated architecture diagram generation |
-| `frame_animator` | Frame-based tick animation & expressions |
-| `golang_design_pattern`| Go-specific implementations of design patterns |
-| `pinchtab` | Browser automation, scraping, web testing |
-| `react_pro_coder` | Senior Next.js/React constraints, RSC rules |
-| `readme_writer` | Evidence-based README generation |
-| `security_review` | OWASP audits, vulnerability checklists |
