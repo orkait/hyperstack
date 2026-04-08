@@ -62,28 +62,6 @@ triggers:
   - typography scale
   - color contrast
   - wcag
-  - behaviour analysis
-  - state audit
-  - nielsen heuristics
-  - design patterns
-  - clean code
-  - engineering discipline
-  - code review
-  - architecture diagram
-  - excalidraw
-  - frame animation
-  - golang patterns
-  - pinchtab automation
-  - web scraping
-  - browser testing
-  - react pro
-  - rsc constraints
-  - core web vitals
-  - readme generation
-  - project documentation
-  - security review
-  - owasp
-  - vulnerability check
 activation:
   mode: fuzzy
   priority: high
@@ -472,23 +450,19 @@ Pre-ship: run ui_ux_get_checklist for each domain before shipping a new componen
 
 ---
 
-## Additional Engineering Skills
+## 🧠 Additional Engineering Skills
 
-Hyperstack also bundles 10 specialized engineering skills that do not rely on standard API references but instead provide comprehensive guidelines, checklists, and principles. 
+Hyperstack bundles 10 specialized engineering skills that do not rely on standard API references but instead provide comprehensive guidelines, checklists, and principles.
 
-For each of these skills, you can:
-1. List all available documents: `[skill_name]_list_docs()`
-2. Get the content of a specific document: `[skill_name]_get_doc({ path: "..." })` (Always start by reading `SKILL.txt`)
+These are **NOT** MCP tools. They are static Markdown files located in the `skills/` directory of the repository. You can use standard file reading tools to read these documents when needed.
 
-| Skill Prefix | Focus Area |
-|--------------|------------|
-| `behaviour_analysis` | UI/UX state audits, Nielsen heuristics |
-| `design_patterns_skill` | Clean Code, Pragmatic Programmer concepts |
-| `engineering_discipline`| Architecture reasoning, verification gates |
-| `excalidraw` | Automated architecture diagram generation |
-| `frame_animator` | Frame-based tick animation & expressions |
-| `golang_design_pattern`| Go-specific implementations of design patterns |
-| `pinchtab` | Browser automation, scraping, web testing |
-| `react_pro_coder` | Senior Next.js/React constraints, RSC rules |
-| `readme_writer` | Evidence-based README generation |
-| `security_review` | OWASP audits, vulnerability checklists |
+- `skills/behaviour-analysis/SKILL.md`
+- `skills/design-patterns-skill/SKILL.md`
+- `skills/engineering-discipline/SKILL.md`
+- `skills/excalidraw/SKILL.md`
+- `skills/frame-animator/SKILL.md`
+- `skills/golang-design-pattern/SKILL.md`
+- `skills/pinchtab/SKILL.md`
+- `skills/react-pro-coder/SKILL.md`
+- `skills/readme-writer/SKILL.md`
+- `skills/security-review/SKILL.md`
