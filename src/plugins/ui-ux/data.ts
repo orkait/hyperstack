@@ -46,7 +46,7 @@ export const PRINCIPLES: Principle[] = [
     domain: "typography",
     rule: "Use mathematical ratios for type scale, not arbitrary sizes.",
     detail: "Common ratios: 1.25 (Major Third), 1.333 (Perfect Fourth), 1.414 (Augmented Fourth). Recommended web scale: Display 48-72px, H1 40-56px, H2 28-40px, H3 20-24px, Subtitle 16-20px, Body 16px, Body-sm 14px, Caption 13px, Overline 12px.",
-    cssExample: snippet("principles/type-scale.md"),
+    cssExample: snippet("principles/type-scale.txt"),
     antiPatterns: ["Random px values with no ratio", "Fluid body text (causes reflow)", "More than 2 type families"],
   },
   {
@@ -75,7 +75,7 @@ export const PRINCIPLES: Principle[] = [
     domain: "typography",
     rule: "Max prose width: 65ch (~600px). Beyond this, eye tracking degrades.",
     detail: "Apply `max-width: 65ch` to all body text containers. This is not the page width — cards and components can be wider.",
-    cssExample: snippet("principles/prose-width.md"),
+    cssExample: snippet("principles/prose-width.txt"),
     antiPatterns: ["Full-width paragraphs", "Applying 65ch to the whole layout"],
   },
 
@@ -85,7 +85,7 @@ export const PRINCIPLES: Principle[] = [
     domain: "color",
     rule: "Use OKLCH for new projects — perceptually uniform, P3 gamut, Tailwind v4 native.",
     detail: "oklch(L C H): L=Lightness 0–1, C=Chroma 0–0.4, H=Hue 0–360°. Each axis is independent. To darken: reduce L. To desaturate: reduce C. To shift hue: adjust H only.",
-    cssExample: snippet("principles/oklch-color.md"),
+    cssExample: snippet("principles/oklch-color.txt"),
     antiPatterns: ["Mixing HSL and OKLCH", "Using rgb() for brand colors in new projects"],
   },
   {
@@ -108,7 +108,7 @@ export const PRINCIPLES: Principle[] = [
     domain: "color",
     rule: "Dark mode: redesign, don't invert. Warm charcoal, not black.",
     detail: "Background: oklch(0.13 0.008 265) — warm charcoal, not #000. Text: oklch(0.94 0.008 265) — off-white, not #fff. Higher elevation = lighter bg (shadows invisible on dark). Reduce saturation slightly (vivid on dark = neon). Primary accents brighten: brand-600 → brand-400.",
-    cssExample: snippet("principles/dark-mode.md"),
+    cssExample: snippet("principles/dark-mode.txt"),
     antiPatterns: ["Pure black background (#000)", "Pure white text (#fff) on dark", "Inverting light mode colors directly"],
   },
   {
@@ -116,7 +116,7 @@ export const PRINCIPLES: Principle[] = [
     domain: "color",
     rule: "Always provide solid + soft variant for status colors (success/error/warning/info).",
     detail: "Solid: passes 4.5:1 with white text (L ~0.55). Soft: light tinted bg + dark text for non-critical contexts. Warning uses dark text (not white) because amber is too light.",
-    cssExample: snippet("principles/semantic-status-colors.md"),
+    cssExample: snippet("principles/semantic-status-colors.txt"),
     antiPatterns: ["White text on warning (fails contrast)", "Same color for solid and soft"],
   },
 
@@ -142,7 +142,7 @@ export const PRINCIPLES: Principle[] = [
     domain: "elevation",
     rule: "5 surface levels. Each must be visually distinguishable via bg color, not just borders.",
     detail: "Level 0: flat (page bg). Level 1: subtle (inline cards). Level 2: raised (standard cards). Level 3: elevated (dropdowns, popovers). Level 4: floating (modals, dialogs). In dark mode: no shadows — use progressively lighter bg colors.",
-    cssExample: snippet("principles/5-elevation-levels.md"),
+    cssExample: snippet("principles/5-elevation-levels.txt"),
     antiPatterns: ["Borders as the only elevation signal", "Shadows on dark backgrounds"],
   },
   {
@@ -150,7 +150,7 @@ export const PRINCIPLES: Principle[] = [
     domain: "elevation",
     rule: "Shadows must be warm-tinted (oklch), never rgba(0,0,0,...).",
     detail: "Pure black shadows look harsh and disconnected from warm UIs. Tint shadows with a warm hue at very low opacity.",
-    cssExample: snippet("principles/warm-shadows.md"),
+    cssExample: snippet("principles/warm-shadows.txt"),
     antiPatterns: ["rgba(0,0,0,...) shadows in warm UI", "High-opacity shadows (>0.2)"],
   },
 
@@ -167,7 +167,7 @@ export const PRINCIPLES: Principle[] = [
     domain: "motion",
     rule: "ease-out for entering. ease-in for exiting. ease-in-out for repositioning. NEVER linear.",
     detail: "ease-out: elements appearing — starts fast, settles naturally. ease-in: elements leaving — starts gently, ends decisively. ease-in-out: elements moving to new position. Spring/bounce: playful feedback only.",
-    cssExample: snippet("principles/easing-rules.md"),
+    cssExample: snippet("principles/easing-rules.txt"),
     antiPatterns: ["Linear easing for any UI motion", "Bounce/spring for serious/professional contexts"],
   },
   {
@@ -175,7 +175,7 @@ export const PRINCIPLES: Principle[] = [
     domain: "motion",
     rule: "ALWAYS implement prefers-reduced-motion. Not optional.",
     detail: "Place in @layer base with !important. Applies to all elements and pseudos. Some users have vestibular disorders — motion can cause nausea.",
-    cssExample: snippet("principles/reduced-motion.md"),
+    cssExample: snippet("principles/reduced-motion.txt"),
     antiPatterns: ["Missing prefers-reduced-motion", "Only disabling some animations"],
   },
 
@@ -185,7 +185,7 @@ export const PRINCIPLES: Principle[] = [
     domain: "accessibility",
     rule: "Touch targets: min 44×44px (WCAG), recommended 48×48px. Gap ≥ 8px between targets.",
     detail: "Visual size ≠ touch target. A 34px button can have a 44px hit area via padding or ::after pseudo-element. Gap prevents accidental taps on adjacent targets.",
-    cssExample: snippet("principles/touch-targets.md"),
+    cssExample: snippet("principles/touch-targets.txt"),
     antiPatterns: ["< 44px touch targets on mobile", "Adjacent buttons with no gap"],
   },
   {
@@ -193,7 +193,7 @@ export const PRINCIPLES: Principle[] = [
     domain: "accessibility",
     rule: "Every interactive element MUST have visible focus indicator: 2px ring, 2px offset, primary color.",
     detail: "Trap focus in modals. Return focus to trigger on close. Never `outline: none` without a custom focus style.",
-    cssExample: snippet("principles/focus-management.md"),
+    cssExample: snippet("principles/focus-management.txt"),
     antiPatterns: ["outline: none without custom focus", "Focus styles with < 3:1 contrast", "No focus trap in modals"],
   },
   {
@@ -217,7 +217,7 @@ export const PRINCIPLES: Principle[] = [
     domain: "responsive",
     rule: "Write mobile styles first, override with min-width queries.",
     detail: "Mobile-first produces smaller CSS. Most traffic is mobile. Progressive enhancement > graceful degradation.",
-    cssExample: snippet("principles/mobile-first.md"),
+    cssExample: snippet("principles/mobile-first.txt"),
     antiPatterns: ["Desktop-first with max-width overrides", "Separate mobile stylesheet"],
   },
 ];
@@ -238,7 +238,7 @@ export const COMPONENT_PATTERNS: ComponentPattern[] = [
       "Touch target min 44px — use padding to expand if needed",
       "Primary: solid brand bg. Secondary: outlined. Ghost: transparent. Destructive: error color.",
     ],
-    code: snippet("components/button.md"),
+    code: snippet("components/button.txt"),
   },
   {
     name: "card",

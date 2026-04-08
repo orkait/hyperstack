@@ -28,4 +28,4 @@ LOCK_FILE="/tmp/${CONTAINER}.lock"
 
 ) 200>"$LOCK_FILE"
 
-exec docker exec -i "$CONTAINER" node dist/index.js
+exec docker exec -i "$CONTAINER" npx tsx src/index.ts

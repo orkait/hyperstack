@@ -65,17 +65,17 @@ const reactFlowComponent: ApiEntry = {
     { name: "autoPanOnConnect", type: "boolean", description: "Pan viewport when creating connections near edge.", default: "true" },
     { name: "autoPanOnNodeDrag", type: "boolean", description: "Pan viewport when dragging nodes near edge.", default: "true" },
   ],
-  usage: snippet("usage/ReactFlow.md"),
+  usage: snippet("usage/ReactFlow.txt"),
   examples: [
     {
       title: "Controlled flow with Zustand",
       category: "state-management",
-      code: snippet("examples/ReactFlow/controlled-flow-zustand.md"),
+      code: snippet("examples/ReactFlow/controlled-flow-zustand.txt"),
     },
     {
       title: "Uncontrolled flow",
       category: "quickstart",
-      code: snippet("examples/ReactFlow/uncontrolled-flow.md"),
+      code: snippet("examples/ReactFlow/uncontrolled-flow.txt"),
     },
   ],
   tips: [
@@ -101,12 +101,12 @@ const backgroundComponent: ApiEntry = {
     { name: "color", type: "string", description: "Pattern color." },
     { name: "lineWidth", type: "number", description: "Stroke width for lines/cross variant.", default: "1" },
   ],
-  usage: snippet("usage/Background.md"),
+  usage: snippet("usage/Background.txt"),
   examples: [
     {
       title: "Cross pattern background",
       category: "styling",
-      code: snippet("examples/Background/cross-pattern-background.md"),
+      code: snippet("examples/Background/cross-pattern-background.txt"),
     },
   ],
   relatedApis: ["ReactFlow", "MiniMap", "Controls"],
@@ -125,12 +125,12 @@ const controlsComponent: ApiEntry = {
     { name: "position", type: "PanelPosition", description: "Corner position.", default: "'bottom-left'" },
     { name: "orientation", type: "'horizontal' | 'vertical'", description: "Layout direction.", default: "'vertical'" },
   ],
-  usage: snippet("usage/Controls.md"),
+  usage: snippet("usage/Controls.txt"),
   examples: [
     {
       title: "Custom control button",
       category: "interaction",
-      code: snippet("examples/Controls/custom-control-button.md"),
+      code: snippet("examples/Controls/custom-control-button.txt"),
     },
   ],
   relatedApis: ["ReactFlow", "ControlButton", "Panel"],
@@ -151,7 +151,7 @@ const miniMapComponent: ApiEntry = {
     { name: "pannable", type: "boolean", description: "Allow panning via minimap.", default: "false" },
     { name: "zoomable", type: "boolean", description: "Allow zooming via minimap.", default: "false" },
   ],
-  usage: snippet("usage/MiniMap.md"),
+  usage: snippet("usage/MiniMap.txt"),
   examples: [],
   relatedApis: ["ReactFlow", "Background", "Controls"],
 };
@@ -164,7 +164,7 @@ const panelComponent: ApiEntry = {
   props: [
     { name: "position", type: "PanelPosition", description: "Corner or side position. E.g. 'top-left', 'top-right', 'bottom-left', 'bottom-right'." },
   ],
-  usage: snippet("usage/Panel.md"),
+  usage: snippet("usage/Panel.txt"),
   examples: [],
   relatedApis: ["ReactFlow", "Controls", "MiniMap"],
 };
@@ -185,12 +185,12 @@ const handleComponent: ApiEntry = {
     { name: "isValidConnection", type: "IsValidConnection", description: "Custom validation logic for connections to this handle." },
     { name: "onConnect", type: "OnConnect", description: "Callback when connection is made to this handle." },
   ],
-  usage: snippet("usage/Handle.md"),
+  usage: snippet("usage/Handle.txt"),
   examples: [
     {
       title: "Multiple handles",
       category: "custom-nodes",
-      code: snippet("examples/Handle/multiple-handles.md"),
+      code: snippet("examples/Handle/multiple-handles.txt"),
     },
   ],
   tips: [
@@ -217,12 +217,12 @@ const nodeResizerComponent: ApiEntry = {
     { name: "lineStyle", type: "CSSProperties", description: "Style the resize border lines." },
     { name: "keepAspectRatio", type: "boolean", description: "Maintain aspect ratio when resizing.", default: "false" },
   ],
-  usage: snippet("usage/NodeResizer.md"),
+  usage: snippet("usage/NodeResizer.txt"),
   examples: [
     {
       title: "Resizable node with handles",
       category: "custom-nodes",
-      code: snippet("examples/NodeResizer/resizable-node-with-handles.md"),
+      code: snippet("examples/NodeResizer/resizable-node-with-handles.txt"),
     },
   ],
   relatedApis: ["NodeResizeControl", "Handle"],
@@ -241,7 +241,7 @@ const nodeToolbarComponent: ApiEntry = {
     { name: "offset", type: "number", description: "Distance from node.", default: "10" },
     { name: "nodeId", type: "string | string[]", description: "Attach to specific node(s)." },
   ],
-  usage: snippet("usage/NodeToolbar.md"),
+  usage: snippet("usage/NodeToolbar.txt"),
   examples: [],
   relatedApis: ["EdgeToolbar", "Handle"],
 };
@@ -252,12 +252,12 @@ const edgeLabelRendererComponent: ApiEntry = {
   description:
     "Portal for rendering complex HTML labels on edges. Since edges are SVG, this provides a div-based renderer positioned on top of edges.",
   importPath: "import { EdgeLabelRenderer } from '@xyflow/react'",
-  usage: snippet("usage/EdgeLabelRenderer.md"),
+  usage: snippet("usage/EdgeLabelRenderer.txt"),
   examples: [
     {
       title: "Edge with delete button",
       category: "custom-edges",
-      code: snippet("examples/EdgeLabelRenderer/edge-with-delete-button.md"),
+      code: snippet("examples/EdgeLabelRenderer/edge-with-delete-button.txt"),
     },
   ],
   relatedApis: ["BaseEdge", "getBezierPath", "EdgeToolbar"],
@@ -276,7 +276,7 @@ const baseEdgeComponent: ApiEntry = {
     { name: "label", type: "ReactNode", description: "Edge label content." },
     { name: "interactionWidth", type: "number", description: "Width of invisible click target.", default: "20" },
   ],
-  usage: snippet("usage/BaseEdge.md"),
+  usage: snippet("usage/BaseEdge.txt"),
   examples: [],
   relatedApis: ["EdgeLabelRenderer", "getBezierPath", "getSmoothStepPath"],
 };
@@ -297,7 +297,7 @@ const edgeTextComponent: ApiEntry = {
     { name: "labelBgPadding", type: "[number, number]", description: "Padding around label background.", default: "[2, 4]" },
     { name: "labelBgBorderRadius", type: "number", description: "Border radius of label background.", default: "2" },
   ],
-  usage: snippet("usage/EdgeText.md"),
+  usage: snippet("usage/EdgeText.txt"),
   examples: [],
   relatedApis: ["BaseEdge", "EdgeLabelRenderer", "getBezierPath"],
 };
@@ -308,7 +308,7 @@ const viewportPortalComponent: ApiEntry = {
   description:
     "Renders components in the same viewport coordinate system as nodes and edges. Content zooms and pans with the flow.",
   importPath: "import { ViewportPortal } from '@xyflow/react'",
-  usage: snippet("usage/ViewportPortal.md"),
+  usage: snippet("usage/ViewportPortal.txt"),
   examples: [],
   relatedApis: ["ReactFlow", "Panel"],
 };
@@ -322,7 +322,7 @@ const edgeToolbarComponent: ApiEntry = {
   props: [
     { name: "position", type: "Position", description: "Side of edge.", default: "Position.Top" },
   ],
-  usage: snippet("usage/EdgeToolbar.md"),
+  usage: snippet("usage/EdgeToolbar.txt"),
   examples: [],
   relatedApis: ["NodeToolbar", "EdgeLabelRenderer"],
 };
@@ -350,7 +350,7 @@ const nodeResizeControlComponent: ApiEntry = {
     { name: "autoScale", type: "boolean", description: "Scale controls with zoom level.", default: "true" },
     { name: "resizeDirection", type: "'horizontal' | 'vertical'", description: "Constrain resize direction." },
   ],
-  usage: snippet("usage/NodeResizeControl.md"),
+  usage: snippet("usage/NodeResizeControl.txt"),
   examples: [],
   tips: [
     "Use NodeResizeControl when you need a custom resize UI (icon, button, etc).",
@@ -368,12 +368,12 @@ const controlButtonComponent: ApiEntry = {
   props: [
     { name: "...props", type: "ButtonHTMLAttributes<HTMLButtonElement>", description: "Any valid HTML button props." },
   ],
-  usage: snippet("usage/ControlButton.md"),
+  usage: snippet("usage/ControlButton.txt"),
   examples: [
     {
       title: "Custom control with layout button",
       category: "interaction",
-      code: snippet("examples/ControlButton/custom-control-with-layout-button.md"),
+      code: snippet("examples/ControlButton/custom-control-with-layout-button.txt"),
     },
   ],
   relatedApis: ["Controls", "Panel"],
@@ -385,7 +385,7 @@ const reactFlowProviderComponent: ApiEntry = {
   description:
     "Provides the React Flow context to child components. Required when using hooks like useReactFlow outside of the ReactFlow component.",
   importPath: "import { ReactFlowProvider } from '@xyflow/react'",
-  usage: snippet("usage/ReactFlowProvider.md"),
+  usage: snippet("usage/ReactFlowProvider.txt"),
   examples: [],
   tips: [
     "If you render <ReactFlow> and need to use hooks like useReactFlow in sibling or parent components, wrap everything in <ReactFlowProvider>.",

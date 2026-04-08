@@ -27,30 +27,30 @@ export const BEST_PRACTICES: BestPractice[] = [
     chapter: "coding-styles",
     rule: "Prefer &T over .clone() unless ownership transfer is required.",
     reason: "Cloning allocates heap memory unnecessarily. References are zero-cost.",
-    good: snippet("practices/borrow-over-clone-good.md"),
-    bad: snippet("practices/borrow-over-clone-bad.md"),
+    good: snippet("practices/borrow-over-clone-good.txt"),
+    bad: snippet("practices/borrow-over-clone-bad.txt"),
   },
   {
     name: "str-over-string",
     chapter: "coding-styles",
     rule: "Use &str over String, &[T] over Vec<T> in function parameters.",
     reason: "&str accepts both &String and string literals. More flexible and zero-copy.",
-    good: snippet("practices/str-over-string-good.md"),
-    bad: snippet("practices/str-over-string-bad.md"),
+    good: snippet("practices/str-over-string-good.txt"),
+    bad: snippet("practices/str-over-string-bad.txt"),
   },
   {
     name: "copy-by-value",
     chapter: "coding-styles",
     rule: "Small Copy types (≤24 bytes) can be passed by value — no need for &T.",
     reason: "Copying small types (u32, bool, small structs) is as fast or faster than a reference.",
-    good: snippet("practices/copy-by-value-good.md"),
+    good: snippet("practices/copy-by-value-good.txt"),
   },
   {
     name: "cow-ambiguous-ownership",
     chapter: "coding-styles",
     rule: "Use Cow<'_, T> when ownership is sometimes required and sometimes not.",
     reason: "Avoids always cloning (wasteful) or always borrowing (restrictive).",
-    good: snippet("practices/cow-ambiguous-ownership-good.md"),
+    good: snippet("practices/cow-ambiguous-ownership-good.txt"),
   },
 
   // ERROR HANDLING
@@ -59,16 +59,16 @@ export const BEST_PRACTICES: BestPractice[] = [
     chapter: "error-handling",
     rule: "Return Result<T, E> for fallible operations. Never panic! in production code.",
     reason: "panic! unwinds the stack and kills the thread. Use it only for programmer errors.",
-    good: snippet("practices/result-not-panic-good.md"),
-    bad: snippet("practices/result-not-panic-bad.md"),
+    good: snippet("practices/result-not-panic-good.txt"),
+    bad: snippet("practices/result-not-panic-bad.txt"),
   },
   {
     name: "no-unwrap-in-prod",
     chapter: "error-handling",
     rule: "Never use unwrap() or expect() outside of tests.",
     reason: "Both panic on None/Err. Use ? operator or proper error handling.",
-    good: snippet("practices/no-unwrap-in-prod-good.md"),
-    bad: snippet("practices/no-unwrap-in-prod-bad.md"),
+    good: snippet("practices/no-unwrap-in-prod-good.txt"),
+    bad: snippet("practices/no-unwrap-in-prod-bad.txt"),
     tips: ["expect() is slightly better than unwrap() (message on panic), but still banned in prod"],
   },
   {
@@ -76,7 +76,7 @@ export const BEST_PRACTICES: BestPractice[] = [
     chapter: "error-handling",
     rule: "thiserror for library errors, anyhow for binary/application errors.",
     reason: "Libraries need typed errors (callers match on them). Binaries just need context strings.",
-    good: snippet("practices/thiserror-vs-anyhow-good.md"),
+    good: snippet("practices/thiserror-vs-anyhow-good.txt"),
   },
 
   // PERFORMANCE
@@ -85,24 +85,24 @@ export const BEST_PRACTICES: BestPractice[] = [
     chapter: "performance",
     rule: "Always benchmark with --release flag. Debug builds are 10-100x slower.",
     reason: "Debug builds disable optimizations. Benchmarks without --release are meaningless.",
-    good: snippet("practices/benchmark-release-good.md"),
-    bad: snippet("practices/benchmark-release-bad.md"),
+    good: snippet("practices/benchmark-release-good.txt"),
+    bad: snippet("practices/benchmark-release-bad.txt"),
   },
   {
     name: "avoid-clone-in-loops",
     chapter: "performance",
     rule: "Avoid cloning in loops. Use .iter() instead of .into_iter() for Copy types.",
     reason: "Cloning in a loop = N allocations. References or Copy types are zero-cost.",
-    good: snippet("practices/avoid-clone-in-loops-good.md"),
-    bad: snippet("practices/avoid-clone-in-loops-bad.md"),
+    good: snippet("practices/avoid-clone-in-loops-good.txt"),
+    bad: snippet("practices/avoid-clone-in-loops-bad.txt"),
   },
   {
     name: "prefer-iterators",
     chapter: "performance",
     rule: "Prefer iterator chains over manual loops. Avoid premature .collect().",
     reason: "Iterators are lazy — they don't allocate until consumed. collect() is the allocation point.",
-    good: snippet("practices/prefer-iterators-good.md"),
-    bad: snippet("practices/prefer-iterators-bad.md"),
+    good: snippet("practices/prefer-iterators-good.txt"),
+    bad: snippet("practices/prefer-iterators-bad.txt"),
   },
 
   // CLIPPY
@@ -122,8 +122,8 @@ export const BEST_PRACTICES: BestPractice[] = [
     chapter: "clippy",
     rule: "Use #[expect(clippy::lint_name)] over #[allow(...)]. Add a justification comment.",
     reason: "#[expect] fails if the warning no longer fires (lint was fixed). #[allow] silently rots.",
-    good: snippet("practices/expect-over-allow-good.md"),
-    bad: snippet("practices/expect-over-allow-bad.md"),
+    good: snippet("practices/expect-over-allow-good.txt"),
+    bad: snippet("practices/expect-over-allow-bad.txt"),
   },
 
   // TESTING
@@ -132,22 +132,22 @@ export const BEST_PRACTICES: BestPractice[] = [
     chapter: "testing",
     rule: "Name tests descriptively: process_should_return_error_when_input_empty()",
     reason: "Test names are documentation. Vague names like test_process() don't explain what's tested.",
-    good: snippet("practices/descriptive-test-names-good.md"),
-    bad: snippet("practices/descriptive-test-names-bad.md"),
+    good: snippet("practices/descriptive-test-names-good.txt"),
+    bad: snippet("practices/descriptive-test-names-bad.txt"),
   },
   {
     name: "one-assertion-per-test",
     chapter: "testing",
     rule: "One assertion per test when possible.",
     reason: "Multiple assertions in one test: first failure hides the rest. Separate tests give clearer failures.",
-    good: snippet("practices/one-assertion-per-test-good.md"),
+    good: snippet("practices/one-assertion-per-test-good.txt"),
   },
   {
     name: "doc-tests",
     chapter: "documentation",
     rule: "Use doc tests (///) for public API usage examples. They run with cargo test.",
     reason: "Doc tests are the only examples guaranteed to stay correct — they compile and run.",
-    good: snippet("practices/doc-tests-good.md"),
+    good: snippet("practices/doc-tests-good.txt"),
   },
 
   // GENERICS
@@ -156,7 +156,7 @@ export const BEST_PRACTICES: BestPractice[] = [
     chapter: "generics",
     rule: "Prefer generics (static dispatch) for performance-critical code. Use dyn Trait for heterogeneous collections.",
     reason: "Generics monomorphize at compile time — zero runtime cost. dyn Trait has vtable overhead.",
-    good: snippet("practices/static-over-dynamic-dispatch-good.md"),
+    good: snippet("practices/static-over-dynamic-dispatch-good.txt"),
   },
 
   // TYPE STATE
@@ -165,7 +165,7 @@ export const BEST_PRACTICES: BestPractice[] = [
     chapter: "type-state",
     rule: "Encode valid state transitions in the type system using PhantomData.",
     reason: "Catches invalid operations at compile time, not runtime. Zero cost abstraction.",
-    good: snippet("practices/type-state-pattern-good.md"),
+    good: snippet("practices/type-state-pattern-good.txt"),
     tips: ["Use when invalid state transitions are a real risk", "Don't over-engineer — simple enums often suffice"],
   },
 
@@ -180,8 +180,8 @@ export const BEST_PRACTICES: BestPractice[] = [
       "Mutex<T>: interior mutability for T: Send",
       "Rc<T> and RefCell<T> are NOT thread-safe — local only",
     ],
-    good: snippet("practices/send-sync-good.md"),
-    bad: snippet("practices/send-sync-bad.md"),
+    good: snippet("practices/send-sync-good.txt"),
+    bad: snippet("practices/send-sync-bad.txt"),
   },
 ];
 

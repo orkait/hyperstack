@@ -156,22 +156,22 @@ const reactLenis: ApiEntry = {
       description: "The content to be scroll-wrapped.",
     },
   ],
-  usage: snippet("usage/react-lenis.md"),
+  usage: snippet("usage/react-lenis.txt"),
   examples: [
     {
       title: "Root layout setup",
       category: "setup",
-      code: snippet("examples/react-lenis-root.md"),
+      code: snippet("examples/react-lenis-root.txt"),
     },
     {
       title: "Container scroll (non-root)",
       category: "setup",
-      code: snippet("examples/react-lenis-container.md"),
+      code: snippet("examples/react-lenis-container.txt"),
     },
     {
       title: "Accessing the Lenis instance via ref",
       category: "setup",
-      code: snippet("examples/react-lenis-ref.md"),
+      code: snippet("examples/react-lenis-ref.txt"),
     },
   ],
   tips: [
@@ -213,27 +213,27 @@ const useLenis: ApiEntry = {
     },
   ],
   returns: "Lenis | undefined",
-  usage: snippet("usage/use-lenis.md"),
+  usage: snippet("usage/use-lenis.txt"),
   examples: [
     {
       title: "Scroll to element",
       category: "navigation",
-      code: snippet("examples/use-lenis-scroll-to.md"),
+      code: snippet("examples/use-lenis-scroll-to.txt"),
     },
     {
       title: "Scroll progress tracker",
       category: "scroll",
-      code: snippet("examples/use-lenis-progress.md"),
+      code: snippet("examples/use-lenis-progress.txt"),
     },
     {
       title: "Scroll-linked parallax",
       category: "scroll",
-      code: snippet("examples/use-lenis-parallax.md"),
+      code: snippet("examples/use-lenis-parallax.txt"),
     },
     {
       title: "Stop/start scrolling",
       category: "control",
-      code: snippet("examples/use-lenis-modal.md"),
+      code: snippet("examples/use-lenis-modal.txt"),
     },
   ],
   tips: [
@@ -267,12 +267,12 @@ const lenisRef: ApiEntry = {
       description: "The outer wrapper DOM element that Lenis is attached to.",
     },
   ],
-  usage: snippet("usage/lenis-ref.md"),
+  usage: snippet("usage/lenis-ref.txt"),
   examples: [
     {
       title: "Imperative scroll from outside context",
       category: "setup",
-      code: snippet("examples/lenis-ref-imperative.md"),
+      code: snippet("examples/lenis-ref-imperative.txt"),
     },
   ],
   tips: [
@@ -359,17 +359,17 @@ const lenisOptions: ApiEntry = {
       description: "The inner content element. Used for non-root (container) scroll.",
     },
   ],
-  usage: snippet("usage/lenis-options.md"),
+  usage: snippet("usage/lenis-options.txt"),
   examples: [
     {
       title: "Tuned scroll feel for a marketing site",
       category: "options",
-      code: snippet("options/tuned-marketing.md"),
+      code: snippet("options/tuned-marketing.txt"),
     },
     {
       title: "Horizontal scroll options",
       category: "options",
-      code: snippet("options/horizontal.md"),
+      code: snippet("options/horizontal.txt"),
     },
   ],
   tips: [
@@ -395,7 +395,7 @@ export const PATTERNS: Record<string, Pattern> = {
   "full-page": {
     name: "full-page",
     description: "Standard root layout setup — ReactLenis wraps the entire app for full-page smooth scrolling.",
-    code: snippet("patterns/full-page.md"),
+    code: snippet("patterns/full-page.txt"),
     tips: [
       "root={true} is required for full-page scroll — without it, Lenis creates an overflow:hidden container.",
       "The CSS import is mandatory — skip it and the layout breaks.",
@@ -404,7 +404,7 @@ export const PATTERNS: Record<string, Pattern> = {
   "next-js": {
     name: "next-js",
     description: "Next.js App Router pattern using a dedicated SmoothScrollProvider client component to wrap the layout.",
-    code: snippet("patterns/next-js.md"),
+    code: snippet("patterns/next-js.txt"),
     tips: [
       "Keep app/layout.tsx as a Server Component — extract the 'use client' directive into SmoothScrollProvider.",
       "This preserves RSC boundaries and avoids unnecessarily client-rendering the entire layout.",
@@ -413,7 +413,7 @@ export const PATTERNS: Record<string, Pattern> = {
   "gsap-integration": {
     name: "gsap-integration",
     description: "Integrate Lenis with GSAP ScrollTrigger by disabling autoRaf and driving Lenis from GSAP's ticker.",
-    code: snippet("patterns/gsap-integration.md"),
+    code: snippet("patterns/gsap-integration.txt"),
     tips: [
       "autoRaf: false is required — if GSAP and Lenis both run their own RAF loops, scroll updates fire twice per frame causing desync.",
       "gsap.ticker.lagSmoothing(0) prevents GSAP from adjusting delta time which would cause Lenis to stutter after tab switches.",
@@ -423,7 +423,7 @@ export const PATTERNS: Record<string, Pattern> = {
   "framer-motion-integration": {
     name: "framer-motion-integration",
     description: "Integrate Lenis with Framer Motion by disabling autoRaf and syncing via frame.update.",
-    code: snippet("patterns/framer-motion-integration.md"),
+    code: snippet("patterns/framer-motion-integration.txt"),
     tips: [
       "Use frame from 'motion' (not 'framer-motion') — this is the Framer Motion v11+ low-level scheduler.",
       "frame.update(fn, true) schedules the update to run on every frame. The second argument (true) enables loop mode.",
@@ -433,7 +433,7 @@ export const PATTERNS: Record<string, Pattern> = {
   "custom-container": {
     name: "custom-container",
     description: "Scoped scroll container using wrapper and content refs for non-window smooth scroll.",
-    code: snippet("patterns/custom-container.md"),
+    code: snippet("patterns/custom-container.txt"),
     tips: [
       "The wrapper element needs overflow: hidden and a fixed height for container scroll to work.",
       "The content element is the scrollable inner div — it should grow naturally with its children.",
@@ -443,7 +443,7 @@ export const PATTERNS: Record<string, Pattern> = {
   "accessibility": {
     name: "accessibility",
     description: "Respect prefers-reduced-motion by disabling smooth scrolling for users who prefer it.",
-    code: snippet("patterns/accessibility.md"),
+    code: snippet("patterns/accessibility.txt"),
     tips: [
       "Never force smooth scrolling on users who have opted out via prefers-reduced-motion.",
       "When skipping ReactLenis, native scroll is used — no polyfill needed.",
@@ -453,7 +453,7 @@ export const PATTERNS: Record<string, Pattern> = {
   "scroll-to-nav": {
     name: "scroll-to-nav",
     description: "Navigation link that uses lenis.scrollTo() for smooth in-page anchor navigation.",
-    code: snippet("patterns/scroll-to-nav.md"),
+    code: snippet("patterns/scroll-to-nav.txt"),
     tips: [
       "offset compensates for sticky headers — pass a negative value equal to the header height.",
       "lenis.scrollTo() accepts a CSS selector ('#section'), HTMLElement, or pixel number.",
