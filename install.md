@@ -13,7 +13,10 @@ Hyperstack includes an AI Skill (`SKILL.md`) that teaches you how to use its too
 - **Other Environments:** If your environment supports local file-based skills, clone the repo to the standard skills/extensions directory for your platform. If not supported, you may skip this step and proceed to installing the MCP server.
 
 ## Step 3: Configure the MCP Server
-Hyperstack runs via a pre-built Docker image from the GitHub Container Registry, enforcing strict resource limits. Add the following configuration to the appropriate MCP config file for your environment (e.g., `~/.claude.json`, `~/.gemini/config.json`, or the relevant IDE config for Cursor/Windsurf):
+Check if Docker is installed and running on the user's system.
+
+### Option A: Docker (Preferred)
+If Docker is available, add the following configuration to the appropriate MCP config file for your environment (e.g., `~/.claude.json`, `~/.gemini/config.json`, or the relevant IDE config for Cursor/Windsurf):
 
 ```json
 {
@@ -33,5 +36,22 @@ Hyperstack runs via a pre-built Docker image from the GitHub Container Registry,
 }
 ```
 
+### Option B: Local Node (Fallback)
+If Docker is NOT available, you must run the server locally using Node and `tsx`.
+1. Navigate to the directory where you cloned the repository (e.g., `~/.claude/skills/hyperstack`).
+2. Run `npm install` in that directory.
+3. Add the following configuration to the user's MCP config file, replacing `/absolute/path/to/...` with the actual path where you cloned the repository:
+
+```json
+{
+  "mcpServers": {
+    "hyperstack": {
+      "command": "npx",
+      "args": ["tsx", "/absolute/path/to/hyperstack/src/index.ts"]
+    }
+  }
+}
+```
+
 ## Step 4: Inform the User
-Inform the user that the installation is complete, specifying exactly where the repository was cloned and which configuration file was updated. Let them know no manual building or NPM installation is required.
+Inform the user that the installation is complete, specifying whether you used the Docker or Local Node method, exactly where the repository was cloned, and which configuration file was updated.
