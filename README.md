@@ -32,11 +32,15 @@
 
 ---
 
-## 🤝 Companion
+## 🤝 AI Skill Included
 
-This server pairs with **[unified-skill](https://github.com/orkait/unified-skill)** - a Claude Code skill that teaches your AI assistant *when and how* to use these tools. The skill handles judgment and gotchas; this server handles the data.
+This repository includes `SKILL.md` - a Claude Code skill that teaches your AI assistant *when and how* to use these tools. The skill handles judgment and gotchas; the MCP server handles the data.
 
-Install both to get the full experience.
+To use the skill, clone this repository into your Claude Code skills directory:
+
+```bash
+git clone https://github.com/orkait/unified-mcp.git ~/.claude/skills/unified-mcp
+```
 
 ---
 
