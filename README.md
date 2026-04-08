@@ -5,27 +5,23 @@
 **One MCP server. Every library your AI needs. Zero conflicts.**
 
 <p>
-  <!-- status -->
   <a href="https://github.com/orkait/unified-mcp/actions/workflows/ci.yml"><img src="https://github.com/orkait/unified-mcp/actions/workflows/ci.yml/badge.svg" alt="CI" /></a>
-  <a href="https://github.com/orkait/unified-mcp/blob/main/LICENSE"><img src="https://img.shields.io/github/license/orkait/unified-mcp?color=blue&logo=opensourceinitiative&logoColor=white" alt="License" /></a>
-  <a href="https://github.com/orkait/unified-mcp/stargazers"><img src="https://img.shields.io/github/stars/orkait/unified-mcp?style=flat&logo=github&logoColor=white&color=f0c040" alt="Stars" /></a>
-  <img src="https://img.shields.io/badge/TypeScript-5-3178c6?logo=typescript&logoColor=white" alt="TypeScript" />
-  <a href="https://modelcontextprotocol.io"><img src="https://img.shields.io/badge/MCP-compatible-6366f1?logo=anthropic&logoColor=white" alt="MCP compatible" /></a>
+  <img src="https://img.shields.io/badge/license-MIT-blue?style=flat-square" alt="MIT" />
+  <a href="https://github.com/orkait/unified-mcp/stargazers"><img src="https://img.shields.io/github/stars/orkait/unified-mcp?style=flat-square&color=f0c040" alt="Stars" /></a>
+  <img src="https://img.shields.io/badge/TypeScript-5-3178c6?style=flat-square&logo=typescript&logoColor=white" alt="TypeScript" />
+  <img src="https://img.shields.io/badge/MCP-compatible-6366f1?style=flat-square" alt="MCP" />
+  <img src="https://img.shields.io/badge/plugins-9-10b981?style=flat-square" alt="9 plugins" />
 </p>
 <p>
-  <!-- frontend plugins -->
-  <a href="https://reactflow.dev"><img src="https://img.shields.io/badge/%40xyflow%2Freact-v12-22c55e?logo=react&logoColor=white" alt="React Flow v12" /></a>
-  <a href="https://motion.dev"><img src="https://img.shields.io/badge/motion%2Freact-v12-f59e0b?logo=framer&logoColor=white" alt="Motion v12" /></a>
-  <a href="https://lenis.darkroom.engineering"><img src="https://img.shields.io/badge/lenis-smooth%20scroll-0ea5e9?logo=npm&logoColor=white" alt="Lenis" /></a>
-  <a href="https://react.dev"><img src="https://img.shields.io/badge/React-19%20%2B%20Next.js-61dafb?logo=react&logoColor=black" alt="React 19" /></a>
-  <a href="https://tailwindcss.com"><img src="https://img.shields.io/badge/Tailwind-v4%20tokens-06b6d4?logo=tailwindcss&logoColor=white" alt="Tailwind v4" /></a>
-</p>
-<p>
-  <!-- backend + systems plugins -->
-  <a href="https://echo.labstack.com"><img src="https://img.shields.io/badge/Echo-Go%20framework-00ADD8?logo=go&logoColor=white" alt="Echo Go" /></a>
-  <a href="https://go.dev"><img src="https://img.shields.io/badge/Go-best%20practices-00ADD8?logo=go&logoColor=white" alt="Go" /></a>
-  <a href="https://www.rust-lang.org"><img src="https://img.shields.io/badge/Rust-best%20practices-ce422b?logo=rust&logoColor=white" alt="Rust" /></a>
-  <img src="https://img.shields.io/badge/UI%2FUX-design%20principles-a855f7?logo=figma&logoColor=white" alt="UI/UX" />
+  <img src="https://img.shields.io/badge/React_Flow-v12-22c55e?style=flat-square&logo=react&logoColor=white" alt="React Flow" />
+  <img src="https://img.shields.io/badge/Motion-v12-f59e0b?style=flat-square&logo=framer&logoColor=white" alt="Motion" />
+  <img src="https://img.shields.io/badge/Lenis-smooth_scroll-0ea5e9?style=flat-square" alt="Lenis" />
+  <img src="https://img.shields.io/badge/React_19-Next.js-61dafb?style=flat-square&logo=react&logoColor=black" alt="React" />
+  <img src="https://img.shields.io/badge/Tailwind-v4_tokens-06b6d4?style=flat-square&logo=tailwindcss&logoColor=white" alt="Tailwind" />
+  <img src="https://img.shields.io/badge/Echo-Go-00ADD8?style=flat-square" alt="Echo" />
+  <img src="https://img.shields.io/badge/Golang-practices-00ADD8?style=flat-square" alt="Go" />
+  <img src="https://img.shields.io/badge/Rust-practices-ce422b?style=flat-square&logo=rust&logoColor=white" alt="Rust" />
+  <img src="https://img.shields.io/badge/UI%2FUX-principles-a855f7?style=flat-square" alt="UI/UX" />
 </p>
 
 <br/>
