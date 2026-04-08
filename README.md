@@ -1,12 +1,12 @@
 <div align="center">
 
-# unified-mcp
+# hyperstack
 
 **One MCP server. Every library your AI needs. Zero conflicts.**
 
 <p>
   <img src="https://img.shields.io/badge/license-MIT-blue?style=flat-square" alt="MIT" />
-  <a href="https://github.com/orkait/unified-mcp/stargazers"><img src="https://img.shields.io/github/stars/orkait/unified-mcp?style=flat-square&color=f0c040" alt="Stars" /></a>
+  <a href="https://github.com/orkait/hyperstack/stargazers"><img src="https://img.shields.io/github/stars/orkait/hyperstack?style=flat-square&color=f0c040" alt="Stars" /></a>
   <img src="https://img.shields.io/badge/TypeScript-5-3178c6?style=flat-square&logo=typescript&logoColor=white" alt="TypeScript" />
   <img src="https://img.shields.io/badge/MCP-compatible-6366f1?style=flat-square" alt="MCP" />
   <img src="https://img.shields.io/badge/plugins-9-10b981?style=flat-square" alt="9 plugins" />
@@ -39,7 +39,7 @@ This repository includes `SKILL.md` - a Claude Code skill that teaches your AI a
 To use the skill, clone this repository into your Claude Code skills directory:
 
 ```bash
-git clone https://github.com/orkait/unified-mcp.git ~/.claude/skills/unified-mcp
+git clone https://github.com/orkait/hyperstack.git ~/.claude/skills/hyperstack
 ```
 
 ---
@@ -253,10 +253,10 @@ git clone https://github.com/orkait/unified-mcp.git ~/.claude/skills/unified-mcp
 Build once, reuse forever. The wrapper script keeps **one** named container alive and runs each MCP session inside it via `docker exec` - no duplicate containers, no matter how many AI sessions are open.
 
 ```bash
-git clone https://github.com/orkait/unified-mcp.git
-cd unified-mcp
+git clone https://github.com/orkait/hyperstack.git
+cd hyperstack
 npm install && npm run build
-docker build -t unified-mcp .
+docker build -t hyperstack .
 ```
 
 Add to your MCP config:
@@ -267,8 +267,8 @@ Add to your MCP config:
 ```json
 {
   "mcpServers": {
-    "unified-mcp": {
-      "command": "/absolute/path/to/unified-mcp/scripts/start-mcp.sh"
+    "hyperstack": {
+      "command": "/absolute/path/to/hyperstack/scripts/start-mcp.sh"
     }
   }
 }
@@ -282,8 +282,8 @@ Add to your MCP config:
 ```json
 {
   "mcpServers": {
-    "unified-mcp": {
-      "command": "/absolute/path/to/unified-mcp/scripts/start-mcp.sh"
+    "hyperstack": {
+      "command": "/absolute/path/to/hyperstack/scripts/start-mcp.sh"
     }
   }
 }
@@ -296,17 +296,17 @@ Add to your MCP config:
 ### 📦 Without Docker (Node directly)
 
 ```bash
-git clone https://github.com/orkait/unified-mcp.git
-cd unified-mcp
+git clone https://github.com/orkait/hyperstack.git
+cd hyperstack
 npm install && npm run build
 ```
 
 ```json
 {
   "mcpServers": {
-    "unified-mcp": {
+    "hyperstack": {
       "command": "node",
-      "args": ["/absolute/path/to/unified-mcp/dist/index.js"]
+      "args": ["/absolute/path/to/hyperstack/dist/index.js"]
     }
   }
 }
@@ -318,7 +318,7 @@ npm install && npm run build
 
 Running a separate MCP server per library means one Docker container per server at startup. Two libraries = two containers. Ten libraries = ten containers - every session.
 
-`unified-mcp` runs everything in **one process**. All plugins share the same server, same connection, same container.
+`hyperstack` runs everything in **one process**. All plugins share the same server, same connection, same container.
 
 Tool names are namespaced per plugin (`reactflow_list_apis` vs `motion_list_apis`) so there are zero naming conflicts - the LLM always knows which library a tool belongs to.
 
@@ -341,8 +341,8 @@ Tool names are namespaced per plugin (`reactflow_list_apis` vs `motion_list_apis
 3. Rebuild and redeploy:
    ```bash
    npm run build
-   docker build -t unified-mcp .
-   docker rm -f unified-mcp-daemon   # next session recreates it
+   docker build -t hyperstack .
+   docker rm -f hyperstack-daemon   # next session recreates it
    ```
 
 No changes to your MCP config required.

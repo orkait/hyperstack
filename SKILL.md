@@ -1,5 +1,5 @@
 ---
-name: unified-skill
+name: hyperstack
 description: >-
   Build flow-based UIs with React Flow v12, animate with Motion for React v12,
   add smooth scroll with Lenis, build with React 19 and Next.js App Router,
@@ -67,9 +67,9 @@ activation:
   priority: high
 ---
 
-# unified-mcp Skill
+# hyperstack Skill
 
-This skill relies on [unified-mcp](https://github.com/orkait/unified-mcp). Always use the MCP tools below for all API details, props, code examples, patterns, and transitions. This skill covers judgment, gotchas, and decisions only - unified-mcp provides all actual data.
+This skill relies on [hyperstack](https://github.com/orkait/hyperstack). Always use the MCP tools below for all API details, props, code examples, patterns, and transitions. This skill covers judgment, gotchas, and decisions only - hyperstack provides all actual data.
 
 ---
 

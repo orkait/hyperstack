@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-CONTAINER="unified-mcp-daemon"
-IMAGE="unified-mcp"
+CONTAINER="hyperstack-daemon"
+IMAGE="hyperstack"
 LOCK_FILE="/tmp/${CONTAINER}.lock"
 
 # Use a file lock so concurrent session startups don't race to create the container.

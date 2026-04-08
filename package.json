@@ -1,10 +1,10 @@
 {
-  "name": "@orkait-ai/unified-mcp",
+  "name": "@orkait-ai/hyperstack",
   "version": "1.0.0",
   "description": "Unified MCP server for frontend libraries: React Flow, Motion for React, and more",
   "main": "dist/index.js",
   "bin": {
-    "unified-mcp": "dist/index.js"
+    "hyperstack": "dist/index.js"
   },
   "type": "module",
   "scripts": {
