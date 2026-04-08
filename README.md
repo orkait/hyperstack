@@ -248,65 +248,48 @@ git clone https://github.com/orkait/hyperstack.git ~/.claude/skills/hyperstack
 
 ## 🚀 Install
 
-### 🐳 Docker (recommended)
+The easiest way to use Hyperstack is via our pre-built Docker image. Docker will automatically download and run the server without any cloning or building required.
 
-Build once, reuse forever. The wrapper script keeps **one** named container alive and runs each MCP session inside it via `docker exec` - no duplicate containers, no matter how many AI sessions are open.
+Add the following to your MCP config (`~/.claude.json` or Cursor config):
+
+```json
+{
+  "mcpServers": {
+    "hyperstack": {
+      "command": "docker",
+      "args": [
+        "run",
+        "-i",
+        "--rm",
+        "--memory=256m",
+        "--cpus=0.5",
+        "ghcr.io/orkait/hyperstack:main"
+      ]
+    }
+  }
+}
+```
+
+*Note: The `--memory=256m` and `--cpus=0.5` flags ensure the server runs with strict resource limits, preventing it from consuming too much RAM or compute.*
+
+---
+
+### 📦 Local Development (Node directly)
+
+If you prefer to run it locally without Docker:
 
 ```bash
 git clone https://github.com/orkait/hyperstack.git
 cd hyperstack
 npm install
-docker build -t hyperstack .
-```
-
-Add to your MCP config:
-
-<details>
-<summary><strong>Claude Code</strong> - <code>~/.claude.json</code></summary>
-
-```json
-{
-  "mcpServers": {
-    "hyperstack": {
-      "command": "/absolute/path/to/hyperstack/scripts/start-mcp.sh"
-    }
-  }
-}
-```
-
-</details>
-
-<details>
-<summary><strong>Claude Desktop / Cursor / Windsurf</strong> - their respective config files</summary>
-
-```json
-{
-  "mcpServers": {
-    "hyperstack": {
-      "command": "/absolute/path/to/hyperstack/scripts/start-mcp.sh"
-    }
-  }
-}
-```
-
-</details>
-
----
-
-### 📦 Without Docker (Node directly)
-
-```bash
-git clone https://github.com/orkait/hyperstack.git
-cd hyperstack
-npm install && npm run build
 ```
 
 ```json
 {
   "mcpServers": {
     "hyperstack": {
-      "command": "node",
-      "args": ["/absolute/path/to/hyperstack/dist/index.js"]
+      "command": "npx",
+      "args": ["tsx", "/absolute/path/to/hyperstack/src/index.ts"]
     }
   }
 }
