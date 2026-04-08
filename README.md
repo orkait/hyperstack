@@ -6,11 +6,11 @@
 
 <p>
   <img src="https://img.shields.io/badge/license-MIT-blue?style=flat-square" alt="MIT" />
-  <a href="https://github.com/orkait/hyperstack/stargazers"><img src="https://img.shields.io/github/stars/orkait/hyperstack?style=flat-square&color=f0c040" alt="Stars" /></a>
   <img src="https://img.shields.io/badge/TypeScript-5-3178c6?style=flat-square&logo=typescript&logoColor=white" alt="TypeScript" />
   <img src="https://img.shields.io/badge/MCP-compatible-6366f1?style=flat-square" alt="MCP" />
-  <img src="https://img.shields.io/badge/plugins-9-10b981?style=flat-square" alt="9 plugins" />
+  <img src="https://img.shields.io/badge/Docker-ready-2496ED?style=flat-square&logo=docker&logoColor=white" alt="Docker" />
 </p>
+
 <p>
   <img src="https://img.shields.io/badge/React_Flow-v12-22c55e?style=flat-square&logo=react&logoColor=white" alt="React Flow" />
   <img src="https://img.shields.io/badge/Motion-v12-f59e0b?style=flat-square&logo=framer&logoColor=white" alt="Motion" />
@@ -18,32 +18,36 @@
   <img src="https://img.shields.io/badge/React_19-Next.js-61dafb?style=flat-square&logo=react&logoColor=black" alt="React" />
   <img src="https://img.shields.io/badge/Tailwind-v4_tokens-06b6d4?style=flat-square&logo=tailwindcss&logoColor=white" alt="Tailwind" />
   <img src="https://img.shields.io/badge/Echo-Go-00ADD8?style=flat-square" alt="Echo" />
-  <img src="https://img.shields.io/badge/Golang-practices-00ADD8?style=flat-square" alt="Go" />
+  <img src="https://img.shields.io/badge/Golang-practices-00ADD8?style=flat-square&logo=go&logoColor=white" alt="Go" />
   <img src="https://img.shields.io/badge/Rust-practices-ce422b?style=flat-square&logo=rust&logoColor=white" alt="Rust" />
-  <img src="https://img.shields.io/badge/UI%2FUX-principles-a855f7?style=flat-square" alt="UI/UX" />
 </p>
 
 <br/>
 
-> Plugin-based MCP server and AI Skill that gives your AI assistant deep knowledge of frontend and backend libraries -
-> API refs, patterns, code generation, design systems - all through a single process with namespaced tools.
+> Hyperstack is a plugin-based MCP server paired with a master AI Skill. It gives your AI assistant deep, deterministic knowledge of frontend and backend libraries through exact API references, architectural patterns, and production-ready code generation.
 
 </div>
 
 ---
 
-## 🚀 Install
+## ⚡ What is Hyperstack?
 
-### ⚡ Agent-First Install (Easiest)
-If you are using an AI agent (like Claude Code), simply ask it:
-> "Fetch and follow instructions from https://raw.githubusercontent.com/orkait/hyperstack/main/install.md"
+LLMs hallucinate API signatures and struggle with complex library patterns (like React Flow or framer-motion). Hyperstack solves this by providing your AI with exact, ground-truth documentation and code snippets loaded directly into its context window at runtime. 
 
-The agent will read the raw markdown file, pull the pre-built Docker image, and configure your system automatically.
+It is designed as an **Agent-First** tool: your AI decides when it needs information, queries the specific Hyperstack tool, and receives precise, up-to-date implementation guidelines.
 
 ---
 
-### 🐳 Docker (Manual)
-If you prefer to configure it yourself, add the following to your MCP config (`~/.claude.json` or Cursor config):
+## 🚀 Quickstart
+
+### 🤖 Agent-First Install (Easiest)
+If you are using an AI agent (like Claude Code, Cursor, or Gemini CLI), simply prompt it:
+> "Fetch and follow instructions from https://raw.githubusercontent.com/orkait/hyperstack/main/install.md"
+
+The agent will read the installation file, pull the pre-built Docker image, and configure your system automatically.
+
+### 🐳 Docker (Manual Configuration)
+If you prefer to configure it yourself, add the following to your MCP config file (e.g., `~/.claude.json` or Cursor config):
 
 ```json
 {
@@ -56,22 +60,22 @@ If you prefer to configure it yourself, add the following to your MCP config (`~
         "--rm",
         "--memory=256m",
         "--cpus=0.5",
-        "superorkait/hyperstack:main"
+        "ghcr.io/orkait/hyperstack:main"
       ]
     }
   }
 }
 ```
 
-*Note: The `--memory=256m` and `--cpus=0.5` flags ensure the server runs with strict resource limits.*
+*Note: The `--memory=256m` and `--cpus=0.5` flags are highly recommended. They ensure the server runs with strict resource limits, preventing it from consuming excess host RAM or compute.*
 
 ---
 
-## 🤝 AI Skill Included
+## 🤝 AI Skill Integration
 
-This repository includes `SKILL.md` - a Claude Code skill that teaches your AI assistant *when and how* to use these tools. The skill handles judgment and gotchas; the MCP server handles the data.
+Hyperstack is more than just a data server. It includes a master `SKILL.md` file that teaches your AI assistant *when* and *how* to use the provided tools. The skill handles judgment and "gotchas", while the MCP server provides the raw data.
 
-To use the skill, clone this repository into your Claude Code skills directory:
+To fully enable the system, clone this repository into your AI's skills directory:
 
 ```bash
 git clone https://github.com/orkait/hyperstack.git ~/.claude/skills/hyperstack
@@ -79,195 +83,122 @@ git clone https://github.com/orkait/hyperstack.git ~/.claude/skills/hyperstack
 
 ---
 
-## 🧩 Plugins
+## 🧩 MCP Plugins
 
-| Plugin | Library / Domain | Tools | What's included |
-|--------|-----------------|:-----:|-----------------|
-| **reactflow** | [@xyflow/react](https://reactflow.dev) v12 | 8 | 56 APIs, 17 patterns, 3 templates, migration guide |
-| **motion** | [Motion for React](https://motion.dev) v12 | 6 | 33 APIs, 14 example categories, transition reference |
-| **lenis** | [Lenis](https://lenis.darkroom.engineering) smooth scroll | 6 | API reference, 7 patterns, 7 recipes, CSS rules, GSAP integration |
-| **react** | React 19 + Next.js App Router | 4 | RSC patterns, state hierarchy, data fetching, Zustand, composition |
-| **echo** | [Echo](https://echo.labstack.com) Go web framework | 6 | 19 recipes, 13 middleware, decision matrix, cheatsheet |
-| **golang** | Go best practices + design patterns | 6 | 18 best practices, 10 design patterns, anti-patterns, cheatsheet |
-| **rust** | Rust best practices | 4 | 18 practices (good/bad pairs), ownership guide, cheatsheet |
-| **design-tokens** | Tailwind v4 + OKLCH token system | 7 | 10 token categories, 8 build procedures, color ramp templates |
-| **ui-ux** | UI/UX design principles | 6 | Typography, color, spacing, elevation, motion, a11y, component patterns |
+The server is built around independent plugins, each offering targeted tools for specific domains.
+
+| Plugin | Domain | Tools | Capabilities |
+|--------|--------|:-----:|--------------|
+| **reactflow** | @xyflow/react v12 | 8 | 56 APIs, 17 patterns, 3 templates, migration guides |
+| **motion** | Motion for React v12 | 6 | 33 APIs, 14 categories, full transition reference |
+| **lenis** | Smooth scrolling | 6 | 7 recipes, GSAP integration, CSS rules, React hooks |
+| **react** | React 19 + Next.js | 4 | RSC patterns, Zustand hierarchy, data fetching |
+| **echo** | Echo Go Framework | 6 | 19 recipes, 13 middleware setups, decision matrices |
+| **golang** | Go Architecture | 6 | 18 best practices, 10 design patterns, anti-patterns |
+| **rust** | Rust Idioms | 4 | 18 practices, ownership guide, performance tips |
+| **design-tokens** | Tailwind v4 + OKLCH | 7 | 10 token categories, 8 build procedures |
+| **ui-ux** | UI/UX Principles | 6 | Typography scales, spacing grids, accessibility |
 
 ---
 
-## 🛠️ Tools
+## 🛠️ Available Tools
 
 <details>
 <summary><strong>⚛️ React Flow</strong> - <code>reactflow_*</code></summary>
 
-| Tool | What it does |
-|------|-------------|
-| `reactflow_list_apis` | Browse all 56 APIs grouped by kind - components, hooks, utilities, types |
-| `reactflow_get_api` | Full reference for any API: props table, usage snippet, examples, tips |
-| `reactflow_search_docs` | Full-text search across all docs and code examples |
-| `reactflow_get_examples` | Curated code examples by category |
-| `reactflow_get_pattern` | Complete enterprise patterns with full implementation code |
-| `reactflow_get_template` | Production-ready starters: `custom-node`, `custom-edge`, `zustand-store` |
-| `reactflow_get_migration_guide` | v11 → v12 breaking changes with before/after diffs |
-| `reactflow_generate_flow` | Generate a complete flow component from a plain English description |
-
-<details>
-<summary>17 available patterns</summary>
-
-`zustand-store` · `undo-redo` · `drag-and-drop` · `auto-layout-dagre` · `auto-layout-elk` · `context-menu` · `copy-paste` · `save-restore` · `prevent-cycles` · `keyboard-shortcuts` · `performance` · `dark-mode` · `ssr` · `subflows` · `edge-reconnection` · `custom-connection-line` · `auto-layout-on-mount`
-
-</details>
+- `reactflow_list_apis`: Browse all 56 APIs grouped by kind.
+- `reactflow_get_api`: Full reference for any API including props, usage, and tips.
+- `reactflow_search_docs`: Full-text search across all docs and examples.
+- `reactflow_get_examples`: Curated code examples by category.
+- `reactflow_get_pattern`: Enterprise patterns (e.g., `zustand-store`, `drag-and-drop`, `ssr`).
+- `reactflow_get_template`: Production-ready starters.
+- `reactflow_get_migration_guide`: v11 to v12 breaking changes.
+- `reactflow_generate_flow`: Generate a complete flow from a prose description.
 </details>
 
 <details>
 <summary><strong>🎬 Motion for React</strong> - <code>motion_*</code></summary>
 
-| Tool | What it does |
-|------|-------------|
-| `motion_list_apis` | Browse all 33 APIs grouped by kind - components, hooks, functions |
-| `motion_get_api` | Full reference for any API: props table, usage snippet, examples, tips |
-| `motion_search_docs` | Full-text search across all docs and code examples |
-| `motion_get_examples` | Curated animation examples by category |
-| `motion_get_transitions` | Complete transition reference: tween, spring, inertia, orchestration |
-| `motion_generate_animation` | Generate a Motion animation snippet from a plain English description |
-
-<details>
-<summary>14 example categories</summary>
-
-`animation` · `gestures` · `scroll` · `layout` · `exit` · `drag` · `hover` · `svg` · `transitions` · `variants` · `keyframes` · `spring` · `reorder` · `performance`
-
-</details>
+- `motion_list_apis`: Browse all 33 APIs.
+- `motion_get_api`: Full reference including props and usage.
+- `motion_search_docs`: Full-text search across examples.
+- `motion_get_examples`: Animation examples by category (e.g., `gestures`, `scroll`, `layout`).
+- `motion_get_transitions`: Complete transition reference for tween, spring, and inertia.
+- `motion_generate_animation`: Generate an animation snippet from a description.
 </details>
 
 <details>
 <summary><strong>🌊 Lenis</strong> - <code>lenis_*</code></summary>
 
-| Tool | What it does |
-|------|-------------|
-| `lenis_list_apis` | Browse all Lenis APIs - options, methods, events |
-| `lenis_get_api` | Full reference for any API with usage snippet |
-| `lenis_get_pattern` | Integration patterns: Next.js, GSAP, Framer Motion, custom container |
-| `lenis_generate_setup` | Generate a complete Lenis setup from a description |
-| `lenis_cheatsheet` | Required CSS, `data-lenis-prevent` usage, pitfalls table |
-| `lenis_search_docs` | Full-text search across all Lenis docs |
-
-<details>
-<summary>7 patterns and 7 recipes</summary>
-
-**Patterns:** `full-page` · `next-js` · `gsap-integration` · `framer-motion-integration` · `custom-container` · `accessibility` · `scroll-to-nav`
-
-**Recipes:** `scroll-progress-bar` · `back-to-top` · `horizontal-scroll-section` · `scroll-locked-modal` · `parallax-layer` · `direction-indicator` · `gsap-complete`
-
-</details>
+- `lenis_list_apis`: Browse options, methods, and events.
+- `lenis_get_api`: Full reference with usage snippets.
+- `lenis_get_pattern`: Integration patterns for Next.js, GSAP, and Framer Motion.
+- `lenis_generate_setup`: Generate a complete Lenis setup.
+- `lenis_cheatsheet`: Required CSS and pitfalls.
+- `lenis_search_docs`: Full-text search.
 </details>
 
 <details>
 <summary><strong>⚛️ React + Next.js</strong> - <code>react_*</code></summary>
 
-| Tool | What it does |
-|------|-------------|
-| `react_list_patterns` | List all React/Next.js patterns with categories |
-| `react_get_pattern` | Full pattern: code, anti-pattern, tips |
-| `react_get_constraints` | Hard rules and banned patterns (no `useEffect` for fetching, no Redux, etc.) |
-| `react_search_docs` | Search across patterns and rules |
-
+- `react_list_patterns`: List all React/Next.js patterns.
+- `react_get_pattern`: Full pattern implementation with anti-patterns.
+- `react_get_constraints`: Hard rules (e.g., no `useEffect` for fetching).
+- `react_search_docs`: Search across patterns and rules.
 </details>
 
 <details>
 <summary><strong>🐹 Echo (Go)</strong> - <code>echo_*</code></summary>
 
-| Tool | What it does |
-|------|-------------|
-| `echo_list_recipes` | Browse all 19 recipes by category |
-| `echo_get_recipe` | Full recipe with complete runnable code |
-| `echo_list_middleware` | Browse all 13 middleware with purpose and order guidance |
-| `echo_get_middleware` | Full middleware reference with usage and gotchas |
-| `echo_decision_matrix` | When to use what - Echo vs stdlib vs alternatives |
-| `echo_search_docs` | Full-text search across all recipes and middleware |
-
-<details>
-<summary>19 recipes</summary>
-
-`hello-world` · `crud-api` · `jwt-auth` · `websocket` · `sse` · `file-upload` · `file-download` · `graceful-shutdown` · `middleware-chain` · `cors` · `route-groups` · `http2` · `auto-tls` · `reverse-proxy` · `streaming-response` · `embed-resources` · `timeout` · `subdomain-routing` · `jsonp`
-
-</details>
+- `echo_list_recipes`: Browse all 19 recipes.
+- `echo_get_recipe`: Full recipe with runnable code (e.g., `jwt-auth`, `websocket`, `sse`).
+- `echo_list_middleware`: Browse all 13 middleware components.
+- `echo_get_middleware`: Usage and gotchas for specific middleware.
+- `echo_decision_matrix`: When to use Echo vs standard library.
+- `echo_search_docs`: Full-text search.
 </details>
 
 <details>
 <summary><strong>🐹 Golang</strong> - <code>golang_*</code></summary>
 
-| Tool | What it does |
-|------|-------------|
-| `golang_list_practices` | Browse all 18 best practices by topic |
-| `golang_get_practice` | Full practice: rule, reason, good/bad code examples |
-| `golang_list_patterns` | Browse all 10 design patterns by category |
-| `golang_get_pattern` | Full pattern with Go-idiomatic implementation |
-| `golang_get_antipatterns` | Common Go mistakes and their fixes |
-| `golang_search_docs` | Search across practices and patterns |
-
-<details>
-<summary>Topics and patterns</summary>
-
-**Practice topics:** `fundamentals` · `error-handling` · `concurrency` · `api-server` · `database` · `config` · `logging` · `security` · `testing`
-
-**Pattern categories:** `creational` (functional-options) · `structural` (adapter, middleware-decorator, consumer-side-interface) · `behavioral` (strategy, observer, command) · `concurrency` (worker-pool, pipeline, fan-out-fan-in)
-
-</details>
+- `golang_list_practices`: Browse 18 best practices by topic.
+- `golang_get_practice`: Rule, reasoning, and good/bad code examples.
+- `golang_list_patterns`: Browse 10 Go-idiomatic design patterns.
+- `golang_get_pattern`: Full implementation details.
+- `golang_get_antipatterns`: Common mistakes and fixes.
+- `golang_search_docs`: Search practices and patterns.
 </details>
 
 <details>
-<summary><strong>Cr Rust</strong> - <code>rust_*</code></summary>
+<summary><strong>🦀 Rust</strong> - <code>rust_*</code></summary>
 
-| Tool | What it does |
-|------|-------------|
-| `rust_list_practices` | Browse all 18 best practices by topic |
-| `rust_get_practice` | Full practice: rule, reason, good/bad examples |
-| `rust_search_docs` | Search across all practices |
-| `rust_cheatsheet` | Ownership rules, pointer type table, performance tips |
-
+- `rust_list_practices`: Browse 18 best practices.
+- `rust_get_practice`: Rule, reasoning, and good/bad code examples.
+- `rust_search_docs`: Search all practices.
+- `rust_cheatsheet`: Ownership rules, pointer type table, and performance tips.
 </details>
 
 <details>
 <summary><strong>🎨 Design Tokens</strong> - <code>design_tokens_*</code></summary>
 
-| Tool | What it does |
-|------|-------------|
-| `design_tokens_list_categories` | Browse all 10 token categories with descriptions |
-| `design_tokens_get_category` | Full CSS + rules + gotchas for a token category |
-| `design_tokens_get_color_ramp` | Color ramp reference: stops, oklch values, semantic roles |
-| `design_tokens_get_procedure` | Step-by-step token build procedures (8 steps) |
-| `design_tokens_get_gotchas` | All gotchas across every category and procedure |
-| `design_tokens_generate` | Generate a complete Tailwind v4 token file from a palette |
-| `design_tokens_search` | Search across all categories, ramps, and procedures |
-
-<details>
-<summary>10 token categories</summary>
-
-`colors` · `spacing` · `typography` · `component-sizing` · `border-radius` · `shadows-elevation` · `motion` · `z-index` · `opacity` · `grid-layout`
-
-</details>
+- `design_tokens_list_categories`: Browse 10 token categories (e.g., colors, spacing, grid).
+- `design_tokens_get_category`: CSS, rules, and gotchas.
+- `design_tokens_get_color_ramp`: OKLCH values and semantic roles.
+- `design_tokens_get_procedure`: Step-by-step token build procedures.
+- `design_tokens_get_gotchas`: Common implementation mistakes.
+- `design_tokens_generate`: Generate a complete Tailwind v4 token file from a palette.
+- `design_tokens_search`: Search across categories and procedures.
 </details>
 
 <details>
 <summary><strong>💅 UI/UX Principles</strong> - <code>ui_ux_*</code></summary>
 
-| Tool | What it does |
-|------|-------------|
-| `ui_ux_list_principles` | Browse all principles by domain |
-| `ui_ux_get_principle` | Full principle: rule, detail, CSS example, anti-patterns |
-| `ui_ux_get_component_pattern` | Component spec: variants, states, sizing rules, CSS |
-| `ui_ux_get_checklist` | Pre-ship checklist per domain (typography, color, a11y, motion) |
-| `ui_ux_get_gotchas` | All common UI mistakes and their fixes |
-| `ui_ux_search` | Search across principles, patterns, and gotchas |
-
-<details>
-<summary>Domains and components</summary>
-
-**Domains:** `typography` · `color` · `spacing` · `elevation` · `motion` · `accessibility` · `responsive` · `components`
-
-**Component patterns:** `button` · `card` · `badge` · `form-input`
-
-</details>
+- `ui_ux_list_principles`: Browse principles by domain (typography, color, a11y, etc.).
+- `ui_ux_get_principle`: Rule, detail, CSS examples, and anti-patterns.
+- `ui_ux_get_component_pattern`: Specifications for buttons, cards, badges, etc.
+- `ui_ux_get_checklist`: Pre-ship checklist per domain.
+- `ui_ux_get_gotchas`: Common UI mistakes and fixes.
+- `ui_ux_search`: Search principles and patterns.
 </details>
 
 ---
@@ -290,7 +221,9 @@ Unlike the plugins above, these are **NOT** MCP tools. They are static Markdown 
 
 ## 🏗️ Architecture
 
-```
+The repository is built for high cohesion and instant execution. The `dist/` compilation step was entirely removed in favor of `tsx` runtime execution. 
+
+```text
 src/
 ├── index.ts                  # Entry - creates McpServer, loads all plugins
 ├── registry.ts               # Plugin interface + loadPlugins()
@@ -301,34 +234,25 @@ src/
     │   └── snippets/          # 94 .txt files
     ├── motion/                # motion/react v12
     │   └── snippets/          # 79 .txt files
-    ├── lenis/                 # Lenis smooth scroll
-    │   └── snippets/          # 31 .txt files
-    ├── react/                 # React 19 + Next.js App Router
-    │   └── snippets/          # 13 .txt files
     ├── echo/                  # Echo Go framework
     │   └── snippets/          # 33 .txt files
-    ├── golang/                # Go best practices + design patterns
-    │   └── snippets/          # 43 .txt files
-    ├── rust/                  # Rust best practices
-    │   └── snippets/          # 28 .txt files
-    ├── design-tokens/         # Tailwind v4 OKLCH token system
-    │   └── snippets/          # 24 .txt files
-    └── ui-ux/                 # UI/UX design principles
-        └── snippets/          # 25 .txt files
+    └── ... (other plugins follow the exact same structure)
 ```
+
+Each plugin encapsulates its own logic, tools, and raw data (`.txt` snippets). The tools dynamically read the text files at runtime via the `loader-factory.ts`.
 
 ---
 
-## 🛠 Development
+## 💻 Local Development
 
-To contribute or run locally from source:
+To contribute or run the server locally from source without Docker:
 
 ```bash
 git clone https://github.com/orkait/hyperstack.git
 cd hyperstack
 npm install
-npm start         # run server using tsx
-npm run dev       # watch mode using tsx
+npm start         # runs the server via tsx
+npm run dev       # watch mode for local development
 ```
 
 ---
