@@ -32,18 +32,6 @@
 
 ---
 
-## 🤝 AI Skill Included
-
-This repository includes `SKILL.md` - a Claude Code skill that teaches your AI assistant *when and how* to use these tools. The skill handles judgment and gotchas; the MCP server handles the data.
-
-To use the skill, clone this repository into your Claude Code skills directory:
-
-```bash
-git clone https://github.com/orkait/hyperstack.git ~/.claude/skills/hyperstack
-```
-
----
-
 ## 🚀 Install
 
 The easiest way to use Hyperstack is via our pre-built Docker image. Docker will automatically download and run the server without any manual cloning or installation required.
@@ -68,7 +56,19 @@ Add the following to your MCP config (`~/.claude.json` or Cursor config):
 }
 ```
 
-*Note: The `--memory=256m` and `--cpus=0.5` flags ensure the server runs with strict resource limits, preventing it from consuming too much RAM or compute.*
+*Note: The `--memory=256m` and `--cpus=0.5` flags ensure the server runs with strict resource limits.*
+
+---
+
+## 🤝 AI Skill Included
+
+This repository includes `SKILL.md` - a Claude Code skill that teaches your AI assistant *when and how* to use these tools. The skill handles judgment and gotchas; the MCP server handles the data.
+
+To use the skill, clone this repository into your Claude Code skills directory:
+
+```bash
+git clone https://github.com/orkait/hyperstack.git ~/.claude/skills/hyperstack
+```
 
 ---
 
@@ -85,6 +85,183 @@ Add the following to your MCP config (`~/.claude.json` or Cursor config):
 | **rust** | Rust best practices | 4 | 18 practices (good/bad pairs), ownership guide, cheatsheet |
 | **design-tokens** | Tailwind v4 + OKLCH token system | 7 | 10 token categories, 8 build procedures, color ramp templates |
 | **ui-ux** | UI/UX design principles | 6 | Typography, color, spacing, elevation, motion, a11y, component patterns |
+
+---
+
+## 🛠️ Tools
+
+<details>
+<summary><strong>⚛️ React Flow</strong> - <code>reactflow_*</code></summary>
+
+| Tool | What it does |
+|------|-------------|
+| `reactflow_list_apis` | Browse all 56 APIs grouped by kind - components, hooks, utilities, types |
+| `reactflow_get_api` | Full reference for any API: props table, usage snippet, examples, tips |
+| `reactflow_search_docs` | Full-text search across all docs and code examples |
+| `reactflow_get_examples` | Curated code examples by category |
+| `reactflow_get_pattern` | Complete enterprise patterns with full implementation code |
+| `reactflow_get_template` | Production-ready starters: `custom-node`, `custom-edge`, `zustand-store` |
+| `reactflow_get_migration_guide` | v11 → v12 breaking changes with before/after diffs |
+| `reactflow_generate_flow` | Generate a complete flow component from a plain English description |
+
+<details>
+<summary>17 available patterns</summary>
+
+`zustand-store` · `undo-redo` · `drag-and-drop` · `auto-layout-dagre` · `auto-layout-elk` · `context-menu` · `copy-paste` · `save-restore` · `prevent-cycles` · `keyboard-shortcuts` · `performance` · `dark-mode` · `ssr` · `subflows` · `edge-reconnection` · `custom-connection-line` · `auto-layout-on-mount`
+
+</details>
+</details>
+
+<details>
+<summary><strong>🎬 Motion for React</strong> - <code>motion_*</code></summary>
+
+| Tool | What it does |
+|------|-------------|
+| `motion_list_apis` | Browse all 33 APIs grouped by kind - components, hooks, functions |
+| `motion_get_api` | Full reference for any API: props table, usage snippet, examples, tips |
+| `motion_search_docs` | Full-text search across all docs and code examples |
+| `motion_get_examples` | Curated animation examples by category |
+| `motion_get_transitions` | Complete transition reference: tween, spring, inertia, orchestration |
+| `motion_generate_animation` | Generate a Motion animation snippet from a plain English description |
+
+<details>
+<summary>14 example categories</summary>
+
+`animation` · `gestures` · `scroll` · `layout` · `exit` · `drag` · `hover` · `svg` · `transitions` · `variants` · `keyframes` · `spring` · `reorder` · `performance`
+
+</details>
+</details>
+
+<details>
+<summary><strong>🌊 Lenis</strong> - <code>lenis_*</code></summary>
+
+| Tool | What it does |
+|------|-------------|
+| `lenis_list_apis` | Browse all Lenis APIs - options, methods, events |
+| `lenis_get_api` | Full reference for any API with usage snippet |
+| `lenis_get_pattern` | Integration patterns: Next.js, GSAP, Framer Motion, custom container |
+| `lenis_generate_setup` | Generate a complete Lenis setup from a description |
+| `lenis_cheatsheet` | Required CSS, `data-lenis-prevent` usage, pitfalls table |
+| `lenis_search_docs` | Full-text search across all Lenis docs |
+
+<details>
+<summary>7 patterns and 7 recipes</summary>
+
+**Patterns:** `full-page` · `next-js` · `gsap-integration` · `framer-motion-integration` · `custom-container` · `accessibility` · `scroll-to-nav`
+
+**Recipes:** `scroll-progress-bar` · `back-to-top` · `horizontal-scroll-section` · `scroll-locked-modal` · `parallax-layer` · `direction-indicator` · `gsap-complete`
+
+</details>
+</details>
+
+<details>
+<summary><strong>⚛️ React + Next.js</strong> - <code>react_*</code></summary>
+
+| Tool | What it does |
+|------|-------------|
+| `react_list_patterns` | List all React/Next.js patterns with categories |
+| `react_get_pattern` | Full pattern: code, anti-pattern, tips |
+| `react_get_constraints` | Hard rules and banned patterns (no `useEffect` for fetching, no Redux, etc.) |
+| `react_search_docs` | Search across patterns and rules |
+
+</details>
+
+<details>
+<summary><strong>🐹 Echo (Go)</strong> - <code>echo_*</code></summary>
+
+| Tool | What it does |
+|------|-------------|
+| `echo_list_recipes` | Browse all 19 recipes by category |
+| `echo_get_recipe` | Full recipe with complete runnable code |
+| `echo_list_middleware` | Browse all 13 middleware with purpose and order guidance |
+| `echo_get_middleware` | Full middleware reference with usage and gotchas |
+| `echo_decision_matrix` | When to use what - Echo vs stdlib vs alternatives |
+| `echo_search_docs` | Full-text search across all recipes and middleware |
+
+<details>
+<summary>19 recipes</summary>
+
+`hello-world` · `crud-api` · `jwt-auth` · `websocket` · `sse` · `file-upload` · `file-download` · `graceful-shutdown` · `middleware-chain` · `cors` · `route-groups` · `http2` · `auto-tls` · `reverse-proxy` · `streaming-response` · `embed-resources` · `timeout` · `subdomain-routing` · `jsonp`
+
+</details>
+</details>
+
+<details>
+<summary><strong>🐹 Golang</strong> - <code>golang_*</code></summary>
+
+| Tool | What it does |
+|------|-------------|
+| `golang_list_practices` | Browse all 18 best practices by topic |
+| `golang_get_practice` | Full practice: rule, reason, good/bad code examples |
+| `golang_list_patterns` | Browse all 10 design patterns by category |
+| `golang_get_pattern` | Full pattern with Go-idiomatic implementation |
+| `golang_get_antipatterns` | Common Go mistakes and their fixes |
+| `golang_search_docs` | Search across practices and patterns |
+
+<details>
+<summary>Topics and patterns</summary>
+
+**Practice topics:** `fundamentals` · `error-handling` · `concurrency` · `api-server` · `database` · `config` · `logging` · `security` · `testing`
+
+**Pattern categories:** `creational` (functional-options) · `structural` (adapter, middleware-decorator, consumer-side-interface) · `behavioral` (strategy, observer, command) · `concurrency` (worker-pool, pipeline, fan-out-fan-in)
+
+</details>
+</details>
+
+<details>
+<summary><strong>Cr Rust</strong> - <code>rust_*</code></summary>
+
+| Tool | What it does |
+|------|-------------|
+| `rust_list_practices` | Browse all 18 best practices by topic |
+| `rust_get_practice` | Full practice: rule, reason, good/bad examples |
+| `rust_search_docs` | Search across all practices |
+| `rust_cheatsheet` | Ownership rules, pointer type table, performance tips |
+
+</details>
+
+<details>
+<summary><strong>🎨 Design Tokens</strong> - <code>design_tokens_*</code></summary>
+
+| Tool | What it does |
+|------|-------------|
+| `design_tokens_list_categories` | Browse all 10 token categories with descriptions |
+| `design_tokens_get_category` | Full CSS + rules + gotchas for a token category |
+| `design_tokens_get_color_ramp` | Color ramp reference: stops, oklch values, semantic roles |
+| `design_tokens_get_procedure` | Step-by-step token build procedures (8 steps) |
+| `design_tokens_get_gotchas` | All gotchas across every category and procedure |
+| `design_tokens_generate` | Generate a complete Tailwind v4 token file from a palette |
+| `design_tokens_search` | Search across all categories, ramps, and procedures |
+
+<details>
+<summary>10 token categories</summary>
+
+`colors` · `spacing` · `typography` · `component-sizing` · `border-radius` · `shadows-elevation` · `motion` · `z-index` · `opacity` · `grid-layout`
+
+</details>
+</details>
+
+<details>
+<summary><strong>💅 UI/UX Principles</strong> - <code>ui_ux_*</code></summary>
+
+| Tool | What it does |
+|------|-------------|
+| `ui_ux_list_principles` | Browse all principles by domain |
+| `ui_ux_get_principle` | Full principle: rule, detail, CSS example, anti-patterns |
+| `ui_ux_get_component_pattern` | Component spec: variants, states, sizing rules, CSS |
+| `ui_ux_get_checklist` | Pre-ship checklist per domain (typography, color, a11y, motion) |
+| `ui_ux_get_gotchas` | All common UI mistakes and their fixes |
+| `ui_ux_search` | Search across principles, patterns, and gotchas |
+
+<details>
+<summary>Domains and components</summary>
+
+**Domains:** `typography` · `color` · `spacing` · `elevation` · `motion` · `accessibility` · `responsive` · `components`
+
+**Component patterns:** `button` · `card` · `badge` · `form-input`
+
+</details>
+</details>
 
 ---
 
@@ -115,24 +292,6 @@ src/
     │   └── snippets/          # 24 .txt files
     └── ui-ux/                 # UI/UX design principles
         └── snippets/          # 25 .txt files
-```
-
-**Plugin interface:**
-```typescript
-export interface Plugin {
-  name: string;
-  register: (server: McpServer) => void;
-}
-```
-
-Every plugin stores all code examples as `.txt` files loaded at runtime:
-```typescript
-// loader.ts
-export const snippet = createSnippetLoader("golang");
-
-// data.ts
-good: snippet("practices/error-wrapping-good.txt"),
-bad:  snippet("practices/error-wrapping-bad.txt"),
 ```
 
 ---
