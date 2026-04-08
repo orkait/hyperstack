@@ -38,8 +38,8 @@ export const BEST_PRACTICES: BestPractice[] = [
     priority: "P0",
     rule: "camelCase for unexported, PascalCase for exported. Short, descriptive names.",
     reason: "Go convention. Exported names are part of the package API.",
-    good: snippet("practices/naming-conventions-good.md"),
-    bad: snippet("practices/naming-conventions-bad.md"),
+    good: snippet("practices/naming-conventions-good.txt"),
+    bad: snippet("practices/naming-conventions-bad.txt"),
   },
   {
     name: "small-interfaces",
@@ -47,8 +47,8 @@ export const BEST_PRACTICES: BestPractice[] = [
     priority: "P0",
     rule: "Keep interfaces small (1-2 methods). Define at consumer, not producer.",
     reason: "Go proverb: the bigger the interface, the weaker the abstraction. Consumer-side definition enables decoupling without circular deps.",
-    good: snippet("practices/small-interfaces-good.md"),
-    bad: snippet("practices/small-interfaces-bad.md"),
+    good: snippet("practices/small-interfaces-good.txt"),
+    bad: snippet("practices/small-interfaces-bad.txt"),
   },
   {
     name: "constructor-pattern",
@@ -56,7 +56,7 @@ export const BEST_PRACTICES: BestPractice[] = [
     priority: "P0",
     rule: "Use NewType() constructor functions for structs requiring validation or defaults.",
     reason: "Prevents zero-value misuse. Validation at construction, not at every use site.",
-    good: snippet("practices/constructor-pattern-good.md"),
+    good: snippet("practices/constructor-pattern-good.txt"),
   },
   // ERROR HANDLING
   {
@@ -65,8 +65,8 @@ export const BEST_PRACTICES: BestPractice[] = [
     priority: "P0",
     rule: "Always wrap errors with context: fmt.Errorf(\"context: %w\", err)",
     reason: "Provides call stack context without expensive stack traces. %w enables errors.Is/As.",
-    good: snippet("practices/error-wrapping-good.md"),
-    bad: snippet("practices/error-wrapping-bad.md"),
+    good: snippet("practices/error-wrapping-good.txt"),
+    bad: snippet("practices/error-wrapping-bad.txt"),
   },
   {
     name: "handle-once",
@@ -74,8 +74,8 @@ export const BEST_PRACTICES: BestPractice[] = [
     priority: "P0",
     rule: "Handle errors once: Log OR Return, never both.",
     reason: "Logging and returning causes duplicate error messages at every stack level.",
-    bad: snippet("practices/handle-once-bad.md"),
-    good: snippet("practices/handle-once-good.md"),
+    bad: snippet("practices/handle-once-bad.txt"),
+    good: snippet("practices/handle-once-good.txt"),
   },
   {
     name: "errors-is-as",
@@ -83,8 +83,8 @@ export const BEST_PRACTICES: BestPractice[] = [
     priority: "P0",
     rule: "Use errors.Is() for sentinel errors, errors.As() for error types.",
     reason: "Works correctly with wrapped errors (%w). Direct == comparison breaks wrapping.",
-    good: snippet("practices/errors-is-as-good.md"),
-    bad: snippet("practices/errors-is-as-bad.md"),
+    good: snippet("practices/errors-is-as-good.txt"),
+    bad: snippet("practices/errors-is-as-bad.txt"),
   },
   // CONCURRENCY
   {
@@ -93,8 +93,8 @@ export const BEST_PRACTICES: BestPractice[] = [
     priority: "P0",
     rule: "Pass context.Context as the first parameter to every function that does I/O.",
     reason: "Enables cancellation propagation and deadline enforcement across service boundaries.",
-    good: snippet("practices/context-first-param-good.md"),
-    bad: snippet("practices/context-first-param-bad.md"),
+    good: snippet("practices/context-first-param-good.txt"),
+    bad: snippet("practices/context-first-param-bad.txt"),
   },
   {
     name: "goroutine-lifecycle",
@@ -102,8 +102,8 @@ export const BEST_PRACTICES: BestPractice[] = [
     priority: "P0",
     rule: "Never start a goroutine without knowing how it stops.",
     reason: "Goroutine leaks exhaust memory. Every goroutine needs a clear exit condition.",
-    good: snippet("practices/goroutine-lifecycle-good.md"),
-    bad: snippet("practices/goroutine-lifecycle-bad.md"),
+    good: snippet("practices/goroutine-lifecycle-good.txt"),
+    bad: snippet("practices/goroutine-lifecycle-bad.txt"),
   },
   {
     name: "errgroup",
@@ -111,8 +111,8 @@ export const BEST_PRACTICES: BestPractice[] = [
     priority: "P0",
     rule: "Use errgroup over WaitGroup when goroutines can fail.",
     reason: "errgroup propagates the first error and cancels the context for all siblings.",
-    good: snippet("practices/errgroup-good.md"),
-    bad: snippet("practices/errgroup-bad.md"),
+    good: snippet("practices/errgroup-good.txt"),
+    bad: snippet("practices/errgroup-bad.txt"),
   },
   // SECURITY
   {
@@ -121,8 +121,8 @@ export const BEST_PRACTICES: BestPractice[] = [
     priority: "P0",
     rule: "ALWAYS use crypto/rand for security-sensitive randomness. Never math/rand.",
     reason: "math/rand is deterministic and predictable. crypto/rand uses OS entropy.",
-    good: snippet("practices/crypto-rand-good.md"),
-    bad: snippet("practices/crypto-rand-bad.md"),
+    good: snippet("practices/crypto-rand-good.txt"),
+    bad: snippet("practices/crypto-rand-bad.txt"),
   },
   {
     name: "parameterized-queries",
@@ -130,8 +130,8 @@ export const BEST_PRACTICES: BestPractice[] = [
     priority: "P0",
     rule: "Always use parameterized queries. Never string concatenation for SQL.",
     reason: "SQL injection is a critical vulnerability. String concatenation is always wrong.",
-    good: snippet("practices/parameterized-queries-good.md"),
-    bad: snippet("practices/parameterized-queries-bad.md"),
+    good: snippet("practices/parameterized-queries-good.txt"),
+    bad: snippet("practices/parameterized-queries-bad.txt"),
   },
   // API SERVER
   {
@@ -140,7 +140,7 @@ export const BEST_PRACTICES: BestPractice[] = [
     priority: "P0",
     rule: "MUST implement graceful shutdown with signal handling.",
     reason: "Without graceful shutdown, in-flight requests are aborted on deploy/restart.",
-    good: snippet("practices/graceful-shutdown-good.md"),
+    good: snippet("practices/graceful-shutdown-good.txt"),
   },
   {
     name: "thin-handlers",
@@ -148,7 +148,7 @@ export const BEST_PRACTICES: BestPractice[] = [
     priority: "P0",
     rule: "Keep handlers thin: parse → call service → respond. No business logic in handlers.",
     reason: "Business logic in handlers is untestable and non-reusable.",
-    good: snippet("practices/thin-handlers-good.md"),
+    good: snippet("practices/thin-handlers-good.txt"),
   },
   // TESTING
   {
@@ -157,7 +157,7 @@ export const BEST_PRACTICES: BestPractice[] = [
     priority: "P0",
     rule: "Use table-driven test pattern for all test cases.",
     reason: "DRY, readable, easy to add cases, works well with t.Run.",
-    good: snippet("practices/table-driven-tests-good.md"),
+    good: snippet("practices/table-driven-tests-good.txt"),
   },
   // DATABASE
   {
@@ -166,8 +166,8 @@ export const BEST_PRACTICES: BestPractice[] = [
     priority: "P0",
     rule: "Use the repository pattern with interfaces. Always use QueryContext/ExecContext with context. Always defer rows.Close().",
     reason: "Repository pattern decouples business logic from database implementation. Context enables cancellation. Forgetting rows.Close() causes connection leaks.",
-    good: snippet("practices/database-repository-good.md"),
-    bad: snippet("practices/database-repository-bad.md"),
+    good: snippet("practices/database-repository-good.txt"),
+    bad: snippet("practices/database-repository-bad.txt"),
   },
   // CONFIG
   {
@@ -176,8 +176,8 @@ export const BEST_PRACTICES: BestPractice[] = [
     priority: "P1",
     rule: "Load all config from environment variables into a typed struct at startup. Validate on startup. Never scatter os.Getenv() calls.",
     reason: "Centralized validation prevents silent misconfiguration. 12-factor compliance. Typed struct makes config injectable and testable.",
-    good: snippet("practices/config-env-vars-good.md"),
-    bad: snippet("practices/config-env-vars-bad.md"),
+    good: snippet("practices/config-env-vars-good.txt"),
+    bad: snippet("practices/config-env-vars-bad.txt"),
   },
   // LOGGING
   {
@@ -186,8 +186,8 @@ export const BEST_PRACTICES: BestPractice[] = [
     priority: "P1",
     rule: "Use log/slog with structured key-value pairs. JSON in production, text in development. Never log.Fatal() in libraries.",
     reason: "Structured logs are machine-parseable and alertable. log.Fatal() in libraries kills the process without allowing cleanup.",
-    good: snippet("practices/structured-logging-good.md"),
-    bad: snippet("practices/structured-logging-bad.md"),
+    good: snippet("practices/structured-logging-good.txt"),
+    bad: snippet("practices/structured-logging-bad.txt"),
   },
   // TOOLING
   {
@@ -196,7 +196,7 @@ export const BEST_PRACTICES: BestPractice[] = [
     priority: "P1",
     rule: "Configure golangci-lint with errcheck, gosec, staticcheck, bodyclose, and noctx. Run in CI.",
     reason: "Automated linting catches error handling gaps, security issues, and resource leaks before code review.",
-    good: snippet("practices/golangci-lint-good.md"),
+    good: snippet("practices/golangci-lint-good.txt"),
   },
 ];
 
@@ -211,7 +211,7 @@ export const DESIGN_PATTERNS: DesignPattern[] = [
     goApproach: "Variadic options functions instead of config structs or builder chains",
     when: "Constructor with 5+ optional parameters",
     oopEquivalent: "Builder pattern",
-    code: snippet("patterns/functional-options.md"),
+    code: snippet("patterns/functional-options.txt"),
   },
   {
     name: "adapter",
@@ -219,7 +219,7 @@ export const DESIGN_PATTERNS: DesignPattern[] = [
     goApproach: "Wrapper struct that implements an interface using a different underlying type",
     when: "Integrating external libraries or legacy code behind a clean interface",
     oopEquivalent: "Adapter / Wrapper",
-    code: snippet("patterns/adapter.md"),
+    code: snippet("patterns/adapter.txt"),
   },
   {
     name: "middleware-decorator",
@@ -227,29 +227,29 @@ export const DESIGN_PATTERNS: DesignPattern[] = [
     goApproach: "Higher-order functions wrapping handlers — the standard HTTP middleware pattern",
     when: "Adding cross-cutting behavior (logging, auth, rate limiting) without modifying handlers",
     oopEquivalent: "Decorator pattern",
-    code: snippet("patterns/middleware-decorator.md"),
+    code: snippet("patterns/middleware-decorator.txt"),
   },
   {
     name: "worker-pool",
     category: "concurrency",
     goApproach: "Bounded goroutine pool using buffered channel as semaphore",
     when: "Parallel work with bounded concurrency (CPU/network limits)",
-    code: snippet("patterns/worker-pool.md"),
+    code: snippet("patterns/worker-pool.txt"),
   },
   {
     name: "pipeline",
     category: "concurrency",
     goApproach: "Chain of goroutines connected by channels — each stage transforms the stream",
     when: "Stage-by-stage stream processing (ETL, data transformation)",
-    code: snippet("patterns/pipeline.md"),
+    code: snippet("patterns/pipeline.txt"),
   },
   {
     name: "consumer-side-interface",
     category: "structural",
     goApproach: "Define interfaces in the consuming package, not the implementing package",
     when: "Always — this is the idiomatic Go approach to dependency management",
-    code: snippet("patterns/consumer-side-interface.md"),
-    antiPattern: snippet("patterns/consumer-side-interface-anti.md"),
+    code: snippet("patterns/consumer-side-interface.txt"),
+    antiPattern: snippet("patterns/consumer-side-interface-anti.txt"),
   },
   {
     name: "strategy",
@@ -257,14 +257,14 @@ export const DESIGN_PATTERNS: DesignPattern[] = [
     goApproach: "Interface injection — pass the algorithm as a function or interface",
     when: "Multiple algorithms that can be swapped at runtime",
     oopEquivalent: "Strategy pattern",
-    code: snippet("patterns/strategy.md"),
+    code: snippet("patterns/strategy.txt"),
   },
   {
     name: "fan-out-fan-in",
     category: "concurrency",
     goApproach: "Distribute work across N goroutines (fan-out), then merge results into one channel (fan-in)",
     when: "Parallel independent work items with result collection",
-    code: snippet("patterns/fan-out-fan-in.md"),
+    code: snippet("patterns/fan-out-fan-in.txt"),
   },
   {
     name: "observer",
@@ -272,7 +272,7 @@ export const DESIGN_PATTERNS: DesignPattern[] = [
     goApproach: "Channel-based event bus — subscribers receive from buffered channels",
     when: "Decoupling event producers from consumers without shared state",
     oopEquivalent: "Observer / Pub-Sub pattern",
-    code: snippet("patterns/observer.md"),
+    code: snippet("patterns/observer.txt"),
   },
   {
     name: "command",
@@ -280,7 +280,7 @@ export const DESIGN_PATTERNS: DesignPattern[] = [
     goApproach: "Function closures as commands — submitted to a worker channel for execution",
     when: "Job queues, undo stacks, deferred execution, task pipelines",
     oopEquivalent: "Command pattern",
-    code: snippet("patterns/command.md"),
+    code: snippet("patterns/command.txt"),
   },
 ];
 

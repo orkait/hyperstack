@@ -43,7 +43,7 @@ export const TOKEN_CATEGORIES: TokenCategory[] = [
     description:
       "OKLCH-based color system using three-layer architecture: @theme primitives → :root/:dark semantics → domain tokens. Role-based naming prevents color-name coupling.",
     layer: "semantic",
-    cssExample: snippet("categories/colors.md"),
+    cssExample: snippet("categories/colors.txt"),
     tailwindExample: `<!-- Tailwind v4 utilities from @theme inline -->
 <div class="bg-background text-foreground">
   <button class="bg-primary text-primary-foreground hover:bg-primary/90">
@@ -74,7 +74,7 @@ export const TOKEN_CATEGORIES: TokenCategory[] = [
     description:
       "4px base grid system with named semantic tokens. The --spacing variable in Tailwind v4 is the base multiplier (0.25rem = 4px), not an individual token.",
     layer: "semantic",
-    cssExample: snippet("categories/spacing.md"),
+    cssExample: snippet("categories/spacing.txt"),
     tailwindExample: `<!-- Named spacing utilities -->
 <section class="py-section-y px-section-x">
   <div class="max-w-container-max mx-auto">
@@ -107,7 +107,7 @@ export const TOKEN_CATEGORIES: TokenCategory[] = [
     description:
       "Fluid type scale using clamp() for display/heading sizes, fixed 16px body. Role-based tokens with strict line-height and tracking rules.",
     layer: "semantic",
-    cssExample: snippet("categories/typography.md"),
+    cssExample: snippet("categories/typography.txt"),
     tailwindExample: `<!-- Typography roles in JSX -->
 <article class="max-w-[65ch]">
   <p class="text-overline text-primary mb-2">Category Label</p>
@@ -140,7 +140,7 @@ export const TOKEN_CATEGORIES: TokenCategory[] = [
     description:
       "Standardized component size scales for buttons, inputs, icons, and avatars. Includes WCAG touch target minimums.",
     layer: "semantic",
-    cssExample: snippet("categories/component-sizing.md"),
+    cssExample: snippet("categories/component-sizing.txt"),
     tailwindExample: `<!-- Button variants using sizing tokens -->
 <button class="btn btn-lg bg-primary text-primary-foreground hover:bg-primary/90">
   Large Button
@@ -167,7 +167,7 @@ export const TOKEN_CATEGORIES: TokenCategory[] = [
     description:
       "Consistent border radius scale from sharp (0) to pill. Semantic tokens for component contexts.",
     layer: "primitive",
-    cssExample: snippet("categories/border-radius.md"),
+    cssExample: snippet("categories/border-radius.txt"),
     tailwindExample: `<div class="rounded-lg p-card bg-surface">Card</div>
 <button class="btn rounded-btn">Button</button>
 <span class="rounded-full px-2 py-0.5 text-xs bg-primary/10 text-primary">Badge</span>`,
@@ -188,7 +188,7 @@ export const TOKEN_CATEGORIES: TokenCategory[] = [
     description:
       "5-level elevation shadow scale using oklch-tinted warm shadows. Dark mode uses bg-color elevation instead of box shadows.",
     layer: "semantic",
-    cssExample: snippet("categories/shadows-elevation.md"),
+    cssExample: snippet("categories/shadows-elevation.txt"),
     tailwindExample: `<!-- Light mode: box shadow -->
 <div class="shadow-card rounded-card p-card bg-surface">Card</div>
 
@@ -219,7 +219,7 @@ export const TOKEN_CATEGORIES: TokenCategory[] = [
     description:
       "Duration and easing token system for consistent UI animation. Always includes prefers-reduced-motion override.",
     layer: "primitive",
-    cssExample: snippet("categories/motion.md"),
+    cssExample: snippet("categories/motion.txt"),
     tailwindExample: `<!-- Motion utilities from @theme -->
 <button class="transition-[background-color,opacity] duration-fast ease-out">
   Button
@@ -252,7 +252,7 @@ export const TOKEN_CATEGORIES: TokenCategory[] = [
     description:
       "Structured z-index scale to prevent stacking context chaos. Named semantic layers for every UI level.",
     layer: "primitive",
-    cssExample: snippet("categories/z-index.md"),
+    cssExample: snippet("categories/z-index.txt"),
     tailwindExample: `<header class="sticky top-0 z-[var(--z-sticky)] bg-background/80 backdrop-blur">
   Navigation
 </header>
@@ -281,7 +281,7 @@ export const TOKEN_CATEGORIES: TokenCategory[] = [
     description:
       "Semantic opacity scale for disabled states, overlays, glass effects, and ghost UI elements.",
     layer: "primitive",
-    cssExample: snippet("categories/opacity.md"),
+    cssExample: snippet("categories/opacity.txt"),
     tailwindExample: `<button disabled class="btn opacity-[var(--opacity-disabled)] cursor-not-allowed">
   Disabled
 </button>
@@ -312,7 +312,7 @@ export const TOKEN_CATEGORIES: TokenCategory[] = [
     description:
       "Density mode system for compact/default/comfortable UI via CSS class overrides on the root element.",
     layer: "domain",
-    cssExample: snippet("categories/density.md"),
+    cssExample: snippet("categories/density.txt"),
     tailwindExample: `// React: density context provider
 const DensityProvider = ({ density, children }) => (
   <div className={\`density-\${density}\`}>
@@ -410,7 +410,7 @@ export const TOKEN_PROCEDURES: TokenProcedure[] = [
     step: 1,
     title: "Define color ramp primitives in @theme",
     description: "Create 11-stop OKLCH ramps for brand, neutral, and pop colors. These are static compile-time values.",
-    code: snippet("procedures/step-1-colors.md"),
+    code: snippet("procedures/step-1-colors.txt"),
     rules: [
       "Use @theme (not :root) for primitive ramps — they become Tailwind static utilities",
       "Hue angle (H) must be consistent across all stops in a ramp",
@@ -426,7 +426,7 @@ export const TOKEN_PROCEDURES: TokenProcedure[] = [
     step: 2,
     title: "Map semantic tokens in :root and .dark",
     description: "Create role-based semantic tokens that reference primitives. These are the tokens your components actually use.",
-    code: snippet("procedures/step-2-spacing.md"),
+    code: snippet("procedures/step-2-spacing.txt"),
     rules: [
       "Components must only reference semantic tokens, never primitive ramp values directly",
       "Dark mode requires bg-color elevation (lighter bg per level) since shadows are invisible",
@@ -442,7 +442,7 @@ export const TOKEN_PROCEDURES: TokenProcedure[] = [
     step: 3,
     title: "Bridge to Tailwind v4 utilities with @theme inline",
     description: "Use @theme inline to expose runtime-swappable CSS custom properties as Tailwind utility classes.",
-    code: snippet("procedures/step-3-typography.md"),
+    code: snippet("procedures/step-3-typography.txt"),
     rules: [
       "@theme inline is read at runtime — it reflects CSS custom property values dynamically",
       "Plain @theme is static — values are baked in at build time",
@@ -458,7 +458,7 @@ export const TOKEN_PROCEDURES: TokenProcedure[] = [
     step: 4,
     title: "Define spacing system",
     description: "Set the 4px base multiplier and create named semantic spacing tokens.",
-    code: snippet("procedures/step-4-component-sizing.md"),
+    code: snippet("procedures/step-4-component-sizing.txt"),
     rules: [
       "--spacing is the global multiplier — changing it scales ALL numeric spacing utilities",
       "Named tokens auto-generate Tailwind utilities: p-card, py-section-y, gap-grid-cards",
@@ -472,7 +472,7 @@ export const TOKEN_PROCEDURES: TokenProcedure[] = [
     step: 5,
     title: "Set up typography scale",
     description: "Define fluid heading sizes with clamp(), fixed body sizes, and line-height/tracking tokens.",
-    code: snippet("procedures/step-5-remaining.md"),
+    code: snippet("procedures/step-5-remaining.txt"),
     rules: [
       "Body text (16px) is NEVER fluid — use fixed rem values",
       "Headings MUST have tight line-height (1.05–1.2), not body line-height (1.6+)",
@@ -486,7 +486,7 @@ export const TOKEN_PROCEDURES: TokenProcedure[] = [
     step: 6,
     title: "Define shadows and elevation",
     description: "Build the 5-level elevation shadow system using warm oklch-tinted shadows.",
-    code: snippet("procedures/step-6-accessibility.md"),
+    code: snippet("procedures/step-6-accessibility.txt"),
     rules: ["Use oklch-tinted shadows, never rgba(0,0,0)", "Dark mode disables all shadows, uses bg-color elevation instead"],
     gotchas: ["rgba(0,0,0) shadows look cold on warm backgrounds. The warm hue tint (H=60) makes shadows feel natural."],
   },
@@ -494,7 +494,7 @@ export const TOKEN_PROCEDURES: TokenProcedure[] = [
     step: 7,
     title: "Define motion and z-index tokens",
     description: "Add duration, easing, and z-index scale with prefers-reduced-motion.",
-    code: snippet("procedures/step-7-validation.md"),
+    code: snippet("procedures/step-7-validation.txt"),
     rules: ["prefers-reduced-motion MUST be in @layer base with !important", "Never use arbitrary z-index values"],
     gotchas: ["Forgetting prefers-reduced-motion is a WCAG 2.3.3 violation."],
   },
@@ -502,7 +502,7 @@ export const TOKEN_PROCEDURES: TokenProcedure[] = [
     step: 8,
     title: "Run contrast audit and verify token usage",
     description: "After building the full token system, run a contrast audit on all color token pairs.",
-    code: snippet("procedures/step-8-deliverables.md"),
+    code: snippet("procedures/step-8-deliverables.txt"),
     rules: [
       "Run contrast audit AFTER finalizing the palette — before building components",
       "Status colors often need L adjusted to ~0.55 for AA compliance with white foreground",

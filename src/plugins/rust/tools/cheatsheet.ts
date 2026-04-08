@@ -1,7 +1,7 @@
 import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { snippet } from "../loader.js";
 
-const CHEATSHEET = snippet("cheatsheet.md");
+const CHEATSHEET = snippet("cheatsheet.txt");
 
 export function register(server: McpServer): void {
   server.tool(

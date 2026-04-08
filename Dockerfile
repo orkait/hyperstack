@@ -1,8 +1,7 @@
 FROM node:24-alpine
 WORKDIR /app
 COPY package.json package-lock.json ./
-RUN npm ci --omit=dev
-COPY dist/ dist/
-COPY snippets/ snippets/
+RUN npm ci
+COPY src/ src/
 USER node
-ENTRYPOINT ["node", "dist/index.js"]
+ENTRYPOINT ["npx", "tsx", "src/index.ts"]

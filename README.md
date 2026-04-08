@@ -255,7 +255,7 @@ Build once, reuse forever. The wrapper script keeps **one** named container aliv
 ```bash
 git clone https://github.com/orkait/hyperstack.git
 cd hyperstack
-npm install && npm run build
+npm install
 docker build -t hyperstack .
 ```
 
@@ -356,28 +356,26 @@ src/
 ├── index.ts                  # Entry - creates McpServer, loads all plugins
 ├── registry.ts               # Plugin interface + loadPlugins()
 ├── shared/
-│   └── loader-factory.ts     # createSnippetLoader() - reads .md files at runtime
+│   └── loader-factory.ts     # createSnippetLoader() - reads .txt files at runtime
 └── plugins/
     ├── reactflow/             # @xyflow/react v12
+    │   └── snippets/          # 94 .txt files
     ├── motion/                # motion/react v12
+    │   └── snippets/          # 79 .txt files
     ├── lenis/                 # Lenis smooth scroll
+    │   └── snippets/          # 31 .txt files
     ├── react/                 # React 19 + Next.js App Router
+    │   └── snippets/          # 13 .txt files
     ├── echo/                  # Echo Go framework
+    │   └── snippets/          # 33 .txt files
     ├── golang/                # Go best practices + design patterns
+    │   └── snippets/          # 43 .txt files
     ├── rust/                  # Rust best practices
+    │   └── snippets/          # 28 .txt files
     ├── design-tokens/         # Tailwind v4 OKLCH token system
+    │   └── snippets/          # 24 .txt files
     └── ui-ux/                 # UI/UX design principles
-
-snippets/
-├── reactflow/                 # 94 .md files
-├── motion/                    # 79 .md files
-├── lenis/                     # 31 .md files
-├── react/                     # 13 .md files
-├── echo/                      # 33 .md files
-├── golang/                    # 43 .md files
-├── rust/                      # 28 .md files
-├── design-tokens/             # 24 .md files
-└── ui-ux/                     # 25 .md files
+        └── snippets/          # 25 .txt files
 
 scripts/
 └── start-mcp.sh               # Single-container Docker wrapper
@@ -407,18 +405,17 @@ bad:  snippet("practices/error-wrapping-bad.md"),
 
 ```bash
 npm install
-npm run build     # compile TypeScript to dist/
-npm run dev       # watch mode
-npm start         # run server directly
+npm start         # run server using tsx
+npm run dev       # watch mode using tsx
 ```
 
 ```bash
 # Verify all plugins load and tools are registered correctly
-node --input-type=module <<'EOF'
-import { reactflowPlugin } from './dist/plugins/reactflow/index.js';
-import { motionPlugin } from './dist/plugins/motion/index.js';
-import { lenisPlugin } from './dist/plugins/lenis/index.js';
-import { golangPlugin } from './dist/plugins/golang/index.js';
+npx tsx <<'EOF'
+import { reactflowPlugin } from './src/plugins/reactflow/index.js';
+import { motionPlugin } from './src/plugins/motion/index.js';
+import { lenisPlugin } from './src/plugins/lenis/index.js';
+import { golangPlugin } from './src/plugins/golang/index.js';
 const tools = [];
 const fake = { tool: (n) => tools.push(n), resource: () => {} };
 [reactflowPlugin, motionPlugin, lenisPlugin, golangPlugin].forEach(p => p.register(fake));
@@ -431,3 +428,5 @@ EOF
 ## 📄 License
 
 MIT © [Orkait](https://github.com/orkait)
+T © [Orkait](https://github.com/orkait)
+ait)

@@ -27,12 +27,12 @@ const nodeType: ApiEntry = {
     { name: "origin", type: "NodeOrigin", description: "Origin point [0-1, 0-1] for positioning.", default: "[0, 0]" },
     { name: "measured", type: "{ width?: number; height?: number }", description: "Read-only measured dimensions." },
   ],
-  usage: snippet("usage/Node.md"),
+  usage: snippet("usage/Node.txt"),
   examples: [
     {
       title: "Typed custom node data",
       category: "custom-nodes",
-      code: snippet("examples/Node/typed-custom-node-data.md"),
+      code: snippet("examples/Node/typed-custom-node-data.txt"),
     },
   ],
   tips: [
@@ -70,7 +70,7 @@ const edgeType: ApiEntry = {
     { name: "zIndex", type: "number", description: "Z-index." },
     { name: "interactionWidth", type: "number", description: "Width of invisible click target.", default: "20" },
   ],
-  usage: snippet("usage/Edge.md"),
+  usage: snippet("usage/Edge.txt"),
   examples: [],
   tips: [
     "Default edge types: 'default' (bezier), 'straight', 'step', 'smoothstep', 'simplebezier'.",
@@ -105,7 +105,7 @@ const nodePropsType: ApiEntry = {
     { name: "sourcePosition", type: "Position", description: "Source handle position (default nodes only)." },
     { name: "targetPosition", type: "Position", description: "Target handle position (default nodes only)." },
   ],
-  usage: snippet("usage/NodeProps.md"),
+  usage: snippet("usage/NodeProps.txt"),
   examples: [],
   tips: [
     "The generic parameter is a Node type (not raw data). Use Node<MyData, 'myType'> to define it.",
@@ -150,7 +150,7 @@ const edgePropsType: ApiEntry = {
     { name: "style", type: "CSSProperties", description: "Edge SVG path styles." },
     { name: "interactionWidth", type: "number", description: "Width of invisible click target." },
   ],
-  usage: snippet("usage/EdgeProps.md"),
+  usage: snippet("usage/EdgeProps.txt"),
   examples: [],
   tips: [
     "The generic parameter is an Edge type (not raw data). Use Edge<MyData, 'myType'> to define it.",
@@ -171,7 +171,7 @@ const connectionType: ApiEntry = {
     { name: "sourceHandle", type: "string | null", description: "Source handle ID." },
     { name: "targetHandle", type: "string | null", description: "Target handle ID." },
   ],
-  usage: snippet("usage/Connection.md"),
+  usage: snippet("usage/Connection.txt"),
   examples: [],
   relatedApis: ["Edge", "addEdge", "useConnection"],
 };
@@ -186,7 +186,7 @@ const viewportType: ApiEntry = {
     { name: "y", type: "number", description: "Y offset." },
     { name: "zoom", type: "number", description: "Zoom level." },
   ],
-  usage: snippet("usage/Viewport.md"),
+  usage: snippet("usage/Viewport.txt"),
   examples: [],
   relatedApis: ["useViewport", "useReactFlow"],
 };
@@ -224,7 +224,7 @@ const reactFlowInstanceType: ApiEntry = {
     { name: "isNodeIntersecting()", type: "(node, area, partially?) => boolean", description: "Check if node intersects area." },
     { name: "getNodesBounds()", type: "(nodes) => Rect", description: "Get bounding box of nodes." },
   ],
-  usage: snippet("usage/ReactFlowInstance.md"),
+  usage: snippet("usage/ReactFlowInstance.txt"),
   examples: [],
   relatedApis: ["useReactFlow", "ReactFlowProvider"],
 };

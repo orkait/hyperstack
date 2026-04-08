@@ -2,10 +2,10 @@ import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { z } from "zod";
 import { snippet } from "../loader.js";
 
-const TEMPLATE_COLORS = snippet("templates/colors-tailwind-v4.md");
-const TEMPLATE_SPACING = snippet("templates/spacing.md");
-const TEMPLATE_TYPOGRAPHY = snippet("templates/typography.md");
-const TEMPLATE_MOTION = snippet("templates/motion.md");
+const TEMPLATE_COLORS = snippet("templates/colors-tailwind-v4.txt");
+const TEMPLATE_SPACING = snippet("templates/spacing.txt");
+const TEMPLATE_TYPOGRAPHY = snippet("templates/typography.txt");
+const TEMPLATE_MOTION = snippet("templates/motion.txt");
 
 export function register(server: McpServer): void {
   server.tool(
