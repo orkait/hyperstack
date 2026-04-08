@@ -71,11 +71,17 @@ If you prefer to configure it yourself, add the following to your MCP config fil
 
 ---
 
-## 🤝 AI Skill Integration
+## 🧠 The Hyperstack Engine (AI Skill)
 
-Hyperstack is more than just a data server. It includes a master `SKILL.md` file that teaches your AI assistant *when* and *how* to use the provided tools. The skill handles judgment and "gotchas", while the MCP server provides the raw data.
+Hyperstack includes a master `SKILL.md` file that acts as a **cognitive bootloader** for your AI. It transforms the assistant from a generic autocomplete engine into a disciplined Senior Staff Engineer.
 
-To fully enable the system, clone this repository into your AI's skills directory:
+The skill enforces a strict 4-phase operational lifecycle:
+1.  **Discovery:** Inventorying state and querying MCP ground-truth data.
+2.  **Reasoning:** Architectural gating via the `engineering-discipline` skill.
+3.  **Execution:** Surgical implementation using verified MCP patterns.
+4.  **Verification:** Automated audits and evidence-based reporting.
+
+To fully enable the engine, clone this repository into your AI's skills directory:
 
 ```bash
 git clone https://github.com/orkait/hyperstack.git ~/.claude/skills/hyperstack
