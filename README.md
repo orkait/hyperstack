@@ -274,7 +274,7 @@ git clone https://github.com/orkait/hyperstack.git ~/.claude/skills/hyperstack
 
 ## 🧠 Additional Engineering Skills
 
-Hyperstack also bundles 10 specialized engineering skills that provide comprehensive guidelines, checklists, and principles. 
+Hyperstack also bundles 5 specialized engineering skills that provide comprehensive guidelines, checklists, and principles. 
 
 Unlike the plugins above, these are **NOT** MCP tools. They are static Markdown files located in the `skills/` directory. AI agents can read these documents using standard file reading tools when needed.
 
@@ -283,11 +283,6 @@ Unlike the plugins above, these are **NOT** MCP tools. They are static Markdown 
 | `behaviour-analysis` | UI/UX state audits, Nielsen heuristics |
 | `design-patterns-skill` | Clean Code, Pragmatic Programmer concepts |
 | `engineering-discipline`| Architecture reasoning, verification gates |
-| `excalidraw` | Automated architecture diagram generation |
-| `frame-animator` | Frame-based tick animation & expressions |
-| `golang-design-pattern`| Go-specific implementations of design patterns |
-| `pinchtab` | Browser automation, scraping, web testing |
-| `react-pro-coder` | Senior Next.js/React constraints, RSC rules |
 | `readme-writer` | Evidence-based README generation |
 | `security-review` | OWASP audits, vulnerability checklists |
 
