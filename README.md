@@ -36,9 +36,9 @@
 
 ### ⚡ Agent-First Install (Easiest)
 If you are using an AI agent (like Claude Code), simply ask it:
-> "Install https://github.com/orkait/hyperstack/blob/main/install.md into my system"
+> "Fetch and follow instructions from https://raw.githubusercontent.com/orkait/hyperstack/main/install.md"
 
-The agent will read the installation file, pull the pre-built Docker image, and configure your system automatically.
+The agent will read the raw markdown file, pull the pre-built Docker image, and configure your system automatically.
 
 ---
 
