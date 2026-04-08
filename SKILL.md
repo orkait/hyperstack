@@ -452,17 +452,12 @@ Pre-ship: run ui_ux_get_checklist for each domain before shipping a new componen
 
 ## 🧠 Additional Engineering Skills
 
-Hyperstack bundles 10 specialized engineering skills that do not rely on standard API references but instead provide comprehensive guidelines, checklists, and principles.
+Hyperstack bundles 5 specialized engineering skills that do not rely on standard API references but instead provide comprehensive guidelines, checklists, and principles.
 
 These are **NOT** MCP tools. They are static Markdown files located in the `skills/` directory of the repository. You can use standard file reading tools to read these documents when needed.
 
 - `skills/behaviour-analysis/SKILL.md`
 - `skills/design-patterns-skill/SKILL.md`
 - `skills/engineering-discipline/SKILL.md`
-- `skills/excalidraw/SKILL.md`
-- `skills/frame-animator/SKILL.md`
-- `skills/golang-design-pattern/SKILL.md`
-- `skills/pinchtab/SKILL.md`
-- `skills/react-pro-coder/SKILL.md`
 - `skills/readme-writer/SKILL.md`
 - `skills/security-review/SKILL.md`
