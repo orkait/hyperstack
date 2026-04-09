@@ -1,0 +1,23 @@
+/* Soft UI Evolution (Modern Neumorphism) */
+.soft-card {
+  background: oklch(0.96 0.008 80);
+  border-radius: 12px;
+  padding: 28px;
+  box-shadow:
+    6px 6px 12px oklch(0.20 0.008 80 / 0.08),
+    -4px -4px 8px oklch(1 0 0 / 0.6);
+}
+
+.soft-button {
+  background: oklch(0.96 0.008 80);
+  border: none;
+  border-radius: 8px;
+  padding: 12px 24px;
+  box-shadow:
+    3px 3px 6px oklch(0.20 0.008 80 / 0.06),
+    -2px -2px 4px oklch(1 0 0 / 0.5);
+  transition: box-shadow 200ms ease-out;
+}
+
+/* Improved contrast vs classic neumorphism — WCAG AA+ */
+/* Safe premium default for most apps */

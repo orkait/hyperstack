@@ -1,0 +1,23 @@
+/* Linear — Specific Values */
+
+/* Color: LCH space, 3 design variables */
+/* 2024 redesign: 98-variable HSL -> 3 vars (base, accent, contrast) */
+/* Contrast variable powers automatic high-contrast a11y modes */
+/* Cool blue-gray (2023) -> warmer neutral gray (2024) */
+
+/* Opacity-based hierarchy */
+/* Sidebar dimmed via opacity, not different colors */
+/* Auto-adapts to any theme */
+/* Works in "opacities of black and white" during exploration */
+
+/* Spacing: 8px pure powers of 2 */
+/* 8, 16, 32, 64px — no 12px */
+/* 2024 refresh fixed icon-to-label alignment mismatches */
+
+/* Typography */
+/* Inter with negative tracking */
+/* Text darker in light mode, lighter in dark than typical */
+/* Icon-only tab pills with rounded corners */
+
+/* No unnecessary dividers */
+/* Structure from spacing alone, not borders */

@@ -1,0 +1,29 @@
+/* Bold Energetic — Figma / Framer / PostHog / Pitch */
+:root {
+  /* Vivid multi-color palette */
+  --color-bg: oklch(0.99 0 0);
+  --color-fg: oklch(0.10 0 0);
+  --color-primary: oklch(0.55 0.20 265);       /* vivid blue */
+  --color-secondary: oklch(0.65 0.22 330);     /* vivid pink */
+  --color-tertiary: oklch(0.72 0.18 145);      /* vivid green */
+  --color-accent: oklch(0.75 0.20 60);         /* vivid amber */
+
+  /* Typography: display weight, large headings */
+  --font-sans: 'DM Sans', ui-sans-serif, system-ui, sans-serif;
+  --tracking-display: -0.03em;
+  --weight-display: 800;
+  --weight-heading: 700;
+  --weight-body: 400;
+
+  /* Spacing: confident */
+  --section-padding: 80px;
+  --card-padding: 32px;
+  --radius: 14px;
+
+  /* Shadows: medium depth, colored */
+  --shadow-card: 0 8px 24px oklch(0.55 0.20 265 / 0.10);
+
+  /* Motion: rich, scroll reveals, spring */
+  --duration: 300ms;
+  --easing: cubic-bezier(0.34, 1.56, 0.64, 1);
+}

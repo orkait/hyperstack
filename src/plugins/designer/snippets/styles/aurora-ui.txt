@@ -1,0 +1,28 @@
+/* Aurora UI — Mesh Gradient */
+.aurora-hero {
+  background: linear-gradient(
+    135deg,
+    oklch(0.55 0.20 265) 0%,
+    oklch(0.50 0.18 290) 25%,
+    oklch(0.60 0.22 330) 50%,
+    oklch(0.55 0.20 265) 100%
+  );
+  background-size: 200% 200%;
+  animation: aurora-shift 10s ease-in-out infinite;
+  border-radius: 20px;
+  padding: 80px 48px;
+}
+
+@keyframes aurora-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Complementary pairs: blue-orange, purple-yellow */
+/* 8-12s animation loop, never faster */
+/* Hero sections only — not for entire page */
+/* MUST verify text contrast on gradient */
+
+@media (prefers-reduced-motion: reduce) {
+  .aurora-hero { animation: none; }
+}

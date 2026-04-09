@@ -1,0 +1,21 @@
+/* Minimalism / Swiss Style */
+.card {
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 0;
+  padding: 32px;
+  /* No shadows, no decoration */
+}
+
+.heading {
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  color: var(--color-fg);
+}
+
+/* Grid-based layout, typography hierarchy only */
+.grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 24px; }
+
+/* WCAG AAA target — maximum contrast */
+/* No decorative elements — every pixel justified */

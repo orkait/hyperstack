@@ -1,0 +1,29 @@
+/* Cinematic Dark — ElevenLabs / RunwayML / SpaceX / Nothing */
+:root {
+  /* Stark dark, single accent, neon highlights */
+  --color-bg: oklch(0.05 0 0);                 /* near pure black */
+  --color-fg: oklch(0.95 0 0);
+  --color-accent: oklch(0.70 0.20 200);        /* electric cyan */
+  --color-surface-1: oklch(0.10 0.005 260);
+  --color-surface-2: oklch(0.15 0.005 260);
+  --color-border: oklch(1 0 0 / 0.06);
+
+  /* Typography: light weight, large display */
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --weight-display: 300;
+  --weight-heading: 400;
+  --weight-body: 300;
+  --tracking-display: -0.03em;
+
+  /* Spacing: generous, cinematic */
+  --section-padding: 120px;
+  --card-padding: 48px;
+  --radius: 4px;
+
+  /* Shadows: glow, no box-shadows */
+  --glow-accent: 0 0 40px oklch(0.70 0.20 200 / 0.20);
+
+  /* Motion: slow, cinematic */
+  --duration: 500ms;
+  --easing: ease-in-out;
+}

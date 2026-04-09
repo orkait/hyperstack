@@ -1,0 +1,30 @@
+/* Warm Editorial — Notion / Airbnb / Zapier / Medium */
+:root {
+  /* Warm neutrals, cream not white */
+  --color-bg: oklch(0.98 0.012 78);            /* warm cream #FAF8F5 */
+  --color-fg: oklch(0.18 0.008 56);            /* warm near-black */
+  --color-accent: oklch(0.62 0.18 25);         /* warm coral/orange */
+  --color-muted: oklch(0.55 0.02 78);
+  --color-border: oklch(0.88 0.012 78);
+
+  /* Typography: humanist, generous reading */
+  --font-sans: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-serif: 'Lora', 'Georgia', ui-serif, serif;
+  --tracking-heading: -0.01em;
+  --weight-heading: 700;
+  --weight-body: 400;
+  --line-height-body: 1.75;
+  --body-size: 18px;
+
+  /* Spacing: comfortable, breathing */
+  --section-padding: 96px;
+  --card-padding: 40px;
+  --radius: 16px;
+
+  /* Shadows: warm-tinted, soft */
+  --shadow-card: 0 4px 12px oklch(0.22 0.006 56 / 0.06);
+
+  /* Motion: gentle */
+  --duration: 250ms;
+  --easing: ease-in-out;
+}
