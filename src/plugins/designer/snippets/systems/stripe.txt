@@ -1,0 +1,19 @@
+/* Stripe — Specific Values */
+
+/* Typography: Söhne by Klim Type Foundry */
+/* Body: weight 300 (Söhne Leicht) — "weight-300 elegance" */
+/* Headers: weight 500 (Söhne Medium) */
+/* fontWeightNormal in Stripe Elements: 500 */
+/* ZERO use of 400 or 700 anywhere */
+/* Söhne Mono for code (matching family) */
+/* Docs use same editorial type as marketing (rare) */
+
+/* Color: CIELAB (not HSL) */
+/* 5+ step separation = guaranteed 4.5:1 contrast for small text */
+/* 4-step separation = icons and large text */
+/* Mathematical guarantee, not manual checking */
+/* Before rebuild: NONE of default text colors passed WCAG 2.0 */
+/* HSL darkening -> "dull/muted" | CIELAB maintains vibrancy */
+
+/* Hero: complex multi-point gradient meshes */
+/* Not 2-stop gradients — multi-point with organic flow */

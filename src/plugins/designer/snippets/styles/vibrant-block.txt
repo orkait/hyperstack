@@ -1,0 +1,19 @@
+/* Vibrant & Block-based */
+.hero-block {
+  background: oklch(0.55 0.22 265);
+  color: oklch(0.99 0 0);
+  padding: 80px 48px;
+  border-radius: 20px;
+}
+
+.feature-block {
+  background: oklch(0.65 0.22 330);
+  padding: 48px 32px;
+  border-radius: 16px;
+}
+
+/* 4-6 neon/vivid colors max */
+/* Large type 32px+ headings, high weight (700-900) */
+/* 48px+ grid gaps between blocks */
+/* Animated patterns, scroll reveals */
+/* NEVER for: financial, healthcare, government */

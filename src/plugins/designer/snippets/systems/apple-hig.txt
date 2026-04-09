@@ -1,0 +1,21 @@
+/* Apple HIG — Specific Values */
+
+/* Dynamic Type Scale (default "Large" category) */
+/* Large Title: 34pt Regular */
+/* Title 1: 28pt Regular | Title 2: 22pt Regular | Title 3: 20pt Regular */
+/* Headline: 17pt Semibold (only semibold in scale) */
+/* Body: 17pt Regular | Callout: 16pt Regular */
+/* Subheadline: 15pt Regular | Footnote: 13pt Regular */
+/* Caption 1: 12pt Regular | Caption 2: 11pt Regular (absolute minimum) */
+
+/* SF Pro Display/Text split at 20pt */
+/* Above 20pt: Display variant (single-story 'a', tight tracking -0.003em) */
+/* Below 20pt: Text variant (double-story 'a', slightly positive tracking) */
+
+/* Touch Targets: 44x44pt NON-NEGOTIABLE */
+/* Row heights >= 44pt */
+/* Sub-44pt targets increase error rates by 25%+ */
+
+/* Three Principles: Clarity, Deference, Depth */
+/* Translucency communicates depth and location */
+/* Spring animations communicate mass and physicality */
