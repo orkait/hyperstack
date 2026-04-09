@@ -46,7 +46,9 @@ For every domain the plan touches, call the relevant MCP tool to verify the plan
 | Echo middleware or recipes | `echo_get_recipe("[name]")` |
 | Rust practices | `rust_get_practice("[name]")` |
 
-Flag any step where the plan's code or API usage does not match MCP output. These are **plan bugs** — resolve them before executing.
+Flag any step where the plan's code or API usage does not match MCP output. These are **plan bugs** -- resolve them before executing.
+
+**MCP Degraded Mode:** If MCP tools fail or are unavailable during spot-check, inform the user: "MCP unavailable for [domain] -- cannot verify plan's API assumptions for this domain." Mark affected steps as `[UNVERIFIED]` and ask the user whether to proceed with the risk or wait for MCP to recover.
 
 ### Step 3: Gap Review
 

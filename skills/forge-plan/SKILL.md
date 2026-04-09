@@ -32,6 +32,8 @@ Before writing a single task, call the relevant MCP tools for every domain the i
 
 Record each tool output. The plan's code blocks must match what the tools return.
 
+**MCP Degraded Mode:** If MCP tools fail or are unavailable mid-survey, inform the user: "MCP unavailable for [domain] -- plan may contain unverified API shapes." Mark affected tasks with `[UNVERIFIED]` so they get MCP-checked at execution time. Do not silently proceed with assumed APIs.
+
 ### Step 2: Map Files
 
 Before defining tasks, map every file that will be created or modified:
@@ -111,7 +113,13 @@ Save the plan to `docs/plans/YYYY-MM-DD-[feature-name].md` and commit it.
 
 Then offer:
 
-> "Plan saved to `[path]`. Ready to execute via `hyperstack:engineering-discipline`. Proceed?"
+> "Plan saved to `[path]`. Three execution options:
+>
+> 1. **Autonomous** -- execute all tasks end-to-end without pausing. Tests, reviews, and ship-gate run automatically. Only stops on failure or blocker.
+> 2. **Subagent-driven** (`hyperstack:subagent-ops`) -- fresh agent per task, automated two-stage review between tasks.
+> 3. **Inline with checkpoints** (`hyperstack:engineering-discipline`) -- execute tasks in this session, pause for human review at phase gates.
+>
+> Which approach?"
 
 ## No Placeholders — Ever
 
@@ -136,5 +144,5 @@ These are plan failures. Never write them:
 ## Integration
 
 - **Requires:** `hyperstack:blueprint` approved design as input
-- **Executes via:** `hyperstack:engineering-discipline` phase gates
+- **Executes via:** Autonomous mode, `hyperstack:subagent-ops` (per-task review), or `hyperstack:engineering-discipline` (manual phase gates)
 - **Completes via:** `hyperstack:deliver` after all tasks are done

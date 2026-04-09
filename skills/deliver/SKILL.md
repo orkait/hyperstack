@@ -19,20 +19,25 @@ Run the complete test suite. Not a subset. Not the tests you just wrote. All of 
 
 Show the output. If anything fails, stop here — invoke `hyperstack:debug-discipline` and resolve before continuing.
 
-### Step 2: Type Check
+### Step 2: Type / Lint Check
 
-```bash
-npx tsc --noEmit
-```
+Run the appropriate check for the project's language:
+
+| Language | Command |
+|---|---|
+| TypeScript / Next.js | `npx tsc --noEmit` |
+| Rust | `cargo check` |
+| Go | `go vet ./...` |
+| Python | `mypy .` (if configured) |
 
 Zero errors required. Warnings are acceptable if pre-existing and documented.
 
 ### Step 3: Diff Review
 
-Run `git diff main..HEAD` (or equivalent base branch).
+Run `git diff <base-branch>..HEAD` where `<base-branch>` is main, master, or develop — whichever this branch was cut from.
 
 Check:
-- Does the diff match the approved design from `blueprint`?
+- Does the diff match the plan or approved design?
 - Are there any unintended changes (modified files outside the plan's scope)?
 - Are there any debug statements, console.logs, or temporary code left in?
 
@@ -89,6 +94,6 @@ git push -u origin [branch-name]
 
 ## Integration
 
-- **Requires:** All tasks in `forge-plan` complete and individually verified
+- **Requires:** All tasks in `forge-plan` or `run-plan` complete and individually verified (via `autonomous-mode`, `subagent-ops`, or `engineering-discipline`)
 - **Requires:** `hyperstack:ship-gate` passing on full implementation
-- **Invoked after:** `hyperstack:engineering-discipline` completes all phases
+- **Invoked after:** `hyperstack:autonomous-mode`, `hyperstack:subagent-ops`, or `hyperstack:engineering-discipline` completes

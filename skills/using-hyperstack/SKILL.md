@@ -8,6 +8,8 @@ If you were dispatched as a subagent to execute a specific task, skip this skill
 Your context was provided by the orchestrating agent. Do not reload bootstrap.
 </SUBAGENT-STOP>
 
+**Subagent gate:** If you are a subagent, tool-use context, or delegated executor spawned to complete a specific task — not an interactive session with the user — stop reading here. Do not process the rest of this file. Your context was provided by the orchestrating agent and re-injecting bootstrap would pollute it.
+
 <EXTREMELY-IMPORTANT>
 You have Hyperstack. Before answering any technical question about the stacks listed below, you MUST call the relevant MCP tool. Do not answer from memory.
 </EXTREMELY-IMPORTANT>
@@ -45,7 +47,14 @@ If MCP tools fail or are unavailable:
 
 Use the `Skill` tool to load these before the relevant task type.
 
-**Announce every skill invocation:** Before invoking any skill, state: `"Using hyperstack:[skill-name] — [one-line purpose]"`. This keeps every step auditable.
+### Announcement Iron Law
+
+```
+BEFORE invoking any Hyperstack skill, announce it:
+"Using hyperstack:[skill-name] — [one-line purpose]"
+```
+
+This is non-negotiable. Silent skill invocations are invisible to the user and cannot be audited or corrected. Every step must be traceable.
 
 ### Workflow Skills (invoke in this order for feature work)
 
@@ -57,6 +66,17 @@ Use the `Skill` tool to load these before the relevant task type.
 | `hyperstack:engineering-discipline` | During execution — Senior SDE phase gates |
 | `hyperstack:ship-gate` | Before any completion claim — evidence required |
 | `hyperstack:deliver` | After all tasks complete — final verification and delivery |
+
+### Execution Skills (invoke during implementation)
+
+| Skill | When to invoke |
+|---|---|
+| `hyperstack:autonomous-mode` | User chose fully autonomous execution — runs all tasks end-to-end, only stops on failure |
+| `hyperstack:subagent-ops` | Executing plans with independent tasks — fresh agent per task, two-stage review |
+| `hyperstack:test-first` | Before writing any implementation code — red-green-refactor discipline |
+| `hyperstack:worktree-isolation` | Before feature work — clean workspace isolation |
+| `hyperstack:code-review` | After completing tasks or before merging — dispatch reviewer subagent |
+| `hyperstack:parallel-dispatch` | 2+ independent failures or tasks — concurrent agent dispatch |
 
 ### Support Skills (invoke when the situation calls for it)
 
@@ -71,17 +91,30 @@ Use the `Skill` tool to load these before the relevant task type.
 ### Workflow Chain
 
 ```
-New work:   blueprint → forge-plan → engineering-discipline → ship-gate → deliver
-                                              ↑
-Existing:              run-plan ─────────────┘
-                                        ↑
-                                 debug-discipline
-                                  (when bugs hit)
+New work:   blueprint → forge-plan → choose execution mode → ship-gate → deliver
+                                  │
+Existing:              run-plan ──┤
+                                  │
+                                  ├→ autonomous-mode (full auto, stops only on failure)
+                                  ├→ subagent-ops (fresh agent per task, two-stage review)
+                                  └→ engineering-discipline (manual, human checkpoints)
+
+Before execution:  worktree-isolation (clean workspace)
+Debugging:         debug-discipline → parallel-dispatch (if independent failures)
 ```
 
 For non-trivial tasks, follow the chain in order. Do not skip steps.
 
 **Platform tool equivalences:** See `skills/using-hyperstack/references/` for tool name mappings per harness.
+
+### Skill Description Format (CSO)
+
+All Hyperstack skill descriptions MUST follow this format:
+- Start with "Use when..." describing triggering conditions
+- Never summarize the skill's workflow or process in the description
+- Keep under 500 characters
+
+**Why:** When descriptions summarize workflow, the LLM shortcuts the full skill content and follows the summary instead. "Use when..." forces the LLM to load the full skill to learn what to do.
 
 ## Red Flags - STOP and Load MCP
 

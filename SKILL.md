@@ -103,13 +103,21 @@ Use these tools for **100% accurate** API details, props, code examples, and pat
 
 These are static guidelines in the `skills/` directory. Read them using file tools.
 
-### Workflow Skills (process gates — follow in order)
+### Workflow Skills (process gates -- follow in order)
 - **Blueprint** (`skills/blueprint/SKILL.md`): MCP-surveyed design with hard gate before any code.
 - **Forge Plan** (`skills/forge-plan/SKILL.md`): MCP-verified implementation plan after design approval.
 - **Run Plan** (`skills/run-plan/SKILL.md`): Validate and execute an existing plan or spec.
 - **Debug Discipline** (`skills/debug-discipline/SKILL.md`): Root cause first. MCP-informed. 3-strike escalation.
 - **Ship Gate** (`skills/ship-gate/SKILL.md`): Evidence required before any completion claim.
-- **Deliver** (`skills/deliver/SKILL.md`): Final verification and delivery — terminal state of every workflow.
+- **Deliver** (`skills/deliver/SKILL.md`): Final verification and delivery -- terminal state of every workflow.
+
+### Execution Skills (used during implementation)
+- **Autonomous Mode** (`skills/autonomous-mode/SKILL.md`): Full end-to-end execution, no human pauses, stops only on failure.
+- **Subagent Ops** (`skills/subagent-ops/SKILL.md`): Fresh agent per task, two-stage review (spec + quality).
+- **Test First** (`skills/test-first/SKILL.md`): Red-green-refactor discipline before any implementation code.
+- **Worktree Isolation** (`skills/worktree-isolation/SKILL.md`): Clean workspace isolation before feature work.
+- **Code Review** (`skills/code-review/SKILL.md`): Dispatch reviewer subagent, handle feedback technically.
+- **Parallel Dispatch** (`skills/parallel-dispatch/SKILL.md`): Concurrent agent dispatch for independent tasks.
 
 ### Domain Skills (execution guidance)
 - **Engineering Discipline** (`skills/engineering-discipline/SKILL.md`): The Senior SDE phase-gate framework.

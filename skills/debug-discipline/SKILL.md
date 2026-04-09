@@ -85,7 +85,9 @@ Scientific method — one variable at a time:
 3. **Make one change** — do not bundle multiple fixes
 4. **Verify the result:**
    - Confirms hypothesis → Phase 4
-   - Refutes hypothesis → form a new hypothesis, return to top of Phase 3
+   - Refutes hypothesis → form a new hypothesis, return to top of Phase 3 (count this as a failed attempt)
+   - After 2 refuted hypotheses: return to Phase 1 with all new information before forming another hypothesis
+   - After 3 failed hypotheses total: stop — go directly to the Escalation Rule below
    - Do NOT stack a second change on top of a failed one
 
 If you genuinely do not know what the root cause is after Phase 1 and 2, say so explicitly. "I don't understand why X behaves this way" is correct. Proposing a fix you don't understand is not.

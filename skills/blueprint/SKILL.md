@@ -93,9 +93,8 @@ Address each failure mode explicitly — either design around it or record the a
 
 Once the design is approved:
 - Save a short design note to the relevant docs directory if the task is non-trivial
-- Invoke `hyperstack:engineering-discipline` to execute the approved design through the phase gates
-- The approved design is the spec - `engineering-discipline` executes against it
-- The approved design is the spec — `engineering-discipline` executes against it
+- Invoke `hyperstack:forge-plan` to build a fully MCP-verified implementation plan from the approved design
+- The approved design is the spec — `forge-plan` translates it into traceable tasks, `engineering-discipline` executes them
 
 ## Red Flags — STOP
 
