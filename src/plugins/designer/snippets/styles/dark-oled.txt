@@ -1,0 +1,21 @@
+/* Dark Mode OLED */
+:root {
+  --bg: oklch(0.05 0 0);          /* true black for OLED power savings */
+  --surface-1: oklch(0.10 0.005 260);
+  --surface-2: oklch(0.15 0.005 260);
+  --surface-3: oklch(0.20 0.005 260);
+  --fg: oklch(0.93 0.008 260);
+  --accent: oklch(0.65 0.18 160); /* vibrant on dark */
+}
+
+.card {
+  background: var(--surface-1);
+  border: 1px solid oklch(1 0 0 / 0.06);
+  border-radius: 8px;
+  /* NO box-shadow — invisible on dark backgrounds */
+  /* Use bg-color elevation instead */
+}
+
+/* Elevation = progressively lighter bg, not shadows */
+/* Accents need higher L for contrast on dark: brand-400 not brand-600 */
+/* 7:1+ contrast target (AAA) for sustained reading on dark */

@@ -1,0 +1,29 @@
+/* Premium Precision — Linear / Vercel / Apple / Stripe */
+:root {
+  /* Monochromatic + single accent */
+  --color-bg: oklch(0.99 0 0);
+  --color-fg: oklch(0.13 0 0);
+  --color-accent: oklch(0.55 0.15 270);       /* singular, deliberate */
+  --color-muted: oklch(0.55 0.01 260);
+  --color-border: oklch(0.90 0 0);
+
+  /* Typography: tight, restrained */
+  --font-sans: 'Geist', 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --tracking-display: -0.03em;
+  --tracking-heading: -0.02em;
+  --tracking-body: 0em;
+  --weight-heading: 600;
+  --weight-body: 400;
+
+  /* Spacing: mathematical, generous */
+  --section-padding: 96px;
+  --card-padding: 32px;
+  --radius: 8px;
+
+  /* Shadows: none or whisper */
+  --shadow-card: 0 1px 2px oklch(0.20 0.005 260 / 0.04);
+
+  /* Motion: minimal */
+  --duration: 200ms;
+  --easing: ease-out;
+}

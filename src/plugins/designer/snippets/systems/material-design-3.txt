@@ -1,0 +1,22 @@
+/* Material Design 3 — Specific Values */
+
+/* HCT Color Space (Hue, Chroma, Tone) */
+/* Tone axis 0=black, 100=white — perceptually uniform */
+/* 13 stops per hue: primary10 through primary99 */
+
+/* Three-layer tokens: */
+/* 1. Reference (raw): primary10...primary99 */
+/* 2. System (semantic): primary, on-primary, primary-container */
+/* 3. Component: button-container-color -> primary */
+
+/* Elevation via tonal overlays (not shadows): */
+/* Level 0: 0dp, 0% tint */
+/* Level 1: 1dp, 5% primary tint */
+/* Level 2: 3dp, 8% primary tint */
+/* Level 3: 6dp, 11% primary tint (dialogs) */
+/* Level 4: 8dp, 12% primary tint */
+/* Level 5: 12dp, 14% primary tint */
+/* Works in both light and dark without shadow dependency */
+
+/* Type Scale: Display XL 88px -> Display L 57px -> */
+/* Headline L 32px -> Title L 22px -> Body L 16px -> Label S 11px */

@@ -1,0 +1,23 @@
+/* shadcn/ui + Radix — Specific Values */
+
+/* OKLCH migration (2024): */
+/* Light mode: */
+/*   --background: oklch(1 0 0) */
+/*   --foreground: oklch(0.145 0 0) */
+/*   --primary: oklch(0.205 0 0) */
+/*   --muted-foreground: oklch(0.556 0 0) */
+/*   --destructive: oklch(0.577 0.245 27.325) — only token with chroma */
+/*   --border: oklch(0.922 0 0) */
+
+/* Dark mode: */
+/*   --background: oklch(0.145 0 0) */
+/*   --border: oklch(1 0 0 / 10%) — 10% white overlay */
+/*   --input: oklch(1 0 0 / 15%) — 15% white overlay */
+
+/* Critical dark mode insight: */
+/* Borders = oklch(1 0 0 / 10%) — percentage-white, not fixed gray */
+/* Auto-adapts to any background while maintaining relative contrast */
+
+/* Radix: behavior (WAI-ARIA) separated from appearance */
+/* Focus trap, roving tabindex, escape key, ARIA state — all handled */
+/* You style, they handle accessibility */

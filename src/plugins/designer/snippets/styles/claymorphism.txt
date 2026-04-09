@@ -1,0 +1,28 @@
+/* Claymorphism */
+.clay-card {
+  background: oklch(0.92 0.04 20);    /* soft peach */
+  border: 3px solid oklch(0.85 0.03 20);
+  border-radius: 20px;
+  padding: 32px;
+  box-shadow:
+    8px 8px 16px oklch(0.20 0.01 20 / 0.10),
+    inset -2px -2px 4px oklch(0.20 0.01 20 / 0.05),
+    inset 2px 2px 4px oklch(1 0 0 / 0.3);
+}
+
+.clay-button {
+  background: oklch(0.85 0.06 200);   /* baby blue */
+  border: 3px solid oklch(0.78 0.05 200);
+  border-radius: 14px;
+  padding: 12px 28px;
+  font-weight: 600;
+  transition: transform 200ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.clay-button:active {
+  transform: scale(0.96);
+}
+
+/* Pastels: peach, baby blue, mint, lilac */
+/* Inner + outer shadows for 3D depth */
+/* NEVER for: formal corporate, medical, legal */
