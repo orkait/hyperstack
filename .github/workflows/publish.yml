@@ -78,7 +78,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: orkait/hyperstack
+          images: superorkait/hyperstack
 
       - name: Build and push Docker image
         if: steps.check.outputs.new == 'true'
