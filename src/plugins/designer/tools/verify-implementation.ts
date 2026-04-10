@@ -402,8 +402,9 @@ function checkComponentStates(designMd: string, code: string, files: Array<{ pat
     });
   }
 
-  // Emoji icons check
-  const emojiIconRegex = /["'`][\u{1F300}-\u{1F9FF}\u{2600}-\u{27BF}]["'`]/gu;
+  // Emoji icons check — covers emoji ranges U+1F300-1F9FF (misc symbols/pictographs),
+  // U+2600-27BF (misc symbols, dingbats), U+23F0-23FF (clock/hourglass), U+2B00-2BFF (misc symbols+arrows)
+  const emojiIconRegex = /[\u{1F300}-\u{1F9FF}\u{2600}-\u{27BF}\u{23F0}-\u{23FF}\u{2B00}-\u{2BFF}\u{1FA70}-\u{1FAFF}]/gu;
   const emojiMatches = findMatches(files, emojiIconRegex);
   if (emojiMatches.length > 2) {
     results.push({
