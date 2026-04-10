@@ -49,7 +49,7 @@ If Docker is available, add the following configuration to the appropriate MCP c
         "--rm",
         "--memory=256m",
         "--cpus=0.5",
-        "superorkait/hyperstack:latest"
+        "ghcr.io/orkait/hyperstack:main"
       ]
     }
   }
@@ -110,14 +110,14 @@ If installation failed at any step, report the specific error and what would nee
 
 ### MCP server shows as failed / cannot pull the Docker image
 
-Verify the image is accessible: `docker pull superorkait/hyperstack:latest`
+Verify the image is accessible: `docker pull ghcr.io/orkait/hyperstack:main`
 
 If the pull fails, confirm Docker is running and you have an internet connection. The image is public on Docker Hub - no authentication is required to pull it.
 
 ### MCP server starts but tools return no results
 
 The MCP config file may point to the wrong binary or the server is not running. Verify:
-- Docker: run `docker run -i --rm superorkait/hyperstack:latest` and confirm it starts without error
+- Docker: run `docker run -i --rm ghcr.io/orkait/hyperstack:main` and confirm it starts without error
 - Local Bun: confirm the absolute path in `args` exists (`ls /path/to/hyperstack/bin/hyperstack.mjs`)
 - Restart the CLI/IDE after any config change - MCP servers are loaded at startup
 
