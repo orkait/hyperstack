@@ -103,7 +103,7 @@ export function register(server: McpServer): void {
 // DESIGN.md parser — extracts the 10 canonical sections
 // ---------------------------------------------------------------------------
 
-const requiredSections = [
+export const requiredSections = [
   "1. Visual Theme",
   "2. Color Palette",
   "3. Typography",
@@ -116,7 +116,7 @@ const requiredSections = [
   "10. Anti-Patterns",
 ];
 
-function parseDesignMd(raw: string): Record<string, string> {
+export function parseDesignMd(raw: string): Record<string, string> {
   const sections: Record<string, string> = {};
   // Match headers like "## 1. Visual Theme & Atmosphere" or "## 2. Color Palette"
   const headerRegex = /^##\s+(\d+)\.\s+(.+?)$/gm;
@@ -148,7 +148,7 @@ function parseDesignMd(raw: string): Record<string, string> {
 // Task builder — maps each DESIGN.md section to implementation tasks
 // ---------------------------------------------------------------------------
 
-interface PlanTask {
+export interface PlanTask {
   name: string;
   sourceSection: string;
   purpose: string;
@@ -158,7 +158,7 @@ interface PlanTask {
   assertions: string[];
 }
 
-function buildTasks(sections: Record<string, string>, framework: string): PlanTask[] {
+export function buildTasks(sections: Record<string, string>, framework: string): PlanTask[] {
   const tasks: PlanTask[] = [];
 
   // Task 1: Color tokens (Section 2)
