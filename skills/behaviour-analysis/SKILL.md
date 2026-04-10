@@ -18,6 +18,24 @@ Systematic interaction audit combining UX heuristics, QA state-machine thinking,
 - Before shipping — final behavioural review
 - When adding a new view mode, action, or state to an existing system
 
+## Integration with hyperstack:designer
+
+**If a DESIGN.md exists** (produced by `hyperstack:designer`), use it as the "expected behaviour" ground truth for the interaction matrix in Phase 2.
+
+Mapping DESIGN.md sections to behaviour-analysis inputs:
+
+| DESIGN.md Section | Use as... |
+|---|---|
+| 5. Component Specifications | **Expected states** for each component in the matrix. Every listed state MUST exist and be visually distinct. |
+| 6. Motion | **Expected timing** for transitions. The matrix "expected behaviour" column cites DESIGN.md durations. |
+| 8. Do's and Don'ts | **Heuristic audit assertions**. Each Do is a check; each Don't is a violation to search for. |
+| 9. Responsive Breakpoints | **Composition states** for Phase 4 edge case sweep. Test every listed breakpoint. |
+| 10. Anti-Patterns | **Violations to search for** in Phase 4. Fail the audit if any found. |
+
+**Without a DESIGN.md:** Fall back to industry standards via WebSearch or general heuristics (the default behaviour described below).
+
+**Reverse escalation:** If the audit finds a gap that the DESIGN.md doesn't specify (e.g., expected behaviour is ambiguous), escalate back to `hyperstack:designer` — the DESIGN.md may need to be updated.
+
 ## Process
 
 ### Phase 1: Inventory (read code, build the map)

@@ -18,6 +18,12 @@ triggers:
   - golang api
   - rust development
   - ui ux design
+  - design a
+  - build me a
+  - landing page
+  - dashboard design
+  - DESIGN.md
+  - visual direction
   - security review
   - code quality
 activation:
@@ -62,6 +68,7 @@ Follow this state machine for every non-trivial task. Do not skip phases.
 ### Phase 2: Reasoning (The Architecture)
 -   **Actions:** Define invariants, module boundaries, and public APIs.
 -   **Skill:** Use `skills/engineering-discipline/SKILL.md`. Reason in order: Responsibilities -> Invariants -> Dependency Direction -> Syntax.
+-   **Visual work:** If the task changes how something looks, feels, moves, or is interacted with, use `skills/designer/SKILL.md` FIRST to produce a DESIGN.md contract before any visual code. The DESIGN.md becomes the input spec for `forge-plan`.
 -   **Constraint:** Never start at syntax. If you do, you are building slop.
 
 ### Phase 3: Execution (The Implementation)
@@ -94,6 +101,7 @@ Use these tools for **100% accurate** API details, props, code examples, and pat
 - **Rust Practices** (`rust_*`): Borrowing rules, Error handling (anyhow/thiserror), Performance.
 
 ### 💅 Design Systems
+- **Designer** (`designer_*`): Decision layer — 17 tools. 6 personality clusters, 15 industry rules, 11 cognitive laws, 13 page templates, 9 code-ready presets (Linear/Stripe/Vercel/Apple/Carbon/shadcn/Notion/Supabase/Figma), 21 font pairings, 50+ anti-patterns. Call `designer_resolve_intent` first for any visual task.
 - **Design Tokens** (`design_tokens_*`): Tailwind v4 + OKLCH templates, Color ramp math.
 - **UI/UX Principles** (`ui_ux_*`): WCAG contrast, Typography scales, 4px grid rules.
 
@@ -121,6 +129,7 @@ These are static guidelines in the `skills/` directory. Read them using file too
 
 ### Domain Skills (execution guidance)
 - **Engineering Discipline** (`skills/engineering-discipline/SKILL.md`): The Senior SDE phase-gate framework.
+- **Designer** (`skills/designer/SKILL.md`): Intention gate for visual/UX work. Produces DESIGN.md contract before any visual code. Auto-resolves industry/personality/style, routes to cognitive laws, enforces anti-slop rules. Use for: landing pages, dashboards, component libraries, redesigns, any new visual direction.
 - **Behaviour Analysis** (`skills/behaviour-analysis/SKILL.md`): State audits & Nielsen heuristics.
 - **Design Patterns** (`skills/design-patterns-skill/SKILL.md`): Clean Code & Pragmatic patterns.
 - **Security Review** (`skills/security-review/SKILL.md`): OWASP audits & vulnerability checklists.

@@ -11,6 +11,8 @@ description: Use before any feature build, component creation, or behaviour modi
 Do NOT write code, scaffold files, or invoke any implementation skill until:
 1. You have completed the MCP survey for relevant domains
 2. You have presented a design
+   - For VISUAL/UX work: the design is a DESIGN.md contract from `skills/designer/SKILL.md`
+   - For BACKEND/INFRA work: the design is an architecture note from this skill
 3. The user has explicitly approved it
 
 This applies to every task, regardless of perceived simplicity.
@@ -35,6 +37,7 @@ For each relevant domain, call the discovery tools before proposing anything:
 
 | Domain is relevant | Call first |
 |---|---|
+| **Visual/UX work (any)** | **STOP this flow. Invoke `skills/designer/SKILL.md` instead. It produces a DESIGN.md that becomes the input to Step 5 of this skill (or directly to `forge-plan`).** |
 | React Flow | `reactflow_search_docs` + `reactflow_list_apis` |
 | Motion / animation | `motion_search_docs` + `motion_list_apis` |
 | Lenis scroll | `lenis_search_docs` + `lenis_list_apis` |
@@ -45,6 +48,8 @@ For each relevant domain, call the discovery tools before proposing anything:
 | UI/UX | `ui_ux_list_principles` + `ui_ux_get_gotchas` |
 
 This step ensures the design you propose uses real API shapes — not imagined ones. A design built on wrong API assumptions is not a design; it is technical debt scheduled for delivery.
+
+**Visual work routing:** If the user's request involves designing a new page, component library, landing page, dashboard, redesign, or any "make it look like X" task — the `designer` skill owns the design gate. Invoke it instead of running Step 4-6 here. Return with a DESIGN.md contract and proceed to handoff (Step 7).
 
 ### Step 3: Clarify Requirements
 
@@ -93,7 +98,9 @@ Address each failure mode explicitly — either design around it or record the a
 
 Once the design is approved:
 - Save a short design note to the relevant docs directory if the task is non-trivial
+- For visual/UX work: DESIGN.md already exists (produced by `designer` skill). Save it at `docs/DESIGN.md` or `<project>/DESIGN.md`.
 - Invoke `hyperstack:forge-plan` to build a fully MCP-verified implementation plan from the approved design
+- **If DESIGN.md exists:** forge-plan reads it as its input spec. Each of the 10 sections becomes one or more tasks.
 - The approved design is the spec — `forge-plan` translates it into traceable tasks, `engineering-discipline` executes them
 
 ## Red Flags — STOP

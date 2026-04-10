@@ -45,6 +45,27 @@ Skipping any step = lying, not verifying.
 | Requirements met | Line-by-line checklist against the spec | Tests passing |
 | Subagent completed | VCS diff confirms actual changes | Subagent reports "done" |
 | Regression covered | Red-green cycle verified (test fails without fix, passes with it) | "I wrote a test for it" |
+| **DESIGN.md compliance (visual tasks)** | **Implementation matches each of the 10 DESIGN.md sections. ALL component states present. NO anti-patterns from Section 10.** | **"Looks right", "follows the design"** |
+
+## DESIGN.md Compliance Gate (visual/UX tasks only)
+
+If the task involved `hyperstack:designer` (a DESIGN.md exists), the completion claim must pass this gate:
+
+| DESIGN.md Section | Verification Command/Check |
+|---|---|
+| 2. Color Palette | `grep -r "oklch" <css-files>` — all OKLCH tokens present. Run contrast checker. |
+| 3. Typography | Font family loaded. Type scale tokens defined. Tracking values match. |
+| 4. Spacing | Spacing tokens defined on 4px grid. No arbitrary pixel values. |
+| 5. Components | For EACH component: `grep` for ALL required states (default/hover/focus/active/disabled/loading). `grep` for semantic HTML (`<button>`, not `<div onclick>`). |
+| 6. Motion | `grep "prefers-reduced-motion"` — present. No `linear` easing. No `> 500ms` UI transitions. |
+| 7. Elevation | Shadow tokens defined. Z-index uses named scale (no `9999`). |
+| 8. Do's and Don'ts | Each Do/Don't checked against code. None violated. |
+| 9. Responsive | Test at 375/768/1024/1440px — no horizontal scroll. Prose max-width 65ch present. |
+| 10. Anti-Patterns | ALL AI slop fingerprint patterns absent: no `#6366F1`, no `font-weight: 500` everywhere, no missing states, no `animate-bounce` on static, no 3+ font families, no `rgba(0,0,0)` shadows on warm surfaces. |
+
+**If any row fails:** Do NOT claim completion. Either fix the code, or escalate back to `hyperstack:designer` to revise DESIGN.md.
+
+**If DESIGN.md doesn't exist for a visual task:** That's a process failure upstream. Stop and invoke `hyperstack:designer` before shipping anything.
 
 ## Red Flags — STOP
 

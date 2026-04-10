@@ -33,6 +33,7 @@ Call these BEFORE writing any code for these stacks. Memory is not acceptable.
 | `echo_*` | Echo (Go HTTP) | `echo_get_recipe`, `echo_get_middleware`, `echo_decision_matrix` |
 | `golang_*` | Go best practices | `golang_get_practice`, `golang_get_pattern`, `golang_get_antipatterns` |
 | `rust_*` | Rust practices | `rust_get_practice`, `rust_cheatsheet`, `rust_search_docs` |
+| `designer_*` | Design decision engine | `designer_resolve_intent`, `designer_get_personality`, `designer_get_preset`, `designer_get_page_template`, `designer_get_font_pairing`, `designer_get_anti_patterns` |
 | `design_tokens_*` | Design token systems | `design_tokens_generate`, `design_tokens_get_category`, `design_tokens_get_gotchas` |
 | `ui_ux_*` | UI/UX principles | `ui_ux_get_principle`, `ui_ux_get_component_pattern`, `ui_ux_get_gotchas` |
 
@@ -82,6 +83,7 @@ This is non-negotiable. Silent skill invocations are invisible to the user and c
 
 | Skill | When to invoke |
 |---|---|
+| `hyperstack:designer` | Before any visual/UX work — produces DESIGN.md contract that forge-plan consumes |
 | `hyperstack:debug-discipline` | Any bug or unexpected behaviour — root cause first |
 | `hyperstack:behaviour-analysis` | UI/UX audits, state machine correctness |
 | `hyperstack:design-patterns-skill` | Selecting the right abstraction or design pattern |
@@ -91,8 +93,10 @@ This is non-negotiable. Silent skill invocations are invisible to the user and c
 ### Workflow Chain
 
 ```
-New work:   blueprint → forge-plan → choose execution mode → ship-gate → deliver
-                                  │
+New work:   blueprint → [designer if visual] → forge-plan → choose execution mode → ship-gate → deliver
+                    │                      │
+                    │                      └── produces DESIGN.md (input to forge-plan)
+                    │
 Existing:              run-plan ──┤
                                   │
                                   ├→ autonomous-mode (full auto, stops only on failure)
@@ -102,6 +106,10 @@ Existing:              run-plan ──┤
 Before execution:  worktree-isolation (clean workspace)
 Debugging:         debug-discipline → parallel-dispatch (if independent failures)
 ```
+
+**Visual work branch:** If the task changes how something looks, feels, moves, or is interacted with, `blueprint` routes through `designer` BEFORE `forge-plan`. The DESIGN.md produced by designer becomes the input spec for forge-plan.
+
+**Skip designer when:** pure backend, single CSS bug fix, performance optimization with no visual change, infra/DevOps, documentation-only.
 
 For non-trivial tasks, follow the chain in order. Do not skip steps.
 

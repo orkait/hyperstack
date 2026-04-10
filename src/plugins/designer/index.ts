@@ -17,6 +17,8 @@ import { register as getPageTemplate } from "./tools/get-page-template.js";
 import { register as getPreset } from "./tools/get-preset.js";
 import { register as listPresets } from "./tools/list-presets.js";
 import { register as getFontPairing } from "./tools/get-font-pairing.js";
+import { register as generateImplementationPlan } from "./tools/generate-implementation-plan.js";
+import { register as verifyImplementation } from "./tools/verify-implementation.js";
 
 function register(server: McpServer): void {
   listPersonalities(server);
@@ -36,6 +38,8 @@ function register(server: McpServer): void {
   getPreset(server);
   listPresets(server);
   getFontPairing(server);
+  generateImplementationPlan(server);
+  verifyImplementation(server);
 }
 
 export const designerPlugin: Plugin = {

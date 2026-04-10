@@ -68,13 +68,45 @@ No exceptions. A "simple button" still needs personality, color, and state decis
 
 ---
 
+## Position in the Hyperstack Workflow
+
+```
+                           ┌─────────────────────────────────────┐
+ user request              │                                     │
+     │                     │  Upstream:                          │
+     ▼                     │  - hyperstack (root orchestrator)   │
+ ┌───────────┐              │  - blueprint (visual routing)       │
+ │ blueprint │─── visual? ──┼─▶ designer (THIS SKILL)             │
+ └───────────┘              │                                     │
+     │                     │  Produces:                          │
+     │ non-visual           │  - DESIGN.md contract (file)        │
+     │                     │                                     │
+     ▼                     │  Downstream consumers:              │
+ ┌───────────┐              │  - forge-plan (reads DESIGN.md)     │
+ │ forge-plan│◀─ DESIGN.md ─┤  - shadcn-expert (per-section code) │
+ └───────────┘              │  - motion_generate_animation        │
+     │                     │  - design_tokens_generate           │
+     ▼                     │  - behaviour-analysis (audit spec)  │
+ execution                 │  - ship-gate (compliance check)     │
+     │                     │                                     │
+     ▼                     │  Reverse escalation (allowed):      │
+ ┌───────────┐              │  - forge-plan → designer            │
+ │ ship-gate │              │    (if visual gap discovered)       │
+ └───────────┘              │  - behaviour-analysis → designer    │
+     │                     │    (if expected behavior unclear)   │
+     ▼                     │                                     │
+ deliver                   └─────────────────────────────────────┘
+```
+
 ## The Three-Layer Stack
 
 | Layer | Plugin | Question | Tools |
 |---|---|---|---|
-| **Decision** | `designer` (this skill) | Which design? | 14 MCP tools |
+| **Decision** | `designer` (this skill) | Which design? | 17 MCP tools |
 | **Rules** | `ui-ux` | What principles? | 6 MCP tools |
 | **Values** | `design-tokens` | What exact CSS? | 7 MCP tools |
+| **Components** | `shadcn` | Which components to compose? | 4 MCP tools |
+| **Motion** | `motion` | Exact animation code? | 7 MCP tools |
 
 ---
 
@@ -949,3 +981,125 @@ After DESIGN.md approved:
 - [ ] Images have aspect-ratio or dimensions
 - [ ] No Figma absolute/relative dump
 - [ ] No form clearing on error
+
+---
+
+# INTEGRATION CONTRACTS
+
+Explicit handoffs between designer and other hyperstack skills/plugins. Each contract specifies what data flows, in what format, and what the consumer does with it.
+
+## Upstream: How designer gets invoked
+
+### From `hyperstack:blueprint`
+**Trigger:** User request contains visual/UX intent
+**Input:** Raw user request + any codebase context from blueprint Step 1
+**Contract:** Blueprint Step 2 routes visual tasks here instead of running Steps 4-6 locally
+**Return:** Approved DESIGN.md path
+
+### From `hyperstack` (root orchestrator)
+**Trigger:** Phase 2 (Reasoning) detects visual work
+**Input:** Raw user request
+**Contract:** Root skill's Phase 2 routes here before engineering-discipline for any visual task
+
+### From user direct invocation
+**Trigger:** User says "design", "build me a", "landing page", "DESIGN.md", or any visual phrase
+**Input:** Product description
+**Contract:** Run full pipeline starting at Phase 1
+
+## Downstream: What designer hands off
+
+### To `hyperstack:forge-plan` (primary consumer)
+**Trigger:** After Phase 4 (DESIGN.md approved by user)
+**Output:** File at `docs/DESIGN.md` or `<project>/DESIGN.md`
+**Contract:** forge-plan reads the 10 sections of DESIGN.md and generates tasks per section:
+  - Section 2 (Color) → task: generate CSS custom properties via `design_tokens_generate`
+  - Section 3 (Typography) → task: set up font loading + type scale
+  - Section 4 (Spacing) → task: configure Tailwind spacing tokens
+  - Section 5 (Components) → tasks: one per component, call `shadcn_get_component` for each
+  - Section 6 (Motion) → task: call `motion_generate_animation` with DESIGN.md motion spec
+  - Section 7 (Elevation) → task: define shadow tokens
+  - Section 9 (Responsive) → tasks: breakpoint-specific overrides
+  - Section 8 (Do's/Don'ts) → assertions embedded in every task's self-review
+
+**Invocation:** After user approves DESIGN.md, say: *"DESIGN.md approved and saved at `<path>`. Invoking `hyperstack:forge-plan` with this as input spec."*
+
+### To `shadcn` MCP plugin (for component code)
+**Trigger:** When forge-plan processes a component section of DESIGN.md
+**Call pattern:**
+```
+For each component in DESIGN.md Section 5:
+  shadcn_list_components               → find matching shadcn primitives
+  shadcn_get_component(name)            → fetch source code
+  shadcn_get_rules()                    → get composition rules
+  shadcn_get_snippet(name)              → get usage example
+```
+**Contract:** shadcn returns Base UI + Tailwind v4 component code that matches the DESIGN.md's variants, states, sizes.
+
+### To `motion_generate_animation` MCP tool
+**Trigger:** DESIGN.md Section 6 specifies motion level != "static"
+**Call pattern:**
+```
+motion_generate_animation({
+  description: "<from DESIGN.md Section 6>",
+  durations: { fast: "150ms", normal: "200ms", slow: "300ms" },  // from DESIGN.md
+  easing: "ease-out",  // from DESIGN.md
+  prefersReducedMotion: true  // always
+})
+```
+**Contract:** Returns Framer Motion JSX code ready to paste into components.
+
+### To `design_tokens_generate` MCP tool
+**Trigger:** DESIGN.md Section 2-4 contains OKLCH values and token definitions
+**Call pattern:**
+```
+design_tokens_generate({
+  description: "<extracted from DESIGN.md>",
+  brand: <from DESIGN.md Section 2>,
+  neutral: <from DESIGN.md Section 2>,
+  typography: <from DESIGN.md Section 3>,
+  spacing: <from DESIGN.md Section 4>,
+})
+```
+**Contract:** Returns complete Tailwind v4 CSS with `@theme`, `:root`, `.dark` blocks.
+
+### To `hyperstack:behaviour-analysis` (validation loop)
+**Trigger:** After implementation is complete, before ship-gate
+**Input:** DESIGN.md path + implementation code paths
+**Contract:** behaviour-analysis uses DESIGN.md as the "expected behaviour" ground truth for its interaction matrix:
+  - Section 5 (Components) → expected states per component
+  - Section 6 (Motion) → expected timing/easing
+  - Section 8 (Do's/Don'ts) → assertions to verify
+  - Section 10 (Anti-patterns) → violations to search for
+
+### To `hyperstack:ship-gate` (compliance check)
+**Trigger:** Before completion claim
+**Input:** DESIGN.md path + git diff
+**Contract:** ship-gate verifies:
+  - All DESIGN.md Section 5 components have ALL required states implemented
+  - DESIGN.md Section 10 anti-patterns are absent from the code
+  - OKLCH tokens from DESIGN.md Section 2 are present in CSS
+  - `prefers-reduced-motion` implemented (DESIGN.md Section 6)
+
+## Reverse Escalation (allowed back-edges)
+
+### From `forge-plan` back to `designer`
+**Trigger:** forge-plan discovers a visual gap mid-plan (section of DESIGN.md is ambiguous, or new component needed that wasn't in DESIGN.md)
+**Action:** forge-plan pauses, invokes designer with the specific gap, appends the result to DESIGN.md, resumes
+
+### From `behaviour-analysis` back to `designer`
+**Trigger:** Implementation passes heuristics but DESIGN.md expected-behavior is unclear or contradictory
+**Action:** Escalate to designer with the contradiction, user resolves, DESIGN.md updated
+
+### From `ship-gate` back to `designer`
+**Trigger:** ship-gate finds a DESIGN.md compliance failure that isn't a code bug (e.g., DESIGN.md specifies something that can't be built in the chosen framework)
+**Action:** Re-enter designer to revise DESIGN.md Section 11 (framework/stack constraints)
+
+---
+
+## Announcement Protocol
+
+Per `using-hyperstack` iron law: Every skill invocation must be announced.
+
+When invoked: *"Using hyperstack:designer — producing DESIGN.md contract for [task type]."*
+When handing off: *"DESIGN.md complete at [path]. Invoking hyperstack:forge-plan with this as input spec."*
+When escalating back: *"[from-skill] escalating to designer — [reason]."*

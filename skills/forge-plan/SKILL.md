@@ -7,9 +7,33 @@ description: Use after blueprint design approval to produce a task-by-task imple
 
 ## Input
 
-This skill requires a completed, user-approved design from `hyperstack:blueprint`.
+This skill requires a completed, user-approved design. The design comes from one of:
 
-If no approved design exists, stop and invoke `hyperstack:blueprint` first.
+1. **`hyperstack:blueprint`** — for backend/infra/architecture work. Design is an architecture note.
+2. **`hyperstack:designer`** — for visual/UX work. Design is a structured `DESIGN.md` file with 10 sections.
+
+If no approved design exists:
+- Visual/UX task → stop and invoke `hyperstack:designer`
+- Backend/infra task → stop and invoke `hyperstack:blueprint`
+
+## DESIGN.md Ingestion (for visual/UX work)
+
+If input is a DESIGN.md file, parse it and map sections to task categories:
+
+| DESIGN.md Section | Task Category | MCP Calls |
+|---|---|---|
+| 1. Visual Theme | (context only — used in all tasks) | `designer_get_personality` |
+| 2. Color Palette | Token setup tasks | `design_tokens_generate` with OKLCH values from section |
+| 3. Typography | Font loading + type scale tasks | `design_tokens_get_category("typography")` |
+| 4. Spacing | Tailwind spacing config | `design_tokens_get_category("spacing")` |
+| 5. Component Specs | One task per component | `shadcn_get_component(name)` + `shadcn_get_rules()` |
+| 6. Motion | Animation tasks | `motion_generate_animation` with DESIGN.md motion spec |
+| 7. Elevation | Shadow token tasks | `design_tokens_get_category("shadows")` |
+| 8. Do's and Don'ts | Embedded as self-review assertions in every task |
+| 9. Responsive Breakpoints | Breakpoint-specific override tasks | `ui_ux_get_principle("responsive")` |
+| 10. Anti-Patterns | Embedded as self-review assertions — each task must verify none are present |
+
+Every task's self-review step must cite the relevant DESIGN.md section to guarantee traceability.
 
 ## The Contract
 
@@ -23,12 +47,14 @@ Before writing a single task, call the relevant MCP tools for every domain the i
 
 | Domain | Call |
 |---|---|
+| **DESIGN.md present** | **`designer_get_personality(cluster)`, `designer_get_page_template(type)`, `designer_get_anti_patterns(industry)` — treat DESIGN.md as ground truth for all visual decisions** |
 | React Flow | `reactflow_get_api` for each component/hook used |
-| Motion | `motion_get_api` for each animation primitive |
+| Motion | `motion_get_api` for each animation primitive + `motion_generate_animation` if DESIGN.md specifies motion |
 | Go / Echo | `golang_get_pattern` + `echo_get_recipe` for each pattern |
 | Rust | `rust_get_practice` for each relevant practice |
-| Design tokens | `design_tokens_get_procedure` for each token step |
+| Design tokens | `design_tokens_get_procedure` for each token step + `design_tokens_generate` if DESIGN.md specifies OKLCH palette |
 | React / Next.js | `react_get_pattern` + `react_get_constraints` |
+| shadcn components | `shadcn_list_components` + `shadcn_get_component(name)` + `shadcn_get_rules()` for each component in DESIGN.md Section 5 |
 
 Record each tool output. The plan's code blocks must match what the tools return.
 
@@ -143,6 +169,20 @@ These are plan failures. Never write them:
 
 ## Integration
 
-- **Requires:** `hyperstack:blueprint` approved design as input
+- **Requires (backend/infra):** `hyperstack:blueprint` approved design as input
+- **Requires (visual/UX):** `hyperstack:designer` approved DESIGN.md file as input
 - **Executes via:** Autonomous mode, `hyperstack:subagent-ops` (per-task review), or `hyperstack:engineering-discipline` (manual phase gates)
-- **Completes via:** `hyperstack:deliver` after all tasks are done
+- **Completes via:** `hyperstack:ship-gate` → `hyperstack:deliver` after all tasks done
+
+## Reverse Escalation (when to escalate back)
+
+Mid-plan discoveries that require going back:
+
+| Discovery | Escalate to | Action |
+|---|---|---|
+| DESIGN.md section is ambiguous or contradictory | `hyperstack:designer` | Pause plan, resolve ambiguity, append clarification to DESIGN.md, resume |
+| Component needed that isn't in DESIGN.md Section 5 | `hyperstack:designer` | Invoke designer with specific component gap, append to DESIGN.md |
+| MCP tool returns conflicting shapes with DESIGN.md | `hyperstack:designer` | Escalate — DESIGN.md may need to acknowledge framework constraints |
+| Architecture gap (non-visual) | `hyperstack:blueprint` | Re-enter blueprint for architecture decision |
+
+Do NOT silently invent what DESIGN.md doesn't specify. Escalate back to designer.

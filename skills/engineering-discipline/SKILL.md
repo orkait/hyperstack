@@ -94,6 +94,8 @@ Verify runtime, package manager, dependencies. **Do NOT proceed without valid en
 Classify as exactly one: New feature | Refactor (behavior preserved) | Bug fix | Review/audit | Documentation only.
 **If unclear → STOP and request clarification.**
 
+**Visual/UX work gate:** If the task changes how something looks, feels, moves, or is interacted with — STOP this skill and invoke `hyperstack:designer` first. Designer produces a DESIGN.md contract that becomes the input to `hyperstack:forge-plan`. Only return to engineering-discipline during execution of the forge-plan tasks. This applies to: new pages, new components, component library work, redesigns, landing pages, dashboards, any "make it look like X" task.
+
 ### Step 2: Load Engineering Constraints 📋
 Hard rules: clear naming, single responsibility, explicit module boundaries, no circular dependencies, folder structure reflects architecture, tests before refactor, YAGNI, patterns only when forces are named.
 
