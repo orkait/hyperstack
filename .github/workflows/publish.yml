@@ -5,6 +5,10 @@ on:
     branches: ['main']
   pull_request:
 
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
 jobs:
   verify:
     name: Verify (${{ matrix.os }}, Bun ${{ matrix.bun-version }})
@@ -39,6 +43,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+      packages: write
 
     steps:
       - name: Checkout repository
@@ -66,19 +71,20 @@ jobs:
             --title "v${{ steps.check.outputs.version }}" \
             --generate-notes
 
-      - name: Log in to Docker Hub
+      - name: Log in to GitHub Container Registry
         if: steps.check.outputs.new == 'true'
         uses: docker/login-action@v3
         with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Extract metadata (tags, labels) for Docker
         if: steps.check.outputs.new == 'true'
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: superorkait/hyperstack
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
 
       - name: Build and push Docker image
         if: steps.check.outputs.new == 'true'
