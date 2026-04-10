@@ -20,6 +20,7 @@ export function register(server: McpServer): void {
       let hooks = "";
       let wrapBefore = "";
       let wrapAfter = "";
+      let componentSignature = "{ children }";
 
       if (desc.includes("scroll") && (desc.includes("link") || desc.includes("progress") || desc.includes("parallax"))) {
         motionImports.add("useScroll");
@@ -39,16 +40,18 @@ export function register(server: McpServer): void {
         jsx = `<motion.${el}\n  initial={{ opacity: 0, y: 40 }}\n  whileInView={{ opacity: 1, y: 0 }}\n  viewport={{ once: true, amount: 0.3 }}\n  transition={{ duration: 0.6, ease: "easeOut" }}\n>\n  {children}\n</motion.${el}>`;
       } else if (desc.includes("exit") || desc.includes("page transition") || desc.includes("route")) {
         motionImports.add("AnimatePresence");
+        componentSignature = "{ children, itemKey }";
         wrapBefore = `<AnimatePresence mode="wait">\n  `;
         wrapAfter = `\n</AnimatePresence>`;
-        jsx = `<motion.${el}\n    key={/* unique key */}\n    initial={{ opacity: 0, x: 20 }}\n    animate={{ opacity: 1, x: 0 }}\n    exit={{ opacity: 0, x: -20 }}\n    transition={{ duration: 0.3 }}\n  >\n    {children}\n  </motion.${el}>`;
+        jsx = `<motion.${el}\n    key={itemKey}\n    initial={{ opacity: 0, x: 20 }}\n    animate={{ opacity: 1, x: 0 }}\n    exit={{ opacity: 0, x: -20 }}\n    transition={{ duration: 0.3 }}\n  >\n    {children}\n  </motion.${el}>`;
       } else if (desc.includes("stagger") || desc.includes("list")) {
         motionImports.add("useAnimate");
         motionImports.add("stagger");
         reactImports.add("useEffect");
+        componentSignature = "{ items }";
         hooks += `  const [scope, animate] = useAnimate();\n\n`;
-        hooks += `  useEffect(() => {\n    animate("li", { opacity: 1, y: 0 }, { delay: stagger(0.08) });\n  }, []);\n`;
-        jsx = `<ul ref={scope}>\n  {items.map(item => (\n    <motion.li key={item} initial={{ opacity: 0, y: 20 }}>\n      {item}\n    </motion.li>\n  ))}\n</ul>`;
+        hooks += `  useEffect(() => {\n    animate("li", { opacity: 1, y: 0 }, { delay: stagger(0.08) });\n  }, [animate]);\n`;
+        jsx = `<ul ref={scope}>\n  {items.map((item) => (\n    <motion.li key={item} initial={{ opacity: 0, y: 20 }}>\n      {item}\n    </motion.li>\n  ))}\n</ul>`;
       } else if (desc.includes("drag")) {
         if (desc.includes("spring") || desc.includes("bounce")) {
           jsx = `<motion.${el}\n  drag\n  dragSnapToOrigin\n  dragElastic={0.3}\n  whileDrag={{ scale: 1.05, cursor: "grabbing" }}\n  transition={{ type: "spring", stiffness: 300, damping: 20 }}\n>\n  {children}\n</motion.${el}>`;
@@ -59,7 +62,8 @@ export function register(server: McpServer): void {
         jsx = `<motion.${el}\n  whileHover={{ scale: 1.05 }}\n  whileTap={{ scale: 0.95 }}\n  transition={{ type: "spring", stiffness: 400, damping: 17 }}\n>\n  {children}\n</motion.${el}>`;
       } else if (desc.includes("layout") || desc.includes("shared")) {
         if (desc.includes("shared") || desc.includes("tab") || desc.includes("underline")) {
-          jsx = `{selected === id && (\n  <motion.${el} layoutId="indicator" className="indicator" />\n)}`;
+          componentSignature = "{ isSelected = false }";
+          jsx = `{isSelected && (\n  <motion.${el} layoutId="indicator" className="indicator" />\n)}`;
         } else {
           jsx = `<motion.${el} layout transition={{ type: "spring", stiffness: 500, damping: 30 }}>\n  {children}\n</motion.${el}>`;
         }
@@ -85,7 +89,7 @@ export function register(server: McpServer): void {
         ? `\nimport { ${[...reactImports].join(", ")} } from "react";`
         : "";
 
-      let code = `${importLine}${reactImportLine}\n\nfunction AnimatedComponent({ children }) {\n`;
+      let code = `${importLine}${reactImportLine}\n\nfunction AnimatedComponent(${componentSignature}) {\n`;
       if (hooks) code += hooks + "\n";
       code += `  return (\n    ${wrapBefore}${jsx}${wrapAfter}\n  );\n}`;
 

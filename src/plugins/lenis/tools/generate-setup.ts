@@ -176,12 +176,23 @@ export function HorizontalScroll({ children }: { children: React.ReactNode }) {
         code = `// components/smooth-scroll-provider.tsx
 "use client";
 
+import { useEffect, useState } from "react";
 import { ReactLenis } from "lenis/react";
 import "lenis/dist/lenis.css";
 
 function useReducedMotion(): boolean {
-  if (typeof window === "undefined") return false;
-  return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const [reduced, setReduced] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const update = () => setReduced(mediaQuery.matches);
+
+    update();
+    mediaQuery.addEventListener("change", update);
+    return () => mediaQuery.removeEventListener("change", update);
+  }, []);
+
+  return reduced;
 }
 
 export function SmoothScrollProvider({ children }: { children: React.ReactNode }) {

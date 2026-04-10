@@ -2,13 +2,13 @@
   "name": "@orkait-ai/hyperstack",
   "version": "1.0.0",
   "description": "Disciplined MCP server + skill system. 11 plugins, 79 tools, 21 skills with adversarial enforcement. Designer/DESIGN.md pipeline, shadcn/ui, React Flow, Motion, Lenis, React 19, Echo, Go, Rust, design tokens, UI/UX.",
-  "main": "src/index.ts",
   "bin": {
-    "hyperstack": "src/index.ts"
+    "hyperstack": "bin/hyperstack.mjs"
   },
   "type": "module",
   "scripts": {
     "build": "tsc --noEmit",
+    "test": "tsx --test tests/**/*.test.ts",
     "start": "tsx src/index.ts",
     "dev": "tsx watch src/index.ts"
   },
@@ -19,11 +19,11 @@
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.17.0",
+    "tsx": "^4.21.0",
     "zod": "^3.23.0"
   },
   "devDependencies": {
     "@types/node": "^20.0.0",
-    "tsx": "^4.21.0",
     "typescript": "^5.5.0"
   }
 }
