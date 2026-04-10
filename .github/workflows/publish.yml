@@ -95,11 +95,3 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
 
-      - name: Make package public
-        if: steps.check.outputs.new == 'true'
-        run: |
-          curl -s -X PATCH \
-            -H "Authorization: Bearer ${{ secrets.GH_PACKAGES_PAT }}" \
-            -H "Accept: application/vnd.github+json" \
-            https://api.github.com/orgs/orkait/packages/container/hyperstack \
-            -d '{"visibility":"public"}'
