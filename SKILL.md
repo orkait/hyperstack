@@ -41,17 +41,27 @@ activation:
 
 ---
 
-## ⚖️ The Iron Law
+## ⚖️ The Iron Laws
+
+```
+1. NO CODE WITHOUT MCP GROUND-TRUTH DATA
+2. NO VISUAL CODE WITHOUT AN APPROVED DESIGN.md
+3. NO COMPLETION CLAIMS WITHOUT FRESH VERIFICATION EVIDENCE
+4. NO REFACTOR WITHOUT A FAILING TEST FIRST
+5. NO PATTERN WITHOUT A NAMED FORCE
+```
+
+**Violating the letter of these laws is violating the spirit of these laws.**
 
 <EXTREMELY-IMPORTANT>
 Before writing any code, proposing any fix, or starting any architecture, you MUST:
 
-1.  **Stop Rationalizing:** Do not skip steps to "be helpful." Thoroughness is the highest form of help.
-2.  **Verify the Stack:** Consult the relevant MCP plugins below for 100% accurate API syntax.
+1.  **Stop Rationalizing:** Do not skip steps to "be helpful." Thoroughness is the highest form of help. Skipping is laziness, not speed.
+2.  **Verify the Stack:** Consult the relevant MCP plugins below for 100% accurate API syntax. Memory is not acceptable. Pattern-matching is not acceptable. Only MCP output is acceptable.
 3.  **Load the Discipline:** Read `skills/engineering-discipline/SKILL.md` for architectural gates.
 4.  **Adopt Negative Doubt:** List 5 failure modes for your plan before you type a single line of code.
 
-If there is even a 1% chance a system rule applies to your task, you MUST read the corresponding file in the `skills/` directory BEFORE acting.
+**The 1% Rule:** If there is even a 1% chance a system rule applies to your task, you MUST read the corresponding file in the `skills/` directory BEFORE acting. You do not have a choice. You cannot rationalize your way out of this.
 </EXTREMELY-IMPORTANT>
 
 ---
@@ -139,10 +149,24 @@ These are static guidelines in the `skills/` directory. Read them using file too
 
 ## 🚩 Red Flags (STOP and Re-read)
 
-If you catch yourself thinking these thoughts, you are violating the protocol:
-- *"The issue is simple, I don't need to check the docs."*
-- *"I'll write the tests after I confirm it works."*
-- *"This pattern looks common, I'll just adapt it from memory."*
-- *"I'll just add one quick fix now and investigate the root cause later."*
+These are the rationalizations you will have when you want to skip Hyperstack. Every one is wrong. Every one has been used before to ship bugs, wrong APIs, and AI slop.
+
+| Thought | Why it is wrong |
+|---|---|
+| "The issue is simple, I don't need to check the docs" | Simple issues are where wrong assumptions hide. Call the MCP tool. |
+| "I'll write the tests after I confirm it works" | "Confirm it works" by running a failing test first. Then pass it. That is the order. |
+| "This pattern looks common, I'll just adapt it from memory" | Memory drifts. Common patterns have version-specific differences. Call the tool. |
+| "I'll just add one quick fix now and investigate the root cause later" | Later never comes. Investigate first. |
+| "The user is impatient, I'll skip the gates" | User impatience is not permission to ship slop. Gates exist because shortcuts fail. |
+| "I know this API from memory" | Memory is v11 of the API. MCP has v12. Call the tool. |
+| "This is a minor refactor, tests are overkill" | Minor refactors without tests are random code edits. Tests first. |
+| "The skill takes too long" | Skills take minutes. Fixing wrong code takes days. Use the skill. |
+| "I'll verify after I push" | After you push it is in CI and your partner's context. Verify BEFORE. |
+| "Just this once" | There is no "just this once." No exceptions. |
+| "I already checked this earlier in the conversation" | State drifts. Check again. |
+| "The skill doesn't quite match this situation" | Invoke it anyway. If it truly doesn't apply, you lose 10 seconds. |
+| "I can reason about this without MCP" | No you cannot. MCP exists because reasoning without it produced the bugs that made the MCP necessary. |
+| "I'm tired and want to finish" | Stop. Rest. Do not ship unverified work. |
+| "Different wording, so the rule doesn't apply" | The letter of the rule IS the spirit of the rule. |
 
 **STOP. Return to Phase 1. Load the ground-truth data from MCP.**

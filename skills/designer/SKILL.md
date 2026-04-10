@@ -50,6 +50,16 @@ references:
 
 ---
 
+## The Iron Law
+
+```
+NO VISUAL CODE WITHOUT AN APPROVED DESIGN.md
+```
+
+**Violating the letter of this rule is violating the spirit of this rule.**
+
+If you are about to write a single line of JSX, CSS, or styling code, and there is no approved DESIGN.md, you are breaking this rule. There are no exceptions. A "simple button" still needs personality, color, and state decisions.
+
 ## Hard Gate
 
 ```
@@ -63,8 +73,42 @@ DO NOT GENERATE ANY VISUAL CODE UNTIL:
 No exceptions. A "simple button" still needs personality, color, and state decisions.
 ```
 
+## The 1% Rule
+
+If there is even a 1% chance that the task involves:
+- A new page or view
+- A new component
+- Changing how something looks
+- Changing how something moves (animation, transition, scroll)
+- Changing how something responds to user input
+- A landing page, dashboard, form, or data display
+- "Make it look more like X"
+- "Redesign" anything
+
+...then you MUST invoke this skill BEFORE writing any code. You cannot rationalize your way out.
+
 **Apply when:** the task changes how something **looks, feels, moves, or is interacted with**.
-**Skip when:** pure backend, single CSS bug fix, adding to existing design system with established tokens, performance optimization with no visual change.
+**Skip when:** pure backend with no frontend impact, single CSS bug fix (with the same colors/spacing), adding to existing design system with established tokens, performance optimization with no visual change, infrastructure.
+
+## Red Flags — STOP
+
+These are the rationalizations you will have when you want to skip this skill. Every one is wrong.
+
+| Thought | Reality |
+|---|---|
+| "This is a small component, it doesn't need a full DESIGN.md" | Small components with wrong decisions ship to production. Design it. |
+| "I'll just use the default shadcn styles" | Defaults are decisions. Unexamined defaults produce AI slop. Design intentionally. |
+| "The user said 'just make it work'" | "Just make it work" means "make something that makes sense visually." That needs design. |
+| "I know what a SaaS dashboard looks like" | You know the AI-slop version. Designer prevents that specifically. |
+| "I can fix the design after the user sees the code" | No. The AI slop fingerprint is sticky. Users will stop caring before you fix it. |
+| "The MCP tools are overkill for this" | You don't get to decide. Call them. |
+| "I'll generate a DESIGN.md after coding" | Then it is post-hoc justification, not design. Design FIRST. |
+| "The user is iterating quickly, they don't want a gate" | User speed is not permission to ship slop. Gate first, iterate fast inside the gate. |
+| "This is just a quick mockup" | Quick mockups become shipped products. Design them. |
+| "Figma already has the design, I'll just translate" | Translating from Figma without design resolution creates absolute/relative dumps. Use designer anyway. |
+| "I'll pick colors and fonts as I go" | That is how AI slop is made. Pick them deliberately via designer. |
+| "Dark mode will just invert the light mode colors" | No it will not. This is the exact anti-pattern designer exists to prevent. |
+| "The designer skill is slow" | The skill takes 2 minutes. Shipping wrong design takes 2 weeks to undo. |
 
 ---
 

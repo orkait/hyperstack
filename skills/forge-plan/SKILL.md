@@ -158,14 +158,32 @@ These are plan failures. Never write them:
 - Steps describing what to do without showing how
 - References to types or functions not defined in any task
 
+## The Iron Law
+
+```
+NO PLANS WITHOUT FRESH MCP-VERIFIED DATA
+```
+
+Every API call, prop name, hook signature, or library pattern in the plan must trace to an MCP tool call made in this session. Not last session. Not from memory. THIS session.
+
 ## Red Flags — STOP
+
+These are the rationalizations you will have. Every one is wrong.
 
 | Thought | Reality |
 |---|---|
-| "I know how the React Flow Handle works, no need to check" | The plan will have wrong prop names |
-| "I'll write the test structure, the developer can fill in assertions" | That is a placeholder |
-| "This task is too small for a full test" | No task is too small for a failing test |
+| "I know how the React Flow Handle works, no need to check" | The plan will have wrong prop names. Call the tool. |
+| "I'll write the test structure, the developer can fill in assertions" | That is a placeholder. Placeholders are plan failures. Write the real test. |
+| "This task is too small for a full test" | No task is too small for a failing test. Write it. |
 | "I'll reference the survey output later" | Do the survey before writing. Not after. |
+| "I already surveyed this library last week" | State drifts. MCP data updates. Call the tool again. |
+| "The MCP tool output is obvious" | Obvious to you, not to the plan. Cite the actual output. |
+| "I'll TBD the uncertain parts" | TBD is a plan failure. Resolve uncertainty before writing the task. |
+| "Similar to Task N" saves time | No. Plans get read out of order. Repeat the code. |
+| "I don't need to run the tool for this common pattern" | Common patterns drift. Call the tool. |
+| "The user is waiting, I'll skip the survey" | A plan without a survey is a bug report. Do the survey. |
+| "I'll estimate and refine later" | Estimates without ground truth are fantasies. Get the truth first. |
+| "This is a minor refactor" | Minor refactors move responsibility. Plans for responsibility changes need MCP verification. |
 
 ## Integration
 
