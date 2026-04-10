@@ -1,9 +1,17 @@
 ---
 name: blueprint
-description: Use before any feature build, component creation, or behaviour modification. MCP-surveyed design with a hard gate before any implementation.
+description: Use before any feature build, component creation, or behaviour modification. MCP-surveyed design with a hard gate before any implementation. Do not skip, do not skim, do not rationalize your way out of it.
 ---
 
 # Feature Planning
+
+## The Iron Law
+
+```
+NO CODE WITHOUT AN APPROVED DESIGN
+```
+
+If you have not presented a design and the user has not explicitly approved it, you cannot write code. **Violating the letter of this rule is violating the spirit of this rule.**
 
 ## The Hard Gate
 
@@ -17,6 +25,18 @@ Do NOT write code, scaffold files, or invoke any implementation skill until:
 
 This applies to every task, regardless of perceived simplicity.
 </HARD-GATE>
+
+## The 1% Rule
+
+If there is even a 1% chance this task involves:
+- A new file
+- A new component
+- A new function
+- A behavior change
+- A configuration change that affects runtime
+- Any visual/UX modification
+
+...then you MUST run blueprint first. You do not have a choice. You cannot rationalize your way out.
 
 "Simple" tasks are where unexamined assumptions do the most damage. A 5-minute design prevents hours of wrong implementation. There are no exceptions.
 
@@ -105,10 +125,21 @@ Once the design is approved:
 
 ## Red Flags — STOP
 
+These are the exact thoughts you will have when you want to skip this skill. Every one is a rationalization. Every one has been used before to build wrong architectures. Every one has a counter.
+
 | Thought | Reality |
 |---|---|
-| "I know React Flow well enough to skip the survey" | MCP data has v12-specific API shapes. Memory has v11. |
-| "This is too simple for a design" | Return to the Hard Gate. |
-| "Let me just start with a file and we'll design as we go" | This is how wrong architectures get built |
-| "The user seems impatient, I'll skip Step 6" | Negative Doubt is not optional |
-| "I'll propose one approach — the obvious one" | Two approaches exist for every non-trivial design. Find them. |
+| "I know React Flow well enough to skip the survey" | MCP data has v12-specific API shapes. Memory has v11. Call the tool. |
+| "This is too simple for a design" | Simple tasks are where unexamined assumptions do the most damage. Return to the Hard Gate. |
+| "Let me just start with a file and we'll design as we go" | This is how wrong architectures get built. Do the design FIRST. |
+| "The user seems impatient, I'll skip Step 6" | User impatience is not permission to ship slop. Negative Doubt is not optional. |
+| "I'll propose one approach — the obvious one" | Two approaches exist for every non-trivial design. Find both. |
+| "The task is a single-line change" | A single line at the wrong place destroys invariants. Design first. |
+| "This is a bug fix, not a feature" | Bug fixes change behavior. Behavior changes need designs. |
+| "I'm just refactoring" | Refactors move responsibility. Moving responsibility is architectural. Design first. |
+| "The design will slow us down" | No. Wrong code ships. Then you fix it. Then fix it again. That is slow. Design once, ship right. |
+| "I can reason about this without external tools" | MCP data contains edge cases and gotchas you will not remember. Call the tool. |
+| "The user will tell me if I'm wrong" | The user hired you to prevent that. Do the design. |
+| "I already did a similar design last week" | State drifts. Codebase changes. Do the current survey. |
+| "This is not my call, I'm just executing instructions" | Executing instructions with no design is how bad instructions become shipped bugs. Design first. |
+| "Let me start with a prototype" | Prototypes become production. Design the prototype. |

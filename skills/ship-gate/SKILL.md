@@ -69,17 +69,26 @@ If the task involved `hyperstack:designer` (a DESIGN.md exists), the completion 
 
 ## Red Flags — STOP
 
+These are rationalizations. Every one has been used to ship bugs. Every one has a counter.
+
 | Thought | Reality |
 |---|---|
-| "Should work now" | Run the command |
-| "I'm confident in this change" | Confidence is not evidence |
-| "Subagent said it's done" | Check the VCS diff |
-| "Minor change, no need to recheck" | Minor changes cause regressions |
-| "Tests were passing before my change" | Run them again |
-| "MCP tool confirmed the pattern" | That confirms the pattern — not that your code is correct |
-| "I'll verify after I push" | Verify before you push |
-| Using "should", "probably", "appears to" | Run the command |
-| "Just this once" | No exceptions |
+| "Should work now" | "Should" is not evidence. Run the command. |
+| "I'm confident in this change" | Confidence is not evidence. Run the command. |
+| "Subagent said it's done" | Subagents lie. Check the VCS diff. Run the tests. |
+| "Minor change, no need to recheck" | Minor changes cause regressions. Run the command. |
+| "Tests were passing before my change" | Irrelevant. Run them again now. |
+| "MCP tool confirmed the pattern" | That confirms the pattern — not that your code is correct. Run the command. |
+| "I'll verify after I push" | After you push it is in CI. Verify BEFORE. |
+| "I followed the pattern correctly" | Following the pattern is not the same as the pattern working. Run the command. |
+| "I already ran it earlier this conversation" | That was earlier. State drifts. Run it again. |
+| "The linter is passing" | Linter is not compiler. Compiler is not runtime. Run the full verification. |
+| "This is a minor syntax fix" | There is no such thing. Run the command. |
+| "Partial check is enough" | Partial verification is theater. Do the full check. |
+| "I'm tired, just this once" | Exhaustion is not an excuse. Stop and rest. Do not ship unverified. |
+| "Different wording so rule doesn't apply" | Spirit of the rule is the letter of the rule. Run the command. |
+| Using "should", "probably", "appears to" | These are the words you use when you are about to lie. Run the command. |
+| "Just this once" | There is no "just this once." No exceptions. |
 
 ## Integration
 

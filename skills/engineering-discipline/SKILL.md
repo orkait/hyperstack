@@ -53,6 +53,18 @@ Two operating modes:
 
 ---
 
+## The Iron Laws
+
+```
+1. NO REFACTOR WITHOUT TESTS FIRST
+2. NO PATTERN WITHOUT A NAMED FORCE
+3. NO SYNTAX BEFORE ARCHITECTURE
+4. NO ASSUMPTIONS WITHOUT DISCLOSURE
+5. NO "IT SHOULD WORK" — VERIFY IT DOES
+```
+
+**Violating the letter of these laws is violating the spirit of these laws.**
+
 ## Core Philosophy
 
 **You are not an autocomplete engine. You are an engineering constraint solver.**
@@ -145,6 +157,26 @@ Self-verification: (1) list 5 failure modes, (2) falsify assumptions, (3) verify
 | Standard response format | `references/architecture/output-format.md` |
 
 ---
+
+## Red Flags — STOP
+
+These are the rationalizations you will have when you want to skip this skill. Every one is wrong.
+
+| Thought | Reality |
+|---|---|
+| "This is a quick fix, I don't need the full 8-step framework" | Quick fixes break invariants when you skip Step 3 (architecture). Do the framework. |
+| "I'll skip Step 8 Negative Doubt, I'm confident" | Confidence is the #1 predictor of shipped bugs. Do the negative doubt. |
+| "I already know the responsibilities" | Write them down anyway. Writing forces clarity you thought you had. |
+| "Tests for a refactor are overkill" | Refactor without tests is random code change. Not negotiable. |
+| "I'll add tests after the refactor" | No. Write tests first, watch them pass, then refactor. |
+| "The pattern is obviously the right one" | Obvious patterns without named forces are cargo-culting. Name the force. |
+| "I can skip architecture reasoning because this is small" | Small code with wrong architecture compounds fast. Do the reasoning. |
+| "I'll assume the API is stable" | Never. State the assumption explicitly. |
+| "The 5-failure-mode exercise is busywork" | It is not. It is the most effective bug catcher in the framework. Do all 5. |
+| "I'll write tests that match the implementation" | That is cheating. Tests define behavior. Write them against the spec. |
+| "Refactoring doesn't change behavior, so tests are unchanged" | Write a test first that locks behavior. Then refactor. Then run the test. |
+| "I understand the invariants intuitively" | Write them down. Intuition drifts in 48 hours. |
+| "The user will tell me if it's wrong" | The user hired you to not be wrong. |
 
 ## Critical Reminders
 
