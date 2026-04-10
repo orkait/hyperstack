@@ -105,3 +105,33 @@ Tell the user:
 5. Which verification step they should run first
 
 If installation failed at any step, report the specific error and what would need to be fixed, rather than claiming success.
+
+## Troubleshooting
+
+### MCP server shows as failed / `unauthorized` when pulling the Docker image
+
+This means the Docker image is private. The image at `ghcr.io/orkait/hyperstack:main` must be set to public for unauthenticated pulls to work.
+
+To fix:
+1. Go to [github.com/orgs/orkait/packages/container/hyperstack](https://github.com/orgs/orkait/packages/container/hyperstack)
+2. Click **Package settings**
+3. Under **Danger Zone**, click **Change visibility**
+4. Set to **Public**
+5. Re-run `docker pull ghcr.io/orkait/hyperstack:main` to verify
+
+Reference: [GitHub Docs - Configuring a package's access control and visibility](https://docs.github.com/en/packages/learn-github-packages/configuring-a-packages-access-control-and-visibility)
+
+### MCP server starts but tools return no results
+
+The MCP config file may point to the wrong binary or the server is not running. Verify:
+- Docker: run `docker run -i --rm ghcr.io/orkait/hyperstack:main` and confirm it starts without error
+- Local Bun: confirm the absolute path in `args` exists (`ls /path/to/hyperstack/bin/hyperstack.mjs`)
+- Restart the CLI/IDE after any config change - MCP servers are loaded at startup
+
+### SessionStart hook does not fire
+
+On Claude Code, hooks live in `.claude/hooks.json`. Confirm the file exists in the repository root and references `session-start.mjs`. If the hook is missing or malformed, the `using-hyperstack` skill will not be injected automatically. You can still invoke skills manually with `/using-hyperstack`.
+
+### `bun: command not found` when using Option B
+
+Install Bun: `curl -fsSL https://bun.sh/install | bash`, then open a new shell so the path update takes effect.
