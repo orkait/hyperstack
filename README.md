@@ -87,7 +87,7 @@ The MCP server gives you tools. The skills give you discipline. Install both:
 git clone https://github.com/orkait/hyperstack.git ~/.claude/skills/hyperstack
 ```
 
-After installing, the SessionStart hook (at `hooks/session-start`) will auto-inject the `using-hyperstack` skill into every session. No manual activation needed.
+After installing, the SessionStart hook (at `hooks/session-start.mjs`) will auto-inject the `using-hyperstack` skill into every session. No manual activation needed.
 
 ### 💻 From source
 
@@ -95,6 +95,7 @@ After installing, the SessionStart hook (at `hooks/session-start`) will auto-inj
 git clone https://github.com/orkait/hyperstack.git
 cd hyperstack
 npm install
+node bin/hyperstack.mjs   # same entrypoint the published bin uses
 npm start          # runs via tsx, no build step
 npm run dev        # watch mode
 npm run build      # tsc --noEmit (type-check only, no dist output)
@@ -130,7 +131,7 @@ Your AI calls these for exact API data. Memory is not acceptable. Every plugin s
 
 Markdown with adversarial enforcement. Each gate skill has an Iron Law, a 1% Rule, and a rationalization table that names the exact excuses your AI will use to skip the gate and counters each one.
 
-The `using-hyperstack` skill is injected into every session by `hooks/session-start`. You do not have to invoke it manually.
+The `using-hyperstack` skill is injected into every session by `hooks/session-start.mjs`. You do not have to invoke it manually.
 
 <details>
 <summary><strong>🧱 Core (13)</strong> - workflow, discipline, gates used on every task</summary>
@@ -361,9 +362,12 @@ Only invoked when the user explicitly chose shadcn in designer Q11b.
 
 ## 🏗️ Architecture
 
-Everything runs via `tsx` at runtime. No `dist/` output, no build step for deployment - just type checking.
+Everything runs from source. The published `hyperstack` bin is a small Node wrapper that boots `src/index.ts` through `tsx`, and Docker uses the same source-first runtime. No `dist/` output, no build step for deployment - just type checking.
 
 ```text
+bin/
+└── hyperstack.mjs           # Published CLI wrapper - boots src/index.ts via tsx
+
 src/
 ├── index.ts                  # Entry - creates McpServer, loads all 11 plugins
 ├── registry.ts               # Plugin interface + loadPlugins()
@@ -389,7 +393,8 @@ skills/
 
 hooks/
 ├── hooks.json                # Registers the SessionStart hook
-├── session-start             # Bash script that injects using-hyperstack as context
+├── session-start.mjs         # Cross-platform hook entrypoint for auto-injecting using-hyperstack
+├── session-start             # Legacy shell helper
 └── run-hook.cmd              # Windows dispatcher
 
 scripts/
@@ -433,3 +438,9 @@ npm run build   # tsc --noEmit
 ## 📄 License
 
 MIT © [Orkait](https://github.com/orkait)
+
+---
+
+## 🙏 Acknowledgements
+
+The enforcement philosophy behind Hyperstack's gate skills - Iron Laws, 1% Rule, rationalization tables - was adopted from [obra/superpowers](https://github.com/obra/superpowers) (MIT © Jesse Vincent). We agreed with how it frames AI compliance: adversarially, not politely. See [CREDITS.md](./CREDITS.md).

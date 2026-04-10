@@ -28,7 +28,7 @@ Clone this repository into the appropriate skills directory for your environment
 | **OpenCode / Codex** | Follow the platform's file-based skill installation path |
 | **Other** | If your environment supports local file-based skills, clone the repo to the standard skills/extensions directory for your platform. If not supported, you may skip this step and proceed to installing the MCP server, but note that the SessionStart hook and adversarial enforcement will not activate. |
 
-The repository includes a `hooks/session-start` script that injects the `using-hyperstack` skill content into every session automatically. This is how the enforcement (Iron Laws, 1% Rule, rationalization tables) reaches the agent without manual invocation. On platforms that support `.claude-plugin/hooks.json`, this happens automatically. On others, the skill is still readable but the hook will not fire.
+The repository includes a `hooks/session-start.mjs` entrypoint that injects the `using-hyperstack` skill content into every session automatically. This is how the enforcement (Iron Laws, 1% Rule, rationalization tables) reaches the agent without manual invocation. On platforms that support `.claude-plugin/hooks.json`, this happens automatically. On others, the skill is still readable but the hook will not fire.
 
 ## Step 3: Configure the MCP Server
 
@@ -60,7 +60,7 @@ The `--memory=256m` and `--cpus=0.5` flags are intentional resource limits. Do n
 
 ### Option B: Local Node (Fallback)
 
-If Docker is NOT available, run the server locally using Node 18+ and `tsx`:
+If Docker is NOT available, run the server locally using Node 18+:
 
 1. Navigate to the directory where you cloned the repository (e.g., `~/.claude/skills/hyperstack`)
 2. Run `npm install` in that directory
@@ -70,14 +70,14 @@ If Docker is NOT available, run the server locally using Node 18+ and `tsx`:
 {
   "mcpServers": {
     "hyperstack": {
-      "command": "npx",
-      "args": ["tsx", "/absolute/path/to/hyperstack/src/index.ts"]
+      "command": "node",
+      "args": ["/absolute/path/to/hyperstack/bin/hyperstack.mjs"]
     }
   }
 }
 ```
 
-There is no build step. The server runs directly from source via `tsx`.
+There is no build step. The wrapper starts the server directly from source via `tsx`.
 
 ## Step 4: Verify Installation
 

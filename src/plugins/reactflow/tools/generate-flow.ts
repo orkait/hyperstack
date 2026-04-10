@@ -23,7 +23,7 @@ export function register(server: McpServer): void {
       const imports = new Set(["ReactFlow"]);
       const xyflowImports = new Set<string>();
       const extraImports: string[] = [];
-      let storeCode = "";
+      let supportCode = "";
       let beforeReturn = "";
       let flowProps: string[] = ["nodes={nodes}", "edges={edges}", "fitView"];
       let children = "";
@@ -136,16 +136,21 @@ const nodeTypes = { custom: CustomNode };
 
       // Store vs useState
       if (useStore) {
+        xyflowImports.add("type Node");
+        xyflowImports.add("type Edge");
+        xyflowImports.add("type OnNodesChange");
+        xyflowImports.add("type OnEdgesChange");
+        xyflowImports.add("type OnConnect");
+        imports.add("applyNodeChanges");
+        imports.add("applyEdgeChanges");
+        imports.add("addEdge");
         flowProps.push(
           "onNodesChange={onNodesChange}",
           "onEdgesChange={onEdgesChange}",
           "onConnect={onConnect}",
         );
-        storeCode = `
-// --- store.ts ---
-import { create } from 'zustand';
-import { type Node, type Edge, type OnNodesChange, type OnEdgesChange, type OnConnect, applyNodeChanges, applyEdgeChanges, addEdge } from '@xyflow/react';
-
+        extraImports.push("import { create } from 'zustand';");
+        supportCode = `
 const initialNodes: Node[] = [
   { id: '1', position: { x: 0, y: 0 }, data: { label: 'Node 1' } },
   { id: '2', position: { x: 250, y: 100 }, data: { label: 'Node 2' } },
@@ -169,12 +174,10 @@ const useFlowStore = create<FlowState>((set, get) => ({
 }));
 
 const selector = (s: FlowState) => s;
-export { useFlowStore, selector };
 `;
         beforeReturn =
           `  const { nodes, edges, onNodesChange, onEdgesChange, onConnect } = useFlowStore(selector);\n` +
           beforeReturn;
-        extraImports.push("import { useFlowStore, selector } from './store';");
       } else {
         imports.add("useNodesState");
         imports.add("useEdgesState");
@@ -214,8 +217,8 @@ export { useFlowStore, selector };
         code += `${imp}\n`;
       }
 
-      if (storeCode) {
-        code += `\n/*\n${storeCode}*/\n`;
+      if (supportCode) {
+        code += `\n${supportCode}\n`;
       }
 
       if (additionalComponents) {

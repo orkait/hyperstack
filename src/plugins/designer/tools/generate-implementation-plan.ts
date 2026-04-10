@@ -456,7 +456,7 @@ function extractComponentsFromSection(section5Text: string): string[] {
   const components = new Set<string>();
   let m: RegExpExecArray | null;
   while ((m = regex.exec(section5Text)) !== null) {
-    const name = m[1]!.trim().split(/\s+/)[0]!; // first word
+    const name = m[1]!.trim().replace(/\s+/g, " ");
     if (name && !["Component", "All", "States", "Variants"].includes(name)) {
       components.add(name);
     }
