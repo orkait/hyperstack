@@ -1,7 +1,7 @@
 {
   "name": "hyperstack",
   "displayName": "Hyperstack",
-  "description": "Senior Staff Engineer persona + domain knowledge MCP server for React Flow, Motion, Go, Rust, design tokens, and more",
+  "description": "Disciplined MCP server + skill system. 11 plugins and 79 tools covering designer (6 personalities, 13 page templates, 9 presets), shadcn/ui, design tokens, ui/ux, React Flow v12, Motion v12, Lenis, React 19, Echo, Go, and Rust. 21 skills with adversarial enforcement: Iron Laws, 1% Rule, rationalization tables, and SessionStart hook injection. Forces your agent to use real docs, real DESIGN.md contracts, and real verification before shipping.",
   "version": "1.0.0",
   "author": {
     "name": "Orkait",
@@ -13,12 +13,17 @@
   "keywords": [
     "mcp",
     "skills",
+    "designer",
+    "design-md",
+    "shadcn",
+    "ui-ux",
+    "design-tokens",
     "react-flow",
     "motion",
     "golang",
     "rust",
-    "design-tokens",
-    "engineering"
+    "engineering",
+    "anti-slop"
   ],
   "skills": "./skills/",
   "hooks": "./hooks/hooks.json"
