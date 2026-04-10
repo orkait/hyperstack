@@ -52,7 +52,7 @@ The combination turns a generic coding assistant into a Senior Staff Engineer wh
 
 ### 🤖 Agent-first install
 
-If you are using Claude Code, Cursor, or Gemini CLI, paste this at your agent:
+If you are using Claude Code, Cursor, Gemini CLI, Copilot CLI, OpenCode, or Codex, paste this at your agent:
 
 > Fetch and follow the instructions at https://raw.githubusercontent.com/orkait/hyperstack/main/install.md
 
@@ -402,7 +402,7 @@ Each plugin follows the same structure: `index.ts` registers tools from `tools/`
 
 ## 🚧 Boundaries and current status
 
-- **Platform:** Claude Code, Cursor, Gemini CLI, and any MCP-compatible client. Tested primarily on Claude Code.
+- **Platform:** Claude Code, Cursor, Gemini CLI, Copilot CLI, OpenCode, Codex, and any MCP-compatible client. Tested primarily on Claude Code.
 - **Node:** 18 or newer.
 - **No build step:** runs via `tsx`. Do not add a `dist/` folder.
 - **Knowledgebase:** The original 25 research files that seeded the designer plugin are NOT in this repo anymore. They live at `../knowledgebase/` outside the repo, gitignored for safety. All actionable content is distilled into `src/plugins/designer/data.ts`.
