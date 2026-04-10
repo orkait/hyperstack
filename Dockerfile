@@ -1,7 +1,7 @@
-FROM node:24-alpine
+FROM oven/bun:alpine
 WORKDIR /app
-COPY package.json package-lock.json ./
-RUN npm ci
+COPY package.json bun.lockb ./
+RUN bun install --frozen-lockfile
 COPY src/ src/
-USER node
-ENTRYPOINT ["npx", "tsx", "src/index.ts"]
+USER bun
+ENTRYPOINT ["bun", "src/index.ts"]

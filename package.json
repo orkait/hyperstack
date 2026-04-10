@@ -8,9 +8,9 @@
   "type": "module",
   "scripts": {
     "build": "tsc --noEmit",
-    "test": "tsx --test tests/**/*.test.ts",
-    "start": "tsx src/index.ts",
-    "dev": "tsx watch src/index.ts"
+    "test": "bun test",
+    "start": "bun src/index.ts",
+    "dev": "bun --watch src/index.ts"
   },
   "author": "Orkait",
   "license": "MIT",
