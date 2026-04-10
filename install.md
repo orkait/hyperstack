@@ -45,41 +45,64 @@ Check if Docker is installed and running on the user's system.
 
 ### Option A: Docker (Preferred)
 
-If Docker is available, **pull the image first** before configuring anything:
+Hyperstack uses a **persistent container + `docker exec`** pattern. One long-lived container serves every CLI invocation and every session, so container startup cost is paid once — not on every `claude` run.
+
+**Step 1 — Pull the image:**
 
 ```bash
 docker pull ghcr.io/orkait/hyperstack:main
 ```
 
-This is required. MCP servers have a short initialization timeout — if Docker pulls the image on first use during MCP startup, it will time out and report as failed. Pre-pulling ensures the image is cached and starts in milliseconds.
+Pre-pulling is required. MCP servers have a short initialization timeout — if Docker pulls the image on first use it will time out and report as failed.
 
-Then add the following configuration to the appropriate MCP config file for the current environment (e.g., `~/.claude.json`, `~/.gemini/config.json`, or the relevant IDE config for Cursor/Windsurf):
+**Step 2 — Start the persistent container (one-time setup):**
+
+```bash
+docker run -d --name hyperstack-mcp --restart unless-stopped \
+  --memory=512m --cpus=1 \
+  --entrypoint sleep \
+  ghcr.io/orkait/hyperstack:main infinity
+```
+
+The container stays alive in the background with `sleep infinity` as PID 1. Each MCP session `exec`s a fresh `bun` process inside this container. `--restart unless-stopped` auto-starts the container after Docker restarts. `512m/1 cpu` covers several concurrent sessions.
+
+Verify it's running:
+
+```bash
+docker ps --filter name=hyperstack-mcp
+```
+
+**Step 3 — Configure the MCP client:**
+
+Add the following configuration to the appropriate MCP config file for the current environment (e.g., `~/.claude.json`, `~/.gemini/config.json`, or the relevant IDE config for Cursor/Windsurf):
 
 ```json
 {
   "mcpServers": {
     "hyperstack": {
       "command": "docker",
-      "args": [
-        "run",
-        "-i",
-        "--rm",
-        "--memory=256m",
-        "--cpus=0.5",
-        "ghcr.io/orkait/hyperstack:main"
-      ]
+      "args": ["exec", "-i", "hyperstack-mcp", "bun", "/app/src/index.ts"]
     }
   }
 }
 ```
 
-The `--memory=256m` and `--cpus=0.5` flags are intentional resource limits. Do not remove them. The server runs fine within these constraints.
+Each CLI invocation spawns a new `bun` process inside the existing `hyperstack-mcp` container — no new container, no startup cost.
 
-**Upgrading:** Pull again to get the latest version, then restart the CLI/IDE:
+**Why not `docker run --rm` per session?** `docker run` creates a brand-new container on every invocation. Over several sessions this piles up container state, spends 100–300ms per session on cold startup, and (without proper stdin lifecycle handling) can leave orphaned containers running after Claude exits. The `exec` pattern has none of these problems.
+
+**Upgrading the image:**
 
 ```bash
 docker pull ghcr.io/orkait/hyperstack:main
+docker rm -f hyperstack-mcp
+docker run -d --name hyperstack-mcp --restart unless-stopped \
+  --memory=512m --cpus=1 \
+  --entrypoint sleep \
+  ghcr.io/orkait/hyperstack:main infinity
 ```
+
+Then restart the CLI/IDE so open sessions reconnect to the new container.
 
 ### Option B: Local Bun (Fallback)
 
@@ -107,9 +130,14 @@ There is no build step. Bun runs TypeScript directly from source.
 
 **Pre-check: confirm the MCP server starts before opening the IDE.**
 
-For Docker (Option A), run this directly in a terminal:
+For Docker (Option A), first confirm the persistent container is running:
 ```bash
-echo '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2024-11-05","capabilities":{},"clientInfo":{"name":"test","version":"1.0"}}}' | docker run -i --rm ghcr.io/orkait/hyperstack:main
+docker ps --filter name=hyperstack-mcp
+```
+
+Then test the exec path directly:
+```bash
+echo '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2024-11-05","capabilities":{},"clientInfo":{"name":"test","version":"1.0"}}}' | docker exec -i hyperstack-mcp bun /app/src/index.ts
 ```
 
 Expected output (server is working):
@@ -152,15 +180,13 @@ If installation failed at any step, report the specific error and what would nee
 
 ## Troubleshooting
 
-### MCP server shows as failed on first use (cold-start timeout)
+### MCP server shows as failed on first use
 
-The most common cause: Docker pulls the image during MCP startup and exceeds the initialization timeout.
+Most common causes:
 
-Fix:
-1. `docker pull ghcr.io/orkait/hyperstack:main` — wait for it to finish
-2. Restart the CLI/IDE
-
-Only needs to happen once. All subsequent starts use the local cache.
+1. **Persistent container not running.** Check: `docker ps --filter name=hyperstack-mcp`. If empty, run Step 2 from Option A to start it.
+2. **Image not pulled.** Run `docker pull ghcr.io/orkait/hyperstack:main` and retry.
+3. **Wrong container name in config.** The config must use `hyperstack-mcp` as the exec target — must match the `--name` used in Step 2.
 
 ### MCP server shows as failed / cannot pull the Docker image
 
@@ -171,9 +197,25 @@ If the pull fails, confirm Docker is running and you have an internet connection
 ### MCP server starts but tools return no results
 
 The MCP config file may point to the wrong binary or the server is not running. Verify:
-- Docker: run `docker run -i --rm ghcr.io/orkait/hyperstack:main` and confirm it starts without error
+- Docker: run `docker exec -i hyperstack-mcp bun /app/src/index.ts` manually — it should accept JSON-RPC on stdin and respond. If the container isn't running, start it per Step 2 of Option A.
 - Local Bun: confirm the absolute path in `args` exists (`ls /path/to/hyperstack/bin/hyperstack.mjs`)
 - Restart the CLI/IDE after any config change - MCP servers are loaded at startup
+
+### Too many hyperstack containers piling up
+
+If you see multiple `ghcr.io/orkait/hyperstack` containers running:
+
+```bash
+docker ps -a --filter "ancestor=ghcr.io/orkait/hyperstack:main"
+```
+
+Your MCP config is using the legacy `docker run --rm` pattern instead of `docker exec`. Clean up and switch to the new config:
+
+```bash
+docker ps -aq --filter "ancestor=ghcr.io/orkait/hyperstack:main" | xargs -r docker rm -f
+```
+
+Then follow Step 2 of Option A to start the single persistent `hyperstack-mcp` container, and update your MCP config to the `docker exec` form shown in Step 3.
 
 ### SessionStart hook does not fire
 

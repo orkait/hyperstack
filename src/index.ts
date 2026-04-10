@@ -37,6 +37,12 @@ loadPlugins(server, [
 async function main() {
   const transport = new StdioServerTransport();
   await server.connect(transport);
+
+  const shutdown = () => process.exit(0);
+  process.stdin.on("close", shutdown);
+  process.stdin.on("end", shutdown);
+  process.on("SIGTERM", shutdown);
+  process.on("SIGINT", shutdown);
 }
 
 main().catch((err) => {
