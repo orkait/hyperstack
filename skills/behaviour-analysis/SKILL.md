@@ -178,3 +178,30 @@ Use findings to set expectations in the matrix — "expected behaviour" should b
 - **Every action must have visible feedback** — if clicking something does nothing visibly, that's a bug
 - **Every state must be escapable** — the user should never be "stuck"
 - **Composition must be tested** — features that work alone often break in combination
+
+## The Iron Law
+
+```
+NO BEHAVIOUR CLAIM WITHOUT READING THE CODE PATH
+```
+
+You cannot say "this should work" — you must trace the actual code path and confirm. Reading code is not optional. Assumptions are bugs waiting to ship.
+
+## Red Flags — STOP
+
+These are the rationalizations you will have when you want to skip parts of the analysis. Every one is wrong.
+
+| Thought | Reality |
+|---|---|
+| "I'll just check a few interactions, not the full matrix" | Partial coverage misses composition bugs. Do the full matrix. |
+| "This state combination is unlikely" | Unlikely states are where bugs live. Test them. |
+| "Nielsen's heuristics are common sense" | Common sense is pattern-matching without verification. Apply them explicitly. |
+| "I already know this code, I don't need to read it" | Code drifts. Mental models drift faster. Read it. |
+| "Empty states are trivial, I'll skip them" | Empty states are the #1 place where products feel broken. Audit them. |
+| "Transition states will be fine" | Mid-drag, mid-animation, mid-load states are where race conditions live. Audit them. |
+| "The user will report any issues" | Users don't report feeling vague discomfort. They leave. |
+| "This is for a simple component, full audit is overkill" | Simple components compose into complex flows. Audit it. |
+| "I'll skip heuristics I don't remember exactly" | Open the reference. All 10 get applied. |
+| "The behaviour feels right" | Feelings are not evidence. Read the code. |
+| "I tested the happy path manually" | The happy path is 20% of the matrix. Audit the unhappy paths. |
+| "There is no DESIGN.md, so I have no ground truth" | Search for one. Escalate to designer if missing. Do not audit against gut feeling. |
