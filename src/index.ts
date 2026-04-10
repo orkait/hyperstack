@@ -13,6 +13,7 @@ import { rustPlugin } from "./plugins/rust/index.js";
 import { designTokensPlugin } from "./plugins/design-tokens/index.js";
 import { uiUxPlugin } from "./plugins/ui-ux/index.js";
 import { designerPlugin } from "./plugins/designer/index.js";
+import { shadcnPlugin } from "./plugins/shadcn/index.js";
 
 const server = new McpServer({
   name: "hyperstack",
@@ -30,6 +31,7 @@ loadPlugins(server, [
   designTokensPlugin,
   uiUxPlugin,
   designerPlugin,
+  shadcnPlugin,
 ]);
 
 async function main() {

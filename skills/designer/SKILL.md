@@ -275,8 +275,36 @@ Always respects `prefers-reduced-motion` regardless of level.
 ### Q10: Sections/pages?
 Landing: Hero, Features, Testimonials, CTA, Footer, Pricing, FAQ. Dashboard: Sidebar, Header, Content, Data panels. Apps: Navigation, Content, Modals, Forms, Empty states.
 
-### Q11: Framework?
-Default: shadcn/ui + Tailwind v4. Others: React, Next.js, HTML + Tailwind, Vue, Svelte.
+### Q11: Framework + Component Library?
+
+**Two sub-questions — ask both:**
+
+**Q11a — Framework:**
+- React + Tailwind v4 (most common)
+- Next.js + Tailwind v4
+- Vue + Tailwind
+- Svelte + Tailwind
+- HTML + Tailwind (no framework)
+- Other (specify)
+
+**Q11b — Component Library:**
+- **shadcn/ui (Base UI edition)** — invokes `hyperstack:shadcn-expert`, uses `shadcn_*` MCP tools
+- **Raw Tailwind** — no component library, hand-built primitives from DESIGN.md
+- **Material UI** — use its component catalog (no hyperstack plugin yet)
+- **Mantine** — use its component catalog (no hyperstack plugin yet)
+- **Chakra UI** — use its component catalog (no hyperstack plugin yet)
+- **Ant Design** — enterprise component library (no hyperstack plugin yet)
+- **Custom / existing design system** — user's own components
+- **Ask me to recommend** — designer picks based on personality + industry
+
+**Do NOT assume shadcn by default.** If the user doesn't answer, ask explicitly. Different component libraries have incompatible architectures (Radix vs Base UI vs MUI primitives vs handcrafted).
+
+**Routing based on Q11b answer:**
+- `shadcn/ui` → `hyperstack:shadcn-expert` handles component work; forge-plan calls `shadcn_*` tools
+- `Raw Tailwind` → forge-plan hand-writes components from DESIGN.md Section 5 spec directly (no library wrapper)
+- `Other library` → forge-plan uses the library's own docs; hyperstack has no plugin; flag this to user
+- `Custom/existing` → read user's existing components first; match their patterns
+- `Ask me to recommend` → recommend shadcn/ui for React+Tailwind, or raw Tailwind if user wants maximum control
 
 ### Q12: Constraints?
 WCAG AA (default) or AAA. Performance budget (< 150KB JS, < 2s load). Dark mode required. Brand keywords.
@@ -1060,7 +1088,7 @@ Explicit handoffs between designer and other hyperstack skills/plugins. Each con
   - Section 2 (Color) → task: generate CSS custom properties via `design_tokens_generate`
   - Section 3 (Typography) → task: set up font loading + type scale
   - Section 4 (Spacing) → task: configure Tailwind spacing tokens
-  - Section 5 (Components) → tasks: one per component, call `shadcn_get_component` for each
+  - Section 5 (Components) → tasks: one per component. If Q11b chose shadcn, call `shadcn_get_component` for each. If raw Tailwind, hand-write from DESIGN.md spec. If other library, use its docs directly.
   - Section 6 (Motion) → task: call `motion_generate_animation` with DESIGN.md motion spec
   - Section 7 (Elevation) → task: define shadow tokens
   - Section 9 (Responsive) → tasks: breakpoint-specific overrides
@@ -1068,17 +1096,32 @@ Explicit handoffs between designer and other hyperstack skills/plugins. Each con
 
 **Invocation:** After user approves DESIGN.md, say: *"DESIGN.md approved and saved at `<path>`. Invoking `hyperstack:forge-plan` with this as input spec."*
 
-### To `shadcn` MCP plugin (for component code)
-**Trigger:** When forge-plan processes a component section of DESIGN.md
+### To `shadcn` MCP plugin (for component code) — ONLY IF Q11b chose shadcn
+**Gate:** Skip this entirely if the user chose raw Tailwind or a different component library in Q11b.
+
+**Trigger:** When forge-plan processes a component section of DESIGN.md AND the chosen library is shadcn/ui.
 **Call pattern:**
 ```
+shadcn_get_rules                        → architectural constraints (ALWAYS first)
+shadcn_get_composition(page_type)       → which components compose for this page
+shadcn_list_components                  → catalog of available components
 For each component in DESIGN.md Section 5:
-  shadcn_list_components               → find matching shadcn primitives
-  shadcn_get_component(name)            → fetch source code
-  shadcn_get_rules()                    → get composition rules
-  shadcn_get_snippet(name)              → get usage example
+  shadcn_get_component(name)            → full spec: primitive, data-slots, variants
+  shadcn_get_snippet(name)              → canonical usage example
 ```
-**Contract:** shadcn returns Base UI + Tailwind v4 component code that matches the DESIGN.md's variants, states, sizes.
+**Contract:** shadcn returns Base UI + Tailwind v4 component specs that match DESIGN.md variants, states, sizes.
+**Reverse escalation:** If shadcn has no component matching a DESIGN.md spec, escalate to `hyperstack:designer` to reconcile — do not invent a hybrid.
+
+### To raw Tailwind (no component library) — ONLY IF Q11b chose raw Tailwind
+**Gate:** Skip this if the user chose shadcn or another library.
+
+**Trigger:** When the chosen library is raw Tailwind.
+**Call pattern:**
+```
+design_tokens_get_category("component-sizing")  → sizing tokens from DESIGN.md
+ui_ux_get_component_pattern(name)                → accessibility pattern requirements
+```
+**Contract:** Hand-build components from DESIGN.md Section 5 spec using Tailwind classes directly. Apply all P7 rules from designer's P1-P10 rule priority. No component library wrapper.
 
 ### To `motion_generate_animation` MCP tool
 **Trigger:** DESIGN.md Section 6 specifies motion level != "static"
