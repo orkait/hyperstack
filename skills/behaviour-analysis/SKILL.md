@@ -1,5 +1,6 @@
 ---
 name: behaviour-analysis
+category: domain
 description: Systematic UI/UX behaviour analysis for interactive applications. Audits every user action, state transition, view mode, and edge case like an experienced QA + UX engineer. Produces a complete interaction matrix with expected vs actual behaviour, finds inconsistencies, dead states, and missing feedback. Use when reviewing UI behaviour, before shipping features, or when something "feels off" but you can't pinpoint why.
 compatibility: Requires Read, Grep, Glob, WebSearch tools. Works with any frontend codebase.
 metadata:

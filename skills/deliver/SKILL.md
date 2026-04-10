@@ -1,5 +1,6 @@
 ---
 name: deliver
+category: core
 description: Use after all implementation tasks are complete. Runs final verification, confirms the branch is clean, and executes the chosen delivery method.
 ---
 

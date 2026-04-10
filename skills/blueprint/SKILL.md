@@ -1,5 +1,6 @@
 ---
 name: blueprint
+category: core
 description: Use before any feature build, component creation, or behaviour modification. MCP-surveyed design with a hard gate before any implementation. Do not skip, do not skim, do not rationalize your way out of it.
 ---
 

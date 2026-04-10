@@ -1,5 +1,6 @@
 ---
 name: using-hyperstack
+category: meta
 description: Bootstrap — establishes Hyperstack MCP tools and skills before any technical work. Auto-loaded at session start via SessionStart hook. Do not skip, do not skim, do not rationalize your way out of it.
 ---
 
@@ -104,6 +105,8 @@ If MCP tools fail or are unavailable:
 ## Layer 2: Skills (Engineering Process)
 
 Use the `Skill` tool to load these before the relevant task type.
+
+**Full skill index:** See `skills/INDEX.md` — all skills grouped by category (core / domain / meta). Regenerate with `bash scripts/generate-skills-index.sh` after adding or editing any skill.
 
 ### Announcement Iron Law
 

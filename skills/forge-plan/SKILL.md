@@ -1,5 +1,6 @@
 ---
 name: forge-plan
+category: core
 description: Use after blueprint design approval to produce a task-by-task implementation plan grounded in MCP-verified API calls. No placeholders, no assumed syntax.
 ---
 

@@ -1,5 +1,6 @@
 ---
 name: parallel-dispatch
+category: core
 description: Use when facing 2+ independent tasks that can be investigated or executed without shared state or sequential dependencies.
 ---
 

@@ -1,5 +1,6 @@
 ---
 name: run-plan
+category: core
 description: Use when you have an existing plan, spec, or task list to execute. Validates the plan for gaps and MCP accuracy before any implementation begins.
 ---
 

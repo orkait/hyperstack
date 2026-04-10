@@ -1,5 +1,6 @@
 ---
 name: design-patterns-skill
+category: domain
 description: Apply core programming principles and design patterns from Clean Code, The Pragmatic Programmer, Code Complete, Refactoring, and Design Patterns. Use when writing code, reviewing PRs, refactoring, or designing system architecture.
 triggers:
   - "code review"

@@ -1,5 +1,6 @@
 ---
 name: subagent-ops
+category: core
 description: Use when executing implementation plans with independent tasks. Dispatches one fresh subagent per task with two-stage review after each.
 ---
 
