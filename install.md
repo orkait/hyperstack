@@ -17,16 +17,25 @@ Determine which CLI or IDE you are currently operating within. This dictates whe
 
 ## Step 2: Install the Skills
 
-Clone this repository into the appropriate skills directory for your environment:
+If the directory already exists (upgrade scenario), pull the latest instead of cloning:
 
-| Environment | Command |
-|---|---|
-| **Claude Code** | `git clone https://github.com/orkait/hyperstack.git ~/.claude/skills/hyperstack` |
-| **Cursor** | `git clone https://github.com/orkait/hyperstack.git ~/.cursor/skills/hyperstack` |
-| **Gemini CLI** | `git clone https://github.com/orkait/hyperstack.git ~/.gemini/skills/hyperstack` |
-| **Copilot CLI** | Use plugin marketplace if available, otherwise clone into the user's configured skills path |
-| **OpenCode / Codex** | Follow the platform's file-based skill installation path |
-| **Other** | If your environment supports local file-based skills, clone the repo to the standard skills/extensions directory for your platform. If not supported, you may skip this step and proceed to installing the MCP server, but note that the SessionStart hook and adversarial enforcement will not activate. |
+| Environment | Fresh Install | Upgrade |
+|---|---|---|
+| **Claude Code** | `git clone https://github.com/orkait/hyperstack.git ~/.claude/skills/hyperstack` | `git -C ~/.claude/skills/hyperstack pull` |
+| **Cursor** | `git clone https://github.com/orkait/hyperstack.git ~/.cursor/skills/hyperstack` | `git -C ~/.cursor/skills/hyperstack pull` |
+| **Gemini CLI** | `git clone https://github.com/orkait/hyperstack.git ~/.gemini/skills/hyperstack` | `git -C ~/.gemini/skills/hyperstack pull` |
+| **Copilot CLI** | Use plugin marketplace if available, otherwise clone into the user's configured skills path | Pull in the cloned directory |
+| **OpenCode / Codex** | Follow the platform's file-based skill installation path | Pull in the cloned directory |
+| **Other** | If your environment supports local file-based skills, clone the repo to the standard skills/extensions directory for your platform. | Pull in the cloned directory |
+
+To handle both cases automatically, use this one-liner (clone if missing, pull if present):
+
+```bash
+SKILLS_DIR="$HOME/.claude/skills/hyperstack" && \
+  ([ -d "$SKILLS_DIR" ] && git -C "$SKILLS_DIR" pull || git clone https://github.com/orkait/hyperstack.git "$SKILLS_DIR")
+```
+
+Replace `~/.claude/skills` with the correct path for the current environment.
 
 The repository includes a `hooks/session-start.mjs` entrypoint that injects the `using-hyperstack` skill content into every session automatically. This is how the enforcement (Iron Laws, 1% Rule, rationalization tables) reaches the agent without manual invocation. On platforms that support `.claude-plugin/hooks.json`, this happens automatically. On others, the skill is still readable but the hook will not fire.
 
@@ -58,6 +67,14 @@ If Docker is available, add the following configuration to the appropriate MCP c
 
 The `--memory=256m` and `--cpus=0.5` flags are intentional resource limits. Do not remove them. The server runs fine within these constraints.
 
+**Upgrading Docker image:** Docker caches images locally. To ensure the latest version is running, pull the latest image before restarting:
+
+```bash
+docker pull ghcr.io/orkait/hyperstack:main
+```
+
+Then restart the CLI/IDE so it picks up the new image.
+
 ### Option B: Local Bun (Fallback)
 
 If Docker is NOT available, run the server locally using Bun:
@@ -82,7 +99,28 @@ There is no build step. Bun runs TypeScript directly from source.
 
 ## Step 4: Verify Installation
 
-Start a fresh session in the target environment (or restart the current one so the SessionStart hook fires).
+**Pre-check: confirm the MCP server starts before opening the IDE.**
+
+For Docker (Option A), run this directly in a terminal:
+```bash
+echo '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2024-11-05","capabilities":{},"clientInfo":{"name":"test","version":"1.0"}}}' | docker run -i --rm ghcr.io/orkait/hyperstack:main
+```
+
+Expected output (server is working):
+```json
+{"result":{"protocolVersion":"2024-11-05","capabilities":{"tools":{"listChanged":true},"resources":{"listChanged":true}},"serverInfo":{"name":"hyperstack","version":"1.0.0"}},"jsonrpc":"2.0","id":1}
+```
+
+If this command hangs or errors, the MCP server is not working. Fix it before proceeding - the IDE will show the same failure.
+
+For Local Bun (Option B):
+```bash
+echo '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2024-11-05","capabilities":{},"clientInfo":{"name":"test","version":"1.0"}}}' | bun /path/to/hyperstack/bin/hyperstack.mjs
+```
+
+---
+
+Once the pre-check passes, start a fresh session in the target environment (or restart so the SessionStart hook fires).
 
 **Verification A: Skills are loaded.** The agent should receive the `using-hyperstack` skill content at session start. Ask: *"What Hyperstack skills are available?"* The agent should list skills from `skills/INDEX.md` (21 total, grouped into core / domain / meta).
 
@@ -92,7 +130,7 @@ Start a fresh session in the target environment (or restart the current one so t
 
 If any verification step fails:
 - For skill issues: confirm the repo was cloned to the correct skills directory for the environment
-- For MCP issues: confirm the config file path, check Docker is running if using Option A, or verify the absolute path in Option B
+- For MCP issues: run the pre-check command above to confirm the server starts independently of the IDE
 - For hook issues: confirm the environment supports `.claude-plugin/hooks.json`, otherwise the enforcement is reduced to documentation rather than automatic injection
 
 ## Step 5: Inform the User
