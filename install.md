@@ -58,26 +58,27 @@ If Docker is available, add the following configuration to the appropriate MCP c
 
 The `--memory=256m` and `--cpus=0.5` flags are intentional resource limits. Do not remove them. The server runs fine within these constraints.
 
-### Option B: Local Node (Fallback)
+### Option B: Local Bun (Fallback)
 
-If Docker is NOT available, run the server locally using Node 18+:
+If Docker is NOT available, run the server locally using Bun:
 
-1. Navigate to the directory where you cloned the repository (e.g., `~/.claude/skills/hyperstack`)
-2. Run `npm install` in that directory
-3. Add the following to the user's MCP config file, replacing `/absolute/path/to/...` with the actual clone path:
+1. [Install Bun](https://bun.sh) if not already available (`curl -fsSL https://bun.sh/install | bash`)
+2. Navigate to the directory where you cloned the repository (e.g., `~/.claude/skills/hyperstack`)
+3. Run `bun install` in that directory
+4. Add the following to the user's MCP config file, replacing `/absolute/path/to/...` with the actual clone path:
 
 ```json
 {
   "mcpServers": {
     "hyperstack": {
-      "command": "node",
+      "command": "bun",
       "args": ["/absolute/path/to/hyperstack/bin/hyperstack.mjs"]
     }
   }
 }
 ```
 
-There is no build step. The wrapper starts the server directly from source via `tsx`.
+There is no build step. Bun runs TypeScript directly from source.
 
 ## Step 4: Verify Installation
 

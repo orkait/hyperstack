@@ -94,11 +94,11 @@ After installing, the SessionStart hook (at `hooks/session-start.mjs`) will auto
 ```bash
 git clone https://github.com/orkait/hyperstack.git
 cd hyperstack
-npm install
-node bin/hyperstack.mjs   # same entrypoint the published bin uses
-npm start          # runs via tsx, no build step
-npm run dev        # watch mode
-npm run build      # tsc --noEmit (type-check only, no dist output)
+bun install
+bun bin/hyperstack.mjs   # same entrypoint the published bin uses
+bun start                # no build step
+bun dev                  # watch mode
+bun run build            # tsc --noEmit (type-check only, no dist output)
 ```
 
 Node 18+ required.

@@ -7,14 +7,25 @@ import { fileURLToPath } from "node:url";
 const binDir = dirname(fileURLToPath(import.meta.url));
 const rootDir = resolve(binDir, "..");
 const entrypoint = resolve(rootDir, "src/index.ts");
-const nodeMajor = Number.parseInt(process.versions.node.split(".")[0] ?? "0", 10);
-const tsxLoaderArgs = nodeMajor >= 20 ? ["--import", "tsx"] : ["--loader", "tsx"];
 
-const child = spawn(process.execPath, [...tsxLoaderArgs, entrypoint, ...process.argv.slice(2)], {
-  cwd: rootDir,
-  env: process.env,
-  stdio: "inherit",
-});
+const isBun = !!process.versions.bun;
+
+let child;
+if (isBun) {
+  child = spawn(process.execPath, [entrypoint, ...process.argv.slice(2)], {
+    cwd: rootDir,
+    env: process.env,
+    stdio: "inherit",
+  });
+} else {
+  const nodeMajor = Number.parseInt(process.versions.node.split(".")[0] ?? "0", 10);
+  const tsxLoaderArgs = nodeMajor >= 20 ? ["--import", "tsx"] : ["--loader", "tsx"];
+  child = spawn(process.execPath, [...tsxLoaderArgs, entrypoint, ...process.argv.slice(2)], {
+    cwd: rootDir,
+    env: process.env,
+    stdio: "inherit",
+  });
+}
 
 const forwardSignal = (signal) => {
   if (!child.killed) {
