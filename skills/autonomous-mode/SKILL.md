@@ -1,5 +1,6 @@
 ---
 name: autonomous-mode
+category: core
 description: Use when the user chooses fully autonomous execution. Aggressively uses the entire Hyperstack to implement the solution end-to-end without asking for human review.
 ---
 

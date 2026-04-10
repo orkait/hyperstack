@@ -1,5 +1,6 @@
 ---
 name: debug-discipline
+category: core
 description: Use when encountering any bug, test failure, or unexpected behaviour. Root cause investigation is mandatory before any fix attempt.
 ---
 

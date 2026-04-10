@@ -1,5 +1,6 @@
 ---
 name: engineering-discipline
+category: core
 description: Apply senior-level software engineering discipline including design patterns, SOLID principles, architectural reasoning, systematic verification, and safety gates. Use when writing production code, complex features, reviewing code, refactoring systems, or when engineering rigor and correctness are required. Supports both quick reference lookup and full step-by-step process mode.
 triggers:
   - "build production code"

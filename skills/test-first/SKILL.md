@@ -1,5 +1,6 @@
 ---
 name: test-first
+category: core
 description: Use when implementing any feature, bug fix, or behaviour change - before writing implementation code. Enforces test-before-code discipline.
 ---
 

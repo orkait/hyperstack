@@ -1,5 +1,6 @@
 ---
 name: code-review
+category: core
 description: Use when completing tasks, implementing features, or before merging - to dispatch a review subagent and handle feedback with technical rigor.
 ---
 

@@ -1,5 +1,6 @@
 ---
 name: designer
+category: domain
 description: >-
   Evidence-based design decision engine. An intention gate that produces non-slop
   UI/UX by forcing every visual choice through industry context, cognitive science,

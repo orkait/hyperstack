@@ -1,5 +1,6 @@
 ---
 name: testing-skills
+category: meta
 description: Use when creating or editing Hyperstack skills, before shipping them, to verify they actually work under pressure and resist rationalization. Treats skill content as process-under-test with RED-GREEN-REFACTOR cycle enforced via subagent pressure scenarios.
 ---
 

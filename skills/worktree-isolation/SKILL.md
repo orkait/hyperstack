@@ -1,5 +1,6 @@
 ---
 name: worktree-isolation
+category: core
 description: Use when starting feature work that needs isolation from the current workspace, or before executing implementation plans.
 ---
 

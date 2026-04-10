@@ -1,5 +1,6 @@
 ---
 name: ship-gate
+category: core
 description: Use before claiming any work is complete, fixed, or passing. Run the verification command and show output before making any success claim.
 ---
 
