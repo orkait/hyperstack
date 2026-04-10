@@ -24,9 +24,12 @@ If the directory already exists (upgrade scenario), pull the latest instead of c
 | **Claude Code** | `git clone https://github.com/orkait/hyperstack.git ~/.claude/skills/hyperstack` | `git -C ~/.claude/skills/hyperstack pull` |
 | **Cursor** | `git clone https://github.com/orkait/hyperstack.git ~/.cursor/skills/hyperstack` | `git -C ~/.cursor/skills/hyperstack pull` |
 | **Gemini CLI** | `git clone https://github.com/orkait/hyperstack.git ~/.gemini/skills/hyperstack` | `git -C ~/.gemini/skills/hyperstack pull` |
+| **Qwen Code** | `git clone https://github.com/orkait/hyperstack.git ~/.qwen/skills/hyperstack` | `git -C ~/.qwen/skills/hyperstack pull` |
 | **Copilot CLI** | Use plugin marketplace if available, otherwise clone into the user's configured skills path | Pull in the cloned directory |
 | **OpenCode / Codex** | Follow the platform's file-based skill installation path | Pull in the cloned directory |
 | **Other** | If your environment supports local file-based skills, clone the repo to the standard skills/extensions directory for your platform. | Pull in the cloned directory |
+
+**Qwen Code note:** Qwen Code does not have a skill plugin system or SessionStart hook. Skills are cloned to `~/.qwen/skills/hyperstack/` and available on disk for the agent to reference manually (via `read_file` or the agent's own knowledge of the repo structure). The 21 skills are not auto-loaded at session start.
 
 To handle both cases automatically, use this one-liner (clone if missing, pull if present):
 
@@ -35,7 +38,7 @@ SKILLS_DIR="$HOME/.claude/skills/hyperstack" && \
   ([ -d "$SKILLS_DIR" ] && git -C "$SKILLS_DIR" pull || git clone https://github.com/orkait/hyperstack.git "$SKILLS_DIR")
 ```
 
-Replace `~/.claude/skills` with the correct path for the current environment.
+Replace `~/.claude/skills` with the correct path for the current environment (see table above). For example, on Qwen Code use `~/.qwen/skills/hyperstack`.
 
 The repository includes a `hooks/session-start.mjs` entrypoint that injects the `using-hyperstack` skill content into every session automatically. This is how the enforcement (Iron Laws, 1% Rule, rationalization tables) reaches the agent without manual invocation. On platforms that support `.claude-plugin/hooks.json`, this happens automatically. On others, the skill is still readable but the hook will not fire.
 
@@ -74,7 +77,14 @@ docker ps --filter name=hyperstack-mcp
 
 **Step 3 — Configure the MCP client:**
 
-Add the following configuration to the appropriate MCP config file for the current environment (e.g., `~/.claude.json`, `~/.gemini/config.json`, or the relevant IDE config for Cursor/Windsurf):
+Add the following configuration to the appropriate MCP config file for the current environment:
+
+| Environment | Config File |
+|---|---|
+| **Claude Code** | `~/.claude.json` |
+| **Gemini CLI** | `~/.gemini/config.json` |
+| **Qwen Code** | `~/.qwen/settings.json` (global) or `.qwen/settings.json` (project-level) |
+| **Cursor / Windsurf / Others** | IDE-specific MCP settings panel or `.mcp.json` in project root |
 
 ```json
 {
@@ -88,6 +98,8 @@ Add the following configuration to the appropriate MCP config file for the curre
 ```
 
 Each CLI invocation spawns a new `bun` process inside the existing `hyperstack-mcp` container — no new container, no startup cost.
+
+**Important:** Some environments (like Qwen Code) use `settings.json` at the root level rather than a dedicated `.mcp.json` file. The `mcpServers` object goes at the top level of the settings file. Do not nest it inside another key.
 
 **Why not `docker run --rm` per session?** `docker run` creates a brand-new container on every invocation. Over several sessions this piles up container state, spends 100–300ms per session on cold startup, and (without proper stdin lifecycle handling) can leave orphaned containers running after Claude exits. The `exec` pattern has none of these problems.
 
@@ -156,24 +168,41 @@ echo '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":
 
 Once the pre-check passes, start a fresh session in the target environment (or restart so the SessionStart hook fires).
 
-**Verification A: Skills are loaded.** The agent should receive the `using-hyperstack` skill content at session start. Ask: *"What Hyperstack skills are available?"* The agent should list skills from `skills/INDEX.md` (21 total, grouped into core / domain / meta).
+**Verification 0: Installation sanity check.** Before trusting the install, run these checks:
 
-**Verification B: MCP tools respond.** Ask: *"Call designer_list_personalities."* The server should return 6 personality clusters (premium-precision, technical-developer, warm-editorial, bold-energetic, cinematic-dark, enterprise-trust).
+1. **MCP server responds:** Ask the agent to call `designer_list_personalities`. If it returns 6 clusters (premium-precision, technical-developer, warm-editorial, bold-energetic, cinematic-dark, enterprise-trust), the MCP server is connected and working. If the tool is unknown or fails, the MCP config is wrong or the session wasn't restarted.
 
-**Verification C: The designer workflow triggers.** Ask: *"Help me design a SaaS dashboard for DevOps engineers."* The agent should invoke `hyperstack:designer` BEFORE writing any code. If it jumps straight to JSX, the SessionStart hook did not fire - restart the client and try again.
+2. **Skills are on disk:** Confirm the skills directory exists and has content:
+   ```bash
+   ls ~/.claude/skills/hyperstack/skills/   # or ~/.qwen/skills/hyperstack/skills/ for Qwen Code
+   ```
+   Should show 21 directories plus `INDEX.md`. If missing or empty, the clone failed.
+
+3. **Skills are auto-loaded (platforms with hooks only):** Ask: *"What Hyperstack skills are available?"* The agent should list skills from `skills/INDEX.md` (21 total, grouped into core / domain / meta). On platforms without hook support (e.g., Qwen Code), skip this — skills are on disk but not auto-injected.
+
+If any of these three checks fail, do not proceed. Fix the issue first:
+- MCP tool unknown → verify config file location and JSON syntax, then restart the session
+- Skills missing → re-run the clone command and confirm the path
+- Skills not auto-loaded → check that the platform supports `.claude-plugin/hooks.json`; if not, this is expected behavior
+
+---
+
+**Verification A: SessionStart hook fires (platforms with hooks only).** On Claude Code and platforms with hook support, the agent should receive the `using-hyperstack` skill content at session start. Ask: *"What Hyperstack skills are available?"* The agent should list skills from `skills/INDEX.md` (21 total, grouped into core / domain / meta). On platforms without hook support (e.g., Qwen Code), this step does not apply — skills are on disk but not auto-injected.
+
+**Verification B: Designer workflow triggers.** Ask: *"Help me design a SaaS dashboard for DevOps engineers."* On platforms with the SessionStart hook, the agent should invoke `hyperstack:designer` BEFORE writing any code. If it jumps straight to JSX, the hook did not fire — restart the client and try again. On platforms without hook support, this step is manual (the agent won't auto-invoke designer).
 
 If any verification step fails:
 - For skill issues: confirm the repo was cloned to the correct skills directory for the environment
 - For MCP issues: run the pre-check command above to confirm the server starts independently of the IDE
-- For hook issues: confirm the environment supports `.claude-plugin/hooks.json`, otherwise the enforcement is reduced to documentation rather than automatic injection
+- For hook issues: confirm the environment supports `.claude-plugin/hooks.json`, otherwise the enforcement is reduced to documentation rather than automatic injection. Platforms without hook support: Qwen Code.
 
 ## Step 5: Inform the User
 
 Tell the user:
 1. Which environment you detected
 2. Where the repository was cloned
-3. Which MCP config file was updated (Docker or local Node)
-4. Whether the SessionStart hook is expected to fire on their platform
+3. Which MCP config file was updated (Docker or Bun fallback)
+4. Whether the SessionStart hook is expected to fire on their platform (yes for Claude Code / platforms with hooks, no for Qwen Code / others)
 5. Which verification step they should run first
 
 If installation failed at any step, report the specific error and what would need to be fixed, rather than claiming success.
@@ -200,6 +229,7 @@ The MCP config file may point to the wrong binary or the server is not running. 
 - Docker: run `docker exec -i hyperstack-mcp bun /app/src/index.ts` manually — it should accept JSON-RPC on stdin and respond. If the container isn't running, start it per Step 2 of Option A.
 - Local Bun: confirm the absolute path in `args` exists (`ls /path/to/hyperstack/bin/hyperstack.mjs`)
 - Restart the CLI/IDE after any config change - MCP servers are loaded at startup
+- **Qwen Code:** Uses `~/.qwen/settings.json` (global) or `.qwen/settings.json` (project-level), NOT `.mcp.json`. The `mcpServers` key goes at the root of the settings file.
 
 ### Too many hyperstack containers piling up
 
@@ -220,6 +250,8 @@ Then follow Step 2 of Option A to start the single persistent `hyperstack-mcp` c
 ### SessionStart hook does not fire
 
 On Claude Code, hooks live in `.claude/hooks.json`. Confirm the file exists in the repository root and references `session-start.mjs`. If the hook is missing or malformed, the `using-hyperstack` skill will not be injected automatically. You can still invoke skills manually with `/using-hyperstack`.
+
+On Qwen Code, there is no plugin system or hook mechanism. Skills are available on disk at `~/.qwen/skills/hyperstack/skills/INDEX.md` but must be referenced manually by the agent — no auto-injection occurs.
 
 ### `bun: command not found` when using Option B
 
