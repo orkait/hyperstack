@@ -45,7 +45,15 @@ Check if Docker is installed and running on the user's system.
 
 ### Option A: Docker (Preferred)
 
-If Docker is available, add the following configuration to the appropriate MCP config file for the current environment (e.g., `~/.claude.json`, `~/.gemini/config.json`, or the relevant IDE config for Cursor/Windsurf):
+If Docker is available, **pull the image first** before configuring anything:
+
+```bash
+docker pull ghcr.io/orkait/hyperstack:main
+```
+
+This is required. MCP servers have a short initialization timeout — if Docker pulls the image on first use during MCP startup, it will time out and report as failed. Pre-pulling ensures the image is cached and starts in milliseconds.
+
+Then add the following configuration to the appropriate MCP config file for the current environment (e.g., `~/.claude.json`, `~/.gemini/config.json`, or the relevant IDE config for Cursor/Windsurf):
 
 ```json
 {
@@ -67,13 +75,11 @@ If Docker is available, add the following configuration to the appropriate MCP c
 
 The `--memory=256m` and `--cpus=0.5` flags are intentional resource limits. Do not remove them. The server runs fine within these constraints.
 
-**Upgrading Docker image:** Docker caches images locally. To ensure the latest version is running, pull the latest image before restarting:
+**Upgrading:** Pull again to get the latest version, then restart the CLI/IDE:
 
 ```bash
 docker pull ghcr.io/orkait/hyperstack:main
 ```
-
-Then restart the CLI/IDE so it picks up the new image.
 
 ### Option B: Local Bun (Fallback)
 
@@ -146,11 +152,21 @@ If installation failed at any step, report the specific error and what would nee
 
 ## Troubleshooting
 
+### MCP server shows as failed on first use (cold-start timeout)
+
+The most common cause: Docker pulls the image during MCP startup and exceeds the initialization timeout.
+
+Fix:
+1. `docker pull ghcr.io/orkait/hyperstack:main` — wait for it to finish
+2. Restart the CLI/IDE
+
+Only needs to happen once. All subsequent starts use the local cache.
+
 ### MCP server shows as failed / cannot pull the Docker image
 
 Verify the image is accessible: `docker pull ghcr.io/orkait/hyperstack:main`
 
-If the pull fails, confirm Docker is running and you have an internet connection. The image is public on Docker Hub - no authentication is required to pull it.
+If the pull fails, confirm Docker is running and you have an internet connection. The image is public on ghcr.io - no authentication is required to pull it.
 
 ### MCP server starts but tools return no results
 
