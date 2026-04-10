@@ -84,6 +84,7 @@ Call these BEFORE writing any code for these stacks. **Memory is not acceptable.
 | `designer_*` | Design decision engine | `designer_resolve_intent`, `designer_get_personality`, `designer_get_preset`, `designer_get_page_template`, `designer_get_font_pairing`, `designer_get_anti_patterns` |
 | `design_tokens_*` | Design token systems | `design_tokens_generate`, `design_tokens_get_category`, `design_tokens_get_gotchas` |
 | `ui_ux_*` | UI/UX principles | `ui_ux_get_principle`, `ui_ux_get_component_pattern`, `ui_ux_get_gotchas` |
+| `shadcn_*` (**only if shadcn chosen**) | shadcn/ui Base UI edition | `shadcn_get_rules` (first), `shadcn_get_composition`, `shadcn_get_component`, `shadcn_get_snippet`, `shadcn_list_components` |
 | `reactflow_*` | React Flow v12 | `reactflow_get_api`, `reactflow_search_docs`, `reactflow_get_pattern` |
 | `motion_*` | Motion for React v12 | `motion_get_api`, `motion_get_examples`, `motion_get_transitions` |
 | `lenis_*` | Lenis smooth scroll | `lenis_get_api`, `lenis_generate_setup`, `lenis_get_pattern` |

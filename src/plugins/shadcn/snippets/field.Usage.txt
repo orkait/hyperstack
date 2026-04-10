@@ -1,0 +1,16 @@
+<Field orientation="vertical">
+  <FieldLabel>Username</FieldLabel>
+  <FieldContent>
+    <Input placeholder="Enter username" />
+    <FieldDescription>This is your public display name.</FieldDescription>
+    <FieldError errors={errors.username} />
+  </FieldContent>
+</Field>
+
+// Horizontal orientation with Container Queries
+<FieldGroup className="max-w-md">
+  <Field orientation="horizontal">
+    <FieldLabel>Email</FieldLabel>
+    <Input type="email" />
+  </Field orientation="horizontal">
+</FieldGroup>

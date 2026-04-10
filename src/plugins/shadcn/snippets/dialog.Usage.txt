@@ -1,0 +1,14 @@
+<Dialog>
+  <DialogTrigger render={<Button />}>Open Dialog</DialogTrigger>
+  <DialogContent title="Confirm Action">
+    <DialogHeader>
+      <DialogTitle>Are you sure?</DialogTitle>
+      <DialogDescription>
+        This action cannot be undone.
+      </DialogDescription>
+    </DialogHeader>
+    <DialogFooter showCloseButton>
+      <Button variant="destructive">Delete</Button>
+    </DialogFooter>
+  </DialogContent>
+</Dialog>

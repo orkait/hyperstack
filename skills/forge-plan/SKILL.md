@@ -27,7 +27,7 @@ If input is a DESIGN.md file, parse it and map sections to task categories:
 | 2. Color Palette | Token setup tasks | `design_tokens_generate` with OKLCH values from section |
 | 3. Typography | Font loading + type scale tasks | `design_tokens_get_category("typography")` |
 | 4. Spacing | Tailwind spacing config | `design_tokens_get_category("spacing")` |
-| 5. Component Specs | One task per component | `shadcn_get_component(name)` + `shadcn_get_rules()` |
+| 5. Component Specs | One task per component | **Conditional on DESIGN.md Q11b:** shadcn → `shadcn_get_rules` + `shadcn_get_composition(page_type)` + `shadcn_get_component(name)`. Raw Tailwind → `ui_ux_get_component_pattern(name)` + hand-build. Other library → use that library's own docs. |
 | 6. Motion | Animation tasks | `motion_generate_animation` with DESIGN.md motion spec |
 | 7. Elevation | Shadow token tasks | `design_tokens_get_category("shadows")` |
 | 8. Do's and Don'ts | Embedded as self-review assertions in every task |
@@ -55,7 +55,9 @@ Before writing a single task, call the relevant MCP tools for every domain the i
 | Rust | `rust_get_practice` for each relevant practice |
 | Design tokens | `design_tokens_get_procedure` for each token step + `design_tokens_generate` if DESIGN.md specifies OKLCH palette |
 | React / Next.js | `react_get_pattern` + `react_get_constraints` |
-| shadcn components | `shadcn_list_components` + `shadcn_get_component(name)` + `shadcn_get_rules()` for each component in DESIGN.md Section 5 |
+| shadcn components (**only if Q11b chose shadcn**) | `shadcn_get_rules` (first) + `shadcn_get_composition(page_type)` + `shadcn_get_component(name)` + `shadcn_get_snippet(name)` for each component in DESIGN.md Section 5. Invoke `hyperstack:shadcn-expert` skill for architectural guidance. |
+| Raw Tailwind (**only if Q11b chose raw Tailwind**) | `ui_ux_get_component_pattern(name)` for each component. Hand-build from DESIGN.md Section 5 spec. No library wrapper. |
+| Other component library (MUI, Mantine, Chakra, Ant Design) | Use the library's own docs directly. Hyperstack has no plugin for these yet. Flag this to the user. |
 
 Record each tool output. The plan's code blocks must match what the tools return.
 

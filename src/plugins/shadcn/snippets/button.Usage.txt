@@ -1,0 +1,11 @@
+// Basic usage
+<Button>Click me</Button>
+
+// With variants and sizes
+<Button variant="outline" size="sm">Small Outline</Button>
+<Button variant="destructive" size="lg">Large Destructive</Button>
+
+// Icon usage (data-slot automatic in component)
+<Button size="icon">
+  <PlusIcon />
+</Button>
