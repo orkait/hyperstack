@@ -67,6 +67,7 @@ export const TOKEN_CATEGORIES: TokenCategory[] = [
       "After renaming ramps, grep for stale hue-based names (e.g., old 'violet-500' references) in component files.",
       "oklch(0.62 0.14 291) and oklch(0.62 0.14 291 / 0.5) are different values — alpha must be explicit in oklch.",
       "Pure black (#000) and pure white (#fff) look harsh. Use near-black (oklch 0.10-0.15) and near-white (oklch 0.97-0.99) instead.",
+      "Before inverting a site's default mode, verify the existing codebase's aesthetic direction. If every component uses dark backgrounds (charcoal-800, charcoal-900) with light text (offwhite, white/60), dark IS the default. Setting :root to light values and adding .dark overrides will make 90% of text unreadable until every component is migrated.",
     ],
   },
   {
@@ -452,6 +453,7 @@ export const TOKEN_PROCEDURES: TokenProcedure[] = [
     gotchas: [
       "If you put runtime-swappable vars in plain @theme (not inline), dark mode will NOT work — the values won't update when .dark class is toggled.",
       "@theme inline does not accept hardcoded values — it should only map CSS var references.",
+      "@theme generates Tailwind utility classes but does NOT emit CSS custom properties on :root. If :root uses var(--color-brand-400) and --color-brand-400 is only defined in @theme, the var() resolves to undefined at runtime — making all text and backgrounds white. Correct architecture: raw OKLCH values on :root and .dark (runtime CSS vars), @theme inline bridges them to utilities, @theme separately generates primitive ramp utilities.",
     ],
   },
   {
