@@ -87,9 +87,9 @@ Pre-pulling is required. MCP servers have a short initialization timeout - if Do
 
 Hyperstack enforces a **singleton container policy**. If a `hyperstack-mcp` container exists OR any container is running from the `hyperstack:main` image, it must be removed before starting a fresh one to ensure no stale state persists.
 
-Run the provided singleton enforcement script:
+Run the provided cross-platform singleton enforcement script (requires Bun):
 ```bash
-bash scripts/ensure-singleton.sh
+bun scripts/ensure-singleton.ts
 ```
 
 Or run the hard check manually:

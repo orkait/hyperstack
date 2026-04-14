@@ -12,7 +12,7 @@
     "test": "bun test",
     "start": "bun src/index.ts",
     "dev": "bun --watch src/index.ts",
-    "docker:run": "bash scripts/ensure-singleton.sh"
+    "docker:run": "bun scripts/ensure-singleton.ts"
   },
   "author": "Orkait",
   "license": "MIT",
