@@ -34,6 +34,58 @@ Before claiming any status or expressing satisfaction:
 
 Skipping any step = lying, not verifying.
 
+**CRITICAL: Evidence must be visible in this message.** Not "I ran the command." Not "I checked earlier." Actual command output, pasted into this message, proves your claim. No output = no claim.
+
+## Evidence Format
+
+Every completion claim requires evidence embedded in your message. Here is what valid evidence looks like:
+
+### For test claims:
+```
+✅ Tests pass:
+
+$ npm test
+PASS  src/components/__tests__/Button.test.tsx
+  Button
+    ✓ renders with label (5ms)
+    ✓ handles click event (3ms)
+    ✓ disables when prop is set (2ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       3 passed, 3 total
+```
+
+**Not valid:** "Tests pass" with no output. "I ran npm test" with no results. "Should pass" with no evidence.
+
+### For type checks:
+```
+✅ Types check:
+
+$ tsc --noEmit
+[no output = success]
+```
+
+### For build claims:
+```
+✅ Build succeeds:
+
+$ npm run build
+[build output showing exit 0]
+```
+
+### For MCP-verified patterns:
+```
+✅ Code matches MCP output:
+
+MCP tool: reactflow_get_api(Handle)
+Output: props = { children, position, type }
+
+Code implementation:
+<Handle position={Position.Top} type={HandleType.Target}>
+```
+
+**If you cannot show evidence, you cannot make the claim.** Period.
+
 ## Verification Map
 
 | Claim | What is required | What is not sufficient |
@@ -50,21 +102,61 @@ Skipping any step = lying, not verifying.
 
 ## DESIGN.md Compliance Gate (visual/UX tasks only)
 
-If the task involved `hyperstack:designer` (a DESIGN.md exists), the completion claim must pass this gate:
+If the task involved `hyperstack:designer` (a DESIGN.md exists in the repo), the completion claim must pass this automated gate:
 
-| DESIGN.md Section | Verification Command/Check |
+### Step 1: Auto-Invoke Verification Tool
+
+Before claiming any visual task is complete, you MUST run the automated compliance checker:
+
+```bash
+# Call the MCP tool directly (or via your agent framework)
+designer_verify_implementation(
+  design_md_path: "path/to/DESIGN.md",
+  code_paths: ["src/components/**/*.tsx", "src/styles/**/*.css"]
+)
+```
+
+This tool programmatically verifies all 10 DESIGN.md sections against your code:
+
+| DESIGN.md Section | What the tool checks |
 |---|---|
-| 2. Color Palette | `grep -r "oklch" <css-files>` - all OKLCH tokens present. Run contrast checker. |
-| 3. Typography | Font family loaded. Type scale tokens defined. Tracking values match. |
-| 4. Spacing | Spacing tokens defined on 4px grid. No arbitrary pixel values. |
-| 5. Components | For EACH component: `grep` for ALL required states (default/hover/focus/active/disabled/loading). `grep` for semantic HTML (`<button>`, not `<div onclick>`). |
-| 6. Motion | `grep "prefers-reduced-motion"` - present. No `linear` easing. No `> 500ms` UI transitions. |
+| 2. Color Palette | All OKLCH tokens present in code. Contrast ratio >= WCAG AA. |
+| 3. Typography | Font family loaded. Type scale tokens defined. Tracking/line-height match DESIGN.md. |
+| 4. Spacing | Spacing tokens on 4px grid. No arbitrary pixel values. |
+| 5. Components | ALL required states present (default/hover/focus/active/disabled/loading). Semantic HTML used (`<button>`, not `<div onclick>`). |
+| 6. Motion | `prefers-reduced-motion` respected. No `linear` easing. No `> 500ms` UI transitions. |
 | 7. Elevation | Shadow tokens defined. Z-index uses named scale (no `9999`). |
-| 8. Do's and Don'ts | Each Do/Don't checked against code. None violated. |
-| 9. Responsive | Test at 375/768/1024/1440px - no horizontal scroll. Prose max-width 65ch present. |
-| 10. Anti-Patterns | ALL AI slop fingerprint patterns absent: no `#6366F1`, no `font-weight: 500` everywhere, no missing states, no `animate-bounce` on static, no 3+ font families, no `rgba(0,0,0)` shadows on warm surfaces. |
+| 8. Do's and Don'ts | Each Do/Don't from DESIGN.md checked against code. None violated. |
+| 9. Responsive | Layout tested at 375/768/1024/1440px. No horizontal scroll. Prose max-width 65ch. |
+| 10. Anti-Patterns | All AI slop patterns absent: no `#6366F1`, no `font-weight: 500` everywhere, no missing states, no `animate-bounce` on static, no 3+ font families, no `rgba(0,0,0)` shadows. |
 
-**If any row fails:** Do NOT claim completion. Either fix the code, or escalate back to `hyperstack:designer` to revise DESIGN.md.
+### Step 2: Show the Tool Output
+
+The tool returns a compliance matrix. Paste it into your message as evidence:
+
+```
+✅ DESIGN.md Compliance Check:
+
+designer_verify_implementation output:
+[tool result showing 10/10 sections passing]
+
+Section 1 (Theme): PASS
+Section 2 (Colors): PASS - all OKLCH tokens present
+Section 3 (Typography): PASS - fonts loaded, scale defined
+Section 4 (Spacing): PASS - 4px grid enforced
+Section 5 (Components): PASS - all states present
+Section 6 (Motion): PASS - prefers-reduced-motion respected
+Section 7 (Elevation): PASS - shadow/z-index tokens used
+Section 8 (Do's/Don'ts): PASS - no violations
+Section 9 (Responsive): PASS - tested at all breakpoints
+Section 10 (Anti-Patterns): PASS - no slop detected
+```
+
+### Step 3: Handle Failures
+
+**If any section fails:** Do NOT claim completion.
+- Option A: Fix the code to pass the check
+- Option B: Escalate back to `hyperstack:designer` to revise DESIGN.md if the design was wrong
 
 **If DESIGN.md doesn't exist for a visual task:** That's a process failure upstream. Stop and invoke `hyperstack:designer` before shipping anything.
 
@@ -90,6 +182,11 @@ These are rationalizations. Every one has been used to ship bugs. Every one has 
 | "Different wording so rule doesn't apply" | Spirit of the rule is the letter of the rule. Run the command. |
 | Using "should", "probably", "appears to" | These are the words you use when you are about to lie. Run the command. |
 | "Just this once" | There is no "just this once." No exceptions. |
+| **"I ran the tests, they passed"** (no output shown) | **Evidence not shown = claim not made. Paste the full test output into your message.** |
+| **"The code looks correct"** (claiming DESIGN.md compliance) | **Looks are not verification. Run designer_verify_implementation. Show the tool output.** |
+| **"I did the DESIGN.md checks manually"** (grep, eyeballing) | **Manual checks miss edge cases. Use the automated tool. Tool output is your evidence.** |
+| **"DESIGN.md doesn't exist yet, I'll implement first"** | **DESIGN.md is a blocker. No visual code without it. Invoke hyperstack:designer before writing CSS/components.** |
+| **"The tool output would take too long to generate"** | **It takes 2 seconds. Pasting it takes 10 more seconds. Fixing undetected bugs takes days. Generate the output.** |
 
 ## Integration
 
