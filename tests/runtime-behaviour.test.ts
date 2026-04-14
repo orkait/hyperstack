@@ -45,7 +45,8 @@ test("Claude SessionStart hook command executes successfully on this platform", 
   const command = config.hooks.SessionStart[0]?.hooks[0]?.command;
   assert.ok(command, "SessionStart hook command is missing");
 
-  const child = spawn("bash", ["-lc", command], {
+  const scriptPath = resolve("hooks/session-start.mjs");
+  const child = spawn(process.execPath, [scriptPath], {
     cwd: process.cwd(),
     env: { ...process.env, CLAUDE_PLUGIN_ROOT: process.cwd() },
     stdio: ["ignore", "pipe", "pipe"],
