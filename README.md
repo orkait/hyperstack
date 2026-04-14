@@ -328,6 +328,26 @@ AI cannot jump ahead. Every step has hard gate. Excuses already blocked by ratio
 
 ## 🛠️ Available Tools
 
+### 📦 Supported Versions
+
+Opinionated stack support for the latest stable stable releases. This prevents "AI Slop" by enforcing modern patterns (e.g., React 19 Actions, Tailwind v4 tokens).
+
+| Technology | Supported Version | Role |
+| :--- | :--- | :--- |
+| **React** | 19.x | Core Library |
+| **Next.js** | 15.x | Application Framework |
+| **Tailwind CSS** | v4.x | Design Tokens & Constraints |
+| **Motion** | 12.x (fka Framer Motion) | Orchestrated Animations |
+| **React Flow** | 12.x | Node-based Systems |
+| **Lenis** | 1.1.x+ | Smooth Scroll Engine |
+| **Zustand** | 5.x | State Management |
+| **shadcn/ui** | Base UI Edition | Component Primitive Patterns |
+| **Echo (Go)** | v4.x | Backend Framework |
+| **Go** | 1.22+ | Backend Language |
+| **Rust** | 1.77+ | Systems Language |
+| **Bun** | 1.1.x+ | Runtime Environment |
+
+
 <details>
 <summary><strong>🎨 Designer</strong> - <code>designer_*</code> (19 tools)</summary>
 
