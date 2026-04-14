@@ -1,20 +1,15 @@
-import assert from "node:assert/strict";
+import { test, expect } from "bun:test";
 import { readFile } from "node:fs/promises";
 import { resolve } from "node:path";
-import test from "node:test";
 
 test("publish workflow verifies the package across the supported OS and Bun matrix before publishing", async () => {
   const workflow = (await readFile(resolve(".github/workflows/publish.yml"), "utf8")).replace(/\r\n/g, "\n");
 
-  assert.match(workflow, /pull_request:/, "workflow should validate on pull requests");
-  assert.match(workflow, /strategy:\s*\n(?:\s+.*\n)*?\s+matrix:/, "workflow should define a matrix strategy");
-  assert.match(
-    workflow,
-    /os:\s*\[ubuntu-latest,\s*macos-latest,\s*windows-latest\]/,
-    "workflow should verify on ubuntu, macOS, and Windows",
-  );
-  assert.match(workflow, /bun-version:/, "workflow should verify with Bun");
-  assert.match(workflow, /needs:\s*verify/, "publish job should wait for the verification matrix");
-  assert.match(workflow, /gh release create/, "workflow should auto-create a release on version bump");
-  assert.match(workflow, /docker\/build-push-action/, "workflow should build and push Docker image");
+  expect(workflow).toMatch(/pull_request:/);
+  expect(workflow).toMatch(/strategy:\s*\n(?:\s+.*\n)*?\s+matrix:/);
+  expect(workflow).toMatch(/os:\s*\[ubuntu-latest,\s*macos-latest,\s*windows-latest\]/);
+  expect(workflow).toMatch(/bun-version:/);
+  expect(workflow).toMatch(/needs:\s*verify/);
+  expect(workflow).toMatch(/gh release create/);
+  expect(workflow).toMatch(/docker\/build-push-action/);
 });

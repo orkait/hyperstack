@@ -1,8 +1,7 @@
-import assert from "node:assert/strict";
+import { test, expect } from "bun:test";
 import { execSync } from "node:child_process";
 import { readFileSync, readdirSync, existsSync } from "node:fs";
 import { resolve, join } from "node:path";
-import test from "node:test";
 
 const SKILLS_DIR = resolve("skills");
 const INDEX_PATH = resolve("skills/INDEX.md");
@@ -27,25 +26,21 @@ test("skills/INDEX.md stays in sync with actual skill directories", () => {
   execSync("bash scripts/generate-skills-index.sh", { stdio: "pipe" });
 
   const regenerated = readFileSync(INDEX_PATH, "utf8");
-  assert.equal(
-    currentIndex,
-    regenerated,
-    "skills/INDEX.md is stale. Run `bash scripts/generate-skills-index.sh` to regenerate.",
-  );
+  expect(currentIndex).toBe(regenerated);
 });
 
 test("every skill directory has a SKILL.md with required frontmatter fields", () => {
   const skillDirs = getSkillDirs();
-  assert.ok(skillDirs.length > 0, "No skill directories found");
+  expect(skillDirs.length).toBeGreaterThan(0);
 
   for (const skillName of skillDirs) {
     const skillFile = join(SKILLS_DIR, skillName, "SKILL.md");
     const content = readFileSync(skillFile, "utf8");
 
-    assert.match(content, /^---\n/m, `${skillName}/SKILL.md missing frontmatter opening`);
-    assert.match(content, /^name:\s*.+$/m, `${skillName}/SKILL.md missing 'name:' field`);
-    assert.match(content, /^category:\s*.+$/m, `${skillName}/SKILL.md missing 'category:' field`);
-    assert.match(content, /^description:\s*.+/ms, `${skillName}/SKILL.md missing 'description:' field`);
+    expect(content).toMatch(/^---\n/m);
+    expect(content).toMatch(/^name:\s*.+$/m);
+    expect(content).toMatch(/^category:\s*.+$/m);
+    expect(content).toMatch(/^description:\s*.+/ms);
   }
 });
 
@@ -55,10 +50,8 @@ test("every skill has a valid category (core | domain | meta)", () => {
 
   for (const skillName of skillDirs) {
     const category = getSkillCategory(skillName);
-    assert.ok(
-      category && VALID_CATEGORIES.has(category),
-      `${skillName}/SKILL.md has invalid category: "${category}". Must be core | domain | meta`,
-    );
+    expect(category).toBeDefined();
+    expect(VALID_CATEGORIES.has(category!)).toBe(true);
   }
 });
 
@@ -67,10 +60,6 @@ test("skills/INDEX.md references every skill directory that has a SKILL.md", () 
   const skillDirs = getSkillDirs();
 
   for (const skillName of skillDirs) {
-    assert.match(
-      indexContent,
-      new RegExp(`\`${skillName}\``),
-      `skills/INDEX.md does not reference skill: ${skillName}`,
-    );
+    expect(indexContent).toMatch(new RegExp(`\`${skillName}\``));
   }
 });
