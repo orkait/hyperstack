@@ -30,113 +30,42 @@ If you install only one public piece:
 - MCP only -> the user gets tools without discipline
 - skills only -> the user gets prose rules without tools
 
-## Step 1: Detect Environment
+## Step 1: Detect and Configure (Autopilot)
 
-Determine which CLI or IDE you are currently operating within. This dictates where the skills are cloned and which configuration file holds the MCP server definition.
+Hyperstack features an **Autonomous Research-Driven Installer** that identifies your environment (Claude Code, Cursor, Windsurf, Roo Code, etc.) and generates a tailored configuration patch.
+
+### 1. Identify your Environment
+The system automatically probes for signatures:
+- **Claude Code**: `CLAUDE_PLUGIN_ROOT`
+- **Cursor**: `CURSOR_PLUGIN_ROOT`
+- **VS Code Derivatives**: `VSCODE_PID`
+- **Known Paths**: Probes for `.claude.json`, `.cursor/`, `.codeium/windsurf/`, `.roo/`, and `.gemini/`.
+
+### 2. Run the Autopilot
+As an agent, you should call the `hyperstack_setup` tool immediately. It will return the detected path and the JSON configuration block required for that specific tool's schema.
+
+**If the environment is unknown:**
+1. Call `web_search` with a query like `[IDE Name] MCP configuration path`.
+2. Provide the result to `hyperstack_setup(researchResult: "...")`.
+3. The tool will generate the final patch.
 
 ## Step 2: Install the Skills
 
-If the directory already exists (upgrade scenario), pull the latest instead of cloning:
-
-| Environment | Fresh Install | Upgrade |
-|---|---|---|
-| **Claude Code** | `git clone https://github.com/orkait/hyperstack.git ~/.claude/skills/hyperstack` | `git -C ~/.claude/skills/hyperstack pull` |
-| **Cursor** | `git clone https://github.com/orkait/hyperstack.git ~/.cursor/skills/hyperstack` | `git -C ~/.cursor/skills/hyperstack pull` |
-| **Antigravity** | `git clone https://github.com/orkait/hyperstack.git ~/.gemini/extensions/hyperstack` | `git -C ~/.gemini/extensions/hyperstack pull` |
-| **Gemini CLI** | `git clone https://github.com/orkait/hyperstack.git ~/.gemini/extensions/hyperstack` | `git -C ~/.gemini/extensions/hyperstack pull` |
-| **Qwen Code** | `git clone https://github.com/orkait/hyperstack.git ~/.qwen/skills/hyperstack` | `git -C ~/.qwen/skills/hyperstack pull` |
-| **Copilot CLI** | Use plugin marketplace if available, otherwise clone into the user's configured skills path | Pull in the cloned directory |
-| **OpenCode / Codex** | Follow the platform's file-based skill installation path | Pull in the cloned directory |
-| **Other** | If your environment supports local file-based skills, clone the repo to the standard skills/extensions directory for your platform. | Pull in the cloned directory |
-
-**Qwen Code note:** Qwen Code does not have a skill plugin system or SessionStart hook. Skills are cloned to `~/.qwen/skills/hyperstack/` and available on disk for the agent to reference manually (via `read_file` or the agent's own knowledge of the repo structure). The 21 skills are not auto-loaded at session start.
-
-To handle both cases automatically, use the one-liner for your platform:
+Clone the repository to a stable location on your system.
 
 **macOS / Linux (Shell):**
 ```bash
-EXT_DIR="$HOME/.gemini/extensions/hyperstack" && \
+EXT_DIR="$HOME/.hyperstack" && \
   ([ -d "$EXT_DIR" ] && git -C "$EXT_DIR" pull || git clone https://github.com/orkait/hyperstack.git "$EXT_DIR")
 ```
 
 **Windows (PowerShell):**
 ```powershell
-$EXT_DIR = Join-Path $HOME ".gemini/extensions/hyperstack"
+$EXT_DIR = Join-Path $HOME ".hyperstack"
 if (Test-Path $EXT_DIR) { git -C $EXT_DIR pull } else { git clone https://github.com/orkait/hyperstack.git $EXT_DIR }
 ```
 
-Replace `~/.claude/skills` or the path variables with the correct path for the current environment (see table above).
-
-The repository includes a `hooks/session-start.mjs` entrypoint that injects the
-generated Hyperstack bootstrap into every session automatically. This is how the
-enforcement and internal harness model reach the agent without manual
-invocation. On platforms that support `.claude-plugin/hooks.json`, this happens
-automatically. On others, the skills are still readable but the hook will not
-fire.
-
 ## Step 3: Configure the MCP Server
-
-Check if Docker is installed and running on the user's system.
-
-### Option A: Docker (Preferred)
-
-Hyperstack uses a **persistent container + `docker exec`** pattern. One long-lived container serves every CLI invocation and every session, so container startup cost is paid once - not on every `claude` run.
-
-**Step 1 - Pull the image:**
-
-```bash
-docker pull ghcr.io/orkait/hyperstack:main
-```
-
-Pre-pulling is required. MCP servers have a short initialization timeout - if Docker pulls the image on first use it will time out and report as failed.
-
-**Step 2 - Start the persistent container (one-time setup):**
-
-Hyperstack enforces a **singleton container policy**. If a `hyperstack-mcp` container exists OR any container is running from the `hyperstack:main` image, it must be removed before starting a fresh one to ensure no stale state persists.
-
-Run the provided cross-platform singleton enforcement script (requires Bun):
-```bash
-bun scripts/ensure-singleton.ts
-```
-
-Or run the hard check manually:
-
-```bash
-# 1. Remove ANY container based on the hyperstack image
-# macOS/Linux:
-docker ps -aq --filter "ancestor=ghcr.io/orkait/hyperstack:main" | xargs -r docker rm -f
-
-# Windows (PowerShell):
-docker ps -aq --filter "ancestor=ghcr.io/orkait/hyperstack:main" | ForEach-Object { docker rm -f $_ }
-
-# 2. Run the fresh singleton container
-docker run -d --name hyperstack-mcp --restart unless-stopped \
-  --memory=512m --cpus=1 \
-  --entrypoint sleep \
-  ghcr.io/orkait/hyperstack:main infinity
-```
-
-The container stays alive in the background with `sleep infinity` as PID 1. Each MCP session `exec`s a fresh `bun` process inside this container. `--restart unless-stopped` auto-starts the container after Docker restarts. `512m/1 cpu` covers several concurrent sessions.
-
-**Why delete the old container?** An existing `hyperstack-mcp` container may be running a stale image version, have leftover state from a prior install, or use incorrect resource limits. `docker rm -f` ensures every install starts from a known-good baseline. The `2>/dev/null` suppresses the "no such container" error on first-time installs.
-
-Verify it's running:
-
-```bash
-docker ps --filter name=hyperstack-mcp
-```
-
-**Step 3 - Configure the MCP client:**
-
-Add the following configuration to the appropriate MCP config file for the current environment:
-
-| Environment | Config File |
-|---|---|
-| **Claude Code** | `~/.claude.json` |
-| **Antigravity** | `~/.config/Antigravity/User/mcp.json` |
-| **Gemini CLI** | `~/.gemini/config.json` |
-| **Qwen Code** | `~/.qwen/settings.json` (global) or `.qwen/settings.json` (project-level) |
-| **Cursor / Windsurf / Others** | IDE-specific MCP settings panel or `.mcp.json` in project root |
 
 ```json
 {
