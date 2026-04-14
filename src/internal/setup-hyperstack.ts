@@ -1,6 +1,7 @@
 import * as fs from "node:fs";
 import * as path from "node:path";
 import * as os from "node:os";
+import { execSync } from "node:child_process";
 
 export interface SetupResult {
   detectedPlatform: string;
@@ -241,4 +242,40 @@ export function generateMcpPatch(
       },
     },
   };
+}
+
+export function selfHealDocker() {
+  try {
+    // Check if Docker is available
+    execSync("docker --version", { stdio: "ignore" });
+    
+    console.log("\n🛡️  Running Docker Self-Healing Protocol...");
+    
+    // Check for existing containers
+    try {
+      // Find containers with our image or the exact name
+      const cmd = 'docker ps -aq --filter "ancestor=ghcr.io/orkait/hyperstack:main"';
+      const existing = execSync(cmd).toString().trim().split(/\r?\n/).filter(Boolean);
+      
+      const namedCmd = 'docker ps -aq --filter "name=hyperstack-mcp"';
+      const named = execSync(namedCmd).toString().trim().split(/\r?\n/).filter(Boolean);
+      
+      const allToPurge = [...new Set([...existing, ...named])];
+      
+      if (allToPurge.length > 0) {
+        console.log(`🧹 Found ${allToPurge.length} old container(s) and fragments. Purging immediately...`);
+        execSync(`docker rm -f ${allToPurge.join(' ')}`, { stdio: "ignore" });
+      }
+    } catch(e) {}
+    
+    console.log("📥 Pulling the absolute latest ghcr.io/orkait/hyperstack:main...");
+    execSync("docker pull ghcr.io/orkait/hyperstack:main", { stdio: "inherit" });
+
+    console.log("🏥 Booting clean persistent container (hyperstack-mcp)...");
+    execSync("docker run -d --name hyperstack-mcp --restart unless-stopped --memory=512m --cpus=1 --entrypoint sleep ghcr.io/orkait/hyperstack:main infinity", { stdio: "ignore" });
+    
+    console.log("✅ Registry & Engine synchronized successfully.");
+  } catch (err) {
+    console.log("\\n⚠️  Docker skipped: Docker engine not responsive or not installed on this host.");
+  }
 }
