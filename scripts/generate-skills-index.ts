@@ -3,17 +3,12 @@ import * as path from "path";
 import { fileURLToPath } from "url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const REPO_ROOT = path.resolve(__dirname, "..");
-const SKILLS_DIR = path.join(REPO_ROOT, "skills");
-const INDEX_FILE = path.join(SKILLS_DIR, "INDEX.md");
 
-interface SkillInfo {
-  name: string;
-  category: string;
-  description: string;
-}
+export function generateIndex() {
+  const REPO_ROOT = path.resolve(__dirname, "..");
+  const SKILLS_DIR = path.join(REPO_ROOT, "skills");
+  const INDEX_FILE = path.join(SKILLS_DIR, "INDEX.md");
 
-function generateIndex() {
   console.log("Generating skills index (cross-platform)...");
 
   const skills: SkillInfo[] = [];
@@ -94,4 +89,7 @@ These skills need a \`category:\` added to their frontmatter.
   console.log(`Wrote ${INDEX_FILE}`);
 }
 
-generateIndex();
+// Only run if called directly
+if (import.meta.url === `file://${process.argv[1]}`) {
+  generateIndex();
+}

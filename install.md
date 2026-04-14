@@ -51,14 +51,21 @@ If the directory already exists (upgrade scenario), pull the latest instead of c
 
 **Qwen Code note:** Qwen Code does not have a skill plugin system or SessionStart hook. Skills are cloned to `~/.qwen/skills/hyperstack/` and available on disk for the agent to reference manually (via `read_file` or the agent's own knowledge of the repo structure). The 21 skills are not auto-loaded at session start.
 
-To handle both cases automatically, use this one-liner (clone if missing, pull if present):
+To handle both cases automatically, use the one-liner for your platform:
 
+**macOS / Linux (Shell):**
 ```bash
 EXT_DIR="$HOME/.gemini/extensions/hyperstack" && \
   ([ -d "$EXT_DIR" ] && git -C "$EXT_DIR" pull || git clone https://github.com/orkait/hyperstack.git "$EXT_DIR")
 ```
 
-Replace `~/.claude/skills` with the correct path for the current environment (see table above). For example, on Qwen Code use `~/.qwen/skills/hyperstack`.
+**Windows (PowerShell):**
+```powershell
+$EXT_DIR = Join-Path $HOME ".gemini/extensions/hyperstack"
+if (Test-Path $EXT_DIR) { git -C $EXT_DIR pull } else { git clone https://github.com/orkait/hyperstack.git $EXT_DIR }
+```
+
+Replace `~/.claude/skills` or the path variables with the correct path for the current environment (see table above).
 
 The repository includes a `hooks/session-start.mjs` entrypoint that injects the
 generated Hyperstack bootstrap into every session automatically. This is how the
@@ -96,7 +103,11 @@ Or run the hard check manually:
 
 ```bash
 # 1. Remove ANY container based on the hyperstack image
+# macOS/Linux:
 docker ps -aq --filter "ancestor=ghcr.io/orkait/hyperstack:main" | xargs -r docker rm -f
+
+# Windows (PowerShell):
+docker ps -aq --filter "ancestor=ghcr.io/orkait/hyperstack:main" | ForEach-Object { docker rm -f $_ }
 
 # 2. Run the fresh singleton container
 docker run -d --name hyperstack-mcp --restart unless-stopped \
