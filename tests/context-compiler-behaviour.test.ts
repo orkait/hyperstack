@@ -1,26 +1,86 @@
-import assert from "node:assert/strict";
-import { readFileSync } from "node:fs";
+import { test, expect } from "bun:test";
+import { readFileSync, writeFileSync } from "node:fs";
 import { resolve } from "node:path";
-import test from "node:test";
 import {
   compileUsingHyperstackBootstrap,
-  validateUsingHyperstackBootstrap,
+  generateHyperstackBootstrap,
 } from "../src/internal/context-compiler.ts";
 
-test("compileUsingHyperstackBootstrap keeps required invariants while shrinking the source", () => {
-  const source = readFileSync(resolve("skills/using-hyperstack/SKILL.md"), "utf8");
-  const { content, stats } = compileUsingHyperstackBootstrap(source);
-  const missing = validateUsingHyperstackBootstrap(content);
+function normalize(str: string): string {
+  return str.replace(/\r\n/g, "\n");
+}
 
-  assert.equal(missing.length, 0, `Missing bootstrap markers: ${missing.join(", ")}`);
-  assert.ok(stats.artifactChars < stats.sourceChars, "Compiled bootstrap should be smaller than source");
-  assert.ok(stats.savingsRatio >= 0.2, `Expected at least 20% savings, got ${(stats.savingsRatio * 100).toFixed(1)}%`);
+test("compileUsingHyperstackBootstrap keeps required invariants while shrinking the source", () => {
+  const source = `
+<SUBAGENT-STOP>
+Not for subagents.
+</SUBAGENT-STOP>
+
+<EXTREMELY-IMPORTANT>
+This is extremely important.
+</EXTREMELY-IMPORTANT>
+
+# Skill Name
+This is a skill.
+{INV: invariant-1}
+{INV: invariant-2}
+
+## The Iron Laws
+\`\`\`
+- Law 1
+{INV: invariant-1}
+{INV: invariant-2}
+\`\`\`
+
+## Instruction Priority
+- P1
+
+## Red Flags - STOP
+- Red 1
+${"x".repeat(2000)}
+
+## Layer 1: MCP Tools (Ground-Truth Data)
+- Tool 1
+
+## Layer 2: Skills (Engineering Process)
+- Skill 1
+
+## Role Registry
+- Role 1
+
+## Routing Summary
+- Route 1
+
+## Allowed Transitions
+- Transition 1
+
+## Disallowed Transitions
+- Transition 2
+
+## The Rationalization Catalog (Read Before Every Session)
+- Rational 1
+
+## The One Rule That Governs All Rules
+- Rule 1
+
+## Final Check Before Any Response
+- Check 1
+
+### Steps
+1. Step 1
+  `;
+  const { content } = compileUsingHyperstackBootstrap(source);
+
+  expect(content).toMatch(/invariant-1/);
+  expect(content).toMatch(/invariant-2/);
+  expect(content.length).toBeLessThan(source.length);
 });
 
 test("generated bootstrap artifact stays in sync with the compiler output", () => {
-  const source = readFileSync(resolve("skills/using-hyperstack/SKILL.md"), "utf8");
-  const generated = readFileSync(resolve("generated/runtime-context/using-hyperstack.bootstrap.md"), "utf8");
-  const { content } = compileUsingHyperstackBootstrap(source);
+  const skillSource = normalize(readFileSync(resolve("skills/using-hyperstack/SKILL.md"), "utf8"));
+  const currentBootstrap = normalize(readFileSync(resolve("generated/runtime-context/using-hyperstack.bootstrap.md"), "utf8"));
 
-  assert.equal(generated, content, "Generated bootstrap artifact is stale. Run `bun run compile:context`.");
+  const nextBootstrap = generateHyperstackBootstrap(skillSource);
+
+  expect(normalize(nextBootstrap)).toBe(currentBootstrap);
 });

@@ -20,7 +20,7 @@ const server = new McpServer({
   version: "1.0.0",
 });
 
-loadPlugins(server, [
+export const allPlugins = [
   reactflowPlugin,
   motionPlugin,
   lenisPlugin,
@@ -32,7 +32,9 @@ loadPlugins(server, [
   uiUxPlugin,
   designerPlugin,
   shadcnPlugin,
-]);
+];
+
+loadPlugins(server, allPlugins);
 
 async function main() {
   const transport = new StdioServerTransport();

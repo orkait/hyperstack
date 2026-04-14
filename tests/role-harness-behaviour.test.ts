@@ -1,7 +1,6 @@
-import assert from "node:assert/strict";
+import { test, expect } from "bun:test";
 import { existsSync, readFileSync } from "node:fs";
 import { resolve } from "node:path";
-import test from "node:test";
 import {
   compileUsingHyperstackBootstrap,
   validateUsingHyperstackBootstrap,
@@ -32,9 +31,13 @@ const REQUIRED_PROFILE_KEYS = [
   "requires",
 ];
 
+function normalize(str: string): string {
+  return str.replace(/\r\n/g, "\n");
+}
+
 test("role harness files exist for hyper and website-builder", () => {
   for (const relativePath of REQUIRED_ROLE_FILES) {
-    assert.ok(existsSync(resolve(relativePath)), `Missing role harness file: ${relativePath}`);
+    expect(existsSync(resolve(relativePath))).toBe(true);
   }
 });
 
@@ -43,57 +46,59 @@ test("role profile frontmatter includes the required contract keys", () => {
     "agents/hyper/PROFILE.md",
     "agents/website-builder/PROFILE.md",
   ]) {
-    const content = readFileSync(resolve(relativePath), "utf8");
+    const content = normalize(readFileSync(resolve(relativePath), "utf8"));
     const frontmatter = content.match(/^---\n([\s\S]*?)\n---\n/);
-    assert.ok(frontmatter?.[1], `Missing frontmatter in ${relativePath}`);
+    expect(frontmatter?.[1]).toBeDefined();
 
-    for (const key of REQUIRED_PROFILE_KEYS) {
-      assert.match(frontmatter[1], new RegExp(`^${key}:`, "m"), `Missing frontmatter key "${key}" in ${relativePath}`);
+    if (frontmatter) {
+      for (const key of REQUIRED_PROFILE_KEYS) {
+        expect(frontmatter[1]).toMatch(new RegExp(`^${key}:`, "m"));
+      }
     }
   }
 });
 
 test("role lifecycle and checks documents expose required headings", () => {
-  const lifecycleContent = readFileSync(resolve("agents/hyper/LIFECYCLE.md"), "utf8");
-  assert.match(lifecycleContent, /^## Entry Criteria$/m);
-  assert.match(lifecycleContent, /^## Steps$/m);
-  assert.match(lifecycleContent, /^## Handoffs$/m);
-  assert.match(lifecycleContent, /^## Exit Criteria$/m);
-  assert.match(lifecycleContent, /^## Failure Escalation$/m);
+  const lifecycleContent = normalize(readFileSync(resolve("agents/hyper/LIFECYCLE.md"), "utf8"));
+  expect(lifecycleContent).toMatch(/^## Entry Criteria$/m);
+  expect(lifecycleContent).toMatch(/^## Steps$/m);
+  expect(lifecycleContent).toMatch(/^## Handoffs$/m);
+  expect(lifecycleContent).toMatch(/^## Exit Criteria$/m);
+  expect(lifecycleContent).toMatch(/^## Failure Escalation$/m);
 
-  const checksContent = readFileSync(resolve("agents/website-builder/CHECKS.md"), "utf8");
-  assert.match(checksContent, /^## Preconditions$/m);
-  assert.match(checksContent, /^## Required Evidence$/m);
-  assert.match(checksContent, /^## Done Criteria$/m);
-  assert.match(checksContent, /^## Red Flags$/m);
+  const checksContent = normalize(readFileSync(resolve("agents/website-builder/CHECKS.md"), "utf8"));
+  expect(checksContent).toMatch(/^## Preconditions$/m);
+  expect(checksContent).toMatch(/^## Required Evidence$/m);
+  expect(checksContent).toMatch(/^## Done Criteria$/m);
+  expect(checksContent).toMatch(/^## Red Flags$/m);
 });
 
 test("using-hyperstack bootstrap compiler preserves role-routing markers", () => {
-  const source = readFileSync(resolve("skills/using-hyperstack/SKILL.md"), "utf8");
+  const source = normalize(readFileSync(resolve("skills/using-hyperstack/SKILL.md"), "utf8"));
   const { content } = compileUsingHyperstackBootstrap(source);
   const missing = validateUsingHyperstackBootstrap(content);
 
-  assert.equal(missing.length, 0, `Missing bootstrap markers: ${missing.join(", ")}`);
-  assert.match(content, /hyper/);
-  assert.match(content, /website-builder/);
-  assert.match(content, /auto-called/);
-  assert.match(content, /hyper -> website-builder/);
+  expect(missing.length).toBe(0);
+  expect(content).toMatch(/hyper/);
+  expect(content).toMatch(/website-builder/);
+  expect(content).toMatch(/auto-called/);
+  expect(content).toMatch(/hyper -> website-builder/);
 });
 
 test("website-builder lifecycle requires workspace discovery before website decisions", () => {
-  const lifecycleContent = readFileSync(resolve("agents/website-builder/LIFECYCLE.md"), "utf8");
-  const contextContent = readFileSync(resolve("agents/website-builder/CONTEXT.md"), "utf8");
+  const lifecycleContent = normalize(readFileSync(resolve("agents/website-builder/LIFECYCLE.md"), "utf8"));
+  const contextContent = normalize(readFileSync(resolve("agents/website-builder/CONTEXT.md"), "utf8"));
 
-  assert.match(lifecycleContent, /workspace/i);
-  assert.match(lifecycleContent, /package\.json|manifests?|dependencies|packages/i);
-  assert.match(lifecycleContent, /frontend core files|core frontend files|routes|components|tokens|styles/i);
-  assert.match(contextContent, /package\.json|manifests?|dependencies|packages/i);
+  expect(lifecycleContent).toMatch(/workspace/i);
+  expect(lifecycleContent).toMatch(/package\.json|manifests?|dependencies|packages/i);
+  expect(lifecycleContent).toMatch(/frontend core files|core frontend files|routes|components|tokens|styles/i);
+  expect(contextContent).toMatch(/package\.json|manifests?|dependencies|packages/i);
 });
 
 test("designer skill gives user preferences precedence over auto-resolved defaults", () => {
-  const designerContent = readFileSync(resolve("skills/designer/SKILL.md"), "utf8");
+  const designerContent = normalize(readFileSync(resolve("skills/designer/SKILL.md"), "utf8"));
 
-  assert.match(designerContent, /user preferences?/i);
-  assert.match(designerContent, /preferences?.*override|override.*preferences?/i);
-  assert.match(designerContent, /auto-resolved defaults?|defaults?.*suggestions?/i);
+  expect(designerContent).toMatch(/user preferences?/i);
+  expect(designerContent).toMatch(/preferences?.*override|override.*preferences?/i);
+  expect(designerContent).toMatch(/auto-resolved defaults?|defaults?.*suggestions?/i);
 });
