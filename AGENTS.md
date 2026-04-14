@@ -54,7 +54,4 @@ rules:
 * if using codemode or exploring codebase, follow codemode fully. no shortcuts.
 * read files before semantic linking. no context = no real linking.
 
-## 5. tool-first execution
-
-always prefer tools over guess.
 
