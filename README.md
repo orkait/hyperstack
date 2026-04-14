@@ -34,17 +34,47 @@
 
 ## ⚡ What is this?
 
-Hyperstack is two things bolted together:
+Hyperstack is a coding-agent harness made of three tightly-coupled layers:
 
-1. **A TypeScript MCP server** with 11 plugins and 79 tools. Your AI calls these for ground-truth API signatures, component specs, design decisions, and architectural patterns. No hallucinated imports.
+1. **An internal harness** that bootstraps the agent, enforces global invariants, and routes internal roles like `main` and `website-builder`.
+2. **A TypeScript MCP server** with 11 plugins and 79 tools. Your AI calls these for ground-truth API signatures, component specs, design decisions, and architectural patterns. No hallucinated imports.
+3. **A skill system with enforcement teeth.** 21 skills with Iron Laws, rationalization tables, and a SessionStart hook that force-injects discipline on every session. Your AI cannot "just try one thing" without the gate firing.
 
-2. **A skill system with enforcement teeth.** 21 skills with Iron Laws, rationalization tables, and a SessionStart hook that force-injects discipline on every session. Your AI cannot "just try one thing" without the gate firing.
+The combination turns a generic coding assistant into a disciplined agent system that:
 
-The combination turns a generic coding assistant into a Senior Staff Engineer who checks docs before writing code, writes a DESIGN.md before any visual work, and refuses to claim completion without verification evidence.
+- checks docs before writing code
+- writes a DESIGN.md before visual work
+- routes website-heavy work to a specialist role
+- refuses to claim completion without verification evidence
 
 **You should use this if** you are tired of AI agents inventing API shapes, shipping AI-slop UIs, or claiming "tests pass" without running them.
 
 **Skip this if** you want a frictionless autocomplete. Hyperstack is the opposite of frictionless - it is intentional friction that catches bugs before they ship.
+
+## 🤖 Agent View
+
+If you are an agent reading this README, the shortest correct mental model is:
+
+- Hyperstack is not just an MCP server
+- Hyperstack is not just a skills pack
+- Hyperstack is a harness that combines internal role routing, MCP grounding, and workflow gates
+
+Current internal role model:
+
+- `main` - conductor, gatekeeper, verifier, delivery owner
+- `website-builder` - specialist for website-facing design and implementation work
+
+Public surface:
+
+- MCP plugins for deterministic knowledge
+- skills for process enforcement
+- SessionStart hook for bootstrap context injection
+
+Internal surface:
+
+- role contracts in `agents/`
+- orchestration contracts in `harness/`
+- generated runtime bootstrap artifacts in `generated/runtime-context/`
 
 ---
 
@@ -60,24 +90,40 @@ The agent will pull the Docker image and configure your MCP client.
 
 ### 🐳 Docker (manual)
 
-Add this to `~/.claude.json`, Cursor config, or equivalent:
+Hyperstack uses a persistent container plus `docker exec`. Do **not** use the
+older `docker run --rm` per-session pattern.
+
+1. Pull the image:
+
+```bash
+docker pull ghcr.io/orkait/hyperstack:main
+```
+
+2. Start the persistent container:
+
+```bash
+docker rm -f hyperstack-mcp 2>/dev/null
+docker run -d --name hyperstack-mcp --restart unless-stopped \
+  --memory=512m --cpus=1 \
+  --entrypoint sleep \
+  ghcr.io/orkait/hyperstack:main infinity
+```
+
+3. Add this to `~/.claude.json`, Cursor config, or equivalent:
 
 ```json
 {
   "mcpServers": {
     "hyperstack": {
       "command": "docker",
-      "args": [
-        "run", "-i", "--rm",
-        "--memory=256m", "--cpus=0.5",
-        "ghcr.io/orkait/hyperstack:main"
-      ]
+      "args": ["exec", "-i", "hyperstack-mcp", "bun", "/app/src/index.ts"]
     }
   }
 }
 ```
 
-The `--memory=256m` and `--cpus=0.5` flags enforce resource limits. Keep them.
+This keeps startup cheap across sessions and matches the installation flow in
+[install.md](/mnt/storage/codespace/code/orkait/hyperstack/install.md).
 
 ### 🔧 Install the skills
 
@@ -107,6 +153,9 @@ Node 18+ required.
 
 ## 🧠 The two-layer system
 
+The public product still has two user-facing layers, but they now sit inside an
+internal harness.
+
 ### Layer 1: MCP Plugins (deterministic knowledge)
 
 Your AI calls these for exact API data. Memory is not acceptable. Every plugin serves typed TypeScript data + `.txt` snippets bundled with the plugin.
@@ -132,6 +181,15 @@ Your AI calls these for exact API data. Memory is not acceptable. Every plugin s
 Markdown with adversarial enforcement. Each gate skill has an Iron Law, a 1% Rule, and a rationalization table that names the exact excuses your AI will use to skip the gate and counters each one.
 
 The `using-hyperstack` skill is injected into every session by `hooks/session-start.mjs`. You do not have to invoke it manually.
+
+### Internal Harness (role routing + bootstrap)
+
+The internal harness is what ties the public layers together:
+
+- bootstrap is injected at session start from generated runtime context
+- `main` owns classification, routing, gates, and verification
+- `website-builder` specializes in website-facing design and implementation work
+- roles are internal and auto-called, not user-invoked commands
 
 <details>
 <summary><strong>🧱 Core (13)</strong> - workflow, discipline, gates used on every task</summary>

@@ -8,6 +8,7 @@
   "type": "module",
   "scripts": {
     "build": "tsc --noEmit",
+    "compile:context": "bun src/internal/compile-runtime-context.ts",
     "test": "bun test",
     "start": "bun src/index.ts",
     "dev": "bun --watch src/index.ts"
