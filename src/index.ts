@@ -17,7 +17,7 @@ import { shadcnPlugin } from "./plugins/shadcn/index.js";
 
 const server = new McpServer({
   name: "hyperstack",
-  version: "1.0.0",
+  version: "1.0.5",
 });
 
 export const allPlugins = [
