@@ -58,16 +58,3 @@ rules:
 
 always prefer tools over guess.
 
-## 6. deployment & project context
-
-| key | value |
-|---|---|
-| pages project | `nitrogen-orkait` |
-| production url | `nitrogen-orkait.pages.dev` |
-| mcp server | user scope in `~/.claude.json` |
-| wrangler | auth via oauth, use `npx wrangler` |
-
-```bash
-# deployment command
-wrangler pages deploy <dist-dir> --project-name nitrogen-orkait --branch main
-```
