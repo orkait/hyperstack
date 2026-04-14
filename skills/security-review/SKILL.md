@@ -13,22 +13,22 @@ https://cheatsheetseries.owasp.org/
 
 # Security Review Skill
 
-Identify exploitable security vulnerabilities in code. Report only **HIGH CONFIDENCE** findings-clear vulnerable patterns with attacker-controlled input.
+Identify exploitable security vulnerabilities in code. Report only **HIGH CONFIDENCE** findings - clear vulnerable patterns with attacker-controlled input.
 
 ## Scope: Research vs. Reporting
 
 **CRITICAL DISTINCTION:**
 
-- **Report on**: Only the specific file, diff, or code provided by the user
-- **Research**: The ENTIRE codebase to build confidence before reporting
+- **Report on:** Only the specific file, diff, or code provided by the user
+- **Research:** The ENTIRE codebase to build confidence before reporting
 
-Before flagging any issue, you MUST research the codebase to understand:
+Before flagging any issue, research the codebase to understand:
 - Where does this input actually come from? (Trace data flow)
 - Is there validation/sanitization elsewhere?
 - How is this configured? (Check settings, config files, middleware)
 - What framework protections exist?
 
-**Do NOT report issues based solely on pattern matching.** Investigate first, then report only what you're confident is exploitable.
+**Do NOT report based solely on pattern matching.** Investigate first, then report only what you're confident is exploitable.
 
 ## Confidence Levels
 
@@ -40,15 +40,12 @@ Before flagging any issue, you MUST research the codebase to understand:
 
 ## Do Not Flag
 
-### General Rules
 - Test files (unless explicitly reviewing test security)
 - Dead code, commented code, documentation strings
 - Patterns using **constants** or **server-controlled configuration**
-- Code paths that require prior authentication to reach (note the auth requirement instead)
+- Code paths requiring prior authentication (note the auth requirement instead)
 
 ### Server-Controlled Values (NOT Attacker-Controlled)
-
-These are configured by operators, not controlled by attackers:
 
 | Source | Example | Why It's Safe |
 |--------|---------|---------------|
@@ -58,20 +55,17 @@ These are configured by operators, not controlled by attackers:
 | Framework constants | `django.conf.settings.*` | Not user-modifiable |
 | Hardcoded values | `BASE_URL = "https://api.internal"` | Compile-time constants |
 
-**SSRF Example - NOT a vulnerability:**
+**SSRF - NOT a vulnerability:**
 ```python
-# SAFE: URL comes from Django settings (server-controlled)
-response = requests.get(f"{settings.SEER_AUTOFIX_URL}{path}")
+response = requests.get(f"{settings.SEER_AUTOFIX_URL}{path}")  # SAFE: server-controlled
 ```
 
-**SSRF Example - IS a vulnerability:**
+**SSRF - IS a vulnerability:**
 ```python
-# VULNERABLE: URL comes from request (attacker-controlled)
-response = requests.get(request.GET.get('url'))
+response = requests.get(request.GET.get('url'))  # VULNERABLE: attacker-controlled
 ```
 
 ### Framework-Mitigated Patterns
-Check language guides before flagging. Common false positives:
 
 | Pattern | Why It's Usually Safe |
 |---------|----------------------|
@@ -92,8 +86,6 @@ Check language guides before flagging. Common false positives:
 
 ### 1. Detect Context
 
-What type of code am I reviewing?
-
 | Code Type | Load These References |
 |-----------|----------------------|
 | API endpoints, routes | `authorization.md`, `authentication.md`, `injection.md` |
@@ -110,8 +102,6 @@ What type of code am I reviewing?
 | Audit, logging | `logging.md` |
 
 ### 2. Load Language Guide
-
-Based on file extension or imports:
 
 | Indicators | Guide |
 |------------|-------|
@@ -133,8 +123,7 @@ Based on file extension or imports:
 
 ### 4. Research Before Flagging
 
-**For each potential issue, research the codebase to build confidence:**
-
+For each potential issue:
 - Where does this value actually come from? Trace the data flow.
 - Is it configured at deployment (settings, env vars) or from user input?
 - Is there validation, sanitization, or allowlisting elsewhere?
@@ -143,8 +132,6 @@ Based on file extension or imports:
 Only report issues where you have HIGH confidence after understanding the broader context.
 
 ### 5. Verify Exploitability
-
-For each potential finding, confirm:
 
 **Is the input attacker-controlled?**
 
@@ -159,19 +146,13 @@ For each potential finding, confirm:
 | Database content from other users | Framework settings |
 | WebSocket messages | |
 
-**Does the framework mitigate this?**
-- Check language guide for auto-escaping, parameterization
-- Check for middleware/decorators that sanitize
+**Does the framework mitigate this?** Check language guide for auto-escaping, parameterization.
 
-**Is there validation upstream?**
-- Input validation before this code
-- Sanitization libraries (DOMPurify, bleach, etc.)
+**Is there validation upstream?** Input validation before this code, sanitization libraries.
 
 ### 6. Report HIGH Confidence Only
 
 Skip theoretical issues. Report only what you've confirmed is exploitable after research.
-
----
 
 ## Severity Classification
 
@@ -182,8 +163,6 @@ Skip theoretical issues. Report only what you've confirmed is exploitable after 
 | **Medium** | Specific conditions required, moderate impact | Reflected XSS, CSRF on state-changing actions, path traversal |
 | **Low** | Defense-in-depth, minimal direct impact | Missing headers, verbose errors, weak algorithms in non-critical context |
 
----
-
 ## Quick Patterns Reference
 
 ### Always Flag (Critical)
@@ -192,8 +171,6 @@ eval(user_input)           # Any language
 exec(user_input)           # Any language
 pickle.loads(user_data)    # Python
 yaml.load(user_data)       # Python (not safe_load)
-unserialize($user_data)    # PHP
-deserialize(user_data)     # Java ObjectInputStream
 shell=True + user_input    # Python subprocess
 child_process.exec(user)   # Node.js
 ```
@@ -204,7 +181,6 @@ innerHTML = userInput              # DOM XSS
 dangerouslySetInnerHTML={user}     # React XSS
 v-html="userInput"                 # Vue XSS
 f"SELECT * FROM x WHERE {user}"    # SQL injection
-`SELECT * FROM x WHERE ${user}`    # SQL injection
 os.system(f"cmd {user_input}")     # Command injection
 ```
 
@@ -216,30 +192,21 @@ AWS_SECRET_ACCESS_KEY = "..."
 private_key = "-----BEGIN"
 ```
 
-### Check Context First (MUST Investigate Before Flagging)
+### Check Context First (Investigate Before Flagging)
 ```
 # SSRF - ONLY if URL is from user input, NOT from settings/config
 requests.get(request.GET['url'])     # FLAG: User-controlled URL
 requests.get(settings.API_URL)       # SAFE: Server-controlled config
-requests.get(f"{settings.BASE}/{x}") # CHECK: Is 'x' user input?
 
 # Path traversal - ONLY if path is from user input
 open(request.GET['file'])            # FLAG: User-controlled path
 open(settings.LOG_PATH)              # SAFE: Server-controlled config
-open(f"{BASE_DIR}/{filename}")       # CHECK: Is 'filename' user input?
-
-# Open redirect - ONLY if URL is from user input
-redirect(request.GET['next'])        # FLAG: User-controlled redirect
-redirect(settings.LOGIN_URL)         # SAFE: Server-controlled config
 
 # Weak crypto - ONLY if used for security purposes
 hashlib.md5(file_content)            # SAFE: File checksums, caching
 hashlib.md5(password)                # FLAG: Password hashing
-random.random()                      # SAFE: Non-security uses (UI, sampling)
 random.random() for token            # FLAG: Security tokens need secrets module
 ```
-
----
 
 ## Output Format
 
@@ -271,9 +238,7 @@ random.random() for token            # FLAG: Security tokens need secrets module
 - **Question**: [What needs to be verified]
 ```
 
-If no vulnerabilities found, state: "No high-confidence vulnerabilities identified."
-
----
+If no vulnerabilities found: "No high-confidence vulnerabilities identified."
 
 ## Reference Files
 
@@ -311,3 +276,31 @@ If no vulnerabilities found, state: "No high-confidence vulnerabilities identifi
 - `terraform.md` - IaC security
 - `ci-cd.md` - Pipeline security
 - `cloud.md` - AWS/GCP/Azure security
+
+
+## Lifecycle Integration
+
+### Agent Workflow Chains
+
+**Security audit (standalone or pre-merge):**
+```
+user request → security-review (THIS) → [research codebase] → [report HIGH confidence findings]
+```
+
+**Pre-delivery security gate:**
+```
+[execution complete] → security-review → [fix critical issues] → ship-gate → deliver
+```
+
+### Upstream Dependencies
+- User request for security review
+- Code to audit (file, diff, or codebase)
+
+### Downstream Consumers
+- `ship-gate` → after critical security issues fixed
+
+### Critical Rule
+**Report on:** Only the specific file/diff provided
+**Research:** ENTIRE codebase to build confidence before reporting
+
+Never report based solely on pattern matching. Investigate first, then report only HIGH confidence findings.
