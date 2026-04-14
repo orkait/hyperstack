@@ -8,7 +8,7 @@ description: Use when facing 2+ independent tasks that can be investigated or ex
 
 ## When to Use
 
-When you have multiple independent problems -- different test files, different subsystems, different bugs -- investigating them sequentially wastes time. Each investigation is independent and can happen concurrently.
+Multiple independent problems → investigating sequentially wastes time. Each investigation is independent and can happen concurrently.
 
 **Use when:**
 - 2+ failures with different root causes
@@ -31,7 +31,7 @@ Group failures by what's broken:
 - File B: Data pipeline
 - File C: UI rendering
 
-If fixing A might fix B, they are NOT independent. Investigate together.
+Fixing A might fix B → NOT independent. Investigate together.
 
 ### 2. Craft Focused Prompts
 
@@ -54,7 +54,7 @@ When agents return:
 1. Read each summary
 2. Check for conflicts (did any agent touch files outside its scope?)
 3. Run full test suite
-4. If conflicts exist, resolve manually before committing
+4. Conflicts exist → resolve manually before committing
 
 ## Prompt Template
 
@@ -89,12 +89,12 @@ Return: Summary of root cause and changes made.
 | Related failures split across agents | Investigate together first |
 | Same files given to multiple agents | Guaranteed merge conflicts |
 
-## Red Flags -- STOP
+## Red Flags - STOP
 
 | Thought | Reality |
 |---|---|
-| "Dispatch 5 agents for speed" | More agents does not mean faster if they conflict. |
-| "I'll let agents figure out the scope" | Vague scope produces vague results. |
+| "Dispatch 5 agents for speed" | More agents ≠ faster if they conflict |
+| "I'll let agents figure out the scope" | Vague scope → vague results |
 | "These might be related but I'll parallelize anyway" | Related bugs in parallel = wasted work. Investigate first. |
 | "Skip the integration check" | Agents don't know about each other. You must verify. |
 
@@ -103,3 +103,29 @@ Return: Summary of root cause and changes made.
 - **Pairs with:** `hyperstack:debug-discipline` (each agent follows debugging discipline)
 - **Pairs with:** `hyperstack:ship-gate` (verify integrated result before completion)
 - **Used by:** `hyperstack:subagent-ops` (for independent review dispatches)
+
+
+## Lifecycle Integration
+
+### Agent Workflow Chains
+
+**Used when multiple independent failures:**
+```
+[autonomous-mode | subagent-ops | engineering-discipline] → parallel-dispatch (THIS)
+                                                                    ↓
+                                                    [concurrent agent investigations]
+                                                                    ↓
+                                                    [integrate results → ship-gate]
+```
+
+### Upstream Dependencies
+- Any execution mode encountering 2+ independent failures
+
+### Skills Used With
+- `debug-discipline` → each dispatched agent follows debugging discipline
+- `ship-gate` → verify integrated result before completion
+
+### When NOT to Use
+- Failures are related (fixing one might fix others)
+- Agents would edit same files
+- Need to understand full system state first

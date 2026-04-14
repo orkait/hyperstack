@@ -8,9 +8,9 @@ description: Use when starting feature work that needs isolation from the curren
 
 ## Why Worktrees
 
-Git worktrees create isolated workspaces sharing the same repository. You can work on a feature branch without touching your main working directory. Dirty state in one worktree cannot affect another.
+Git worktrees create isolated workspaces sharing the same repository. Work on a feature branch without touching your main working directory. Dirty state in one worktree cannot affect another.
 
-Use this before any non-trivial implementation to guarantee a clean starting point.
+Use before any non-trivial implementation to guarantee a clean starting point.
 
 ## Directory Selection
 
@@ -22,7 +22,7 @@ Follow this priority:
 ls -d .worktrees 2>/dev/null || ls -d worktrees 2>/dev/null
 ```
 
-If found, use it. If both exist, `.worktrees` wins.
+Found → use it. Both exist → `.worktrees` wins.
 
 ### 2. Check CLAUDE.md / Project Config
 
@@ -30,11 +30,11 @@ If found, use it. If both exist, `.worktrees` wins.
 grep -i "worktree.*director" CLAUDE.md 2>/dev/null
 ```
 
-If a preference is specified, use it without asking.
+Preference specified → use it without asking.
 
 ### 3. Ask the User
 
-If nothing exists and no preference is configured:
+Nothing exists and no preference configured:
 
 > "No worktree directory found. Where should I create worktrees?
 >
@@ -47,17 +47,17 @@ If nothing exists and no preference is configured:
 
 **For project-local directories (.worktrees or worktrees):**
 
-Before creating a worktree, verify the directory is gitignored:
+Verify the directory is gitignored before creating a worktree:
 
 ```bash
 git check-ignore -q .worktrees 2>/dev/null
 ```
 
-If NOT ignored: add to `.gitignore` and commit before proceeding.
+NOT ignored → add to `.gitignore` and commit before proceeding.
 
 **Why:** Prevents accidentally committing worktree contents to the repository.
 
-**For global directories:** No gitignore check needed -- outside the project.
+**For global directories:** No gitignore check needed - outside the project.
 
 ## Creation Steps
 
@@ -83,7 +83,7 @@ cd <path>/<branch-name>
 echo "Worktree ready at <path>. Tests: <N> passing, 0 failures."
 ```
 
-**If baseline tests fail:** Report failures to the user. Ask whether to proceed or investigate. Do not silently continue.
+**Baseline tests fail:** Report failures to user. Ask whether to proceed or investigate. Don't silently continue.
 
 ## Quick Reference
 
@@ -109,16 +109,39 @@ git worktree remove <path>
 # Leave worktree in place, report its location
 ```
 
-## Red Flags -- STOP
+## Red Flags - STOP
 
 | Thought | Reality |
 |---|---|
-| "I'll just work on the main branch" | Dirty state causes mysterious failures. Isolate. |
+| "I'll just work on the main branch" | Dirty state → mysterious failures. Isolate. |
 | "Worktree setup is overhead" | 30 seconds of setup prevents hours of state debugging. |
-| "I'll skip baseline tests" | You won't know if failures are yours or pre-existing. |
+| "I'll skip baseline tests" | Won't know if failures are yours or pre-existing. |
 | "The directory doesn't need to be ignored" | One `git add .` and the worktree is in your repo. |
 
 ## Integration
 
 - **Called by:** `hyperstack:forge-plan` (before execution), `hyperstack:subagent-ops` (before dispatching tasks)
 - **Pairs with:** `hyperstack:deliver` (cleanup after completion)
+
+
+## Lifecycle Integration
+
+### Agent Workflow Chains
+
+**Pre-flight for all execution modes:**
+```
+forge-plan → worktree-isolation (THIS) → [autonomous-mode | subagent-ops | engineering-discipline]
+```
+
+**Cleanup after delivery:**
+```
+deliver → worktree-isolation cleanup
+```
+
+### Upstream Dependencies
+- `forge-plan` → before execution begins
+- `subagent-ops` → before dispatching tasks
+
+### Downstream Consumers
+- All execution modes benefit from clean workspace
+- `deliver` → cleanup after completion
