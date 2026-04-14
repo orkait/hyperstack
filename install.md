@@ -2,14 +2,33 @@
 
 If you are an AI assistant reading this file, please perform the following steps to install Hyperstack on the user's system. You must adapt these steps based on the environment/CLI you are currently running in (e.g., Claude Code, Cursor, Gemini CLI, Copilot CLI, OpenCode, Codex, Windsurf, etc.).
 
+## Read This First
+
+If you only remember four things, remember these:
+
+1. Hyperstack is a harness, not just an MCP server.
+2. Both the MCP server and the skills must be installed.
+3. The preferred Docker setup is a persistent `hyperstack-mcp` container plus
+   `docker exec`, not `docker run --rm` per session.
+4. Installation is not complete until the MCP server responds and the skills are
+   visible on disk.
+
 ## What Hyperstack Gives the User
 
-Two things, installed together:
+Three tightly-coupled pieces, installed together:
 
-1. **An MCP server** with 11 plugins and 79 tools - deterministic knowledge for React Flow v12, Motion v12, Lenis, React 19 / Next.js, Echo, Go, Rust, design tokens, UI/UX principles, shadcn/ui (Base UI edition), and the `designer` DESIGN.md pipeline.
-2. **A skill system** with 21 skills including adversarial enforcement gates (`blueprint`, `designer`, `forge-plan`, `ship-gate`, `engineering-discipline`) and a SessionStart hook that force-injects the `using-hyperstack` skill at every session start.
+1. **An internal harness** - bootstrap, internal role routing, and workflow control. Current internal roles include `main` and `website-builder`.
+2. **An MCP server** with 11 plugins and 79 tools - deterministic knowledge for React Flow v12, Motion v12, Lenis, React 19 / Next.js, Echo, Go, Rust, design tokens, UI/UX principles, shadcn/ui (Base UI edition), and the `designer` DESIGN.md pipeline.
+3. **A skill system** with 21 skills including adversarial enforcement gates (`blueprint`, `designer`, `forge-plan`, `ship-gate`, `engineering-discipline`) and a SessionStart hook that force-injects the `using-hyperstack` skill at every session start.
 
-Both must be installed for the system to work correctly. The MCP server alone gives the user tools; the skills alone give the user prose rules with no tools to call.
+The install steps below wire the public pieces the user actually needs: the MCP
+server and the skills. The internal harness is shipped inside the repository and
+becomes active through the bootstrap hook and runtime context artifacts.
+
+If you install only one public piece:
+
+- MCP only -> the user gets tools without discipline
+- skills only -> the user gets prose rules without tools
 
 ## Step 1: Detect Environment
 
@@ -40,7 +59,12 @@ SKILLS_DIR="$HOME/.claude/skills/hyperstack" && \
 
 Replace `~/.claude/skills` with the correct path for the current environment (see table above). For example, on Qwen Code use `~/.qwen/skills/hyperstack`.
 
-The repository includes a `hooks/session-start.mjs` entrypoint that injects the `using-hyperstack` skill content into every session automatically. This is how the enforcement (Iron Laws, 1% Rule, rationalization tables) reaches the agent without manual invocation. On platforms that support `.claude-plugin/hooks.json`, this happens automatically. On others, the skill is still readable but the hook will not fire.
+The repository includes a `hooks/session-start.mjs` entrypoint that injects the
+generated Hyperstack bootstrap into every session automatically. This is how the
+enforcement and internal harness model reach the agent without manual
+invocation. On platforms that support `.claude-plugin/hooks.json`, this happens
+automatically. On others, the skills are still readable but the hook will not
+fire.
 
 ## Step 3: Configure the MCP Server
 
@@ -223,7 +247,7 @@ If any of these three checks fail, do not proceed. Fix the issue first:
 
 ---
 
-**Verification A: SessionStart hook fires (platforms with hooks only).** On Claude Code and platforms with hook support, the agent should receive the `using-hyperstack` skill content at session start. Ask: *"What Hyperstack skills are available?"* The agent should list skills from `skills/INDEX.md` (21 total, grouped into core / domain / meta). On platforms without hook support (e.g., Qwen Code), this step does not apply — skills are on disk but not auto-injected.
+**Verification A: SessionStart hook fires (platforms with hooks only).** On Claude Code and platforms with hook support, the agent should receive the Hyperstack bootstrap at session start. Ask: *"What Hyperstack skills are available?"* The agent should list skills from `skills/INDEX.md` (21 total, grouped into core / domain / meta). On platforms without hook support (e.g., Qwen Code), this step does not apply - skills are on disk but not auto-injected.
 
 **Verification B: Designer workflow triggers.** Ask: *"Help me design a SaaS dashboard for DevOps engineers."* On platforms with the SessionStart hook, the agent should invoke `hyperstack:designer` BEFORE writing any code. If it jumps straight to JSX, the hook did not fire — restart the client and try again. On platforms without hook support, this step is manual (the agent won't auto-invoke designer).
 
