@@ -85,15 +85,20 @@ Pre-pulling is required. MCP servers have a short initialization timeout - if Do
 
 **Step 2 - Start the persistent container (one-time setup):**
 
-If a `hyperstack-mcp` container already exists from a previous install, delete it first to ensure a clean state with the latest image:
+Hyperstack enforces a **singleton container policy**. If a `hyperstack-mcp` container exists OR any container is running from the `hyperstack:main` image, it must be removed before starting a fresh one to ensure no stale state persists.
 
+Run the provided singleton enforcement script:
 ```bash
-docker rm -f hyperstack-mcp 2>/dev/null  # safe: no-op if container doesn't exist
+bash scripts/ensure-singleton.sh
 ```
 
-Then create the fresh container:
+Or run the hard check manually:
 
 ```bash
+# 1. Remove ANY container based on the hyperstack image
+docker ps -aq --filter "ancestor=ghcr.io/orkait/hyperstack:main" | xargs -r docker rm -f
+
+# 2. Run the fresh singleton container
 docker run -d --name hyperstack-mcp --restart unless-stopped \
   --memory=512m --cpus=1 \
   --entrypoint sleep \
