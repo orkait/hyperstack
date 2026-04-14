@@ -18,7 +18,7 @@ import { hyperstackPlugin } from "./plugins/hyperstack/index.js";
 
 const server = new McpServer({
   name: "hyperstack",
-  version: "1.0.5",
+  version: "1.1.0",
 });
 
 export const allPlugins = [
