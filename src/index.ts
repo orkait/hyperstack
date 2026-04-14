@@ -14,6 +14,7 @@ import { designTokensPlugin } from "./plugins/design-tokens/index.js";
 import { uiUxPlugin } from "./plugins/ui-ux/index.js";
 import { designerPlugin } from "./plugins/designer/index.js";
 import { shadcnPlugin } from "./plugins/shadcn/index.js";
+import { hyperstackPlugin } from "./plugins/hyperstack/index.js";
 
 const server = new McpServer({
   name: "hyperstack",
@@ -32,6 +33,7 @@ export const allPlugins = [
   uiUxPlugin,
   designerPlugin,
   shadcnPlugin,
+  hyperstackPlugin,
 ];
 
 loadPlugins(server, allPlugins);
