@@ -8,14 +8,14 @@
   "type": "module",
   "scripts": {
     "build": "tsc --noEmit",
-    "compile:context": "bun src/internal/compile-runtime-context.ts",
+    "compile:context": "tsx src/internal/compile-runtime-context.ts",
     "test": "bun test",
     "start": "bun src/index.ts",
     "dev": "bun --watch src/index.ts",
     "docker:run": "bun scripts/ensure-singleton.ts",
-    "skills:index": "bun scripts/generate-skills-index.ts",
+    "skills:index": "tsx scripts/generate-skills-index.ts",
     "mcp:start": "bun scripts/start-mcp.ts",
-    "setup": "bun scripts/setup.ts"
+    "setup": "tsx scripts/setup.ts"
   },
   "author": "Orkait",
   "license": "MIT",
