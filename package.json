@@ -11,7 +11,8 @@
     "compile:context": "bun src/internal/compile-runtime-context.ts",
     "test": "bun test",
     "start": "bun src/index.ts",
-    "dev": "bun --watch src/index.ts"
+    "dev": "bun --watch src/index.ts",
+    "docker:run": "bash scripts/ensure-singleton.sh"
   },
   "author": "Orkait",
   "license": "MIT",
