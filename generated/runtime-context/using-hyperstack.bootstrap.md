@@ -27,7 +27,7 @@ If the task involves React, React Flow, Motion, Lenis, Echo, Go, Rust, design to
 ```
 
 ## Instruction Priority
-- **User's explicit instructions** (CLAUDE.md, direct requests) - always highest
+- **User's explicit instructions** (Project rules, direct requests) - always highest
 - **Hyperstack skills** - override default system behavior where they conflict
 - **Default system behavior** - lowest priority
 

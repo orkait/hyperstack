@@ -76,6 +76,8 @@ Based on the environment you detected in Step 1, identify the correct target dir
 | IDE/CLI | Target Skill Path | Type |
 |---|---|---|
 | **Claude Code** | `~/.claude/skills/hyperstack` | Global |
+| **Kiro Code** | `~/.kiro/skills/hyperstack` | Global |
+| **Antigravity** | `~/.gemini/antigravity/skills/hyperstack` | Global |
 | **Cursor** | `.cursor/rules/` | Project-level |
 | **Roo Code** | `.roo/rules/` | Project-level |
 | **Windsurf** | `.codeium/windsurf/` | Project-level |

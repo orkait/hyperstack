@@ -38,6 +38,12 @@ const KNOWN_PLATFORMS: Record<string, {
     format: "json-mcpServers",
     notes: "Run '/mcp' inside Gemini CLI to verify connection",
   },
+  // Antigravity (Google DeepMind) - local user config
+  "antigravity": {
+    configFiles: [".gemini/antigravity/mcp_config.json"],
+    skillPath: ".gemini/antigravity/skills",
+    format: "json-mcpServers",
+  },
   // Qwen Code (Alibaba) - global user config
   // Source: github.io/qwen-code official docs (April 2025)
   "qwen-code": {
@@ -131,6 +137,7 @@ const KNOWN_PLATFORMS: Record<string, {
 
 export function detectEnvironment(): string {
   // Env-var hints (fast path, but unreliable in nested terminals)
+  if (process.env.ANTIGRAVITY_AGENT) return "antigravity";
   if (process.env.CLAUDE_PLUGIN_ROOT) return "claude-code";
   if (process.env.CURSOR_PLUGIN_ROOT) return "cursor";
   // VSCODE_PID fires inside any VS Code-hosted terminal (Gemini, Roo Code, etc.)

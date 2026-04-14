@@ -197,7 +197,7 @@ When GREEN verification produces new rationalizations, iterate:
 
 - "Different wording, so the rule doesn't apply" - add spirit-vs-letter clause
 - "Just this once" - add "no exceptions" to Iron Law
-- "The user said it's OK to skip" - clarify user hierarchy (user overrides only via CLAUDE.md)
+- "The user said it's OK to skip" - clarify user hierarchy
 - "Subagent mode, so gate doesn't apply" - add subagent scope clarification
 - "Partial compliance is still compliance" - define full compliance explicitly
 

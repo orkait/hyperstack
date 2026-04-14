@@ -15,7 +15,7 @@ Write README files that are specific, verifiable, and useful to the next develop
 
 Main failure mode of LLM-written READMEs: false confidence - invented setup steps, inflated feature claims, vague value propositions, examples not grounded in the repository.
 
-**Style layer (from CLAUDE.md rules):**
+**Style layer:**
 - Emoji on every section heading
 - Centered hero block with project name, tagline, and badges in `<div align="center">`
 - Library-specific badges with colors and logos (not generic)

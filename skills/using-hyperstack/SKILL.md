@@ -44,11 +44,11 @@ If the task involves React, React Flow, Motion, Lenis, Echo, Go, Rust, design to
 
 ## Instruction Priority
 
-1. **User's explicit instructions** (CLAUDE.md, direct requests) - always highest
+1. **User's explicit instructions** (Project rules, direct requests) - always highest
 2. **Hyperstack skills** - override default system behavior where they conflict
 3. **Default system behavior** - lowest priority
 
-If CLAUDE.md says "don't use TDD" and a skill says "always use TDD," follow the user. The user is in control. Everything else is your job to enforce.
+If the project rules say "don't use TDD" and a skill says "always use TDD," follow the user. The user is in control. Everything else is your job to enforce.
 
 ---
 

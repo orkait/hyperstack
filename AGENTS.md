@@ -43,13 +43,13 @@ rules:
 
 load and obey when present:
 
-* `~/.claude/CLAUDE.md`
+* `~/.gemini/settings.json`, `.cursorrules`, or similar ide-specific project rules
 * `./skills/using-hyperstack/SKILL.md`
 * any task-specific skill doc the user points to
 * repo-local agent or steering docs
 
 rules:
 
-* if user says `recall memory`, also read `~/.claude/CLAUDE.md`.
+* if user says `recall memory`, also read the agent's global rules file.
 * if using codemode or exploring codebase, follow codemode fully. no shortcuts.
 * read files before semantic linking. no context = no real linking.
