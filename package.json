@@ -12,7 +12,9 @@
     "test": "bun test",
     "start": "bun src/index.ts",
     "dev": "bun --watch src/index.ts",
-    "docker:run": "bun scripts/ensure-singleton.ts"
+    "docker:run": "bun scripts/ensure-singleton.ts",
+    "skills:index": "bun scripts/generate-skills-index.ts",
+    "mcp:start": "bun scripts/start-mcp.ts"
   },
   "author": "Orkait",
   "license": "MIT",
