@@ -9,9 +9,15 @@ async function verify() {
   console.log(`Config Path Found: ${configPath || "None (expected if running in clean environment)"}`);
   
   if (configPath || platform !== "unknown") {
-    const patch = setup.generateMcpPatch(configPath || "/tmp/mcp.json", process.cwd());
-    console.log("Proposed Patch:");
-    console.log(JSON.stringify(patch, null, 2));
+    const finalPath = configPath || "/tmp/mcp.json";
+    
+    console.log("\nProposed Patch (Method: DOCKER - Default):");
+    const dockerPatch = setup.generateMcpPatch(finalPath, process.cwd(), "docker");
+    console.log(JSON.stringify(dockerPatch, null, 2));
+
+    console.log("\nProposed Patch (Method: LOCAL):");
+    const localPatch = setup.generateMcpPatch(finalPath, process.cwd(), "local");
+    console.log(JSON.stringify(localPatch, null, 2));
   } else {
     console.log("Environment unknown - research fallback would trigger here.");
   }

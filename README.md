@@ -80,18 +80,9 @@ Internal surface:
 
 ## 🚀 Quickstart
 
-### 🤖 Agent-first install
+### 🐳 Docker (Default)
 
-If you are using Claude Code, Cursor, Gemini CLI, Copilot CLI, OpenCode, or Codex, paste this at your agent:
-
-> Fetch and follow the instructions at https://raw.githubusercontent.com/orkait/hyperstack/main/install.md
-
-The agent will pull the Docker image and configure your MCP client.
-
-### 🐳 Docker (manual)
-
-Hyperstack uses a persistent container plus `docker exec`. Do **not** use the
-older `docker run --rm` per-session pattern.
+Hyperstack uses a persistent container plus `docker exec`. This keeps startup cheap across sessions and ensures 100% environment stability.
 
 1. Pull the image:
 
@@ -109,7 +100,7 @@ docker run -d --name hyperstack-mcp --restart unless-stopped \
   ghcr.io/orkait/hyperstack:main infinity
 ```
 
-3. Add this to `~/.claude.json`, Cursor config, or equivalent:
+3. Add this to your MCP settings (`~/.claude.json`, Cursor, Windsurf, etc.):
 
 ```json
 {
@@ -122,8 +113,14 @@ docker run -d --name hyperstack-mcp --restart unless-stopped \
 }
 ```
 
-This keeps startup cheap across sessions and matches the installation flow in
-[install.md](/mnt/storage/codespace/code/orkait/hyperstack/install.md).
+### 🤖 Agent Autopilot
+
+If you are using Claude Code, Cursor, Windsurf, Roo Code, or Gemini, you can use the autopilot to self-configure. Paste this at your agent:
+
+> Fetch and follow the instructions at https://raw.githubusercontent.com/orkait/hyperstack/main/install.md
+
+The autopilot will detect your environment and propose the correct Docker-based configuration block.
+
 
 ### 🔧 Install the skills
 
