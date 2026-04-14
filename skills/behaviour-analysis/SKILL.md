@@ -15,66 +15,47 @@ Systematic interaction audit combining UX heuristics, QA state-machine thinking,
 ## When to Use
 
 - After implementing a feature with multiple interaction modes
-- When the user reports something "doesn't feel right" or "is inconsistent"
-- Before shipping - final behavioural review
-- When adding a new view mode, action, or state to an existing system
+- User reports something "doesn't feel right" or "is inconsistent"
+- Before shipping → final behavioural review
+- Adding a new view mode, action, or state to an existing system
 
 ## Integration with hyperstack:designer
 
-**If a DESIGN.md exists** (produced by `hyperstack:designer`), use it as the "expected behaviour" ground truth for the interaction matrix in Phase 2.
-
-Mapping DESIGN.md sections to behaviour-analysis inputs:
+**If DESIGN.md exists** → use it as "expected behaviour" ground truth for the interaction matrix in Phase 2.
 
 | DESIGN.md Section | Use as... |
 |---|---|
-| 5. Component Specifications | **Expected states** for each component in the matrix. Every listed state MUST exist and be visually distinct. |
-| 6. Motion | **Expected timing** for transitions. The matrix "expected behaviour" column cites DESIGN.md durations. |
-| 8. Do's and Don'ts | **Heuristic audit assertions**. Each Do is a check; each Don't is a violation to search for. |
-| 9. Responsive Breakpoints | **Composition states** for Phase 4 edge case sweep. Test every listed breakpoint. |
-| 10. Anti-Patterns | **Violations to search for** in Phase 4. Fail the audit if any found. |
+| 5. Component Specifications | Expected states per component. Every listed state MUST exist and be visually distinct. |
+| 6. Motion | Expected timing for transitions. Matrix "expected" column cites DESIGN.md durations. |
+| 8. Do's and Don'ts | Heuristic audit assertions. Each Do = check; each Don't = violation to search for. |
+| 9. Responsive Breakpoints | Composition states for Phase 4 edge case sweep. Test every listed breakpoint. |
+| 10. Anti-Patterns | Violations to search for in Phase 4. Fail audit if any found. |
 
-**Without a DESIGN.md:** Fall back to industry standards via WebSearch or general heuristics (the default behaviour described below).
+**Without DESIGN.md:** Fall back to industry standards via WebSearch or general heuristics.
 
-**Reverse escalation:** If the audit finds a gap that the DESIGN.md doesn't specify (e.g., expected behaviour is ambiguous), escalate back to `hyperstack:designer` - the DESIGN.md may need to be updated.
+**Reverse escalation:** Audit finds a gap DESIGN.md doesn't specify → escalate back to `hyperstack:designer`.
 
 ## Process
 
-### Phase 1: Inventory (read code, build the map)
+### Phase 1: Inventory
 
-Before judging anything, build a complete picture:
+Build a complete picture before judging anything:
 
-1. **Identify all state variables** that affect UI behaviour
-   - Read the store/state management files
-   - List every piece of state: data, config, transient UI state
-   - Note which are persisted vs ephemeral
+1. **State variables** → read store/state management files, list every piece of state (data, config, transient UI), note persisted vs ephemeral
+2. **User actions** → buttons, clicks, drags, keyboard shortcuts, sliders, toggles, API calls, implicit actions (hover, scroll, resize)
+3. **View modes / display states** → tabs, toggles, conditional rendering branches, how modes compose
+4. **Feedback mechanisms** → visual (highlighting, dimming, borders, badges), textual (labels, counts, status), animated (transitions, spring), absence of feedback (silent failures, no-ops)
 
-2. **Identify all user actions** that modify state
-   - Buttons, clicks, drags, keyboard shortcuts, sliders, toggles
-   - API calls triggered by actions
-   - Implicit actions (hover, scroll, resize, mode switch)
+Output: state inventory table + action inventory table.
 
-3. **Identify all view modes / display states**
-   - Tabs, toggles, conditional rendering branches
-   - How different modes compose (layout mode x view mode x highlight state)
+### Phase 2: Interaction Matrix
 
-4. **Identify all feedback mechanisms**
-   - Visual feedback (highlighting, dimming, borders, badges, glow)
-   - Textual feedback (labels, counts, status text)
-   - Animated feedback (transitions, physics, spring effects)
-   - Absence of feedback (silent failures, no-ops)
+Build matrix: every action × every relevant state combination.
 
-Output: A **state inventory table** and an **action inventory table**.
-
-### Phase 2: Interaction Matrix (the core analysis)
-
-Build a matrix: **every action x every relevant state combination**.
-
-For each cell ask:
-- **What should happen?** (expected behaviour - think like a UX designer)
-- **What does happen?** (actual behaviour - read the code path)
-- **Match?** OK / BUG / UX-ISSUE / MISSING-FEEDBACK
-
-Structure the matrix by category:
+For each cell:
+- What should happen? (expected - think like UX designer)
+- What does happen? (actual - read the code path)
+- Match? → OK / BUG / UX-ISSUE / MISSING-FEEDBACK
 
 ```markdown
 | # | Action | Context/State | Expected | Actual | Status |
@@ -82,62 +63,43 @@ Structure the matrix by category:
 ```
 
 Categories to cover:
-- **CRUD actions** (create, read, update, delete of primary data)
-- **Selection & highlighting** (what gets selected, how, clear)
-- **View mode transitions** (switching between modes)
-- **Layout mode transitions** (switching layout engines)
-- **Configuration changes** (sliders, toggles, settings)
-- **Drag & interaction** (drag, hover, click targets)
-- **Reset & cleanup** (what gets cleared, what persists)
-- **Edge cases** (empty state, max state, conflicting states)
+- CRUD actions
+- Selection & highlighting
+- View mode transitions
+- Layout mode transitions
+- Configuration changes (sliders, toggles, settings)
+- Drag & interaction
+- Reset & cleanup
+- Edge cases (empty, max, conflicting states)
 
 ### Phase 3: Heuristic Audit
 
-Apply Nielsen's 10 heuristics (adapted for interactive visualizations):
+Apply Nielsen's 10 heuristics:
 
-1. **Visibility of system status** - Does the UI show what's active, selected, loading?
-2. **Match between system and real world** - Do labels make sense? Are actions named clearly?
-3. **User control and freedom** - Can the user undo/escape from any state? Is there always a way back?
-4. **Consistency and standards** - Do similar actions behave the same way everywhere?
-5. **Error prevention** - Can the user reach a broken/dead state?
-6. **Recognition rather than recall** - Is the current mode/state visible without memorizing?
-7. **Flexibility and efficiency** - Are there shortcuts for power users?
-8. **Aesthetic and minimalist design** - Is information presented at the right density?
-9. **Help users recover from errors** - What happens on API failure, empty results, bad input?
-10. **Accessibility** - Keyboard navigation, screen reader, reduced motion?
+1. **Visibility of system status** → does UI show what's active, selected, loading?
+2. **Match between system and real world** → labels make sense? actions named clearly?
+3. **User control and freedom** → can user undo/escape from any state?
+4. **Consistency and standards** → similar actions behave the same everywhere?
+5. **Error prevention** → can user reach a broken/dead state?
+6. **Recognition rather than recall** → current mode/state visible without memorizing?
+7. **Flexibility and efficiency** → shortcuts for power users?
+8. **Aesthetic and minimalist design** → information at right density?
+9. **Help users recover from errors** → what happens on API failure, empty results, bad input?
+10. **Accessibility** → keyboard navigation, screen reader, reduced motion?
 
-Refer to [references/heuristics.md](references/heuristics.md) for detailed questions per heuristic.
+See [references/heuristics.md](references/heuristics.md) for detailed questions per heuristic.
 
 ### Phase 4: Edge Case Sweep
 
-Systematically check:
+**Empty states:** no data, no results, no highlights, empty search filter results
 
-**Empty states:**
-- No data loaded
-- No results
-- No highlights active
-- Empty search filter results
+**Boundary states:** 100+ nodes, single node/no edges, all nodes highlighted, all sliders at min/max
 
-**Boundary states:**
-- Maximum data (100+ nodes)
-- Single node, no edges
-- All nodes highlighted
-- All sliders at min/max
+**Transition states:** mode switch with active highlights, mode switch mid-drag, query execution while loading, rapid repeated actions (double-click, spam slider)
 
-**Transition states:**
-- Mode switch with active highlights
-- Mode switch mid-drag
-- Query execution while loading
-- Rapid repeated actions (double-click, spam slider)
-
-**Composition states:**
-- Every view mode x every layout mode
-- Highlight + search filter active simultaneously
-- Collapsed groups + highlighting + path results
+**Composition states:** every view mode × every layout mode, highlight + search filter active simultaneously, collapsed groups + highlighting + path results
 
 ### Phase 5: Report
-
-Output a structured report:
 
 ```markdown
 ## State Inventory
@@ -156,29 +118,25 @@ Output a structured report:
 [summary: how many behaviours tested, how many correct, critical issues]
 ```
 
-Severity levels:
-- **CRITICAL** - broken functionality, data loss, unreachable state
-- **HIGH** - major UX inconsistency, confusing behaviour
-- **MEDIUM** - minor inconsistency, missing feedback
-- **LOW** - cosmetic, nice-to-have
+Severity: **CRITICAL** → broken/data loss/unreachable state | **HIGH** → major UX inconsistency | **MEDIUM** → minor inconsistency/missing feedback | **LOW** → cosmetic
 
 ## Research Enhancement
 
-Before starting the analysis, search for:
-- Current best practices for the specific UI pattern being analyzed (graph viz, form, dashboard, etc.)
+Before starting, search for:
+- Current best practices for the specific UI pattern (graph viz, form, dashboard, etc.)
 - Known UX patterns for the interaction model (drag-and-drop, force-directed graphs, etc.)
 - Accessibility guidelines for the specific component type
 
-Use findings to set expectations in the matrix - "expected behaviour" should be informed by industry standards, not just gut feeling.
+Use findings to set expectations in the matrix - "expected behaviour" should be informed by industry standards, not gut feeling.
 
 ## Key Principles
 
-- **Think like a user first** - what would someone expect when they click this?
-- **Think like QA second** - what's the worst thing that could happen?
-- **Think like a developer third** - read the code to verify, don't assume
-- **Every action must have visible feedback** - if clicking something does nothing visibly, that's a bug
-- **Every state must be escapable** - the user should never be "stuck"
-- **Composition must be tested** - features that work alone often break in combination
+- Think like a user first → what would someone expect when they click this?
+- Think like QA second → what's the worst that could happen?
+- Think like a developer third → read the code to verify, don't assume
+- Every action must have visible feedback → silent no-op = bug
+- Every state must be escapable → user should never be stuck
+- Composition must be tested → features that work alone often break together
 
 ## The Iron Law
 
@@ -186,23 +144,49 @@ Use findings to set expectations in the matrix - "expected behaviour" should be 
 NO BEHAVIOUR CLAIM WITHOUT READING THE CODE PATH
 ```
 
-You cannot say "this should work" - you must trace the actual code path and confirm. Reading code is not optional. Assumptions are bugs waiting to ship.
+You cannot say "this should work" - trace the actual code path and confirm. Reading code is not optional.
 
 ## Red Flags - STOP
 
-These are the rationalizations you will have when you want to skip parts of the analysis. Every one is wrong.
-
 | Thought | Reality |
 |---|---|
-| "I'll just check a few interactions, not the full matrix" | Partial coverage misses composition bugs. Do the full matrix. |
+| "I'll check a few interactions, not the full matrix" | Partial coverage misses composition bugs. Full matrix. |
 | "This state combination is unlikely" | Unlikely states are where bugs live. Test them. |
-| "Nielsen's heuristics are common sense" | Common sense is pattern-matching without verification. Apply them explicitly. |
-| "I already know this code, I don't need to read it" | Code drifts. Mental models drift faster. Read it. |
-| "Empty states are trivial, I'll skip them" | Empty states are the #1 place where products feel broken. Audit them. |
-| "Transition states will be fine" | Mid-drag, mid-animation, mid-load states are where race conditions live. Audit them. |
-| "The user will report any issues" | Users don't report feeling vague discomfort. They leave. |
-| "This is for a simple component, full audit is overkill" | Simple components compose into complex flows. Audit it. |
+| "Nielsen's heuristics are common sense" | Common sense ≠ verification. Apply them explicitly. |
+| "I already know this code" | Code drifts. Mental models drift faster. Read it. |
+| "Empty states are trivial" | Empty states = #1 place products feel broken. Audit them. |
+| "Transition states will be fine" | Mid-drag/mid-animation/mid-load = where race conditions live. |
+| "The user will report any issues" | Users don't report vague discomfort. They leave. |
+| "Full audit is overkill for a simple component" | Simple components compose into complex flows. Audit it. |
 | "I'll skip heuristics I don't remember exactly" | Open the reference. All 10 get applied. |
-| "The behaviour feels right" | Feelings are not evidence. Read the code. |
-| "I tested the happy path manually" | The happy path is 20% of the matrix. Audit the unhappy paths. |
-| "There is no DESIGN.md, so I have no ground truth" | Search for one. Escalate to designer if missing. Do not audit against gut feeling. |
+| "The behaviour feels right" | Feelings ≠ evidence. Read the code. |
+| "I tested the happy path manually" | Happy path = 20% of the matrix. Audit the unhappy paths. |
+| "No DESIGN.md → no ground truth" | Search for one. Escalate to designer if missing. |
+
+
+## Lifecycle Integration
+
+### Agent Workflow Chains
+
+**UI/UX audit (after implementation):**
+```
+[execution complete] → behaviour-analysis (THIS) → [fix issues] → ship-gate
+```
+
+**DESIGN.md integration:**
+```
+designer → DESIGN.md → forge-plan → [execution] → behaviour-analysis (uses DESIGN.md as ground truth)
+```
+
+### Upstream Dependencies
+- Implemented feature with multiple interaction modes
+- `designer` → DESIGN.md as expected behaviour ground truth (if exists)
+
+### Downstream Consumers
+- `ship-gate` → final verification after fixes
+
+### Reverse Escalation
+| Discovery | Escalate to | Action |
+|---|---|---|
+| DESIGN.md doesn't specify expected behaviour | `designer` | Append clarification to DESIGN.md |
+| Audit finds gap DESIGN.md doesn't cover | `designer` | Add to DESIGN.md |
