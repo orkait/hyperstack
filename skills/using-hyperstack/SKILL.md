@@ -107,7 +107,7 @@ If MCP tools fail or are unavailable:
 
 Use the `Skill` tool to load these before the relevant task type.
 
-**Full skill index:** See `skills/INDEX.md` - all skills grouped by category (core / domain / meta). Regenerate with `bash scripts/generate-skills-index.sh` after adding or editing any skill.
+**Full skill index:** See `skills/INDEX.md` - all skills grouped by category (core / domain / meta). Regenerate with `npm run skills:index` after adding or editing any skill.
 
 ### Announcement Iron Law
 

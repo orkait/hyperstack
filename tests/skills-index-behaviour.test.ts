@@ -1,7 +1,7 @@
 import { test, expect } from "bun:test";
-import { execSync } from "node:child_process";
 import { readFileSync, readdirSync, existsSync } from "node:fs";
 import { resolve, join } from "node:path";
+import { generateIndex } from "../scripts/generate-skills-index.ts";
 
 const SKILLS_DIR = resolve("skills");
 const INDEX_PATH = resolve("skills/INDEX.md");
@@ -27,7 +27,7 @@ function getSkillCategory(skillName: string): string | null {
 test("skills/INDEX.md stays in sync with actual skill directories", () => {
   const currentIndex = normalize(readFileSync(INDEX_PATH, "utf8"));
 
-  execSync("bash scripts/generate-skills-index.sh", { stdio: "pipe" });
+  generateIndex();
 
   const regenerated = normalize(readFileSync(INDEX_PATH, "utf8"));
   expect(currentIndex).toBe(regenerated);
