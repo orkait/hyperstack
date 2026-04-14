@@ -155,6 +155,11 @@ function extractSimpleBullets(section: string): string[] {
     .map((line) => line);
 }
 
+export function generateHyperstackBootstrap(source: string): string {
+  const { content } = compileUsingHyperstackBootstrap(source);
+  return content;
+}
+
 export function compileUsingHyperstackBootstrap(source: string): { content: string; stats: BootstrapCompilationStats } {
   const body = stripFrontmatter(source);
   const criticalBlock = extractTaggedBlock(body, "EXTREMELY-IMPORTANT");
