@@ -35,7 +35,7 @@ jobs:
         run: bun run compile:context
 
       - name: Regenerate skills index
-        run: bash scripts/generate-skills-index.sh
+        run: bun run skills:index
 
       - name: Run tests
         run: bun test
