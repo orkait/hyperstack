@@ -33,7 +33,7 @@ Categories:
 | Skill | Description |
 |---|---|
 | `behaviour-analysis` | Systematic UI/UX behaviour analysis for interactive applications. Audits every user action, state transition, view mode, |
-| `designer` | Evidence-based design decision engine. An intention gate that produces non-slop |
+| `designer` | Evidence-based design decision engine. Intention gate that produces non-slop |
 | `design-patterns-skill` | Apply core programming principles and design patterns from Clean Code, The Pragmatic Programmer, Code Complete, Refactor |
 | `readme-writer` | Writes or rewrites project README files using repository evidence instead of generic filler. Use when creating a new REA |
 | `security-review` | Security code review for vulnerabilities. Use when asked to security review, find vulnerabilities, check for security is |
@@ -44,4 +44,4 @@ Categories:
 | Skill | Description |
 |---|---|
 | `testing-skills` | Use when creating or editing Hyperstack skills, before shipping them, to verify they actually work under pressure and re |
-| `using-hyperstack` | Bootstrap - establishes Hyperstack MCP tools and skills before any technical work. Auto-loaded at session start via Se |
+| `using-hyperstack` | Bootstrap - establishes Hyperstack MCP tools and skills before any technical work. Auto-loaded at session start via Sess |
