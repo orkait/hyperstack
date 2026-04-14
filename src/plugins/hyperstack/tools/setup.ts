@@ -9,8 +9,9 @@ export function registerSetupTool(server: McpServer) {
     "Identify current IDE/CLI environment and generate a tailored MCP configuration patch for Hyperstack.",
     {
       researchResult: z.string().optional().describe("If the environment was unknown, provide the researched config path or schema details here."),
+      method: z.enum(["docker", "local"]).default("docker").describe("Preferred installation method. Use 'docker' (default) for stable persistent environments, 'local' for fallback."),
     },
-    async ({ researchResult }) => {
+    async ({ researchResult, method }) => {
       const platform = setup.detectEnvironment();
       const configPath = setup.findConfigFile(platform);
       
@@ -37,7 +38,7 @@ export function registerSetupTool(server: McpServer) {
         };
       }
 
-      const patch = setup.generateMcpPatch(activeConfigPath, pluginRoot);
+      const patch = setup.generateMcpPatch(activeConfigPath, pluginRoot, method);
 
       return {
         content: [{

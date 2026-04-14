@@ -42,12 +42,14 @@ The system automatically probes for signatures:
 - **Known Paths**: Probes for `.claude.json`, `.cursor/`, `.codeium/windsurf/`, `.roo/`, and `.gemini/`.
 
 ### 2. Run the Autopilot
-As an agent, you should call the `hyperstack_setup` tool immediately. It will return the detected path and the JSON configuration block required for that specific tool's schema.
+As an agent, you should call the `hyperstack_setup` tool immediately. **By default, it generates a Docker-based configuration** using the optimized `docker exec` pattern.
+
+If Docker is not available, you can explicitly request the local method: `hyperstack_setup(method: "local")`.
 
 **If the environment is unknown:**
 1. Call `web_search` with a query like `[IDE Name] MCP configuration path`.
 2. Provide the result to `hyperstack_setup(researchResult: "...")`.
-3. The tool will generate the final patch.
+3. The tool will generate the final Docker-based patch.
 
 ## Step 2: Install the Skills
 

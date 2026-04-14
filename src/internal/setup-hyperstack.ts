@@ -64,46 +64,49 @@ export function findConfigFile(platform: string): string | null {
   return null;
 }
 
-export function generateMcpPatch(configPath: string, pluginRoot: string) {
-  const binaryPath = path.join(pluginRoot, "bin", "hyperstack.mjs");
-  const hookPath = path.join(pluginRoot, "hooks", "session-start.mjs");
 
-  const serverConfig = {
+export function generateMcpPatch(
+  configPath: string,
+  pluginRoot: string,
+  method: "docker" | "local" = "docker"
+) {
+  const isClaude = configPath.endsWith(".claude.json");
+  const isGemini = configPath.includes("settings.json") && configPath.includes(".gemini");
+
+  const binaryPath = path.join(pluginRoot, "bin", "hyperstack.mjs");
+  const localConfig = {
     command: "node",
     args: [binaryPath],
     env: {
-       HYPERSTACK_ROOT: pluginRoot
-    }
+      HYPERSTACK_ROOT: pluginRoot,
+    },
   };
 
-  // Determine schema based on filename
-  const isClaude = configPath.endsWith(".claude.json");
-  const isWindsurf = configPath.includes("windsurf");
-  const isGemini = configPath.includes("gemini");
+  const dockerConfig = {
+    command: "docker",
+    args: ["exec", "-i", "hyperstack-mcp", "bun", "/app/src/index.ts"],
+    env: {
+      HYPERSTACK_ROOT: pluginRoot, // Still helpful for skills indexing
+    },
+  };
 
-  if (isClaude) {
-    return {
-      mcpServers: {
-        hyperstack: serverConfig
-      }
-    };
-  }
+  const serverConfig = method === "docker" ? dockerConfig : localConfig;
 
   if (isGemini) {
     return {
       extensions: {
         hyperstack: {
           ...serverConfig,
-          type: "stdio"
-        }
-      }
+          type: "stdio",
+        },
+      },
     };
   }
 
-  // Default MCP schema
+  // Default MCP schema (Claude, Cursor, Windsurf, Roo Code)
   return {
     mcpServers: {
-      hyperstack: serverConfig
-    }
+      hyperstack: serverConfig,
+    },
   };
 }
