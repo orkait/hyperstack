@@ -1,80 +1,132 @@
 <div align="center">
 
-# hyperstack
+![Hyperstack Banner](assets/banner.jpeg)
 
-**A disciplined MCP server and AI skill system that forces your agent to use real docs, real designs, and real verification before shipping.**
+**A disciplined engineering harness that forces AI agents to use ground-truth docs, precise designs, and programmatic verification.**
 
 <p>
   <img src="https://img.shields.io/badge/license-MIT-blue?style=flat-square" alt="MIT" />
   <img src="https://img.shields.io/badge/TypeScript-5-3178c6?style=flat-square&logo=typescript&logoColor=white" alt="TypeScript" />
-  <img src="https://img.shields.io/badge/MCP-compatible-6366f1?style=flat-square" alt="MCP" />
-  <img src="https://img.shields.io/badge/Node-%E2%89%A518-43853d?style=flat-square&logo=node.js&logoColor=white" alt="Node" />
   <img src="https://img.shields.io/badge/Docker-ready-2496ED?style=flat-square&logo=docker&logoColor=white" alt="Docker" />
+  <img src="https://img.shields.io/badge/MCP-standard-6366f1?style=flat-square" alt="MCP" />
 </p>
 
 <p>
-  <img src="https://img.shields.io/badge/11_plugins-79_tools-6366f1?style=flat-square" alt="Plugins" />
+  <img src="https://img.shields.io/badge/12_plugins-80_tools-6366f1?style=flat-square" alt="Plugins" />
   <img src="https://img.shields.io/badge/21_skills-adversarial_gates-a855f7?style=flat-square" alt="Skills" />
   <img src="https://img.shields.io/badge/SessionStart-hook_injected-f59e0b?style=flat-square" alt="Hook" />
-</p>
-
-<p>
-  <img src="https://img.shields.io/badge/React_Flow-v12-22c55e?style=flat-square&logo=react&logoColor=white" alt="React Flow" />
-  <img src="https://img.shields.io/badge/Motion-v12-f59e0b?style=flat-square&logo=framer&logoColor=white" alt="Motion" />
-  <img src="https://img.shields.io/badge/Lenis-smooth_scroll-0ea5e9?style=flat-square" alt="Lenis" />
-  <img src="https://img.shields.io/badge/Tailwind-v4_OKLCH-06b6d4?style=flat-square&logo=tailwindcss&logoColor=white" alt="Tailwind" />
-  <img src="https://img.shields.io/badge/shadcn%2Fui-Base_UI-000000?style=flat-square" alt="shadcn" />
-  <img src="https://img.shields.io/badge/Echo-Go-00ADD8?style=flat-square" alt="Echo" />
-  <img src="https://img.shields.io/badge/Rust-practices-ce422b?style=flat-square&logo=rust&logoColor=white" alt="Rust" />
 </p>
 
 </div>
 
 ---
 
-## ⚡ What is this?
+## 🚀 What is Hyperstack?
 
-Hyperstack is a coding-agent harness made of three tightly-coupled layers:
+**Hyperstack is a disciplined engineering harness for AI coding agents.** 
 
-1. **An internal harness** that bootstraps the agent, enforces global invariants, and routes internal roles like `hyper` and `website-builder`.
-2. **A TypeScript MCP server** with 11 plugins and 79 tools. Your AI calls these for ground-truth API signatures, component specs, design decisions, and architectural patterns. No hallucinated imports.
-3. **A skill system with enforcement teeth.** 21 skills with Iron Laws, rationalization tables, and a SessionStart hook that force-injects discipline on every session. Your AI cannot "just try one thing" without the gate firing.
+It provides the necessary **Ground Truth** (via 79 specialized MCP tools) and **Adversarial Enforcement** (via 21 rigorous skills) to transform a generic LLM into a high-precision Senior Engineer. 
 
-The combination turns a generic coding assistant into a disciplined agent system that:
+Unlike standard "polite" instructions, Hyperstack uses **Iron Laws** and a **SessionStart hook** to force agents to check real documentation, follow precise design specs, and provide binary verification before shipping.
 
-- checks docs before writing code
-- writes a DESIGN.md before visual work
-- routes website-heavy work to a specialist role
-- refuses to claim completion without verification evidence
+## 🚀 Installation
 
-**You should use this if** you are tired of AI agents inventing API shapes, shipping AI-slop UIs, or claiming "tests pass" without running them.
+### 1. Recommended: Agentic (autopilot)
 
-**Skip this if** you want a frictionless autocomplete. Hyperstack is the opposite of frictionless - it is intentional friction that catches bugs before they ship.
+The fastest way to install Hyperstack is to let your AI agent do it for you. This works with **Cursor, Windsurf, Roo Code, Claude Code, or Gemini**. Simply paste this command:
 
-## 🤖 Agent View
+> **Fetch and follow the instructions at https://raw.githubusercontent.com/orkait/hyperstack/main/install.md**
 
-If you are an agent reading this README, the shortest correct mental model is:
+The autopilot will autonomously detect your environment, install the MCP server (Docker or Local), and **automatically link the Skills repository**. This is the only step required.
 
-- Hyperstack is not just an MCP server
-- Hyperstack is not just a skills pack
-- Hyperstack is a harness that combines internal role routing, MCP grounding, and workflow gates
+---
 
-Current internal role model:
+### 2. Manual Configuration (Advanced)
 
-- `hyper` - conductor, gatekeeper, verifier, delivery owner
-- `website-builder` - specialist for website-facing design and implementation work
+If you aren't using the Autopilot, follow the **Unified Bootstrap** to set up both the MCP server and the Skills:
 
-Public surface:
+1.  **Clone & Initialize**:
+    ```bash
+    git clone https://github.com/orkait/hyperstack.git ~/.hyperstack
+    cd ~/.hyperstack && bun install
+    ```
 
-- MCP plugins for deterministic knowledge
-- skills for process enforcement
-- SessionStart hook for bootstrap context injection
+2.  **Run the Setup Script**:
+    ```bash
+    bun scripts/setup.ts
+    ```
 
-Internal surface:
+3.  **Follow the CLI**: The script auto-detects your IDE, generates the JSON patch, and outputs the symlink command for your skill directory.
 
-- role contracts in `agents/`
-- orchestration contracts in `harness/`
-- generated runtime bootstrap artifacts in `generated/runtime-context/`
+**Supported platforms** (verified April 2026, from official docs):
+
+| IDE / CLI | MCP Config Path | Skill Path | Schema |
+|---|---|---|---|
+| **Claude Code** | `~/.claude.json` | `~/.claude/skills/hyperstack` | JSON `mcpServers` |
+| **Gemini CLI** | `~/.gemini/settings.json` | - | JSON `mcpServers` |
+| **Qwen Code** | `~/.qwen/settings.json` | `~/.qwen/skills/hyperstack` | JSON `mcpServers` |
+| **Codex CLI** | `~/.codex/config.toml` | - | TOML `mcp_servers` |
+| **Cursor** | `~/.cursor/mcp.json` | `.cursor/rules/` (project) | JSON `mcpServers` |
+| **Windsurf** | `~/.codeium/windsurf/mcp_config.json` | - | JSON `mcpServers` |
+| **Kiro** | `~/.kiro/settings/mcp.json` | - | JSON `mcpServers` |
+| **Zed** | `~/.config/zed/settings.json` | - | JSON `context_servers` |
+| **VS Code + Copilot** | `~/.config/Code/User/mcp.json` | `.vscode/` (project) | JSON `mcpServers` |
+| **Roo Code** | `.roo/mcp.json` (project) | `.roo/rules/` (project) | JSON `mcpServers` |
+| **Cline** | `~/.config/Code/User/globalStorage/.../cline_mcp_settings.json` | - | JSON `mcpServers` |
+| **Continue.dev** | `.continue/mcpServers/mcp.json` (project) | - | JSON `mcpServers` |
+
+> [!TIP]
+> Run `bun scripts/setup.ts` and it will auto-detect your platform and output the exact patch - in the right format for your IDE. Codex users get TOML, everyone else gets JSON.
+
+## ⚡ The Manifesto
+
+It is not just a library; it is a **disciplined harness** made of three tightly-coupled layers:
+
+1.  **The Harness**: Bootstraps the agent, routes internal specialist roles (`hyper`, `website-builder`), and enforces global development invariants.
+2.  **The MCP Ground Truth**: 12 TypeScript plugins (80 tools) that provide deterministic data. No hallucinated imports or invented component specs.
+3.  **The Adversarial Gates**: 21 skills with **"Enforcement Teeth"**. These aren't suggestions; they are Iron Laws supported by rationalization tables that counter every excuse an agent uses to skip quality gates.
+
+> [!IMPORTANT]
+> **Use Hyperstack if** you want to force your agent to check docs, write designs first, and prove its work.
+> **Skip Hyperstack if** you want frictionless autocomplete. We prioritize intentional friction that catches bugs before they ship.
+
+## 🏗️ Architecture
+
+```mermaid
+graph TD
+    User([User Request]) --> Harness[Internal Harness]
+    Harness --> Gates{Adversarial Gates}
+
+    subgraph "The Enforcement Layer"
+        Gates -->|Iron Laws| Skills[21 Skills with Enforcement Teeth]
+        Skills -->|SessionStart| Injection[Auto-Context Injection]
+    end
+
+    subgraph "The Knowledge Layer"
+        Skills -->|Ground Truth| MCP[12 MCP Plugins / 80 Tools]
+        MCP -->|Designer| Design[DESIGN.md Pipeline]
+        MCP -->|Verified| Code[Programmatic Compliance Check]
+    end
+
+    Code -->|Verification Evidence| User
+
+    linkStyle 0 stroke:#9ca3af,stroke-width:2px
+    linkStyle 1 stroke:#9ca3af,stroke-width:2px
+    linkStyle 2 stroke:#9ca3af,stroke-width:2px
+    linkStyle 3 stroke:#9ca3af,stroke-width:2px
+    linkStyle 4 stroke:#9ca3af,stroke-width:2px
+    linkStyle 5 stroke:#9ca3af,stroke-width:2px
+    linkStyle 6 stroke:#9ca3af,stroke-width:2px
+    linkStyle 7 stroke:#9ca3af,stroke-width:2px
+```
+
+## 🤖 Agent Model
+
+If you are an agent reading this, your mental model must be: **Process is Priority.** You are operating within a system that requires deterministic grounding and formal design before implementation.
+
+- **Conductance**: `hyper` owners classification and gate verification.
+- **Specialization**: `website-builder` handles visual and frontend implementation.
+- **Persistence**: You run in a stable Docker container with a persistent lifecycle.
 
 ---
 
@@ -117,9 +169,11 @@ docker run -d --name hyperstack-mcp --restart unless-stopped \
 
 If you are using Claude Code, Cursor, Windsurf, Roo Code, or Gemini, you can use the autopilot to self-configure. Paste this at your agent:
 
-> Fetch and follow the instructions at https://raw.githubusercontent.com/orkait/hyperstack/main/install.md
-
+```text
+Fetch and follow the instructions at https://raw.githubusercontent.com/orkait/hyperstack/main/install.md
+```
 The autopilot will detect your environment and propose the correct Docker-based configuration block.
+
 
 
 ### 🔧 Install the skills
@@ -148,36 +202,37 @@ Node 18+ required.
 
 ---
 
-## 🧠 The two-layer system
+## 🧠 The Two-Layer System
 
-The public product still has two user-facing layers, but they now sit inside an
-internal harness.
+Hyperstack's strength comes from the friction between **Ground Truth** (MCP) and **Enforcement** (Skills).
 
-### Layer 1: MCP Plugins (deterministic knowledge)
+### Layer 1: MCP Plugins (Ground Truth)
 
-Your AI calls these for exact API data. Memory is not acceptable. Every plugin serves typed TypeScript data + `.txt` snippets bundled with the plugin.
+Your AI calls these for deterministic data. Memory is not acceptable. Every plugin serves curated TypeScript data and architectural patterns.
 
-| Plugin | Tools | Domain |
-|---|:---:|---|
-| 🎨 **designer** | 19 | Design decision engine - 6 personality clusters, 15 industry rules, 11 cognitive laws, 13 page templates, 9 presets (Linear, Stripe, Vercel, Apple, Carbon, shadcn, Notion, Supabase, Figma), 21 font pairings, DESIGN.md pipeline |
-| ✨ **design-tokens** | 7 | Tailwind v4 + OKLCH token systems, 10 categories, 8 build procedures |
-| 💅 **ui-ux** | 6 | Typography scales, spacing grids, accessibility checklists, component patterns |
-| 🧩 **shadcn** | 5 | shadcn/ui Base UI edition - rules, components, compositions, snippets |
-| ⚛️ **reactflow** | 9 | @xyflow/react v12 - 56 APIs, 17 patterns, templates, migration guides |
-| 🎬 **motion** | 7 | Motion for React v12 - 33 APIs, transition reference, animation generators |
-| 🌊 **lenis** | 6 | Smooth scroll - 7 recipes, GSAP integration, React hooks |
-| ⚛️ **react** | 4 | React 19 + Next.js - RSC patterns, Zustand hierarchy, data fetching rules |
-| 🐹 **echo** | 6 | Echo Go framework - 19 recipes, 13 middleware, decision matrices |
-| 🐹 **golang** | 6 | Go - 18 practices, 10 design patterns, anti-patterns |
-| 🦀 **rust** | 4 | Rust - 18 practices, ownership guide, performance tips |
+| Category | Plugins | Domain Coverage |
+|---|---|---|
+| 🛠️ **System** | `hyperstack` | Autonomous Environment Detection, MCP Configuration Patching, Lifecycle |
+| 🎨 **UI Engine** | `designer`, `design-tokens`, `ui-ux`, `shadcn` | Design Systems, OKLCH, Typography, Accessibility, Component Specs |
+| ⚛️ **Frontend** | `react`, `reactflow`, `motion`, `lenis` | Next.js 15, RSC, Animation Curves, Smooth Scroll, DAG Layouts |
+| 🐹 **Backend** | `echo`, `golang`, `rust` | Professional Go Recipes, Rust Borrow Checker patterns, Clean Architecture |
 
-**79 tools total.**
+> [!TIP]
+> **80 Tools Total**. Every tool is designed to provide the "Senior Engineer" answer, bypassing the "AI Slop" default.
 
-### Layer 2: Skills (process enforcement)
+### Layer 2: Skills (Enforcement Teeth)
 
-Markdown with adversarial enforcement. Each gate skill has an Iron Law, a 1% Rule, and a rationalization table that names the exact excuses your AI will use to skip the gate and counters each one.
+Markdown with adversarial enforcement. Each skill contains an **Iron Law** that the agent is bound to follow.
 
-The `using-hyperstack` skill is injected into every session by `hooks/session-start.mjs`. You do not have to invoke it manually.
+> [!CAUTION]
+> ### ⚖️ The Iron Laws of Hyperstack
+> - **NO CODE** without MCP grounding.
+> - **NO VISUAL CODE** without an approved `DESIGN.md`.
+> - **NO COMPLETION CLAIMS** without programmatic verification evidence.
+> - **NO REFACTOR** without a failing test first.
+> - **NO PATTERN** without a named Force.
+
+These laws are backed by **Rationalization Tables**-pre-written counters to every excuse an AI agent uses to skip quality gates.
 
 ### Internal Harness (role routing + bootstrap)
 
@@ -237,47 +292,35 @@ Full index at `skills/INDEX.md`. Regenerate with `bash scripts/generate-skills-i
 
 ---
 
-## 🔒 Why adversarial enforcement?
+## 🔒 Adversarial Enforcement
 
-Ordinary skill markdown is polite suggestion. Polite suggestion fails when the model is under pressure to "be helpful fast." Hyperstack gate skills are written adversarially, inspired by [obra/superpowers](https://github.com/obra/superpowers):
+Ordinary skill markdown is a polite suggestion. Polite suggestion fails when an AI model is under pressure to "be helpful fast." Hyperstack skills are written adversarially:
 
-- **Iron Laws** in all-caps that spell out the non-negotiable rule
-- **1% Rule** - if there is even a 1% chance a skill applies, invoke it
-- **Rationalization tables** listing the exact excuses your AI will use to skip the gate, with counters
-- **"Spirit of the rule is the letter of the rule"** clause to close loophole-hunting
-- **SessionStart hook** that injects `using-hyperstack` into every new session so the AI cannot forget the system exists
+- **1% Rule**: If there is even a 1% chance a skill applies, the agent **must** invoke it.
+- **Rationalization Tables**: We have already written down every excuse your AI will use to skip a gate, with a firm technical counter for each.
+- **Loophole Closure**: The "Spirit of the Law" is explicitly defined as the "Letter of the Law" to prevent shortcut-hunting.
 
-Examples of Iron Laws enforced today:
-
-```
-NO CODE WITHOUT MCP GROUND-TRUTH DATA
-NO VISUAL CODE WITHOUT AN APPROVED DESIGN.md
-NO COMPLETION CLAIMS WITHOUT FRESH VERIFICATION EVIDENCE
-NO REFACTOR WITHOUT A FAILING TEST FIRST
-NO PATTERN WITHOUT A NAMED FORCE
-```
 
 ---
 
-## 🎨 The designer workflow (flagship example)
+## 🎨 The designer agent 
 
-The designer plugin + skill is the clearest illustration of how hyperstack composes all three layers.
+When you say, **“build me a SaaS dashboard”**:
 
-When you say *"build me a SaaS dashboard"*:
+1. **SessionStart** already puts in `using-hyperstack`, so AI know system is there.
+2. **Blueprint skill** sees visual job and sends it to `hyperstack:designer`.
+3. **Designer skill** runs `designer_resolve_intent(product)` to guess industry, personality, style, density, and mode.
+4. Designer asks **3 questions** in base mode, or **12 questions** in advanced mode.
+5. Like **Q11b** will ask what component library to use: shadcn, raw Tailwind, MUI, Mantine, Chakra, Ant Design, or custom.
+6. Designer makes a **DESIGN.md** contract with 10 parts: theme, colors, type, spacing, components, motion, elevation, do/don’ts, responsive rules, and anti-patterns.
+7. User approves the **DESIGN.md**.
+8. **Forge-plan** reads it and makes one task for each section. If user picked shadcn, it calls `shadcn_get_component`. If not, it builds from the DESIGN.md spec.
+9. Build tasks run with MCP tools as ground truth.
+10. **designer_verify_implementation** checks build against **DESIGN.md**.
+11. **Ship-gate** blocks final completion unless build passes the **DESIGN.md** rules.
 
-1. **SessionStart hook** has already injected `using-hyperstack` - the AI knows the system exists
-2. **Blueprint skill** detects visual work and routes to `hyperstack:designer`
-3. **Designer skill** calls `designer_resolve_intent(product)` to auto-detect industry, personality, style, density, mode
-4. **Designer asks 3 questions** (base mode) or 12 questions (advanced mode)
-5. **Q11b** asks which component library - shadcn, raw Tailwind, MUI, Mantine, Chakra, Ant Design, or custom
-6. **Designer produces a DESIGN.md contract** with 10 sections (theme, colors, typography, spacing, components, motion, elevation, do/don'ts, responsive, anti-patterns)
-7. **User approves** the DESIGN.md
-8. **Forge-plan skill** reads the DESIGN.md and generates one task per section. For Section 5 (components), it calls `shadcn_get_component` for each component (only if Q11b chose shadcn - otherwise hand-builds from DESIGN.md spec)
-9. **Implementation tasks** execute with the ground truth from MCP tools
-10. **designer_verify_implementation** runs a programmatic compliance check against DESIGN.md before ship-gate
-11. **Ship-gate** enforces the DESIGN.md compliance table (10 sections x specific rules) before allowing any completion claim
+AI cannot jump ahead. Every step has hard gate. Excuses already blocked by rationalization tables.
 
-At every step, the AI cannot skip ahead. The hard gates are enforced by rationalization tables that have already written down every excuse your AI will try.
 
 ---
 
@@ -415,85 +458,22 @@ Only invoked when the user explicitly chose shadcn in designer Q11b.
 
 ---
 
-## 🏗️ Architecture
-
-Everything runs from source. The published `hyperstack` bin is a small Node wrapper that boots `src/index.ts` through `tsx`, and Docker uses the same source-first runtime. No `dist/` output, no build step for deployment - just type checking.
-
-```text
-bin/
-└── hyperstack.mjs           # Published CLI wrapper - boots src/index.ts via tsx
-
-src/
-├── index.ts                  # Entry - creates McpServer, loads all 11 plugins
-├── registry.ts               # Plugin interface + loadPlugins()
-├── shared/
-│   └── loader-factory.ts     # createSnippetLoader() reads .txt at module init
-└── plugins/
-    ├── designer/             # 19 tools, data.ts with distilled research
-    ├── shadcn/               # 5 tools, bundled component catalog
-    ├── design-tokens/        # 7 tools
-    ├── ui-ux/                # 6 tools
-    ├── reactflow/            # 9 tools
-    ├── motion/               # 7 tools
-    ├── lenis/                # 6 tools
-    ├── react/                # 4 tools
-    ├── echo/                 # 6 tools
-    ├── golang/               # 6 tools
-    └── rust/                 # 4 tools
-
-skills/
-├── INDEX.md                  # Auto-generated from frontmatter category field
-├── using-hyperstack/         # Force-injected by SessionStart hook
-├── (20 other skills)/
-
-hooks/
-├── hooks.json                # Registers the SessionStart hook
-├── session-start.mjs         # Cross-platform hook entrypoint for auto-injecting using-hyperstack
-├── session-start             # Legacy shell helper
-└── run-hook.cmd              # Windows dispatcher
-
-scripts/
-└── generate-skills-index.sh  # Regenerates skills/INDEX.md from frontmatter
-```
-
-Each plugin follows the same structure: `index.ts` registers tools from `tools/`, data lives in `data.ts`, code snippets live in `snippets/*.txt` and are loaded at module init time via `loader.ts`.
-
----
-
-## 🚧 Boundaries and current status
-
-- **Platform:** Claude Code, Cursor, Gemini CLI, Copilot CLI, OpenCode, Codex, and any MCP-compatible client. Tested primarily on Claude Code.
-- **Node:** 18 or newer.
-- **No build step:** runs via `tsx`. Do not add a `dist/` folder.
-- **Knowledgebase:** The original 25 research files that seeded the designer plugin are NOT in this repo anymore. They live at `../knowledgebase/` outside the repo, gitignored for safety. All actionable content is distilled into `src/plugins/designer/data.ts`.
-- **shadcn plugin:** Ships with 4 curated components (Button, Dialog, Field, Select) as reference. For a full catalog, you still need your project's own shadcn files.
-- **Enforcement vs suggestion:** Hyperstack skills are markdown-based prose gates. They depend on the AI reading them. The SessionStart hook makes this harder to skip, but it is not a hard runtime block. True enforcement would require tool-level hooks.
-- **Branch Protection:** The `main` branch is protected by a strict ruleset. Direct pushes are blocked, and all changes must go through a Pull Request that passes 100% of the CI verification suite.
-- **Testing skills:** `testing-skills` defines a RED-GREEN-REFACTOR methodology for pressure-testing skills with subagents. Scenario files exist for 3 skills (ship-gate, designer, blueprint). Other gate skills need their own scenarios.
-
----
-
 ## 🤝 Contributing
 
-Fork, branch, open a PR. All new plugins must follow the existing file structure (`index.ts` + `data.ts` + `tools/` + `snippets/`). All new skills must include a `category:` frontmatter field (core, domain, or meta) so they appear in `skills/INDEX.md`.
+We welcome contributions that follow the **Disciplined Engineering** standard.
 
-After adding or editing any skill:
+1.  **Plugins**: Must follow the `index.ts` + `data.ts` + `tools/` + `snippets/` pattern.
+2.  **Skills**: Must include `category` frontmatter and adhere to the Adversarial Enforcement style.
+3.  **Verification**: All PRs must pass the full `npm run build` (Type-check) and CI suite.
 
 ```bash
+# Regenerate the skills index after editing
 bash scripts/generate-skills-index.sh
 ```
 
-Run type checking before opening a PR:
-
-```bash
-npm run build   # tsc --noEmit
-```
-
----
-
 ## 📄 License
 
-MIT © [Orkait](https://github.com/orkait)
+MIT © [Orkait](https://github.com/orkait) | Adversarial philosophy inspired by [Jesse Vincent's Superpowers](https://github.com/obra/superpowers).
 
 ---
 

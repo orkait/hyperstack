@@ -36,7 +36,7 @@ references:
   - examples/ecommerce-checkout.md
 ---
 
-# Designer Skill — Intention Gate
+# Designer Skill - Intention Gate
 
 > AI UIs all look same because AI skip decision process, jump to code.
 > Skill force every design decision through evidence before code generation.
@@ -68,7 +68,7 @@ DO NOT GENERATE VISUAL CODE UNTIL:
 **Apply when:** task changes how something **looks, feels, moves, or is interacted with.**
 **Skip when:** pure backend, single CSS bug fix (same colors/spacing), adding to existing design system with established tokens, perf optimization no visual change, infrastructure.
 
-## RED FLAGS — STOP
+## RED FLAGS - STOP
 
 | Thought | Reality |
 |---|---|
@@ -115,13 +115,13 @@ Reverse escalation: forge-plan → designer (gap), behaviour-analysis → design
 
 Every DESIGN.md must resolve these 7:
 
-1. **Primary path** — user's main JTBD + single primary action
-2. **Information scent** — "Where am I, what can I do, what happens next?"
-3. **State coverage** — loading, empty, error, success, disabled, destructive
-4. **Form/auth friction** — labels persistent, validation humane, paste allowed, password managers supported
-5. **Performance budget** — LCP, INP, CLS, payload-sensitive media targets
-6. **Accessibility floor** — focus visibility, focus not obscured, target size, reduced motion, keyboard usage
-7. **Responsive content priority** — what survives first on mobile, what deferred
+1. **Primary path** - user's main JTBD + single primary action
+2. **Information scent** - "Where am I, what can I do, what happens next?"
+3. **State coverage** - loading, empty, error, success, disabled, destructive
+4. **Form/auth friction** - labels persistent, validation humane, paste allowed, password managers supported
+5. **Performance budget** - LCP, INP, CLS, payload-sensitive media targets
+6. **Accessibility floor** - focus visibility, focus not obscured, target size, reduced motion, keyboard usage
+7. **Responsive content priority** - what survives first on mobile, what deferred
 
 Use [website-experience-cheatsheet](references/website-experience-cheatsheet.md).
 
@@ -271,7 +271,7 @@ Routing: `shadcn/ui` → `hyperstack:shadcn-expert` | `Raw Tailwind` → forge-p
 
 Every MCP call fills specific DESIGN.md section. No call without purpose.
 
-## Core Calls (Every Design Task — 4 calls, run in parallel)
+## Core Calls (Every Design Task - 4 calls, run in parallel)
 
 ### Call 1: `designer_resolve_intent(product_description)`
 **FILLS:** All sections (defaults)
@@ -280,7 +280,7 @@ Every MCP call fills specific DESIGN.md section. No call without purpose.
 
 ### Call 2: `designer_get_personality(resolved_cluster)`
 **FILLS:** Sections 1, 2, 3, 4, 6, 7
-**PURPOSE:** Concrete visual vocabulary — tracking, radius range, shadow style, motion timing, density, CSS example. Single most important data source.
+**PURPOSE:** Concrete visual vocabulary - tracking, radius range, shadow style, motion timing, density, CSS example. Single most important data source.
 **USE:** Set every visual property. Personality vocabulary IS design system skeleton.
 
 ### Call 3: `designer_get_page_template(page_type)`
@@ -313,7 +313,7 @@ NOT routine. Call ONLY when product has these specific features:
 | Premium feel | `designer_get_design_system("stripe")` or `("vercel-geist")` | S1 | Stripe weight 300/500, Vercel -0.04em tracking |
 | Enterprise | `designer_get_design_system("ibm-carbon")` | S1 | Carbon 12px spacing-04, IBM Plex, a11y-first |
 
-## Token Calls (Phase 5 only — when generating code)
+## Token Calls (Phase 5 only - when generating code)
 
 Do NOT call during design resolution:
 ```
@@ -538,7 +538,7 @@ Layer 3: Rules       → what constraints enforce it consistently?
 |---|---|---|
 | Colors | Warm-tinted: oklch(0.98 0.012 78) not oklch(0.98 0 0) | 0.012 chroma at hue 78 = "premium notebook" not "cold SaaS". Highest-leverage single decision. |
 | Typography | Serif or humanist sans, 18px body, 1.6-1.75 lh | Serif = trust. Larger body + generous leading = comfort. |
-| Radius | 12-20px | Rounded = friendly (Gestalt). Cap 20px — beyond = childish. |
+| Radius | 12-20px | Rounded = friendly (Gestalt). Cap 20px - beyond = childish. |
 | Shadows | Warm-tinted (oklch(0.22 0.006 56 / 0.06)) | Cold rgba shadows disconnected on warm surfaces. |
 | Motion | 200-300ms, ease-in-out, gentle | Spring/bounce = tonally wrong. |
 | Density | Comfortable (96px sections, 40px cards, 18px body) | Reading requires breathing room. |
@@ -635,16 +635,16 @@ For full detail: `designer_get_industry_rules(industry)`
 
 # COGNITIVE LAWS (11)
 
-> Source: Laws of UX, NNG, Smashing Magazine. Not opinions — empirically documented.
+> Source: Laws of UX, NNG, Smashing Magazine. Not opinions - empirically documented.
 
 ## Fitts' Law
-`T = a + b * log2(2D/W)` — Halving distance > doubling size.
+`T = a + b * log2(2D/W)` - Halving distance > doubling size.
 - Touch targets ≥ 44px (WCAG) / 48px (Material). Screen edges = infinite mouse targets, hardest for touch.
 - Submit CTA at bottom of form (pointer already near last field). Destructive actions ≥ 8px from safe.
 - **Violations:** Icon-only buttons (16px visual ≠ 44px target), Delete beside Save < 8px gap.
 
 ## Hick's Law
-`RT = a + b * log2(n + 1)` — 2→4 choices costs more than 20→22. First added choices most expensive.
+`RT = a + b * log2(n + 1)` - 2→4 choices costs more than 20→22. First added choices most expensive.
 - Minimize choices at irreversible points. Wizard pattern for multi-step. Surface recommended option.
 - Applies to decisions, not recognition. 15-item nav with clear categories = fine. 15-option modal = not.
 - **Violations:** All features on first login, pricing with no highlighted plan, 50+ unsorted dropdowns.
@@ -703,14 +703,14 @@ Remembered = avg(peak intensity + final moment). Duration neglect.
 
 > Source: NNG (1.5M fixations, 57,453 fold fixations), A List Apart, Smashing Magazine
 
-## Visual Hierarchy — 6 Levers (priority order)
+## Visual Hierarchy - 6 Levers (priority order)
 
-1. **Size** — Bigger = more important. Max 3 size variations. Never equal size for different priorities.
-2. **Contrast** — Squint test: blur 5-10px, primary action must be first visible.
-3. **Color** — Warm/saturated advances, cool/muted recedes. Red = destructive only.
-4. **Typography** — Weight is primary signal. Everything emphasized = nothing emphasized.
-5. **Spacing** — More surrounding space = more attention. Use before borders/fills.
-6. **Position** — Top-left = most attention. Optical center above mathematical center.
+1. **Size** - Bigger = more important. Max 3 size variations. Never equal size for different priorities.
+2. **Contrast** - Squint test: blur 5-10px, primary action must be first visible.
+3. **Color** - Warm/saturated advances, cool/muted recedes. Red = destructive only.
+4. **Typography** - Weight is primary signal. Everything emphasized = nothing emphasized.
+5. **Spacing** - More surrounding space = more attention. Use before borders/fills.
+6. **Position** - Top-left = most attention. Optical center above mathematical center.
 
 ## CRAP Principles
 - **Contrast:** If different, make VERY different. Same-same = no hierarchy.
@@ -723,7 +723,7 @@ Remembered = avg(peak intensity + final moment). Duration neglect.
 
 ## The Fold (NNG: 57,453 fixations)
 - Above fold: **102% more views**. 57% viewing time above fold.
-- **Never fill exact viewport height** — bleed 40-80px of next section. False floor = users think page done.
+- **Never fill exact viewport height** - bleed 40-80px of next section. False floor = users think page done.
 - First 100px must be relevant or users leave.
 
 ## Reading Patterns
@@ -777,7 +777,7 @@ Every empty state = onboarding moment. Headline + copy + CTA. First-use: encoura
 
 ---
 
-# DESIGN MASTERS — 5 CONVERGENCE POINTS
+# DESIGN MASTERS - 5 CONVERGENCE POINTS
 
 > 7 masters (Rams, Norman, Vignelli, Spiekermann, Ive, Tufte, Kare) converged independently.
 
@@ -797,7 +797,7 @@ Custom typeface = purchased differentiation. Open apertures for screen legibilit
 Maximize toward 1.0. "Can this be erased without info loss?" Lie Factor = effect shown / effect in data (1.0 = honest). Small multiples. Sparklines.
 
 ## Ive/Apple: Simplicity = Purpose
-"Simplicity not absence of clutter — that's a consequence." Clarity (transparent carrier), Deference (UI steps back), Depth (spring physics = signifiers).
+"Simplicity not absence of clutter - that's a consequence." Clarity (transparent carrier), Deference (UI steps back), Depth (spring physics = signifiers).
 
 ## Kare: Icons as Universal Language
 Meaningful (real metaphors), Memorable (one-trial learning), Clear (traffic sign test).
@@ -843,16 +843,16 @@ ANY present → go back to Phase 3:
 Assemble all decisions into 10-section DESIGN.md. See [template](references/design-md-template.md). See [examples](examples/) for worked outputs.
 
 ```
-1. Visual Theme & Atmosphere — emotional target, personality, system inspiration, identity
-2. Color Palette — brand ramp (OKLCH 11 stops), semantic tokens, dark mode strategy
-3. Typography — scale table, font pairing + rationale, fluid vs fixed
-4. Spacing — semantic tokens, density, grid (12-col), content max-width
-5. Component Specs — button/input/card/nav with ALL variants + ALL states
-6. Motion — duration scale, easing rules, prefers-reduced-motion strategy
-7. Elevation — shadow system (light), bg-color elevation (dark), z-index scale
-8. Do's and Don'ts — 10 rules for THIS product, each traced to evidence
-9. Responsive — behavior at 375/768/1024/1280/1440px
-10. Anti-Patterns — industry violations, AI slop checks this design passes
+1. Visual Theme & Atmosphere - emotional target, personality, system inspiration, identity
+2. Color Palette - brand ramp (OKLCH 11 stops), semantic tokens, dark mode strategy
+3. Typography - scale table, font pairing + rationale, fluid vs fixed
+4. Spacing - semantic tokens, density, grid (12-col), content max-width
+5. Component Specs - button/input/card/nav with ALL variants + ALL states
+6. Motion - duration scale, easing rules, prefers-reduced-motion strategy
+7. Elevation - shadow system (light), bg-color elevation (dark), z-index scale
+8. Do's and Don'ts - 10 rules for THIS product, each traced to evidence
+9. Responsive - behavior at 375/768/1024/1280/1440px
+10. Anti-Patterns - industry violations, AI slop checks this design passes
 ```
 
 **Present to user. Wait for approval. No code until approved.**
@@ -965,7 +965,7 @@ forge-plan reads 10 sections → generates tasks:
 
 Invocation: *"DESIGN.md approved and saved at `<path>`. Invoking `hyperstack:forge-plan` with this as input spec."*
 
-**To `shadcn` MCP plugin — ONLY if Q11b=shadcn:**
+**To `shadcn` MCP plugin - ONLY if Q11b=shadcn:**
 ```
 shadcn_get_rules                        → architectural constraints (ALWAYS first)
 shadcn_get_composition(page_type)       → which components compose for this page
@@ -976,7 +976,7 @@ for each component in DESIGN.md S5:
 ```
 No shadcn component matching DESIGN.md spec → escalate to `hyperstack:designer`, don't invent hybrid.
 
-**To raw Tailwind — ONLY if Q11b=raw Tailwind:**
+**To raw Tailwind - ONLY if Q11b=raw Tailwind:**
 ```
 design_tokens_get_category("component-sizing")
 ui_ux_get_component_pattern(name)
@@ -1028,6 +1028,6 @@ Before completion claim. Verifies:
 
 ## Announcement Protocol
 
-When invoked: *"Using hyperstack:designer — producing DESIGN.md contract for [task type]."*
+When invoked: *"Using hyperstack:designer - producing DESIGN.md contract for [task type]."*
 When handing off: *"DESIGN.md complete at [path]. Invoking hyperstack:forge-plan with this as input spec."*
-When escalating back: *"[from-skill] escalating to designer — [reason]."*
+When escalating back: *"[from-skill] escalating to designer - [reason]."*

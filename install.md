@@ -18,7 +18,7 @@ If you only remember four things, remember these:
 Three tightly-coupled pieces, installed together:
 
 1. **An internal harness** - bootstrap, internal role routing, and workflow control. Current internal roles include `main` and `website-builder`.
-2. **An MCP server** with 11 plugins and 79 tools - deterministic knowledge for React Flow v12, Motion v12, Lenis, React 19 / Next.js, Echo, Go, Rust, design tokens, UI/UX principles, shadcn/ui (Base UI edition), and the `designer` DESIGN.md pipeline.
+2. **An MCP server** with 12 plugins and 80 tools - deterministic knowledge for React Flow v12, Motion v12, Lenis, React 19 / Next.js, Echo, Go, Rust, design tokens, UI/UX principles, shadcn/ui (Base UI edition), and the `designer` DESIGN.md pipeline.
 3. **A skill system** with 21 skills including adversarial enforcement gates (`blueprint`, `designer`, `forge-plan`, `ship-gate`, `engineering-discipline`) and a SessionStart hook that force-injects the `using-hyperstack` skill at every session start.
 
 The install steps below wire the public pieces the user actually needs: the MCP
@@ -53,7 +53,9 @@ If Docker is not available, you can explicitly request the local method: `hypers
 
 ## Step 2: Install the Skills
 
-Clone the repository to a stable location on your system.
+The skills contain the adversarial enforcement gates. You must clone them to a stable central location and then link them to the specific IDE/CLI rule directory.
+
+### 1. Central Repository
 
 **macOS / Linux (Shell):**
 ```bash
@@ -66,6 +68,19 @@ EXT_DIR="$HOME/.hyperstack" && \
 $EXT_DIR = Join-Path $HOME ".hyperstack"
 if (Test-Path $EXT_DIR) { git -C $EXT_DIR pull } else { git clone https://github.com/orkait/hyperstack.git $EXT_DIR }
 ```
+
+### 2. Environment-Specific Linking
+
+Based on the environment you detected in Step 1, identify the correct target directory to enable the skills:
+
+| IDE/CLI | Target Skill Path | Type |
+|---|---|---|
+| **Claude Code** | `~/.claude/skills/hyperstack` | Global |
+| **Cursor** | `.cursor/rules/` | Project-level |
+| **Roo Code** | `.roo/rules/` | Project-level |
+| **Windsurf** | `.codeium/windsurf/` | Project-level |
+
+As an agent, you should **symlink** the `~/.hyperstack/skills` directory to the target path above. This ensures updates to the central repo are immediately reflected in your active session.
 
 ## Step 3: Configure the MCP Server
 
@@ -183,16 +198,16 @@ Once the pre-check passes, start a fresh session in the target environment (or r
 
 2. **Skills are on disk:** Confirm the skills directory exists and has content:
    ```bash
-   ls ~/.claude/skills/hyperstack/skills/   # or ~/.qwen/skills/hyperstack/skills/ for Qwen Code
+   ls ~/.hyperstack/skills/
    ```
    Should show 21 directories plus `INDEX.md`. If missing or empty, the clone failed.
 
-3. **Skills are auto-loaded (platforms with hooks only):** Ask: *"What Hyperstack skills are available?"* The agent should list skills from `skills/INDEX.md` (21 total, grouped into core / domain / meta). On platforms without hook support (e.g., Qwen Code), skip this - skills are on disk but not auto-injected.
+3. **Skills are auto-loaded (platforms with hooks only):** Ask: *"What Hyperstack skills are available?"* The agent should list skills from `skills/INDEX.md` (21 total, grouped into core / domain / meta). On platforms without hook support, skip this - skills are on disk but not auto-injected.
 
 If any of these three checks fail, do not proceed. Fix the issue first:
 - MCP tool unknown → verify config file location and JSON syntax, then restart the session
 - Skills missing → re-run the clone command and confirm the path
-- Skills not auto-loaded → check that the platform supports `.claude-plugin/hooks.json`; if not, this is expected behavior
+- Skills not auto-loaded → check if your tool (e.g. Claude Code) supports hooks/plugin auto-loading.
 
 ---
 
@@ -272,3 +287,20 @@ On Qwen Code, there is no plugin system or hook mechanism. Skills are available 
 ### `bun: command not found` when using Option B
 
 Install Bun: `curl -fsSL https://bun.sh/install | bash`, then open a new shell so the path update takes effect.
+
+## Step 5: Welcome the User to Hyperstack
+
+Once all verifications pass, your final action is to explain the new reality to the user. Do not just say "installed." Explain the **Disciplined Engineering Harness**.
+
+**Recommended Success Message:**
+
+> "System Synchronized. Hyperstack is now active.
+> 
+> I have installed the **Disciplined Engineering Harness** with 12 plugins and 80 tools. I have also established your **Iron Laws** (~/.hyperstack/skills).
+> 
+> From now on:
+> - I will not refactor code without a failing test.
+> - I will not propose designs without a DESIGN.md contract.
+> - I will use the ground-truth primitives provided by the Hyperstack vault.
+> 
+> We are now operating under a professional engineering discipline. How should we begin our first high-integrity task?"
