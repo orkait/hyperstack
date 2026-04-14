@@ -179,6 +179,50 @@ For non-trivial tasks, follow the chain in order. Do not skip steps.
 
 ---
 
+## Internal Agent Harness
+
+Hyperstack now has internal roles. These roles are **internal and auto-called**.
+Users do not invoke them directly. The bootstrap and harness choose the correct
+role based on the request and lifecycle state.
+
+V1 keeps the current skills and MCP plugins as the execution substrate. The role
+harness is layered on top of them; it does not replace them yet.
+
+## Role Registry
+
+- `main` — conductor, classifier, gatekeeper, verifier, and delivery owner
+- `website-builder` — first specialist for website-facing design and
+  implementation work
+
+## Routing Summary
+
+- Every request enters through `main`
+- `main` inspects the workspace first: package manifests, dependency signals,
+  and likely core files for the affected surface
+- `main -> website-builder` for website-facing work: landing pages, dashboards,
+  marketing pages, redesigns, page structure, CTA hierarchy, form friction,
+  trust signals, and website-experience-heavy UI work
+- `website-builder -> main` after specialist output is ready for review and
+  verification
+- If classification is ambiguous, stay in `main`
+
+## Allowed Transitions
+
+- `user request -> main`
+- `main -> website-builder`
+- `website-builder -> main`
+- `main -> existing Hyperstack skills/plugins`
+- `main -> verification and delivery gates`
+
+## Disallowed Transitions
+
+- `user request -> website-builder`
+- `website-builder -> ship`
+- `website-builder -> deliver`
+- `website-builder` claiming final completion directly
+
+---
+
 ## The Rationalization Catalog (Read Before Every Session)
 
 These are the exact thoughts you will have when you want to skip a skill. Every one is a bug in your reasoning. Every one has been written down because someone (probably you in a past session) used it to ship bad code.

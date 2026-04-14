@@ -38,6 +38,7 @@ activation:
     - ux
 references:
   - references/design-md-template.md
+  - references/website-experience-cheatsheet.md
   - examples/saas-dashboard.md
   - examples/developer-tool.md
   - examples/ecommerce-checkout.md
@@ -155,11 +156,67 @@ These are the rationalizations you will have when you want to skip this skill. E
 
 ---
 
+## Website Experience Non-Negotiables
+
+Visual quality is necessary, but it is not sufficient. Hyperstack designs must also
+produce good website experience under real usage. A page that "looks premium" but is
+slow, confusing, inaccessible, or conversion-hostile is a failed design.
+
+Every DESIGN.md must explicitly resolve these seven questions. If any are missing,
+the design is incomplete:
+
+1. **Primary path** - What is the user's main job-to-be-done on this page, and what
+   is the single primary action?
+2. **Information scent** - Can the user quickly answer "Where am I, what can I do,
+   and what happens next?"
+3. **State coverage** - What do loading, empty, error, success, disabled, and
+   destructive states look like?
+4. **Form and auth friction** - Are labels persistent, validation humane, paste
+   allowed, and password managers supported?
+5. **Performance budget** - What are the target budgets for LCP, INP, CLS, and
+   payload-sensitive media?
+6. **Accessibility floor** - How are focus visibility, focus not obscured, target
+   size, reduced motion, and keyboard usage handled?
+7. **Responsive content priority** - What survives first on mobile, and what gets
+   de-emphasized or deferred?
+
+Use [website-experience-cheatsheet](references/website-experience-cheatsheet.md)
+while resolving these.
+
+**Do not let visual style erase usability.**
+
+## User Preferences Override Defaults
+
+Auto-resolved defaults, presets, and recommendations are starting points only.
+They are not allowed to override explicit user preferences, brand language,
+existing workspace conventions, or product constraints.
+
+Priority order for visual decisions:
+
+1. Explicit user preferences and constraints
+2. Existing workspace reality (current framework, component library, design
+   system, tokens, and major frontend patterns)
+3. Approved product or brand requirements
+4. Designer auto-resolved defaults and presets
+
+If a user says "use these colors", "keep our current design system", "match this
+existing app shell", or "do not use shadcn", that preference wins even if the
+auto-resolved defaults would suggest something else.
+
+Treat auto-resolved defaults as suggestions to confirm or replace, never as
+authority.
+
 # PHASE 1: INTENT EXTRACTION
 
 Two modes. Default to **Base** unless user says "advanced" or "detailed."
 
 ## Base Mode (3 Questions + Confirm)
+
+**Step 0:** If this is an existing project, inspect the workspace first:
+- identify framework and package manifests
+- identify current component library and token system
+- identify core frontend files for the active surface
+- identify any explicit visual preferences already encoded in the repo
 
 **Step 1:** Call `designer_resolve_intent` with product description. Auto-detects: industry, personality, style, mode, density, color mood, must-haves, never-uses.
 
@@ -171,7 +228,9 @@ Two modes. Default to **Base** unless user says "advanced" or "detailed."
 | 2 | Brand color? (hex, name, or "generate") | Can't guess someone's brand |
 | 3 | What sections/pages to build? | What to implement |
 
-**Step 3:** Present auto-resolved defaults AND suggest a preset. Offer: *"Say 'advanced' for full control, or pick a preset to start from."*
+**Step 3:** Present auto-resolved defaults as suggestions, not decisions. Explicitly
+ask whether any user preferences or existing workspace patterns should override
+them. Then offer: *"Say 'advanced' for full control, or pick a preset to start from."*
 
 ## Presets (Fast Start)
 
