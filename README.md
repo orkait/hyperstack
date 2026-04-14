@@ -471,6 +471,7 @@ Each plugin follows the same structure: `index.ts` registers tools from `tools/`
 - **Knowledgebase:** The original 25 research files that seeded the designer plugin are NOT in this repo anymore. They live at `../knowledgebase/` outside the repo, gitignored for safety. All actionable content is distilled into `src/plugins/designer/data.ts`.
 - **shadcn plugin:** Ships with 4 curated components (Button, Dialog, Field, Select) as reference. For a full catalog, you still need your project's own shadcn files.
 - **Enforcement vs suggestion:** Hyperstack skills are markdown-based prose gates. They depend on the AI reading them. The SessionStart hook makes this harder to skip, but it is not a hard runtime block. True enforcement would require tool-level hooks.
+- **Branch Protection:** The `main` branch is protected by a strict ruleset. Direct pushes are blocked, and all changes must go through a Pull Request that passes 100% of the CI verification suite.
 - **Testing skills:** `testing-skills` defines a RED-GREEN-REFACTOR methodology for pressure-testing skills with subagents. Scenario files exist for 3 skills (ship-gate, designer, blueprint). Other gate skills need their own scenarios.
 
 ---
