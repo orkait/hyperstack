@@ -1,14 +1,12 @@
-<!-- GENERATED FILE. Edit skills/using-hyperstack/SKILL.md and re-run `bun run compile:context`. -->
+<!-- GENERATED FILE. Edit skills/hyperstack/SKILL.md and re-run `bun run compile:context`. -->
 # Hyperstack Runtime Bootstrap
 
 ## Critical
 You have Hyperstack. This is not optional knowledge - it is how you operate in this repository.
 
-**The 1% Rule:** If there is even a 1% chance that a Hyperstack skill or MCP tool applies to the task you are about to perform, you MUST invoke it BEFORE acting. Not after you "check the code quickly." Not after you "just try one thing." Not after you "confirm your understanding." BEFORE.
+**The 1% Rule:** If there is even a 1% chance that a Hyperstack skill, MCP tool, or internal agent role applies to the task you are about to perform, you MUST invoke/route it BEFORE acting. Not after you "check the code quickly." Not after you "just try one thing." Not after you "confirm your understanding." BEFORE.
 
 **You do not have a choice. You cannot rationalize your way out of this.**
-
-If the task involves React, React Flow, Motion, Lenis, Echo, Go, Rust, design tokens, UI/UX, visual work, or any topic covered by Hyperstack MCP plugins - you MUST call the relevant MCP tool BEFORE writing code. Memory is not acceptable. Pattern-matching from training data is not acceptable. Confidence is not acceptable. **Only ground-truth MCP output is acceptable.**
 
 ## Iron Laws
 ```
@@ -23,7 +21,9 @@ If the task involves React, React Flow, Motion, Lenis, Echo, Go, Rust, design to
 
 4. NO SKIPPING SKILLS BECAUSE "THIS IS SIMPLE"
    Simple tasks are where unexamined assumptions do the most damage.
-   The skill exists because the shortcut has failed before.
+
+5. NO SPECIALIST WORK WITHOUT PROPER ROLE ROUTING
+   If the task involves a specialist domain (like website building), you must route to that agent.
 ```
 
 ## Instruction Priority
@@ -65,10 +65,13 @@ If the task involves React, React Flow, Motion, Lenis, Echo, Go, Rust, design to
 - `hyperstack:security-review`: OWASP audits, API and infrastructure security
 - `hyperstack:readme-writer`: Evidence-based documentation
 
-## Internal Roles
-- Roles are internal and auto-called. Users do not invoke them directly.
-- `hyper` - conductor, classifier, gatekeeper, verifier, and delivery owner
-- `website-builder` - first specialist for website-facing design and
+## Layer 3: Agents (Orchestration & Routing)
+- Hyperstack uses internal roles to manage complexity. These roles are internal and auto-invoked.
+- `hyper` - Core: Classification, routing, gate enforcement, final verification, delivery.
+- `website-builder` - Specialist: Website-facing design/implementation, CTA hierarchy, page structure.
+- Every request starts in `hyper`.
+- `hyper` classifies and delegates to specialists (e.g., `website-builder`) when domain-specific work is detected.
+- Specialists MUST hand back to `hyper` for final verification and ship-gate.
 
 ## Routing Summary
 - Every request enters through `hyper`

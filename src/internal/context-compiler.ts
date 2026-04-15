@@ -175,7 +175,7 @@ export function compileUsingHyperstackBootstrap(source: string): { content: stri
   const redFlags = extractRedFlags(body);
 
   const content = [
-    "<!-- GENERATED FILE. Edit skills/using-hyperstack/SKILL.md and re-run `bun run compile:context`. -->",
+    "<!-- GENERATED FILE. Edit skills/hyperstack/SKILL.md and re-run `bun run compile:context`. -->",
     "# Hyperstack Runtime Bootstrap",
     "",
     "## Critical",
@@ -236,8 +236,8 @@ export function validateUsingHyperstackBootstrap(content: string): string[] {
 }
 
 export function compileContextArtifacts(pluginRoot: string): ContextArtifact[] {
-  const sourcePath = join(pluginRoot, "skills", "using-hyperstack", "SKILL.md");
-  const outputPath = join(pluginRoot, "generated", "runtime-context", "using-hyperstack.bootstrap.md");
+  const sourcePath = join(pluginRoot, "skills", "hyperstack", "SKILL.md");
+  const outputPath = join(pluginRoot, "generated", "runtime-context", "hyperstack.bootstrap.md");
 
   const source = readFileSync(sourcePath, "utf8");
   const { content } = compileUsingHyperstackBootstrap(source);

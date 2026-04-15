@@ -18,7 +18,7 @@ must_not_do:
 delegates_to:
   - website-builder
 requires:
-  - current bootstrap invariants from using-hyperstack
+  - current bootstrap invariants from hyperstack
   - approved design before implementation when required
   - verification evidence before completion or delivery
 ---

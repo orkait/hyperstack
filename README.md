@@ -186,7 +186,7 @@ The MCP server gives you tools. The skills give you discipline. Install both:
 git clone https://github.com/orkait/hyperstack.git ~/.claude/skills/hyperstack
 ```
 
-After installing, the SessionStart hook (at `hooks/session-start.mjs`) will auto-inject the `using-hyperstack` skill into every session. No manual activation needed.
+After installing, the SessionStart hook (at `hooks/session-start.mjs`) will auto-inject the `hyperstack` skill into every session. No manual activation needed.
 
 ### 💻 From source
 
@@ -204,9 +204,9 @@ Node 18+ required.
 
 ---
 
-## 🧠 The Two-Layer System
+## 🧠 The Three-Layer System
 
-Hyperstack's strength comes from the friction between **Ground Truth** (MCP) and **Enforcement** (Skills).
+Hyperstack's strength comes from the friction between **Ground Truth** (MCP), **Enforcement** (Skills), and **Orchestration** (Agents).
 
 ### Layer 1: MCP Plugins (Ground Truth)
 
@@ -236,9 +236,9 @@ Markdown with adversarial enforcement. Each skill contains an **Iron Law** that 
 
 These laws are backed by **Rationalization Tables**-pre-written counters to every excuse an AI agent uses to skip quality gates.
 
-### Internal Harness (role routing + bootstrap)
+### Layer 3: Agents (Orchestration & Routing)
 
-The internal harness is what ties the public layers together:
+The internal harness is what ties the public layers together by managing process and domains:
 
 - bootstrap is injected at session start from generated runtime context
 - `hyper` owns classification, routing, gates, and verification
@@ -285,7 +285,7 @@ The internal harness is what ties the public layers together:
 
 | Skill | Role |
 |---|---|
-| `using-hyperstack` | Force-injected at session start via hook - the enforcement payload |
+| `hyperstack` | Force-injected at session start via hook - the enforcement payload |
 | `testing-skills` | RED-GREEN-REFACTOR pressure testing for skills using subagents |
 
 </details>
@@ -309,7 +309,7 @@ Ordinary skill markdown is a polite suggestion. Polite suggestion fails when an 
 
 When you say, **“build me a SaaS dashboard”**:
 
-1. **SessionStart** already puts in `using-hyperstack`, so AI know system is there.
+1. **SessionStart** already puts in `hyperstack`, so AI know system is there.
 2. **Blueprint skill** sees visual job and sends it to `hyperstack:designer`.
 3. **Designer skill** runs `designer_resolve_intent(product)` to guess industry, personality, style, density, and mode.
 4. Designer asks **3 questions** in base mode, or **12 questions** in advanced mode.

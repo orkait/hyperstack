@@ -44,6 +44,6 @@ Categories:
 | Skill | Description |
 |---|---|
 | `testing-skills` | Use when creating or editing Hyperstack skills, before shipping them, to verify they actually work under pressure and re |
-| `using-hyperstack` | Bootstrap - establishes Hyperstack MCP tools and skills before any technical work. Auto-loaded at session start via Sess |
+| `hyperstack` | Bootstrap - establishes Hyperstack MCP tools and skills before any technical work. Auto-loaded at session start via Sess |
 
 

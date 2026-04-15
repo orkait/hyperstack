@@ -44,7 +44,7 @@ rules:
 load and obey when present:
 
 * `~/.gemini/settings.json`, `.cursorrules`, or similar ide-specific project rules
-* `./skills/using-hyperstack/SKILL.md`
+* `./skills/hyperstack/SKILL.md`
 * any task-specific skill doc the user points to
 * repo-local agent or steering docs
 

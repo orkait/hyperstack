@@ -153,7 +153,7 @@ blueprint (THIS) → forge-plan → [execution] → ship-gate → deliver
 
 ### Upstream Dependencies
 - None (entry point for feature work)
-- `using-hyperstack` → 1% rule enforcement
+- `hyperstack` → 1% rule enforcement
 
 ### Downstream Consumers
 - `forge-plan` → reads approved design, builds MCP-verified task plan
