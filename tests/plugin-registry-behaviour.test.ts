@@ -17,10 +17,10 @@ function getRegisteredTools() {
   return tools;
 }
 
-test("all 11 plugins register at least one tool", () => {
+test("all 12 plugins register at least one tool", () => {
   const tools = getRegisteredTools();
   const pluginPrefixes = new Set(tools.map((t) => t.name.split("_")[0]));
-  expect(pluginPrefixes.size).toBe(11);
+  expect(pluginPrefixes.size).toBe(12);
 });
 
 test("every registered tool has a non-empty name and description", () => {

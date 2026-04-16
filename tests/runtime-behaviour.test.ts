@@ -3,6 +3,7 @@ import { readFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import { once } from "node:events";
 import { spawn } from "node:child_process";
+import { generateMcpPatch } from "../src/internal/setup-hyperstack.ts";
 
 function normalize(str: string): string {
   return str.replace(/\r\n/g, "\n");
@@ -143,4 +144,13 @@ test("package bin entry prints usage when invoked without command arguments", as
   const [exitCode] = (await once(child, "close")) as [number | null];
   expect(exitCode).toBe(1);
   expect(`${stdout}${stderr}`).toMatch(/Usage: hyperstack tool/);
+});
+
+test("generateMcpPatch defaults to local runtime instead of docker", () => {
+  const patch = generateMcpPatch("/tmp/config.json", "/repo", "cursor");
+  const serialized = JSON.stringify(patch.content);
+
+  expect(serialized).toMatch(/hyperstack/);
+  expect(serialized).toMatch(/bin\/hyperstack\.mjs/);
+  expect(serialized).not.toMatch(/docker/);
 });
