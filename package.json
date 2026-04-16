@@ -9,6 +9,7 @@
   "scripts": {
     "build": "tsc --noEmit",
     "compile:context": "tsx src/internal/compile-runtime-context.ts",
+    "generate:local-tools": "tsx scripts/generate-local-tool-registry.ts",
     "test": "bun test",
     "start": "bun src/index.ts",
     "dev": "bun --watch src/index.ts",
