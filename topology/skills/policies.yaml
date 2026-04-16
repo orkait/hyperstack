@@ -1,0 +1,26 @@
+skills:
+  designer:
+    phase: design
+    domains:
+      - frontend
+    requires_artifacts:
+      - task_handoff
+    produces_artifacts:
+      - design_contract
+  behaviour-analysis:
+    phase: verify
+    domains:
+      - frontend
+    requires_artifacts:
+      - build_result
+      - design_contract
+    produces_artifacts:
+      - verification_report
+  security-review:
+    phase: verify
+    domains:
+      - backend
+    requires_artifacts:
+      - build_result
+    produces_artifacts:
+      - review_report

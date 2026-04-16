@@ -1,0 +1,20 @@
+id: hyper
+kind: orchestrator
+domains:
+  - shared
+allowed_skills:
+  - blueprint
+  - forge-plan
+  - run-plan
+  - parallel-dispatch
+  - subagent-ops
+  - autonomous-mode
+  - ship-gate
+  - code-review
+  - deliver
+allowed_bundles:
+  - shared.system
+forbidden_bundles: []
+handoff_in: user_request
+handoff_out: task_handoff
+completion_proof: routing_and_verification

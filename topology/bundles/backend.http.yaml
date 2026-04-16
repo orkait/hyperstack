@@ -1,0 +1,10 @@
+id: backend.http
+domain: backend
+capabilities:
+  - backend.http.patterns
+sources:
+  - corpus/backend/echo
+tool_prefixes:
+  - echo_
+output_contracts:
+  - backend_recipe

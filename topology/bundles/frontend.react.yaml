@@ -1,0 +1,21 @@
+id: frontend.react
+domain: frontend
+capabilities:
+  - frontend.patterns
+  - frontend.motion
+  - frontend.flow
+sources:
+  - corpus/frontend/react
+  - corpus/frontend/shadcn
+  - corpus/frontend/motion
+  - corpus/frontend/lenis
+  - corpus/frontend/reactflow
+tool_prefixes:
+  - react_
+  - shadcn_
+  - motion_
+  - lenis_
+  - reactflow_
+output_contracts:
+  - frontend_reference
+  - component_contract
