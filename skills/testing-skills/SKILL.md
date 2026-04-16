@@ -6,15 +6,6 @@ description: Use when creating or editing Hyperstack skills, before shipping the
 
 # Testing Skills With Subagents
 
-## The Iron Law
-
-```
-NO SKILL SHIPS WITHOUT SUBAGENT PRESSURE TEST EVIDENCE
-```
-
-A skill that has not been tested against an adversarial subagent is a paper contract. If you have not watched a subagent try to rationalize its way out of your skill AND fail, you do not know if the skill works.
-
-**Violating the letter of this rule is violating the spirit of this rule.**
 
 ## Core Principle
 

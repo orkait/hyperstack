@@ -103,17 +103,6 @@ Good subagent prompts are:
 Bad: "Fix the tests" (too broad)
 Good: "Fix the 3 failing tests in `src/flow/nodes.test.ts`. Root cause is [X]. Expected: all pass. Return: summary of changes."
 
-## Red Flags - STOP
-
-| Thought | Reality |
-|---|---|
-| "I'll dispatch multiple implementers in parallel" | They'll conflict on shared files. One at a time. |
-| "Skip spec review, the code looks fine" | Spec drift is invisible without review. |
-| "Start code quality before spec compliance" | Wrong order. Spec first, quality second. |
-| "Subagent said done, move on" | Verify with review. Trust but verify. |
-| "I'll fix it myself instead of re-dispatching" | Context pollution. Dispatch a fix subagent. |
-| "This task is too small for the full cycle" | Small tasks still get spec + quality review. |
-| "Let the subagent read the plan file" | Provide full text. File reads waste subagent context. |
 
 ## Integration
 

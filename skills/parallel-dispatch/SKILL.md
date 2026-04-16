@@ -89,14 +89,6 @@ Return: Summary of root cause and changes made.
 | Related failures split across agents | Investigate together first |
 | Same files given to multiple agents | Guaranteed merge conflicts |
 
-## Red Flags - STOP
-
-| Thought | Reality |
-|---|---|
-| "Dispatch 5 agents for speed" | More agents ≠ faster if they conflict |
-| "I'll let agents figure out the scope" | Vague scope → vague results |
-| "These might be related but I'll parallelize anyway" | Related bugs in parallel = wasted work. Investigate first. |
-| "Skip the integration check" | Agents don't know about each other. You must verify. |
 
 ## Integration
 

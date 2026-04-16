@@ -109,14 +109,6 @@ git worktree remove <path>
 # Leave worktree in place, report its location
 ```
 
-## Red Flags - STOP
-
-| Thought | Reality |
-|---|---|
-| "I'll just work on the main branch" | Dirty state → mysterious failures. Isolate. |
-| "Worktree setup is overhead" | 30 seconds of setup prevents hours of state debugging. |
-| "I'll skip baseline tests" | Won't know if failures are yours or pre-existing. |
-| "The directory doesn't need to be ignored" | One `git add .` and the worktree is in your repo. |
 
 ## Integration
 

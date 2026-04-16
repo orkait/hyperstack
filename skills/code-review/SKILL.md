@@ -113,15 +113,6 @@ For multi-item feedback:
 5. Test each fix individually
 6. Verify no regressions
 
-## Red Flags - STOP
-
-| Thought | Reality |
-|---|---|
-| "Skip review, it's simple" | Simple code has bugs. Review catches them. |
-| "I'll review my own code" | Self-review ≠ code review. Dispatch a subagent. |
-| "Reviewer is wrong, ignore it" | Push back with reasoning. Don't silently ignore. |
-| "I agree with everything" | Performative agreement ≠ technical evaluation. |
-| "I'll implement all feedback at once" | One item at a time, test each. |
 
 ## Integration
 

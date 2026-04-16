@@ -6,15 +6,6 @@ description: Use when implementing any feature, bug fix, or behaviour change - b
 
 # Test-First Development
 
-## The Iron Law
-
-```
-NO PRODUCTION CODE WITHOUT A FAILING TEST FIRST.
-```
-
-Wrote code before the test? Delete it. Start over. Don't keep it as "reference." Don't "adapt" it while writing tests. Delete means delete.
-
-Violating the letter = violating the spirit.
 
 ## When to Use
 
@@ -105,20 +96,10 @@ Before marking work complete:
 
 Can't check all boxes? → You skipped TDD. Start over.
 
-## Red Flags - STOP
+## The Rule
 
-| Thought | Reality |
-|---|---|
-| "Too simple to test" | Simple code breaks. Test takes 30 seconds. |
-| "I'll test after" | Tests passing immediately prove nothing. |
-| "Tests after achieve the same goals" | Tests-after = "what does this do?" Tests-first = "what should this do?" |
-| "I already manually tested it" | Ad-hoc ≠ systematic. No record, can't re-run. |
-| "Deleting X hours of work is wasteful" | Sunk cost fallacy. Keeping unverified code = debt. |
-| "Keep as reference, write tests first" | You'll adapt it. That's testing after. Delete means delete. |
-| "Need to explore first" | Fine. Throw away exploration, then start with TDD. |
-| "Test is hard to write = skip it" | Hard to test = hard to use. Simplify the interface. |
-| "TDD will slow me down" | TDD is faster than debugging. Always. |
-| "This is different because..." | No it isn't. Write the test. |
+No production code without a failing test first. Delete code written before the test — don't keep it as "reference".
+
 
 ## Integration
 
