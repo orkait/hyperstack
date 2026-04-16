@@ -11,3 +11,11 @@ test("generated local tool registry includes stable tool names", () => {
   expect(Object.keys(registry)).toContain("golang_get_practice");
   expect(Object.keys(registry)).toContain("reactflow_get_api");
 });
+
+test("generated topology bootstrap includes agent and bundle routing markers", () => {
+  const bootstrap = readFileSync(resolve("generated/runtime-context/topology.bootstrap.md"), "utf8");
+  expect(bootstrap).toMatch(/hyper/);
+  expect(bootstrap).toMatch(/frontend-builder/);
+  expect(bootstrap).toMatch(/backend-builder/);
+  expect(bootstrap).toMatch(/frontend\.design/);
+});

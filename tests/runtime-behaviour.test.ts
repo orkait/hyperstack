@@ -76,7 +76,9 @@ test("Claude SessionStart hook command executes successfully on this platform", 
   };
 
   expect(payload.additionalContext || payload.hookSpecificOutput?.additionalContext).toBeDefined();
-  expect(normalize(payload.additionalContext || payload.hookSpecificOutput?.additionalContext || "")).toMatch(/compiled runtime bootstrap/);
+  expect(normalize(payload.additionalContext || payload.hookSpecificOutput?.additionalContext || "")).toMatch(
+    /generated topology bootstrap|compiled runtime bootstrap/,
+  );
 });
 
 test("SessionStart hook emits Cursor-compatible output shape when CURSOR_PLUGIN_ROOT is set", async () => {
