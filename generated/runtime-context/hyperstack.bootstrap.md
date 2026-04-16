@@ -2,104 +2,88 @@
 # Hyperstack Runtime Bootstrap
 
 ## Critical
-You have Hyperstack. This is not optional knowledge - it is how you operate in this repository.
+Hyperstack is active. This constitutes the mandatory operational framework for this repository.
 
-**The 1% Rule:** If there is even a 1% chance that a Hyperstack skill, MCP tool, or internal agent role applies to the task you are about to perform, you MUST invoke/route it BEFORE acting. Not after you "check the code quickly." Not after you "just try one thing." Not after you "confirm your understanding." BEFORE.
+**Three-Layer Ecosystem:**
+1. **Layer 1: Ground Truth (MCP)** - Deterministic data for the stack.
+2. **Layer 2: Process (Skills)** - Disciplined engineering workflows and gates.
+3. **Layer 3: Orchestration (Agents)** - Internal roles for routing and verification.
 
-**You do not have a choice. You cannot rationalize your way out of this.**
+**The 1% Rule:** If a 1% probability exists that a Hyperstack skill, MCP tool, or internal agent role applies, YOU MUST invoke or route to it BEFORE acting. Not after checking code. Not after testing a hypothesis. BEFORE.
+
+You cannot rationalize exceptions to this rule.
 
 ## Iron Laws
 ```
 1. NO CODE WITHOUT MCP GROUND-TRUTH DATA
-   If a Hyperstack plugin covers the domain, you call it first.
+   Call relevant Hyperstack plugins prior to implementation.
 
 2. NO VISUAL CODE WITHOUT AN APPROVED DESIGN.md
-   The designer skill produces the contract. Everything else reads it.
+   The designer skill produces the contract; everything else implements it.
 
 3. NO COMPLETION CLAIMS WITHOUT SHIP-GATE EVIDENCE
-   "Should work" is lying. Run the command. Show the output.
+   "Should work" is unacceptable. Execute the command and output results.
 
 4. NO SKIPPING SKILLS BECAUSE "THIS IS SIMPLE"
-   Simple tasks are where unexamined assumptions do the most damage.
+   Simple tasks hide unexamined assumptions that cause the most damage.
 
 5. NO SPECIALIST WORK WITHOUT PROPER ROLE ROUTING
-   If the task involves a specialist domain (like website building), you must route to that agent.
+   Route specialist domain tasks (e.g., website building) to the corresponding agent.
 ```
 
 ## Instruction Priority
-- **User's explicit instructions** (Project rules, direct requests) - always highest
-- **Hyperstack skills** - override default system behavior where they conflict
-- **Default system behavior** - lowest priority
+- **User's explicit instructions** (Project rules, direct requests) - Maximum priority.
+- **Hyperstack skills** - Overrides system defaults.
+- **Default system behavior** - Minimum priority.
 
 ## MCP Must-Call-First
-- `designer_*` -> `designer_resolve_intent`, `designer_get_personality`, `designer_get_preset`, `designer_get_page_template`, `designer_get_font_pairing`, `designer_get_anti_patterns`
-- `design_tokens_*` -> `design_tokens_generate`, `design_tokens_get_category`, `design_tokens_get_gotchas`
-- `ui_ux_*` -> `ui_ux_get_principle`, `ui_ux_get_component_pattern`, `ui_ux_get_gotchas`
-- `shadcn_*` (**only if shadcn chosen**) -> `shadcn_get_rules` (first), `shadcn_get_composition`, `shadcn_get_component`, `shadcn_get_snippet`, `shadcn_list_components`
-- `reactflow_*` -> `reactflow_get_api`, `reactflow_search_docs`, `reactflow_get_pattern`
-- `motion_*` -> `motion_get_api`, `motion_get_examples`, `motion_get_transitions`
-- `lenis_*` -> `lenis_get_api`, `lenis_generate_setup`, `lenis_get_pattern`
-- `react_*` -> `react_get_pattern`, `react_get_constraints`, `react_search_docs`
-- `echo_*` -> `echo_get_recipe`, `echo_get_middleware`, `echo_decision_matrix`
-- `golang_*` -> `golang_get_practice`, `golang_get_pattern`, `golang_get_antipatterns`
-- `rust_*` -> `rust_get_practice`, `rust_cheatsheet`, `rust_search_docs`
+- `designer_*` -> `resolve_intent`, `get_personality`, `get_preset`, `get_page_template`, `get_font_pairing`, `get_anti_patterns`
+- `design_tokens_*` -> `generate`, `get_category`, `get_gotchas`
+- `ui_ux_*` -> `get_principle`, `get_component_pattern`, `get_gotchas`
+- `shadcn_*` (if selected) -> `get_rules` (FIRST), `get_composition`, `get_component`, `get_snippet`, `list_components`
+- `reactflow_*` -> `get_api`, `search_docs`, `get_pattern`
+- `motion_*` -> `get_api`, `get_examples`, `get_transitions`
+- `lenis_*` -> `get_api`, `generate_setup`, `get_pattern`
+- `react_*` -> `get_pattern`, `get_constraints`, `search_docs`
+- `echo_*` -> `get_recipe`, `get_middleware`, `decision_matrix`
+- `golang_*` -> `get_practice`, `get_pattern`, `get_antipatterns`
+- `rust_*` -> `get_practice`, `cheatsheet`, `search_docs`
 
 ## Workflow Skills
-- `hyperstack:blueprint`: Before any feature build - MCP survey, design gate, negative doubt
-- `hyperstack:designer`: Before any visual/UX work - produces DESIGN.md contract
-- `hyperstack:forge-plan`: After design approval - MCP-verified implementation plan
-- `hyperstack:run-plan`: Have an existing plan - validate then execute
-- `hyperstack:engineering-discipline`: During execution - Senior SDE phase gates
-- `hyperstack:ship-gate`: Before any completion claim - evidence required
-- `hyperstack:deliver`: After all tasks complete - final verification and delivery
-- `hyperstack:autonomous-mode`: Full autonomous execution - runs end-to-end, only stops on failure
-- `hyperstack:subagent-ops`: Plans with independent tasks - fresh agent per task, two-stage review
-- `hyperstack:test-first`: Before writing any implementation code - red-green-refactor
-- `hyperstack:worktree-isolation`: Before feature work - clean workspace isolation
-- `hyperstack:code-review`: After completing tasks - dispatch reviewer subagent
-- `hyperstack:parallel-dispatch`: 2+ independent failures or tasks - concurrent agent dispatch
-- `hyperstack:designer`: Before any visual/UX work - produces DESIGN.md
-- `hyperstack:debug-discipline`: Any bug or unexpected behaviour - root cause first
-- `hyperstack:behaviour-analysis`: UI/UX audits, state machine correctness
-- `hyperstack:design-patterns-skill`: Selecting the right abstraction or design pattern
-- `hyperstack:security-review`: OWASP audits, API and infrastructure security
-- `hyperstack:readme-writer`: Evidence-based documentation
+- Starting any new feature, component, or behaviour change: `blueprint`
+- Task involves UI, animation, visuals, or interaction: `designer` → produces DESIGN.md first
+- Have an approved design or plan to execute: `forge-plan` or `run-plan`
+- Claiming anything is complete, fixed, or passing: `ship-gate` — evidence required
+- Hit any bug, test failure, or unexpected behaviour: `debug-discipline` — root cause before any fix
+- User says "autonomous", "just do it", "go ahead": `autonomous-mode`
+- Plan has 2+ independent tasks: `subagent-ops` or `parallel-dispatch`
+- Implementing any feature or bug fix (before code): `test-first`
+- Reviewing completed implementation: `code-review`
+- Security-sensitive API, auth, or infra code: `security-review`
+- UI state machine, interaction audit: `behaviour-analysis`
+- Selecting an abstraction or design pattern: `engineering-discipline`
+- Writing or updating project documentation: `readme-writer`
+- Starting implementation that needs workspace isolation: `worktree-isolation`
 
-## Layer 3: Agents (Orchestration & Routing)
-- Hyperstack uses internal roles to manage complexity. These roles are internal and auto-invoked.
-- `hyper` - Core: Classification, routing, gate enforcement, final verification, delivery.
-- `website-builder` - Specialist: Website-facing design/implementation, CTA hierarchy, page structure.
-- Every request starts in `hyper`.
-- `hyper` classifies and delegates to specialists (e.g., `website-builder`) when domain-specific work is detected.
-- Specialists MUST hand back to `hyper` for final verification and ship-gate.
-
-## Routing Summary
-- Every request enters through `hyper`
-- `hyper` inspects the workspace first: package manifests, dependency signals,
-- `hyper -> website-builder` for website-facing work: landing pages, dashboards,
-- `website-builder -> hyper` after specialist output is ready for review and
-- If classification is ambiguous, stay in `hyper`
-
-## Allowed Transitions
-- `user request -> hyper`
-- `hyper -> website-builder`
-- `website-builder -> hyper`
-- `hyper -> existing Hyperstack skills/plugins`
-- `hyper -> verification and delivery gates`
+## Internal Agents
+- Roles are internal and auto-called. Users do not invoke them directly.
+- Internal roles are auto-called, not user-facing.
+- hyper -> website-builder
+- `hyper`: Classification, routing, gate enforcement, final verification, delivery
+- `website-builder`: Website-facing design/implementation, CTA hierarchy, page structure
 
 ## Disallowed Transitions
 - `user request -> website-builder`
 - `website-builder -> ship`
 - `website-builder -> deliver`
-- `website-builder` claiming final completion directly
 
 ## High-Signal Red Flags
-- "I know this React Flow API from memory" -> Memory drifts. v11 and v12 are different.
-- "This is a simple animation" -> Simple animations need `prefers-reduced-motion`, correct easing, and GPU-only properties
-- "Go error handling is straightforward" -> Straightforward code is where anti-patterns ship
-- "I'll check docs after I write it" -> You will ship before you check. Every time.
-- "I know the OKLCH token pattern" -> OKLCH has specific rules about alpha, chroma peaks, dark mode lightness
-- "This pattern looks common, I'll adapt it" -> Adaptation hides drift
+- "I know the React Flow API from memory." -> Memory drifts. v11 and v12 differ.
+- "This is a simple animation." -> Animations require `prefers-reduced-motion`, easing, and GPU properties.
+- "Go error handling is straightforward." -> Straightforward code hosts anti-patterns.
+- "I'll check docs after writing." -> Shipping occurs before checking.
+- "I know the OKLCH token pattern." -> OKLCH dictates specific alpha, chroma, and lightness rules.
+- "This pattern is common; I'll adapt it." -> Adaptation obscures structural drift.
 
 ## Degraded Mode
 - If MCP unavailable, tell the user explicitly: "MCP unavailable" and flag answers as uncertain.
@@ -108,8 +92,8 @@ You have Hyperstack. This is not optional knowledge - it is how you operate in t
 - Before invoking any Hyperstack skill, announce it with the exact format and purpose so the user can audit it.
 
 ## Final Check
-- [ ] Did I check whether any Hyperstack skill applies to this task? (1% rule)
-- [ ] Did I call any relevant MCP tool for ground-truth data? (memory is not acceptable)
-- [ ] If this involves visual work, did I invoke designer BEFORE writing any code?
-- [ ] If I'm claiming something is done, did I run the verification command THIS message?
-- [ ] Did I announce every skill invocation with the exact format?
+- [ ] Did I evaluate Hyperstack skill applicability? (1% rule)
+- [ ] Did I execute relevant MCP tools? (No memory rely)
+- [ ] If visual, did I invoke `designer` BEFORE coding?
+- [ ] If claiming completion, did I execute verification THIS message?
+- [ ] Did I announce skill invocation with exact formatting?
