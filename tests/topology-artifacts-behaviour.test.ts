@@ -21,4 +21,6 @@ test("generated topology bootstrap includes agent and bundle routing markers", (
   expect(bootstrap).toMatch(/frontend\.design/);
   expect(bootstrap).toMatch(/design contract is conditional/i);
   expect(bootstrap).toMatch(/cross-domain agent: fullstack-builder/i);
+  expect(bootstrap).toMatch(/backend\.golang/);
+  expect(bootstrap).toMatch(/frontend\.ui-ux/);
 });

@@ -5,6 +5,10 @@ Cross-domain agent: fullstack-builder
 Workspace inventory required: true
 Design contract is conditional
 
+## Corpus Namespaces
+- backend.golang: corpus/backend/golang
+- frontend.ui-ux: corpus/frontend/ui-ux
+
 ## Artifacts
 - workspace_inventory: discovery_only
 - task_handoff: routing_only

@@ -1,9 +1,11 @@
 import { mkdirSync, writeFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { loadTopology } from "../src/engine/topology-loader.js";
+import { loadCorpusIndex } from "../src/engine/corpus-loader.js";
 
 const repoRoot = resolve(".");
 const topology = loadTopology(repoRoot);
+const corpusIndex = loadCorpusIndex(repoRoot);
 
 mkdirSync(resolve("generated/runtime-context"), { recursive: true });
 mkdirSync(resolve("generated/routing"), { recursive: true });
@@ -17,6 +19,9 @@ writeFileSync(
     `Cross-domain agent: ${topology.routeDefaults.crossDomainAgent}`,
     `Workspace inventory required: ${topology.routeDefaults.requiresWorkspaceInventory}`,
     "Design contract is conditional",
+    "",
+    "## Corpus Namespaces",
+    ...Object.entries(corpusIndex.namespaces).map(([name, path]) => `- ${name}: ${path}`),
     "",
     "## Artifacts",
     ...topology.artifacts.map((artifact) => `- ${artifact.id}: ${artifact.proofMode}`),
