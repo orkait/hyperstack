@@ -98,7 +98,39 @@ Frontend has weaker proof paths and needs design-constrained execution:
 
 This asymmetry must be explicit in topology.
 
-### 3.4 Stable Tool Names, New Runtime
+### 3.4 Planning Is Universal, Design Contracts Are Conditional
+
+The current design stack enforces `DESIGN.md` too early and too broadly:
+
+- `website-builder` is website-specific, not general frontend
+- `blueprint` routes any visual/UX work directly into `designer`
+- `designer` hard-gates visual work behind approved `DESIGN.md`
+- topology/runtime currently has no `workspace_inventory` or conditional-design logic
+
+That is acceptable for greenfield visual work, but wrong for many client existing-project tasks.
+
+Corrected rule:
+
+- `workspace_inventory` is always required
+- `task_handoff` is always required
+- `implementation_plan` is normally required
+- `design_contract` is conditional
+- `verification_report` is always required before completion
+
+`design_contract` is required only when:
+
+- a new user-facing surface is created
+- visual semantics materially change
+- a reliable existing pattern/design-system match cannot be found in the workspace
+
+It is not a universal gate for:
+
+- backend-only work
+- infra/config/docs work
+- existing-project refactors
+- non-visual bugfixes inside established patterns
+
+### 3.5 Stable Tool Names, New Runtime
 
 Tool identities such as `designer_resolve_intent`, `reactflow_get_api`, and `golang_get_practice` remain stable. What changes is the resolver behind them:
 
@@ -399,6 +431,7 @@ Artifacts are typed handoff shapes between agents, skills, and adapters.
 
 Recommended first V1 artifact set:
 
+- `workspace_inventory`
 - `task_handoff`
 - `design_contract`
 - `build_result`
@@ -406,7 +439,31 @@ Recommended first V1 artifact set:
 - `verification_report`
 - `delivery_report`
 
-### 10.1 `task_handoff`
+### 10.1 `workspace_inventory`
+
+Produced by:
+
+- `hyper`
+- future workspace discovery helpers
+
+Consumed by:
+
+- router
+- planning skills
+- builder agents
+
+Fields:
+
+- repo_type
+- stack
+- touched_surfaces
+- owning_modules
+- existing_patterns
+- existing_design_system
+- verification_commands
+- project_mode (`greenfield` | `existing`)
+
+### 10.2 `task_handoff`
 
 Produced by:
 
@@ -425,8 +482,13 @@ Fields:
 - constraints
 - success_criteria
 - touched_surfaces
+- change_classification (`backend_only` | `frontend_logic` | `frontend_visual` | `fullstack_slice` | `docs_config`)
+- requires_design_contract
+- required_artifacts
 
-### 10.2 `design_contract`
+### 10.3 `design_contract`
+
+Conditional artifact. Required only when `requires_design_contract = true`.
 
 Produced by:
 
@@ -449,7 +511,7 @@ Fields:
 - responsive_rules
 - anti_patterns
 
-### 10.3 `verification_report`
+### 10.4 `verification_report`
 
 Produced by:
 
@@ -497,18 +559,19 @@ Flow:
    - capability = `design.intent`
 3. `hyper` routes to `frontend-builder`
 4. `frontend-builder` is required to use `frontend.design`
-5. local adapter `designer_resolve_intent` resolves the call
-6. engine maps the tool to:
+5. `hyper` builds `workspace_inventory`
+6. local adapter `designer_resolve_intent` resolves the call when route classification requires it
+7. engine maps the tool to:
    - capability: `design.intent`
    - bundle: `frontend.design`
    - corpus paths:
      - `corpus/frontend/designer`
      - `corpus/frontend/ui-ux`
      - `corpus/frontend/design-tokens`
-7. injector builds a short context pack
-8. adapter returns a shaped `intent_resolution` artifact
-9. `designer` skill can now produce `design_contract`
-10. no frontend completion path may claim done before required frontend proof exists
+8. injector builds a short context pack
+9. adapter returns a shaped `intent_resolution` artifact
+10. `designer` produces `design_contract` only when route classification marks it required
+11. no completion path may claim done before required proof exists
 
 ## 12. Local Navigation Engine
 
@@ -580,8 +643,9 @@ Frontend completion requires stronger proof because code correctness is not enou
 
 Required proof path:
 
-- design contract exists
+- workspace inventory exists
 - frontend truth bundles used
+- design contract exists only when route classification requires it
 - behavior audit completed
 - final report marks residual risks explicitly
 
@@ -612,7 +676,8 @@ Backend proof alone cannot close a fullstack task that changes frontend behavior
 
 - no direct user -> specialist execution
 - no unrestricted specialist -> forbidden bundle access
-- no frontend completion without `design_contract`
+- no routed work without `workspace_inventory`
+- no visual-semantic or new-surface completion without `design_contract`
 - no completion claim without `verification_report`
 - no cross-domain execution without declared domain union
 - no runtime link outside topology manifest

@@ -14,8 +14,11 @@ test("generated local tool registry includes stable tool names", () => {
 
 test("generated topology bootstrap includes agent and bundle routing markers", () => {
   const bootstrap = readFileSync(resolve("generated/runtime-context/topology.bootstrap.md"), "utf8");
+  expect(bootstrap).toMatch(/workspace_inventory/);
   expect(bootstrap).toMatch(/hyper/);
   expect(bootstrap).toMatch(/frontend-builder/);
   expect(bootstrap).toMatch(/backend-builder/);
   expect(bootstrap).toMatch(/frontend\.design/);
+  expect(bootstrap).toMatch(/design contract is conditional/i);
+  expect(bootstrap).toMatch(/cross-domain agent: fullstack-builder/i);
 });

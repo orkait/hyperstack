@@ -1,6 +1,16 @@
 # Topology Runtime Bootstrap
 
 Entry agent: hyper
+Cross-domain agent: fullstack-builder
+Workspace inventory required: true
+Design contract is conditional
+
+## Artifacts
+- workspace_inventory: discovery_only
+- task_handoff: routing_only
+- design_contract: visual_contract_conditional
+- build_result: executable
+- verification_report: routing_and_verification
 
 ## Agents
 - hyper: orchestrator -> shared
