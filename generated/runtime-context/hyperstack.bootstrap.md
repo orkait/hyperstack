@@ -69,14 +69,14 @@ You cannot rationalize exceptions to this rule.
 ## Internal Agents
 - Roles are internal and auto-called. Users do not invoke them directly.
 - Internal roles are auto-called, not user-facing.
-- hyper -> website-builder
+- hyper -> frontend-builder
 - `hyper`: Classification, routing, gate enforcement, final verification, delivery
-- `website-builder`: Website-facing design/implementation, CTA hierarchy, page structure
+- `frontend-builder`: Frontend-facing design/implementation, CTA hierarchy, page structure, and existing-project frontend logic work
 
 ## Disallowed Transitions
-- `user request -> website-builder`
-- `website-builder -> ship`
-- `website-builder -> deliver`
+- `user request -> frontend-builder`
+- `frontend-builder -> ship`
+- `frontend-builder -> deliver`
 
 ## High-Signal Red Flags
 - "I know the React Flow API from memory." -> Memory drifts. v11 and v12 differ.

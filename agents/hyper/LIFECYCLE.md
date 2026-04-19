@@ -14,16 +14,16 @@
 3. Classify the work using both the request and the workspace reality
 4. Determine whether a specialist role is required
 5. Enforce MCP-first and design/plan gates before implementation
-6. Route website-facing work to `website-builder`
+6. Route frontend-facing work to `frontend-builder`
 7. Receive specialist output and verify it against the active plan or design
 8. Run review, verification, and ship gates
 9. Deliver the result or report blockers with evidence
 
 ## Handoffs
 
-- `hyper -> website-builder` for website pages, landing pages, dashboards,
-  redesigns, and website-experience-heavy UI work
-- `website-builder -> hyper` after specialist design or implementation output is
+- `hyper -> frontend-builder` for frontend pages, landing pages, dashboards,
+  redesigns, and frontend-experience-heavy UI work
+- `frontend-builder -> hyper` after specialist design or implementation output is
   ready for review and verification
 
 ## Exit Criteria

@@ -84,7 +84,7 @@ If you aren't using the Autopilot, follow the **Unified Bootstrap** to set up bo
 
 It is not just a library; it is a **disciplined harness** made of three tightly-coupled layers:
 
-1.  **The Harness**: Bootstraps the agent, routes internal specialist roles (`hyper`, `website-builder`), and enforces global development invariants.
+1.  **The Harness**: Bootstraps the agent, routes internal specialist roles (`hyper`, `frontend-builder`), and enforces global development invariants.
 2.  **The MCP Ground Truth**: 12 TypeScript plugins (80 tools) that provide deterministic data. No hallucinated imports or invented component specs.
 3.  **The Adversarial Gates**: 21 skills with **"Enforcement Teeth"**. These aren't suggestions; they are Iron Laws supported by rationalization tables that counter every excuse an agent uses to skip quality gates.
 
@@ -127,7 +127,7 @@ graph TD
 If you are an agent reading this, your mental model must be: **Process is Priority.** You are operating within a system that requires deterministic grounding and formal design before implementation.
 
 - **Conductance**: `hyper` owners classification and gate verification.
-- **Specialization**: `website-builder` handles visual and frontend implementation.
+- **Specialization**: `frontend-builder` handles visual and frontend implementation.
 - **Persistence**: You run in a stable Docker container with a persistent lifecycle.
 
 ---
@@ -226,7 +226,7 @@ The internal harness is what ties the public layers together by managing process
 
 - bootstrap is injected at session start from generated runtime context
 - `hyper` owns classification, routing, gates, and verification
-- `website-builder` specializes in website-facing design and implementation work
+- `frontend-builder` specializes in frontend-facing design and implementation work
 - roles are internal and auto-called, not user-invoked commands
 
 <details>

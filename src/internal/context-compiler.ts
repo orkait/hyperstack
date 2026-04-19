@@ -44,9 +44,9 @@ const REQUIRED_BOOTSTRAP_MARKERS = [
   "MCP unavailable",
   "announce it",
   "hyper",
-  "website-builder",
+  "frontend-builder",
   "auto-called",
-  "hyper -> website-builder",
+  "hyper -> frontend-builder",
 ];
 
 function stripFrontmatter(source: string): string {
@@ -179,8 +179,8 @@ function extractInternalAgents(source: string): string[] {
     output.push("- Internal roles are auto-called, not user-facing.");
   }
 
-  if (agentNames.includes("hyper") && agentNames.includes("website-builder")) {
-    output.push("- hyper -> website-builder");
+  if (agentNames.includes("hyper") && agentNames.includes("frontend-builder")) {
+    output.push("- hyper -> frontend-builder");
   }
 
   output.push(

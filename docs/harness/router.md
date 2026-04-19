@@ -8,8 +8,9 @@ Users do not invoke internal roles directly. Roles are internal and auto-called.
 
 ## Routing Matrix
 
-Route `hyper -> website-builder` when the request is primarily about:
+Route `hyper -> frontend-builder` when the request is primarily about:
 
+- frontend component work
 - landing pages
 - dashboards
 - marketing or product websites
@@ -25,7 +26,7 @@ Before routing, `hyper` must inspect the workspace enough to know:
 
 - which package manifests and dependency signals define the active frontend stack
 - which core frontend files likely own the affected surface
-- whether the request is actually website-facing rather than generic frontend or
+- whether the request is actually frontend-facing rather than backend
   backend work
 
 Keep work in `hyper` when the request is primarily about:

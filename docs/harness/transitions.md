@@ -3,17 +3,17 @@
 ## Allowed
 
 - `user request -> hyper`
-- `hyper -> website-builder`
-- `website-builder -> hyper`
+- `hyper -> frontend-builder`
+- `frontend-builder -> hyper`
 - `hyper -> existing Hyperstack skills/plugins`
 - `hyper -> verification and delivery gates`
 
 ## Disallowed
 
-- `user request -> website-builder`
-- `website-builder -> ship`
-- `website-builder -> deliver`
-- `website-builder` claiming final completion directly
+- `user request -> frontend-builder`
+- `frontend-builder -> ship`
+- `frontend-builder -> deliver`
+- `frontend-builder` claiming final completion directly
 
 ## V1 Principle
 

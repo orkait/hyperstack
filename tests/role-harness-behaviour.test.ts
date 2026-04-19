@@ -11,10 +11,10 @@ const REQUIRED_ROLE_FILES = [
   "agents/hyper/LIFECYCLE.md",
   "agents/hyper/CONTEXT.md",
   "agents/hyper/CHECKS.md",
-  "agents/website-builder/PROFILE.md",
-  "agents/website-builder/LIFECYCLE.md",
-  "agents/website-builder/CONTEXT.md",
-  "agents/website-builder/CHECKS.md",
+  "agents/frontend-builder/PROFILE.md",
+  "agents/frontend-builder/LIFECYCLE.md",
+  "agents/frontend-builder/CONTEXT.md",
+  "agents/frontend-builder/CHECKS.md",
   "harness/router.md",
   "harness/transitions.md",
   "harness/context-policy.md",
@@ -35,7 +35,7 @@ function normalize(str: string): string {
   return str.replace(/\r\n/g, "\n");
 }
 
-test("role harness files exist for hyper and website-builder", () => {
+test("role harness files exist for hyper and frontend-builder", () => {
   for (const relativePath of REQUIRED_ROLE_FILES) {
     expect(existsSync(resolve(relativePath))).toBe(true);
   }
@@ -44,7 +44,7 @@ test("role harness files exist for hyper and website-builder", () => {
 test("role profile frontmatter includes the required contract keys", () => {
   for (const relativePath of [
     "agents/hyper/PROFILE.md",
-    "agents/website-builder/PROFILE.md",
+    "agents/frontend-builder/PROFILE.md",
   ]) {
     const content = normalize(readFileSync(resolve(relativePath), "utf8"));
     const frontmatter = content.match(/^---\n([\s\S]*?)\n---\n/);
@@ -66,7 +66,7 @@ test("role lifecycle and checks documents expose required headings", () => {
   expect(lifecycleContent).toMatch(/^## Exit Criteria$/m);
   expect(lifecycleContent).toMatch(/^## Failure Escalation$/m);
 
-  const checksContent = normalize(readFileSync(resolve("agents/website-builder/CHECKS.md"), "utf8"));
+  const checksContent = normalize(readFileSync(resolve("agents/frontend-builder/CHECKS.md"), "utf8"));
   expect(checksContent).toMatch(/^## Preconditions$/m);
   expect(checksContent).toMatch(/^## Required Evidence$/m);
   expect(checksContent).toMatch(/^## Done Criteria$/m);
@@ -80,14 +80,14 @@ test("hyperstack bootstrap compiler preserves role-routing markers", () => {
 
   expect(missing.length).toBe(0);
   expect(content).toMatch(/hyper/);
-  expect(content).toMatch(/website-builder/);
+  expect(content).toMatch(/frontend-builder/);
   expect(content).toMatch(/auto-called/);
-  expect(content).toMatch(/hyper -> website-builder/);
+  expect(content).toMatch(/hyper -> frontend-builder/);
 });
 
-test("website-builder lifecycle requires workspace discovery before website decisions", () => {
-  const lifecycleContent = normalize(readFileSync(resolve("agents/website-builder/LIFECYCLE.md"), "utf8"));
-  const contextContent = normalize(readFileSync(resolve("agents/website-builder/CONTEXT.md"), "utf8"));
+test("frontend-builder lifecycle requires workspace discovery before frontend decisions", () => {
+  const lifecycleContent = normalize(readFileSync(resolve("agents/frontend-builder/LIFECYCLE.md"), "utf8"));
+  const contextContent = normalize(readFileSync(resolve("agents/frontend-builder/CONTEXT.md"), "utf8"));
 
   expect(lifecycleContent).toMatch(/workspace/i);
   expect(lifecycleContent).toMatch(/package\.json|manifests?|dependencies|packages/i);

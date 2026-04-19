@@ -8,11 +8,11 @@ Each internal role should load only the context slice it needs.
 
 - `hyper`
   - classification, routing, gates, verification, delivery
-- `website-builder`
+- `frontend-builder`
   - workspace inventory
   - package manifests and dependency signals
   - core frontend files for the active surface
-  - website intent, page structure, website-experience constraints, website code
+  - frontend intent, page structure, frontend experience constraints, frontend code
 
 ## Tiers
 

@@ -138,13 +138,13 @@ Internal roles — auto-invoked, not user-facing.
 | Agent | Owns |
 |---|---|
 | `hyper` | Classification, routing, gate enforcement, final verification, delivery |
-| `website-builder` | Website-facing design/implementation, CTA hierarchy, page structure |
+| `frontend-builder` | Frontend-facing design/implementation, CTA hierarchy, page structure, and existing-project frontend logic work |
 
 ### Disallowed Transitions
 
-- `user request -> website-builder`
-- `website-builder -> ship`
-- `website-builder -> deliver`
+- `user request -> frontend-builder`
+- `frontend-builder -> ship`
+- `frontend-builder -> deliver`
 
 ---
 
