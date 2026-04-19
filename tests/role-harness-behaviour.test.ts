@@ -102,3 +102,20 @@ test("designer skill gives user preferences precedence over auto-resolved defaul
   expect(designerContent).toMatch(/preferences?.*override|override.*preferences?/i);
   expect(designerContent).toMatch(/auto-resolved defaults?|defaults?.*suggestions?/i);
 });
+
+test("workspace-first planning makes design contracts conditional rather than universal", () => {
+  const blueprintContent = normalize(readFileSync(resolve("skills/blueprint/SKILL.md"), "utf8"));
+  const designerContent = normalize(readFileSync(resolve("skills/designer/SKILL.md"), "utf8"));
+  const hyperstackContent = normalize(readFileSync(resolve("skills/hyperstack/SKILL.md"), "utf8"));
+
+  expect(blueprintContent).toMatch(/workspace_inventory/i);
+  expect(blueprintContent).toMatch(/design_contract/i);
+  expect(blueprintContent).toMatch(/conditional|required only/i);
+
+  expect(designerContent).toMatch(/conditional|required only/i);
+  expect(designerContent).toMatch(/new surface|visual-semantic|existing pattern/i);
+
+  expect(hyperstackContent).toMatch(/workspace_inventory/i);
+  expect(hyperstackContent).toMatch(/design_contract/i);
+  expect(hyperstackContent).toMatch(/conditional|required only/i);
+});

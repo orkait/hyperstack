@@ -31,7 +31,7 @@ You cannot rationalize exceptions to this rule.
    Call relevant Hyperstack plugins prior to implementation.
 
 2. NO VISUAL CODE WITHOUT AN APPROVED DESIGN.md
-   The designer skill produces the contract; everything else implements it.
+   The designer skill produces the contract when routing requires a design contract; existing-project frontend logic work stays workspace-first.
 
 3. NO COMPLETION CLAIMS WITHOUT SHIP-GATE EVIDENCE
    "Should work" is unacceptable. Execute the command and output results.
@@ -99,7 +99,8 @@ BEFORE invoking any Hyperstack skill, announce:
 | Situation | Load this skill |
 |---|---|
 | Starting any new feature, component, or behaviour change | `blueprint` |
-| Task involves UI, animation, visuals, or interaction | `designer` → produces DESIGN.md first |
+| Any task touching existing project code | `blueprint` builds `workspace_inventory` first |
+| Task creates a new surface, changes visual semantics, or has no reliable existing pattern match | `designer` → produces conditional `design_contract` / DESIGN.md |
 | Have an approved design or plan to execute | `forge-plan` or `run-plan` |
 | Claiming anything is complete, fixed, or passing | `ship-gate` — evidence required |
 | Hit any bug, test failure, or unexpected behaviour | `debug-discipline` — root cause before any fix |
@@ -116,7 +117,7 @@ BEFORE invoking any Hyperstack skill, announce:
 ### Workflow Chain Reference
 
 ```
-New work:   blueprint → [designer if visual] → forge-plan → execution → ship-gate → deliver
+New work:   blueprint → workspace_inventory + change classification → [designer only if required] → forge-plan → execution → ship-gate → deliver
 
 Existing:   run-plan ──┤
                         ├→ autonomous-mode
@@ -125,6 +126,8 @@ Existing:   run-plan ──┤
 
 Debugging:  debug-discipline → parallel-dispatch
 ```
+
+**Planning rule:** `workspace_inventory` is universal. `design_contract` is conditional. `verification_report` is universal.
 
 ---
 

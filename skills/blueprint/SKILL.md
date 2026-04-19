@@ -11,11 +11,17 @@ description: Execute before any feature build, component creation, or behavior c
 
 <HARD-GATE>
 Do not write code, scaffold files, or invoke implementation skills until:
-1. MCP survey is complete for relevant domains.
-2. Design is presented OR user project preferences are known:
-   - Visual/UX work → DESIGN.md contract from `skills/designer/SKILL.md`.
-   - Backend/infra work → Architecture note from this skill.
-3. User explicitly approves the design.
+1. Workspace inventory is explicit:
+   - existing stack
+   - owning modules
+   - existing patterns
+   - verification commands
+2. MCP survey is complete for relevant domains.
+3. Required artifacts are chosen correctly:
+   - `workspace_inventory` → always
+   - `task_handoff` → always
+   - `design_contract` → required only when the task creates a new surface, changes visual semantics, or has no trustworthy existing pattern match
+4. User explicitly approves the plan/design when the chosen artifacts require approval.
 
 This applies to every task, regardless of perceived simplicity.
 </HARD-GATE>
@@ -34,12 +40,14 @@ Read current state before querying the user:
 - Relevant source files, recent commits, existing patterns.
 - Existing logic applicable for reuse or extension.
 - Relevant Hyperstack MCP domains.
+- Build `workspace_inventory` first. This is mandatory even for client existing projects.
 
 ### Step 2: MCP Survey
 
 | Domain is relevant | Call first |
 |---|---|
-| **Visual/UX work (any)** | **STOP → invoke `skills/designer/SKILL.md`. Produces DESIGN.md → pass to Step 5 or `forge-plan`.** |
+| **Frontend logic in an existing pattern** | `react_*`, `ui_ux_*`, and stack-specific tools first. No automatic `DESIGN.md`. |
+| **New surface / visual-semantic change / no existing pattern match** | **Invoke `skills/designer/SKILL.md`. Produces conditional `design_contract` / DESIGN.md when required.** |
 | React Flow | `reactflow_search_docs` + `reactflow_list_apis` |
 | Motion / animation | `motion_search_docs` + `motion_list_apis` |
 | Lenis scroll | `lenis_search_docs` + `lenis_list_apis` |
@@ -49,9 +57,12 @@ Read current state before querying the user:
 | Design tokens | `design_tokens_list_categories` + `design_tokens_get_gotchas` |
 | UI/UX | `ui_ux_list_principles` + `ui_ux_get_gotchas` |
 
-Building designs on incorrect API assumptions creates immediate technical debt.
+Building plans on incorrect API assumptions or missing workspace reality creates immediate technical debt.
 
-**Visual work routing:** New page, component library, landing page, dashboard, redesign, "make it look like X" → `designer` skill owns the design gate. Return with DESIGN.md → proceed to handoff (Step 7).
+**Routing rule:**
+- existing-project frontend logic work → keep routing workspace-first
+- new page, redesign, component-system change, or visual-semantic change → `designer` owns the conditional design gate
+- backend/infra/docs work → no `DESIGN.md` gate
 
 ### Step 3: Clarify Requirements
 
@@ -59,6 +70,12 @@ Ask single clarifying questions sequentially:
 - Purpose and success criteria (what defines completion?).
 - Constraints (performance targets, accessibility, existing patterns).
 - Scope boundaries (what is explicitly excluded?).
+- Change classification:
+  - `backend_only`
+  - `frontend_logic`
+  - `frontend_visual`
+  - `fullstack_slice`
+  - `docs_config`
 
 Wait for answers before proceeding. Decompose independent subsystems if necessary.
 
@@ -96,7 +113,7 @@ Address each explicitly: redesign or formally accept the risk.
 
 Following approval:
 - Save design note to the relevant documentation directory.
-- For Visual/UX work, save DESIGN.md at `docs/DESIGN.md` or `<project>/DESIGN.md`.
+- For tasks that require a design contract, save DESIGN.md at `docs/DESIGN.md` or `<project>/DESIGN.md`.
 - Invoke `hyperstack:forge-plan` to generate an MCP-verified implementation plan based on the approved design.
 
 
@@ -105,7 +122,7 @@ Following approval:
 ### Agent Workflow Chains
 
 **Website/Frontend Agent:**
-`blueprint` (THIS) → `designer` (visual routing) → `forge-plan` → [execution] → `ship-gate` → `deliver`
+`blueprint` (THIS) → workspace inventory + change classification → [`designer` only if required] → `forge-plan` → [execution] → `ship-gate` → `deliver`
 
 **Backend/Infra Agent:**
 `blueprint` (THIS) → `forge-plan` (architecture note) → [execution] → `ship-gate` → `deliver`
@@ -126,5 +143,5 @@ Following approval:
 ### Reverse Escalation
 | Discovery | Escalate to | Action |
 |---|---|---|
-| Visual/UX work detected mid-task | `designer` | Pause, generate DESIGN.md, resume. |
+| New surface / visual-semantic change detected mid-task | `designer` | Pause, generate conditional `design_contract`, resume. |
 | Architecture gap (non-visual) | `blueprint` | Pause, formalize architecture decision, resume. |
