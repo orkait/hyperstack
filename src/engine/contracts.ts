@@ -54,6 +54,10 @@ export interface RouteDefaults {
   strictestProofOrder: string[];
 }
 
+export interface CorpusIndex {
+  namespaces: Record<string, string>;
+}
+
 export interface LoadedTopology {
   version: 1;
   defaultTransport: "local-tools";
