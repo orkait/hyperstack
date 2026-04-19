@@ -96,31 +96,32 @@ It is not just a library; it is a **disciplined harness** made of three tightly-
 
 ```mermaid
 graph TD
-    User([User Request]) --> Harness[Internal Harness]
-    Harness --> Gates{Adversarial Gates}
-
-    subgraph "The Enforcement Layer"
-        Gates -->|Iron Laws| Skills[21 Skills with Enforcement Teeth]
-        Skills -->|SessionStart| Injection[Auto-Context Injection]
-    end
-
-    subgraph "The Knowledge Layer"
-        Skills -->|Ground Truth| MCP[12 MCP Plugins / 80 Tools]
-        MCP -->|Designer| Design[DESIGN.md Pipeline]
-        MCP -->|Verified| Code[Programmatic Compliance Check]
-    end
-
-    Code -->|Verification Evidence| User
-
-    linkStyle 0 stroke:#9ca3af,stroke-width:2px
-    linkStyle 1 stroke:#9ca3af,stroke-width:2px
-    linkStyle 2 stroke:#9ca3af,stroke-width:2px
-    linkStyle 3 stroke:#9ca3af,stroke-width:2px
-    linkStyle 4 stroke:#9ca3af,stroke-width:2px
-    linkStyle 5 stroke:#9ca3af,stroke-width:2px
-    linkStyle 6 stroke:#9ca3af,stroke-width:2px
-    linkStyle 7 stroke:#9ca3af,stroke-width:2px
+    User([User Request]) --> Hyper[hyper]
+    Hyper --> Inventory[workspace_inventory]
+    Inventory --> Routing[Topology Router]
+    Routing --> Agent[frontend-builder / backend-builder / fullstack-builder]
+    Agent --> Skills[Skills + Gates]
+    Skills --> Runtime[Local Tool Runtime]
+    Runtime --> Topology[Topology Manifest]
+    Runtime --> Corpus[Corpus + Tool Modules]
+    Skills --> Verify[verification_report]
+    Verify --> User
 ```
+
+**Current runtime model**
+
+1. `hyper` receives the request.
+2. `workspace_inventory` is built first.
+3. Topology routes to the right agent and computes the required artifacts.
+4. Skills enforce process and proof rules.
+5. Local tool runtime resolves stable tool calls against topology + corpus-backed truth.
+6. `verification_report` is required before completion claims.
+
+**Important correction:** `DESIGN.md` is not universal anymore. Design contracts are conditional:
+- required for new surfaces
+- required for visual-semantic changes
+- required when no trustworthy existing pattern match exists
+- not required for every existing-project frontend change
 
 ## 🤖 Agent Model
 
@@ -128,7 +129,7 @@ If you are an agent reading this, your mental model must be: **Process is Priori
 
 - **Conductance**: `hyper` owners classification and gate verification.
 - **Specialization**: `frontend-builder` handles visual and frontend implementation.
-- **Persistence**: You run in a stable Docker container with a persistent lifecycle.
+- **Routing**: the topology manifest decides required artifacts, proof mode, and allowed bundles.
 
 ---
 
@@ -192,9 +193,9 @@ Node 18+ required.
 
 Hyperstack's strength comes from the friction between **Ground Truth** (MCP), **Enforcement** (Skills), and **Orchestration** (Agents).
 
-### Layer 1: MCP Plugins (Ground Truth)
+### Layer 1: Tool Ground Truth
 
-Your AI calls these for deterministic data. Memory is not acceptable. Every plugin serves curated TypeScript data and architectural patterns.
+Your AI calls these for deterministic data. Memory is not acceptable. The public tool surface stays stable even though the runtime is now local-first and topology-driven.
 
 | Category | Plugins | Domain Coverage |
 |---|---|---|
@@ -204,7 +205,7 @@ Your AI calls these for deterministic data. Memory is not acceptable. Every plug
 | 🐹 **Backend** | `echo`, `golang`, `rust` | Professional Go Recipes, Rust Borrow Checker patterns, Clean Architecture |
 
 > [!TIP]
-> **80 Tools Total**. Every tool is designed to provide the "Senior Engineer" answer, bypassing the "AI Slop" default.
+> **80 Tools Total**. Every tool is designed to provide the "Senior Engineer" answer, but routing now decides when design contracts are actually required.
 
 ### Layer 2: Skills (Enforcement Teeth)
 
@@ -213,7 +214,7 @@ Markdown with adversarial enforcement. Each skill contains an **Iron Law** that 
 > [!CAUTION]
 > ### ⚖️ The Iron Laws of Hyperstack
 > - **NO CODE** without MCP grounding.
-> - **NO VISUAL CODE** without an approved `DESIGN.md`.
+> - **NO NEW VISUAL SURFACE OR VISUAL-SEMANTIC CHANGE** without an approved design contract.
 > - **NO COMPLETION CLAIMS** without programmatic verification evidence.
 > - **NO REFACTOR** without a failing test first.
 > - **NO PATTERN** without a named Force.
@@ -289,19 +290,24 @@ Ordinary skill markdown is a polite suggestion. Polite suggestion fails when an 
 
 ---
 
-## 🎨 The designer agent 
+## 🎨 The Designer Flow
 
 When you say, **“build me a SaaS dashboard”**:
 
 1. **SessionStart** already puts in `hyperstack`, so AI know system is there.
 2. **Blueprint skill** builds workspace understanding first and classifies the change.
-3. If the route says a design contract is required, **Designer skill** runs `designer_resolve_intent(product)` to guess industry, personality, style, density, and mode.
-4. Designer asks **3 questions** in base mode, or **12 questions** in advanced mode.
-5. Q11b asks what component library to use: shadcn, raw Tailwind, MUI, Mantine, Chakra, Ant Design, or custom.
-6. Only when needed, Designer makes a conditional **DESIGN.md / design contract** with theme, colors, type, spacing, components, motion, elevation, do/don’ts, responsive rules, and anti-patterns.
-7. User approves the design contract when the route requires it.
-8. **Forge-plan** reads the routed artifacts and makes one task for each required area. Existing-project frontend logic work can stay workspace-first without forcing a design contract.
-9. Build tasks run with MCP tools as ground truth.
+3. `workspace_inventory` captures stack, owned surfaces, existing patterns, and verification commands.
+4. Routing decides whether this is:
+   - existing-project frontend logic
+   - frontend visual change
+   - new surface
+   - backend-only
+   - fullstack slice
+5. If the route says a design contract is required, **Designer skill** runs `designer_resolve_intent(product)` and related tools.
+6. Designer asks the necessary questions, including component library choice.
+7. Only when needed, Designer produces a conditional **DESIGN.md / design contract**.
+8. **Forge-plan** reads the routed artifacts and builds the implementation plan.
+9. Build tasks run with MCP-backed tool calls as ground truth.
 10. **designer_verify_implementation** checks build against the design contract when present.
 11. **Ship-gate** blocks final completion unless build passes the required proof rules.
 
