@@ -1,0 +1,3 @@
+practices:
+  error-wrapping: corpus/backend/golang/practices/error-wrapping.json
+  goroutine-lifecycle: corpus/backend/golang/practices/goroutine-lifecycle.json

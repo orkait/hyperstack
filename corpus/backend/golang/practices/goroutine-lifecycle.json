@@ -1,0 +1,7 @@
+{
+  "name": "goroutine-lifecycle",
+  "topic": "concurrency",
+  "priority": "P0",
+  "rule": "Never start a goroutine without knowing how it stops.",
+  "reason": "Goroutine leaks exhaust memory. Every goroutine needs a clear exit condition."
+}

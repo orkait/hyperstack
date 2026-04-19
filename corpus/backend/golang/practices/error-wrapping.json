@@ -1,0 +1,7 @@
+{
+  "name": "error-wrapping",
+  "topic": "error-handling",
+  "priority": "P0",
+  "rule": "Always wrap errors with context: fmt.Errorf(\"context: %w\", err)",
+  "reason": "Provides call stack context without expensive stack traces. %w enables errors.Is/As."
+}
