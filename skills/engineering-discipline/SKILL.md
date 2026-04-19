@@ -51,17 +51,6 @@ references:
 - **Quick Reference** → direct lookup of patterns, principles, naming conventions
 - **Process Mode** → full 8-step workflow for complex/production features
 
-## The Iron Laws
-
-```
-1. NO REFACTOR WITHOUT TESTS FIRST
-2. NO PATTERN WITHOUT A NAMED FORCE
-3. NO SYNTAX BEFORE ARCHITECTURE
-4. NO ASSUMPTIONS WITHOUT DISCLOSURE
-5. NO "IT SHOULD WORK" - VERIFY IT DOES
-```
-
-Violating the letter = violating the spirit.
 
 ## Core Philosophy
 
@@ -146,33 +135,6 @@ Critical issue unaddressed → HARD STOP.
 | Architecture decisions | `references/architecture/architecture-reasoning.md` |
 | Standard response format | `references/architecture/output-format.md` |
 
-## Red Flags - STOP
-
-| Thought | Reality |
-|---|---|
-| "Quick fix, don't need the full 8-step framework" | Quick fixes break invariants when you skip Step 3. Do the framework. |
-| "I'll skip Step 8 Negative Doubt, I'm confident" | Confidence = #1 predictor of shipped bugs. Do the negative doubt. |
-| "I already know the responsibilities" | Write them down anyway. Writing forces clarity you thought you had. |
-| "Tests for a refactor are overkill" | Refactor without tests = random code change. Not negotiable. |
-| "I'll add tests after the refactor" | Write tests first, watch them pass, then refactor. |
-| "The pattern is obviously the right one" | Obvious patterns without named forces = cargo-culting. Name the force. |
-| "Small code, skip architecture reasoning" | Small code with wrong architecture compounds fast. |
-| "I'll assume the API is stable" | Never. State the assumption explicitly. |
-| "The 5-failure-mode exercise is busywork" | Most effective bug catcher in the framework. Do all 5. |
-| "I'll write tests that match the implementation" | Tests define behavior. Write them against the spec. |
-| "Refactoring doesn't change behavior, so tests are unchanged" | Write a test first that locks behavior. Then refactor. Then run. |
-| "I understand the invariants intuitively" | Write them down. Intuition drifts in 48 hours. |
-
-## Critical Reminders
-
-1. ⛔ No refactor without tests
-2. ⛔ No pattern without named force
-3. ⛔ No circular dependencies
-4. ⛔ No assumptions without disclosure
-5. ⛔ No global state without justification
-6. ⛔ No proceeding with ambiguous requirements
-
-Something cannot be done safely → say so and explain why.
 
 
 ## Lifecycle Integration

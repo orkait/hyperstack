@@ -16,9 +16,9 @@ must_not_do:
   - skip MCP-first grounding
   - allow completion claims without verification evidence
 delegates_to:
-  - website-builder
+  - frontend-builder
 requires:
-  - current bootstrap invariants from using-hyperstack
+  - current bootstrap invariants from hyperstack
   - approved design before implementation when required
   - verification evidence before completion or delivery
 ---
@@ -42,5 +42,5 @@ routing, gate enforcement, lifecycle transitions, and final verification.
 `hyper` does not exist to absorb all work. It delegates specialist work when the
 request is clearly in a specialist domain.
 
-For website-facing work, `hyper` routes to `website-builder` and later regains
+For frontend-facing work, `hyper` routes to `frontend-builder` and later regains
 control for review, verification, and delivery.

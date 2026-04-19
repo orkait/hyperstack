@@ -1,0 +1,6 @@
+id: build_result
+required_fields:
+  - agent_id
+  - changed_files
+  - verification_commands
+proof_mode: executable

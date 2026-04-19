@@ -77,8 +77,8 @@ ${"x".repeat(2000)}
 });
 
 test("generated bootstrap artifact stays in sync with the compiler output", () => {
-  const skillSource = normalize(readFileSync(resolve("skills/using-hyperstack/SKILL.md"), "utf8"));
-  const currentBootstrap = normalize(readFileSync(resolve("generated/runtime-context/using-hyperstack.bootstrap.md"), "utf8"));
+  const skillSource = normalize(readFileSync(resolve("skills/hyperstack/SKILL.md"), "utf8"));
+  const currentBootstrap = normalize(readFileSync(resolve("generated/runtime-context/hyperstack.bootstrap.md"), "utf8"));
 
   const nextBootstrap = generateHyperstackBootstrap(skillSource);
 

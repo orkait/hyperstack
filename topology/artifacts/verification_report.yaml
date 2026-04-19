@@ -1,0 +1,6 @@
+id: verification_report
+required_fields:
+  - status
+  - proof_mode
+  - covered_paths
+proof_mode: routing_and_verification

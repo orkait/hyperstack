@@ -7,7 +7,7 @@
 <p>
   <img src="https://img.shields.io/badge/license-MIT-blue?style=flat-square" alt="MIT" />
   <img src="https://img.shields.io/badge/TypeScript-5-3178c6?style=flat-square&logo=typescript&logoColor=white" alt="TypeScript" />
-  <img src="https://img.shields.io/badge/Docker-ready-2496ED?style=flat-square&logo=docker&logoColor=white" alt="Docker" />
+  <img src="https://img.shields.io/badge/Local_runtime-default-0f766e?style=flat-square" alt="Local Runtime" />
   <img src="https://img.shields.io/badge/MCP-standard-6366f1?style=flat-square" alt="MCP" />
 </p>
 
@@ -25,7 +25,7 @@
 
 **Hyperstack is a disciplined engineering harness for AI coding agents.** 
 
-It provides the necessary **Ground Truth** (via 79 specialized MCP tools) and **Adversarial Enforcement** (via 21 rigorous skills) to transform a generic LLM into a high-precision Senior Engineer. 
+It provides the necessary **Ground Truth** (via 79 specialized tool calls) and **Adversarial Enforcement** (via 21 rigorous skills) to transform a generic LLM into a high-precision Senior Engineer.
 
 Unlike standard "polite" instructions, Hyperstack uses **Iron Laws** and a **SessionStart hook** to force agents to check real documentation, follow precise design specs, and provide binary verification before shipping.
 
@@ -39,13 +39,13 @@ The fastest way to install Hyperstack is to let your AI agent do it for you. Thi
 Fetch and follow the instructions at https://raw.githubusercontent.com/orkait/hyperstack/main/install.md
 ```
 
-The autopilot will autonomously detect your environment, install the MCP server (Docker or Local), and **automatically link the Skills repository**. This is the only step required.
+The autopilot will autonomously detect your environment, configure the local tool runtime, and **automatically link the Skills repository**. This is the only step required.
 
 ---
 
 ### 2. Manual Configuration (Advanced)
 
-If you aren't using the Autopilot, follow the **Unified Bootstrap** to set up both the MCP server and the Skills:
+If you aren't using the Autopilot, follow the **Unified Bootstrap** to set up both the local runtime and the Skills:
 
 1.  **Clone & Initialize**:
     ```bash
@@ -84,7 +84,7 @@ If you aren't using the Autopilot, follow the **Unified Bootstrap** to set up bo
 
 It is not just a library; it is a **disciplined harness** made of three tightly-coupled layers:
 
-1.  **The Harness**: Bootstraps the agent, routes internal specialist roles (`hyper`, `website-builder`), and enforces global development invariants.
+1.  **The Harness**: Bootstraps the agent, routes internal specialist roles (`hyper`, `frontend-builder`), and enforces global development invariants.
 2.  **The MCP Ground Truth**: 12 TypeScript plugins (80 tools) that provide deterministic data. No hallucinated imports or invented component specs.
 3.  **The Adversarial Gates**: 21 skills with **"Enforcement Teeth"**. These aren't suggestions; they are Iron Laws supported by rationalization tables that counter every excuse an agent uses to skip quality gates.
 
@@ -127,41 +127,25 @@ graph TD
 If you are an agent reading this, your mental model must be: **Process is Priority.** You are operating within a system that requires deterministic grounding and formal design before implementation.
 
 - **Conductance**: `hyper` owners classification and gate verification.
-- **Specialization**: `website-builder` handles visual and frontend implementation.
+- **Specialization**: `frontend-builder` handles visual and frontend implementation.
 - **Persistence**: You run in a stable Docker container with a persistent lifecycle.
 
 ---
 
 ## 🚀 Quickstart
 
-### 🐳 Docker (Default)
+### 💻 Local Runtime (Default)
 
-Hyperstack uses a persistent container plus `docker exec`. This keeps startup cheap across sessions and ensures 100% environment stability.
+Hyperstack now defaults to a local tool runtime backed by topology manifests and corpus navigation. Docker is no longer required for the standard setup path.
 
-1. Pull the image:
-
-```bash
-docker pull ghcr.io/orkait/hyperstack:main
-```
-
-2. Start the persistent container:
-
-```bash
-docker rm -f hyperstack-mcp 2>/dev/null
-docker run -d --name hyperstack-mcp --restart unless-stopped \
-  --memory=512m --cpus=1 \
-  --entrypoint sleep \
-  ghcr.io/orkait/hyperstack:main infinity
-```
-
-3. Add this to your MCP settings (`~/.claude.json`, Cursor, Windsurf, etc.):
+Add this to your MCP or tool settings (`~/.claude.json`, Cursor, Windsurf, etc.):
 
 ```json
 {
   "mcpServers": {
     "hyperstack": {
-      "command": "docker",
-      "args": ["exec", "-i", "hyperstack-mcp", "bun", "/app/src/index.ts"]
+      "command": "node",
+      "args": ["/path/to/hyperstack/bin/hyperstack.mjs"]
     }
   }
 }
@@ -174,19 +158,19 @@ If you are using Claude Code, Cursor, Windsurf, Roo Code, or Gemini, you can use
 ```text
 Fetch and follow the instructions at https://raw.githubusercontent.com/orkait/hyperstack/main/install.md
 ```
-The autopilot will detect your environment and propose the correct Docker-based configuration block.
+The autopilot will detect your environment and propose the correct local-runtime configuration block.
 
 
 
 ### 🔧 Install the skills
 
-The MCP server gives you tools. The skills give you discipline. Install both:
+The local runtime gives you tools. The skills give you discipline. Install both:
 
 ```bash
 git clone https://github.com/orkait/hyperstack.git ~/.claude/skills/hyperstack
 ```
 
-After installing, the SessionStart hook (at `hooks/session-start.mjs`) will auto-inject the `using-hyperstack` skill into every session. No manual activation needed.
+After installing, the SessionStart hook (at `hooks/session-start.mjs`) will auto-inject the `hyperstack` skill into every session. No manual activation needed.
 
 ### 💻 From source
 
@@ -204,9 +188,9 @@ Node 18+ required.
 
 ---
 
-## 🧠 The Two-Layer System
+## 🧠 The Three-Layer System
 
-Hyperstack's strength comes from the friction between **Ground Truth** (MCP) and **Enforcement** (Skills).
+Hyperstack's strength comes from the friction between **Ground Truth** (MCP), **Enforcement** (Skills), and **Orchestration** (Agents).
 
 ### Layer 1: MCP Plugins (Ground Truth)
 
@@ -236,13 +220,13 @@ Markdown with adversarial enforcement. Each skill contains an **Iron Law** that 
 
 These laws are backed by **Rationalization Tables**-pre-written counters to every excuse an AI agent uses to skip quality gates.
 
-### Internal Harness (role routing + bootstrap)
+### Layer 3: Agents (Orchestration & Routing)
 
-The internal harness is what ties the public layers together:
+The internal harness is what ties the public layers together by managing process and domains:
 
 - bootstrap is injected at session start from generated runtime context
 - `hyper` owns classification, routing, gates, and verification
-- `website-builder` specializes in website-facing design and implementation work
+- `frontend-builder` specializes in frontend-facing design and implementation work
 - roles are internal and auto-called, not user-invoked commands
 
 <details>
@@ -285,7 +269,7 @@ The internal harness is what ties the public layers together:
 
 | Skill | Role |
 |---|---|
-| `using-hyperstack` | Force-injected at session start via hook - the enforcement payload |
+| `hyperstack` | Force-injected at session start via hook - the enforcement payload |
 | `testing-skills` | RED-GREEN-REFACTOR pressure testing for skills using subagents |
 
 </details>
@@ -309,17 +293,17 @@ Ordinary skill markdown is a polite suggestion. Polite suggestion fails when an 
 
 When you say, **“build me a SaaS dashboard”**:
 
-1. **SessionStart** already puts in `using-hyperstack`, so AI know system is there.
-2. **Blueprint skill** sees visual job and sends it to `hyperstack:designer`.
-3. **Designer skill** runs `designer_resolve_intent(product)` to guess industry, personality, style, density, and mode.
+1. **SessionStart** already puts in `hyperstack`, so AI know system is there.
+2. **Blueprint skill** builds workspace understanding first and classifies the change.
+3. If the route says a design contract is required, **Designer skill** runs `designer_resolve_intent(product)` to guess industry, personality, style, density, and mode.
 4. Designer asks **3 questions** in base mode, or **12 questions** in advanced mode.
-5. Like **Q11b** will ask what component library to use: shadcn, raw Tailwind, MUI, Mantine, Chakra, Ant Design, or custom.
-6. Designer makes a **DESIGN.md** contract with 10 parts: theme, colors, type, spacing, components, motion, elevation, do/don’ts, responsive rules, and anti-patterns.
-7. User approves the **DESIGN.md**.
-8. **Forge-plan** reads it and makes one task for each section. If user picked shadcn, it calls `shadcn_get_component`. If not, it builds from the DESIGN.md spec.
+5. Q11b asks what component library to use: shadcn, raw Tailwind, MUI, Mantine, Chakra, Ant Design, or custom.
+6. Only when needed, Designer makes a conditional **DESIGN.md / design contract** with theme, colors, type, spacing, components, motion, elevation, do/don’ts, responsive rules, and anti-patterns.
+7. User approves the design contract when the route requires it.
+8. **Forge-plan** reads the routed artifacts and makes one task for each required area. Existing-project frontend logic work can stay workspace-first without forcing a design contract.
 9. Build tasks run with MCP tools as ground truth.
-10. **designer_verify_implementation** checks build against **DESIGN.md**.
-11. **Ship-gate** blocks final completion unless build passes the **DESIGN.md** rules.
+10. **designer_verify_implementation** checks build against the design contract when present.
+11. **Ship-gate** blocks final completion unless build passes the required proof rules.
 
 AI cannot jump ahead. Every step has hard gate. Excuses already blocked by rationalization tables.
 

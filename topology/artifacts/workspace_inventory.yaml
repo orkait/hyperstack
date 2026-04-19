@@ -1,0 +1,9 @@
+id: workspace_inventory
+required_fields:
+  - repo_type
+  - stack
+  - touched_surfaces
+  - existing_patterns
+  - verification_commands
+  - project_mode
+proof_mode: discovery_only

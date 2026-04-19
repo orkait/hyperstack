@@ -1,0 +1,15 @@
+default_agent: hyper
+requires_workspace_inventory: true
+domain_preference:
+  frontend: frontend-builder
+  backend: backend-builder
+  shared: hyper
+cross_domain_agent: fullstack-builder
+design_contract_required_when:
+  - new_surface
+  - visual_semantic_change
+  - no_existing_pattern_match
+strictest_proof_order:
+  - routing_and_verification
+  - executable
+  - visual_and_behavioral

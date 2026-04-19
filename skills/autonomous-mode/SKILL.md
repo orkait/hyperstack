@@ -12,12 +12,6 @@ You are unleashed. Execute the full plan end-to-end, using every Hyperstack MCP 
 
 User gets the finished product. Not questions. Not checkpoints.
 
-## The Iron Law
-
-```
-AUTONOMOUS DOES NOT MEAN UNDISCIPLINED.
-AUTONOMOUS MEANS YOU ARE THE DISCIPLINE.
-```
 
 - Every MCP tool that could be relevant → call it
 - Every quality gate → run it yourself
@@ -158,19 +152,6 @@ Everything else → you handle it.
 3. **Decision log review** → every 3 tasks, scan log for repeated reversals (signals drift)
 4. **Deterministic over probabilistic** → if you can check with a command, do that instead of reasoning
 
-## Red Flags - STOP
-
-| Thought | Reality |
-|---|---|
-| "I'll skip the MCP check, I remember the API" | Autonomous mode → MORE responsibility to verify, not less |
-| "I'll skip the test for this task" | Autonomous ≠ undisciplined. Write the test. |
-| "I'll ask the user about this" | Resolve with evidence. Only abort conditions reach the user. |
-| "Test failed, I'll fix it in the next task" | Fix now. No debt carried forward. |
-| "I'll skip self-review, ship-gate will catch it" | Self-review → task-level. Ship-gate → composition. Both run. |
-| "This needs a change outside the plan's scope" | Log it, finish plan, mention at delivery. No scope creep. |
-| "I'm confused but I'll figure it out as I code" | Stop. Hit self-correction hierarchy: MCP → codebase → web → debug. |
-| "The web search result looks right" | Cross-reference against MCP data and library version. |
-| "I've been making a lot of decisions, that's fine" | Review decision log. Too many decisions may signal plan gaps. |
 
 ## Integration
 

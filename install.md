@@ -19,7 +19,7 @@ Three tightly-coupled pieces, installed together:
 
 1. **An internal harness** - bootstrap, internal role routing, and workflow control. Current internal roles include `main` and `website-builder`.
 2. **An MCP server** with 12 plugins and 80 tools - deterministic knowledge for React Flow v12, Motion v12, Lenis, React 19 / Next.js, Echo, Go, Rust, design tokens, UI/UX principles, shadcn/ui (Base UI edition), and the `designer` DESIGN.md pipeline.
-3. **A skill system** with 21 skills including adversarial enforcement gates (`blueprint`, `designer`, `forge-plan`, `ship-gate`, `engineering-discipline`) and a SessionStart hook that force-injects the `using-hyperstack` skill at every session start.
+3. **A skill system** with 21 skills including adversarial enforcement gates (`blueprint`, `designer`, `forge-plan`, `ship-gate`, `engineering-discipline`) and a SessionStart hook that face-injects the `hyperstack` skill at every session start.
 
 The install steps below wire the public pieces the user actually needs: the MCP
 server and the skills. The internal harness is shipped inside the repository and
@@ -281,7 +281,7 @@ Then follow Step 2 of Option A to start the single persistent `hyperstack-mcp` c
 
 ### SessionStart hook does not fire
 
-On Claude Code, hooks live in `.claude/hooks.json`. Confirm the file exists in the repository root and references `session-start.mjs`. If the hook is missing or malformed, the `using-hyperstack` skill will not be injected automatically. You can still invoke skills manually with `/using-hyperstack`.
+On Claude Code, hooks live in `.claude/hooks.json`. Confirm the file exists in the repository root and references `session-start.mjs`. If the hook is missing or malformed, the `hyperstack` skill will not be injected automatically. You can still invoke skills manually with `/hyperstack`.
 
 On Qwen Code, there is no plugin system or hook mechanism. Skills are available on disk at `~/.qwen/skills/hyperstack/skills/INDEX.md` but must be referenced manually by the agent - no auto-injection occurs.
 

@@ -1,0 +1,10 @@
+id: shared.system
+domain: shared
+capabilities:
+  - system.setup
+sources:
+  - corpus/shared/system
+tool_prefixes:
+  - hyperstack_
+output_contracts:
+  - setup_patch

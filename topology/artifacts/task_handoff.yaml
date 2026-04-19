@@ -1,0 +1,10 @@
+id: task_handoff
+required_fields:
+  - request_id
+  - domain_targets
+  - capability_targets
+  - success_criteria
+  - change_classification
+  - requires_design_contract
+  - required_artifacts
+proof_mode: routing_only

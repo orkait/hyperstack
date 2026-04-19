@@ -6,15 +6,6 @@ description: Advanced shadcn/ui architect specializing in Base UI, Tailwind v4, 
 
 # shadcn/ui Expert (Base UI Edition)
 
-## The Iron Law
-
-```
-NO COMPONENT WITHOUT shadcn_get_rules FIRST
-```
-
-Call `shadcn_get_rules` before proposing any new component or modification. Base UI edition differs from standard shadcn (Radix) in multiple ways. Memory is not acceptable.
-
-Violating the letter = violating the spirit.
 
 ## When This Skill Applies
 
@@ -31,10 +22,13 @@ Violating the letter = violating the spirit.
 ## Position in the Ecosystem
 
 ```
-hyperstack:designer → DESIGN.md
+hyperstack:blueprint → workspace_inventory + change classification
        │
-       ▼ (if shadcn chosen in Q11)
-hyperstack:forge-plan reads DESIGN.md
+       ▼ (if shadcn chosen and design contract required)
+hyperstack:designer → conditional DESIGN.md / design_contract
+       │
+       ▼
+hyperstack:forge-plan reads workspace + routed requirements
        │
        ▼
 hyperstack:shadcn-expert (THIS skill)
@@ -45,7 +39,7 @@ hyperstack:shadcn-expert (THIS skill)
        └─▶ shadcn_get_snippet(name)
        │
        ▼
-Implementation tasks per DESIGN.md Section 5
+Implementation tasks per routed component requirements
 ```
 
 ## MCP Tools
@@ -103,26 +97,12 @@ Implementation tasks per DESIGN.md Section 5
 
 ## Integration with Designer + Forge-Plan
 
-**Upstream:** `hyperstack:forge-plan` processes DESIGN.md Section 5 → calls `shadcn_get_component(name)` per component → references this skill for architectural guidance
+**Upstream:** `hyperstack:forge-plan` processes routed component requirements. If a design contract exists, it uses the relevant component sections. Existing-project frontend logic work may stay workspace-first without forcing a design contract.
 
-**Downstream:** Component code matching DESIGN.md Section 5 variants + states, all P7 (Components) rules enforced, ready for `hyperstack:ship-gate`
+**Downstream:** Component code matching required variants + states, all P7 (Components) rules enforced, ready for `hyperstack:ship-gate`
 
-**Reverse escalation:** DESIGN.md spec incompatible with shadcn architecture → escalate to `hyperstack:designer` to reconcile. Don't silently adapt.
+**Reverse escalation:** If a routed design contract is incompatible with shadcn architecture, escalate to `hyperstack:designer` to reconcile. Don't silently adapt.
 
-## Red Flags - STOP
-
-| Thought | Reality |
-|---|---|
-| "User didn't say 'shadcn' explicitly, but I'll assume it" | Do NOT assume. Ask or check designer Q11. |
-| "I know the shadcn rules from training data" | Training data has standard shadcn (Radix). This is Base UI edition. Call `shadcn_get_rules`. |
-| "data-slot is just a naming convention" | It's the primary styling selector for parent→child styling. Mandatory. |
-| "I'll use Radix because it's more common" | Project chose Base UI. Use `@base-ui/react`. |
-| "Hardcoding pixel positions is faster" | Use Base UI props. Hardcoded px breaks responsive behavior. |
-| "This Dialog has 5 slots, I'll combine into one component" | Split into sub-components. Monolithic Dialogs are anti-pattern. |
-| "I'll skip 'use client' since it seems stateless" | Does it use `data-open` or any state modifier? → needs `'use client'`. Check before skipping. |
-| "The cn utility is optional" | Mandatory. All className merging goes through `cn`. |
-| "I'll pick variant names that match the brand" | Stick to `default/outline/secondary/ghost/destructive`. Custom variants break the system. |
-| "shadcn components work with any color system" | OKLCH-native. Hex values break the token system. |
 
 
 ## Lifecycle Integration
@@ -131,23 +111,23 @@ Implementation tasks per DESIGN.md Section 5
 
 **Website/Frontend Agent (if Q11b=shadcn):**
 ```
-designer → DESIGN.md → forge-plan → shadcn-expert (THIS) → [component implementation]
-                                          ↓
-                                [shadcn_* MCP tools]
+blueprint → workspace inventory / change classification → [designer only if required] → forge-plan → shadcn-expert (THIS) → [component implementation]
+                                                                                                   ↓
+                                                                                         [shadcn_* MCP tools]
 ```
 
 ### Upstream Dependencies
-- `designer` → Q11b chose shadcn/ui (Base UI edition)
-- `forge-plan` → processes DESIGN.md Section 5 → calls shadcn_get_component per component
+- Q11b chose shadcn/ui (Base UI edition)
+- `forge-plan` → processes routed component requirements → calls shadcn_get_component per component
 
 ### Downstream Consumers
-- Component code matching DESIGN.md Section 5 variants + states
+- Component code matching routed variants + states
 - `ship-gate` → P7 (Components) rules enforced
 
 ### Reverse Escalation
 | Discovery | Escalate to | Action |
 |---|---|---|
-| DESIGN.md spec incompatible with shadcn architecture | `designer` | Reconcile DESIGN.md with Base UI constraints |
+| Design contract incompatible with shadcn architecture | `designer` | Reconcile design contract with Base UI constraints |
 
 ### When NOT to Use
 - User chose raw Tailwind (no component library)
