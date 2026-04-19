@@ -127,3 +127,10 @@ test("workspace-first planning makes design contracts conditional rather than un
   expect(shadcnExpertContent).toMatch(/workspace inventory|workspace-first/i);
   expect(shadcnExpertContent).toMatch(/designer only if required|conditional/i);
 });
+
+test("legacy website-builder role files are removed", () => {
+  expect(existsSync(resolve("agents/website-builder/PROFILE.md"))).toBe(false);
+  expect(existsSync(resolve("agents/website-builder/LIFECYCLE.md"))).toBe(false);
+  expect(existsSync(resolve("agents/website-builder/CONTEXT.md"))).toBe(false);
+  expect(existsSync(resolve("agents/website-builder/CHECKS.md"))).toBe(false);
+});

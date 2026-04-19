@@ -100,9 +100,9 @@ This asymmetry must be explicit in topology.
 
 ### 3.4 Planning Is Universal, Design Contracts Are Conditional
 
-The current design stack enforces `DESIGN.md` too early and too broadly:
+The current design stack originally enforced `DESIGN.md` too early and too broadly:
 
-- `website-builder` is website-specific, not general frontend
+- the old website-specific role shape was too narrow for general frontend work
 - `blueprint` routes any visual/UX work directly into `designer`
 - `designer` hard-gates visual work behind approved `DESIGN.md`
 - topology/runtime currently has no `workspace_inventory` or conditional-design logic
