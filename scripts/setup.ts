@@ -33,11 +33,8 @@ async function main() {
   }
 
   const pluginRoot = process.cwd();
-  
-  // Attempt to proactively self-heal/upgrade the docker setup
-  setup.selfHealDocker();
-  
-  const patch = setup.generateMcpPatch(configPath, pluginRoot, platform);
+
+  const patch = setup.generateMcpPatch(configPath, pluginRoot, platform, "local");
   
   // Proactively apply the patch
   setup.applyMcpPatch(configPath, patch);

@@ -12,6 +12,7 @@ function emit(payload) {
 }
 
 try {
+  const topologyBootstrapPath = join(pluginRoot, "generated", "runtime-context", "topology.bootstrap.md");
   const compiledBootstrapPath = join(pluginRoot, "generated", "runtime-context", "hyperstack.bootstrap.md");
   const fallbackSkillPath = join(pluginRoot, "skills", "hyperstack", "SKILL.md");
 
@@ -19,11 +20,16 @@ try {
   let bootstrapLabel;
 
   try {
-    bootstrapContent = readFileSync(compiledBootstrapPath, "utf8");
-    bootstrapLabel = "compiled runtime bootstrap";
+    bootstrapContent = readFileSync(topologyBootstrapPath, "utf8");
+    bootstrapLabel = "generated topology bootstrap";
   } catch {
-    bootstrapContent = readFileSync(fallbackSkillPath, "utf8");
-    bootstrapLabel = "full content of your 'hyperstack:hyperstack' skill";
+    try {
+      bootstrapContent = readFileSync(compiledBootstrapPath, "utf8");
+      bootstrapLabel = "compiled runtime bootstrap";
+    } catch {
+      bootstrapContent = readFileSync(fallbackSkillPath, "utf8");
+      bootstrapLabel = "full content of your 'hyperstack:hyperstack' skill";
+    }
   }
 
   const sessionContext = `<EXTREMELY_IMPORTANT>\nYou have Hyperstack.\n\n**Below is the ${bootstrapLabel} - your introduction to using Hyperstack. For all other skills, use the 'Skill' tool:**\n\n${bootstrapContent}\n</EXTREMELY_IMPORTANT>`;

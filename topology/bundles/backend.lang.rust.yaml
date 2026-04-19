@@ -1,0 +1,10 @@
+id: backend.lang.rust
+domain: backend
+capabilities:
+  - backend.rust.patterns
+sources:
+  - corpus/backend/rust
+tool_prefixes:
+  - rust_
+output_contracts:
+  - rust_reference

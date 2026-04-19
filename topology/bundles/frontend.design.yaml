@@ -1,0 +1,18 @@
+id: frontend.design
+domain: frontend
+capabilities:
+  - design.intent
+  - design.contract
+  - design.tokens
+sources:
+  - corpus/frontend/designer
+  - corpus/frontend/design-tokens
+  - corpus/frontend/ui-ux
+tool_prefixes:
+  - designer_
+  - design_tokens_
+  - ui_ux_
+output_contracts:
+  - intent_resolution
+  - design_contract
+  - token_spec

@@ -201,7 +201,7 @@ export function generateMcpPatch(
   configPath: string,
   pluginRoot: string,
   platform: string,
-  method: "docker" | "local" = "docker"
+  method: "docker" | "local" = "local"
 ): { format: PlatformFormat; content: string | object } {
   const binaryPath = path.join(pluginRoot, "bin", "hyperstack.mjs");
   const localServerConfig = {

@@ -9,6 +9,8 @@
   "scripts": {
     "build": "tsc --noEmit",
     "compile:context": "tsx src/internal/compile-runtime-context.ts",
+    "generate:local-tools": "tsx scripts/generate-local-tool-registry.ts",
+    "generate:topology": "tsx scripts/generate-topology-artifacts.ts",
     "test": "bun test",
     "start": "bun src/index.ts",
     "dev": "bun --watch src/index.ts",
@@ -25,6 +27,7 @@
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.17.0",
     "tsx": "^4.21.0",
+    "yaml": "^2.5.1",
     "zod": "^3.23.0"
   },
   "devDependencies": {

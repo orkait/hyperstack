@@ -7,7 +7,7 @@
 <p>
   <img src="https://img.shields.io/badge/license-MIT-blue?style=flat-square" alt="MIT" />
   <img src="https://img.shields.io/badge/TypeScript-5-3178c6?style=flat-square&logo=typescript&logoColor=white" alt="TypeScript" />
-  <img src="https://img.shields.io/badge/Docker-ready-2496ED?style=flat-square&logo=docker&logoColor=white" alt="Docker" />
+  <img src="https://img.shields.io/badge/Local_runtime-default-0f766e?style=flat-square" alt="Local Runtime" />
   <img src="https://img.shields.io/badge/MCP-standard-6366f1?style=flat-square" alt="MCP" />
 </p>
 
@@ -25,7 +25,7 @@
 
 **Hyperstack is a disciplined engineering harness for AI coding agents.** 
 
-It provides the necessary **Ground Truth** (via 79 specialized MCP tools) and **Adversarial Enforcement** (via 21 rigorous skills) to transform a generic LLM into a high-precision Senior Engineer. 
+It provides the necessary **Ground Truth** (via 79 specialized tool calls) and **Adversarial Enforcement** (via 21 rigorous skills) to transform a generic LLM into a high-precision Senior Engineer.
 
 Unlike standard "polite" instructions, Hyperstack uses **Iron Laws** and a **SessionStart hook** to force agents to check real documentation, follow precise design specs, and provide binary verification before shipping.
 
@@ -39,13 +39,13 @@ The fastest way to install Hyperstack is to let your AI agent do it for you. Thi
 Fetch and follow the instructions at https://raw.githubusercontent.com/orkait/hyperstack/main/install.md
 ```
 
-The autopilot will autonomously detect your environment, install the MCP server (Docker or Local), and **automatically link the Skills repository**. This is the only step required.
+The autopilot will autonomously detect your environment, configure the local tool runtime, and **automatically link the Skills repository**. This is the only step required.
 
 ---
 
 ### 2. Manual Configuration (Advanced)
 
-If you aren't using the Autopilot, follow the **Unified Bootstrap** to set up both the MCP server and the Skills:
+If you aren't using the Autopilot, follow the **Unified Bootstrap** to set up both the local runtime and the Skills:
 
 1.  **Clone & Initialize**:
     ```bash
@@ -134,34 +134,18 @@ If you are an agent reading this, your mental model must be: **Process is Priori
 
 ## 🚀 Quickstart
 
-### 🐳 Docker (Default)
+### 💻 Local Runtime (Default)
 
-Hyperstack uses a persistent container plus `docker exec`. This keeps startup cheap across sessions and ensures 100% environment stability.
+Hyperstack now defaults to a local tool runtime backed by topology manifests and corpus navigation. Docker is no longer required for the standard setup path.
 
-1. Pull the image:
-
-```bash
-docker pull ghcr.io/orkait/hyperstack:main
-```
-
-2. Start the persistent container:
-
-```bash
-docker rm -f hyperstack-mcp 2>/dev/null
-docker run -d --name hyperstack-mcp --restart unless-stopped \
-  --memory=512m --cpus=1 \
-  --entrypoint sleep \
-  ghcr.io/orkait/hyperstack:main infinity
-```
-
-3. Add this to your MCP settings (`~/.claude.json`, Cursor, Windsurf, etc.):
+Add this to your MCP or tool settings (`~/.claude.json`, Cursor, Windsurf, etc.):
 
 ```json
 {
   "mcpServers": {
     "hyperstack": {
-      "command": "docker",
-      "args": ["exec", "-i", "hyperstack-mcp", "bun", "/app/src/index.ts"]
+      "command": "node",
+      "args": ["/path/to/hyperstack/bin/hyperstack.mjs"]
     }
   }
 }
@@ -174,13 +158,13 @@ If you are using Claude Code, Cursor, Windsurf, Roo Code, or Gemini, you can use
 ```text
 Fetch and follow the instructions at https://raw.githubusercontent.com/orkait/hyperstack/main/install.md
 ```
-The autopilot will detect your environment and propose the correct Docker-based configuration block.
+The autopilot will detect your environment and propose the correct local-runtime configuration block.
 
 
 
 ### 🔧 Install the skills
 
-The MCP server gives you tools. The skills give you discipline. Install both:
+The local runtime gives you tools. The skills give you discipline. Install both:
 
 ```bash
 git clone https://github.com/orkait/hyperstack.git ~/.claude/skills/hyperstack

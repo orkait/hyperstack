@@ -1,0 +1,15 @@
+id: frontend
+write_policy: constrained
+completion_proof: visual_and_behavioral
+truth_bundles:
+  - frontend.design
+  - frontend.react
+required_gates:
+  - designer
+  - behaviour-analysis
+optional_gates:
+  - shadcn-expert
+forbidden_bundles:
+  - backend.http
+  - backend.lang.go
+  - backend.lang.rust
