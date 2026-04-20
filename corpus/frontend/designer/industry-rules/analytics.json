@@ -1,0 +1,19 @@
+{
+  "industry": "analytics",
+  "primaryStyle": "minimalism",
+  "secondaryStyle": "soft-ui",
+  "mustHave": [
+    "Data export",
+    "Filtering",
+    "Sortable tables",
+    "Keyboard navigation"
+  ],
+  "neverUse": [
+    "Ornate design",
+    "Large images",
+    "Playful elements",
+    "Heavy animations"
+  ],
+  "colorMood": "Neutral + data visualization palette (Okabe-Ito or viridis)",
+  "emotionalTarget": "technical"
+}

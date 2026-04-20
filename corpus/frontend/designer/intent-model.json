@@ -1,0 +1,59 @@
+{
+  "industryKeywords": {
+    "saas": ["saas", "software", "app", "platform", "tool", "service", "subscription"],
+    "analytics": ["analytics", "dashboard", "metrics", "data", "reporting", "visualization", "charts"],
+    "healthcare": ["health", "medical", "hospital", "patient", "clinical", "doctor", "pharma"],
+    "fintech": ["finance", "bank", "payment", "crypto", "trading", "investment", "money", "fintech"],
+    "creative-agency": ["agency", "creative", "studio", "design agency", "branding"],
+    "portfolio": ["portfolio", "personal site", "freelance", "resume", "cv"],
+    "gaming": ["game", "gaming", "esports", "player", "multiplayer"],
+    "ecommerce-luxury": ["ecommerce", "shop", "store", "luxury", "fashion", "retail"],
+    "mental-health": ["mental health", "therapy", "meditation", "mindfulness", "counseling"],
+    "government": ["government", "gov", "public service", "civic", "municipal"],
+    "developer-tool": ["developer", "dev tool", "api", "cli", "sdk", "code", "ide", "terminal"],
+    "ai-chatbot": ["ai", "chatbot", "copilot", "assistant", "llm", "gpt", "claude"],
+    "b2b-service": ["b2b", "enterprise", "consulting", "professional service"],
+    "education": ["education", "learning", "course", "school", "university", "tutorial", "lms"],
+    "wellness": ["wellness", "fitness", "yoga", "spa", "nutrition", "self-care"]
+  },
+  "emotionalToPersonality": {
+    "trustworthy": "enterprise-trust",
+    "playful": "bold-energetic",
+    "premium": "premium-precision",
+    "energetic": "bold-energetic",
+    "calm": "warm-editorial",
+    "technical": "technical-developer",
+    "bold": "bold-energetic",
+    "editorial": "warm-editorial"
+  },
+  "densityMap": {
+    "developer": "compact",
+    "consumer": "comfortable",
+    "enterprise": "normal",
+    "child": "comfortable",
+    "creative": "normal",
+    "healthcare": "comfortable"
+  },
+  "styleMap": {
+    "saas": "soft-ui",
+    "analytics": "minimalism",
+    "healthcare": "soft-ui",
+    "fintech": "minimalism",
+    "developer-tool": "dark-oled",
+    "gaming": "dark-oled",
+    "creative-agency": "vibrant-block",
+    "education": "claymorphism",
+    "wellness": "soft-ui",
+    "ecommerce-luxury": "minimalism",
+    "government": "minimalism",
+    "ai-chatbot": "minimalism",
+    "b2b-service": "minimalism",
+    "portfolio": "minimalism",
+    "mental-health": "soft-ui"
+  },
+  "darkDefaultIndustries": ["developer-tool", "gaming"],
+  "defaultEmotionalTarget": "trustworthy",
+  "defaultStyle": "soft-ui",
+  "defaultDensity": "normal",
+  "defaultPersonality": "premium-precision"
+}

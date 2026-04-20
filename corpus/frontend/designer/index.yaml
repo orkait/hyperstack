@@ -1,4 +1,6 @@
 personalities:
   premium-precision: corpus/frontend/designer/personalities/premium-precision.json
 industryRules:
+  analytics: corpus/frontend/designer/industry-rules/analytics.json
   saas: corpus/frontend/designer/industry-rules/saas.json
+intentModel: corpus/frontend/designer/intent-model.json

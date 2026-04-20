@@ -4,6 +4,7 @@ import { register as registerGetPractice } from "../src/plugins/golang/tools/get
 import { register as registerGetPrinciple } from "../src/plugins/ui-ux/tools/get-principle.ts";
 import { register as registerGetPersonality } from "../src/plugins/designer/tools/get-personality.ts";
 import { register as registerGetIndustryRules } from "../src/plugins/designer/tools/get-industry-rules.ts";
+import { register as registerResolveIntent } from "../src/plugins/designer/tools/resolve-intent.ts";
 
 test("golang_get_practice reads corpus-backed practice documents first", async () => {
   const result = await invokeRegisteredTool(registerGetPractice, {
@@ -38,5 +39,15 @@ test("designer_get_industry_rules reads corpus-backed designer knowledge first",
   });
 
   expect(result.content?.[0]?.text).toMatch(/Primary style:/);
+  expect(result.content?.[0]?.text).toMatch(/\*\*Corpus Source:\*\* frontend\.designer/);
+});
+
+test("designer_resolve_intent reads corpus-backed designer mappings first", async () => {
+  const result = await invokeRegisteredTool(registerResolveIntent, {
+    product: "developer analytics dashboard",
+  });
+
+  expect(result.content?.[0]?.text).toMatch(/\*\*Industry:\*\* analytics/);
+  expect(result.content?.[0]?.text).toMatch(/\*\*Personality:\*\* technical-developer/);
   expect(result.content?.[0]?.text).toMatch(/\*\*Corpus Source:\*\* frontend\.designer/);
 });
