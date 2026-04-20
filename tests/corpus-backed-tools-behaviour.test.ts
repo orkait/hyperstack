@@ -5,6 +5,7 @@ import { register as registerGetPrinciple } from "../src/plugins/ui-ux/tools/get
 import { register as registerGetPersonality } from "../src/plugins/designer/tools/get-personality.ts";
 import { register as registerGetIndustryRules } from "../src/plugins/designer/tools/get-industry-rules.ts";
 import { register as registerResolveIntent } from "../src/plugins/designer/tools/resolve-intent.ts";
+import { register as registerGetTokenCategory } from "../src/plugins/design-tokens/tools/get-category.ts";
 
 test("golang_get_practice reads corpus-backed practice documents first", async () => {
   const result = await invokeRegisteredTool(registerGetPractice, {
@@ -50,4 +51,13 @@ test("designer_resolve_intent reads corpus-backed designer mappings first", asyn
   expect(result.content?.[0]?.text).toMatch(/\*\*Industry:\*\* analytics/);
   expect(result.content?.[0]?.text).toMatch(/\*\*Personality:\*\* technical-developer/);
   expect(result.content?.[0]?.text).toMatch(/\*\*Corpus Source:\*\* frontend\.designer/);
+});
+
+test("design_tokens_get_category reads corpus-backed token knowledge first", async () => {
+  const result = await invokeRegisteredTool(registerGetTokenCategory, {
+    name: "colors",
+  });
+
+  expect(result.content?.[0]?.text).toMatch(/Three-layer architecture/);
+  expect(result.content?.[0]?.text).toMatch(/\*\*Corpus Source:\*\* frontend\.design-tokens/);
 });

@@ -1,0 +1,18 @@
+{
+  "name": "colors",
+  "description": "OKLCH-based color system using three-layer architecture: @theme primitives -> :root/:dark semantics -> domain tokens. Role-based naming prevents color-name coupling.",
+  "layer": "semantic",
+  "cssExample": "/* Layer 1 - Primitives (@theme) */\n@theme {\n  --color-brand-50: oklch(0.97 0.02 291);\n  --color-brand-100: oklch(0.94 0.04 291);\n  --color-brand-200: oklch(0.88 0.06 291);\n  --color-brand-300: oklch(0.78 0.09 291);\n  --color-brand-400: oklch(0.70 0.12 291);\n  --color-brand-500: oklch(0.62 0.14 291);\n  --color-brand-600: oklch(0.54 0.14 291);\n  --color-brand-700: oklch(0.46 0.13 291);\n  --color-brand-800: oklch(0.38 0.11 291);\n  --color-brand-900: oklch(0.28 0.08 291);\n  --color-brand-950: oklch(0.18 0.05 291);\n}\n\n/* Layer 2 - Semantics (:root / .dark) */\n:root {\n  --color-bg: var(--color-neutral-50);\n  --color-bg-subtle: var(--color-neutral-100);\n  --color-surface: #ffffff;\n  --color-border: var(--color-neutral-200);\n  --color-border-strong: var(--color-neutral-300);\n  --color-text: var(--color-neutral-900);\n  --color-text-muted: var(--color-neutral-500);\n  --color-primary: var(--color-brand-500);\n  --color-primary-hover: var(--color-brand-600);\n  --color-primary-fg: #ffffff;\n}",
+  "tailwindExample": "<!-- Tailwind v4 utilities from @theme inline -->\n<div class=\"bg-background text-foreground\">\n  <button class=\"bg-primary text-primary-foreground hover:bg-primary/90\">\n    Button\n  </button>\n  <p class=\"text-muted\">Muted text</p>\n</div>",
+  "rules": [
+    "Always use role-based names (--color-brand-500), never hue names (--color-violet-500)",
+    "Three-layer architecture: @theme primitives -> :root/:dark semantics -> @theme inline utilities",
+    "Dark mode uses oklch charcoal backgrounds (L 0.15-0.25), not pure black",
+    "Status colors (success/error/warning) need L ~0.55 for 4.5:1 contrast with white foreground"
+  ],
+  "gotchas": [
+    "@theme inline bridges runtime-swappable CSS vars; plain @theme defines static compile-time primitives.",
+    "Status colors often need lower lightness for contrast.",
+    "Dark mode elevation should use lighter background layers instead of box-shadow."
+  ]
+}
