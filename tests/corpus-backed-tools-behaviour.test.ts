@@ -7,6 +7,7 @@ import { register as registerGetIndustryRules } from "../src/plugins/designer/to
 import { register as registerResolveIntent } from "../src/plugins/designer/tools/resolve-intent.ts";
 import { register as registerGetTokenCategory } from "../src/plugins/design-tokens/tools/get-category.ts";
 import { register as registerGetTokenGotchas } from "../src/plugins/design-tokens/tools/get-gotchas.ts";
+import { register as registerGetReactPattern } from "../src/plugins/react/tools/get-pattern.ts";
 
 test("golang_get_practice reads corpus-backed practice documents first", async () => {
   const result = await invokeRegisteredTool(registerGetPractice, {
@@ -68,4 +69,13 @@ test("design_tokens_get_gotchas reads corpus-backed token gotchas first", async 
 
   expect(result.content?.[0]?.text).toMatch(/frontend\.design-tokens/);
   expect(result.content?.[0]?.text).toMatch(/Status colors often need lower lightness for contrast/);
+});
+
+test("react_get_pattern reads corpus-backed react knowledge first", async () => {
+  const result = await invokeRegisteredTool(registerGetReactPattern, {
+    name: "rsc-default",
+  });
+
+  expect(result.content?.[0]?.text).toMatch(/Server Components are the default/);
+  expect(result.content?.[0]?.text).toMatch(/\*\*Corpus Source:\*\* frontend\.react/);
 });

@@ -1,0 +1,11 @@
+{
+  "name": "rsc-default",
+  "category": "rendering",
+  "description": "Server Components are the default. Use 'use client' only when interactivity is required.",
+  "when": "Every new component. Decide server vs client first.",
+  "tips": [
+    "SEO-critical content -> RSC/SSR/SSG/ISR",
+    "Non-SEO + interactive -> Client Component",
+    "Fetching data -> always RSC unless client-side only"
+  ]
+}
