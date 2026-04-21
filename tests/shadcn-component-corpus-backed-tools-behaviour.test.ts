@@ -13,10 +13,19 @@ test("shadcn_get_component prefers corpus metadata for Button", async () => {
   expect(text).toContain('<Button variant="outline"');
 });
 
-test("shadcn_get_component falls back to in-file data for non-corpus components", async () => {
+test("shadcn_get_component prefers corpus metadata for Dialog", async () => {
   const result = await shadcnGetComponent.invoke({ name: "Dialog" });
   const text = extractTextContent(result);
 
   expect(text).toContain("# Dialog");
+  expect(text).toContain("**Corpus Source:** frontend.shadcn");
+  expect(text).toContain("<DialogTrigger render={<Button />}>");
+});
+
+test("shadcn_get_component falls back to in-file data for non-corpus components", async () => {
+  const result = await shadcnGetComponent.invoke({ name: "Field" });
+  const text = extractTextContent(result);
+
+  expect(text).toContain("# Field");
   expect(text).not.toContain("**Corpus Source:** frontend.shadcn");
 });

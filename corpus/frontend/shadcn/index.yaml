@@ -2,3 +2,5 @@ namespace: frontend.shadcn
 components:
   button:
     file: button.yaml
+  dialog:
+    file: dialog.yaml
