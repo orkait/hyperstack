@@ -2,3 +2,5 @@ namespace: frontend.lenis
 patterns:
   gsap-integration:
     file: gsap-integration.yaml
+  full-page:
+    file: full-page.yaml
