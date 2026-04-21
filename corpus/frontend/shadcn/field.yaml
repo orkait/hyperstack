@@ -1,0 +1,37 @@
+name: Field
+category: form
+description: Form field wrapper with label, description, error. Uses @container for responsive layout.
+basePrimitive: "@base-ui/react/field"
+dataSlots:
+  - field
+  - field-label
+  - field-control
+  - field-description
+  - field-error
+variants:
+  - vertical
+  - horizontal
+sizes: []
+requiresUseClient: false
+usageSnippet: |
+  <Field orientation="vertical">
+    <FieldLabel>Username</FieldLabel>
+    <FieldContent>
+      <Input placeholder="Enter username" />
+      <FieldDescription>This is your public display name.</FieldDescription>
+      <FieldError errors={errors.username} />
+    </FieldContent>
+  </Field>
+
+  // Horizontal orientation with Container Queries
+  <FieldGroup className="max-w-md">
+    <Field orientation="horizontal">
+      <FieldLabel>Email</FieldLabel>
+      <Input type="email" />
+    </Field orientation="horizontal">
+  </FieldGroup>
+pairsWith:
+  - Input
+  - Select
+  - Textarea
+  - Checkbox
