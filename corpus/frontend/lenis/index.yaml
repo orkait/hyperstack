@@ -4,3 +4,5 @@ patterns:
     file: gsap-integration.yaml
   full-page:
     file: full-page.yaml
+  next-js:
+    file: next-js.yaml

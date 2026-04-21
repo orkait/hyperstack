@@ -22,6 +22,15 @@ test("lenis_get_pattern prefers corpus metadata for full-page", async () => {
   expect(text).toContain('<ReactLenis root options={{ lerp: 0.1 }}>');
 });
 
+test("lenis_get_pattern prefers corpus metadata for next-js", async () => {
+  const result = await lenisGetPattern.invoke({ name: "next-js" });
+  const text = extractTextContent(result);
+
+  expect(text).toContain("# Lenis Pattern: next-js");
+  expect(text).toContain("**Corpus Source:** frontend.lenis");
+  expect(text).toContain("SmoothScrollProvider");
+});
+
 test("lenis_get_pattern falls back to in-file data for non-corpus patterns", async () => {
   const result = await lenisGetPattern.invoke({ name: "accessibility" });
   const text = extractTextContent(result);
