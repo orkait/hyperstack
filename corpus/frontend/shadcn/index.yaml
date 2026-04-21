@@ -4,3 +4,5 @@ components:
     file: button.yaml
   dialog:
     file: dialog.yaml
+  field:
+    file: field.yaml
