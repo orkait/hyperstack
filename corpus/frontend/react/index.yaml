@@ -6,3 +6,5 @@ patterns:
     file: zustand-store.yaml
   state-hierarchy:
     file: state-hierarchy.yaml
+  suspense-boundary:
+    file: suspense-boundary.yaml
