@@ -1,0 +1,8 @@
+namespace: backend.golang
+practices:
+  error-wrapping:
+    file: error-wrapping.yaml
+  goroutine-lifecycle:
+    file: goroutine-lifecycle.yaml
+  context-first-param:
+    file: context-first-param.yaml

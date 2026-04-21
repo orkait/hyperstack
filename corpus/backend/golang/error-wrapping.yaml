@@ -1,0 +1,13 @@
+name: error-wrapping
+topic: error-handling
+priority: P0
+rule: 'Always wrap errors with context: fmt.Errorf("context: %w", err)'
+reason: Provides call stack context without expensive stack traces. %w enables errors.Is/As.
+good: |
+  if err := db.Query(ctx, q); err != nil {
+    return fmt.Errorf("userRepo.FindByID %s: %w", id, err)
+  }
+bad: |
+  if err := db.Query(ctx, q); err != nil {
+    return err // context lost - which query failed?
+  }
