@@ -1,0 +1,19 @@
+name: dark-mode-principles
+domain: color
+rule: "Dark mode: redesign, don't invert. Warm charcoal, not black."
+detail: >-
+  Background: oklch(0.13 0.008 265) - warm charcoal, not #000. Text:
+  oklch(0.94 0.008 265) - off-white, not #fff. Higher elevation = lighter bg
+  (shadows invisible on dark). Reduce saturation slightly (vivid on dark =
+  neon). Primary accents brighten: brand-600 → brand-400.
+cssExample: |
+  .dark {
+    --color-bg: oklch(0.13 0.008 265);   /* warm charcoal */
+    --color-text: oklch(0.94 0.008 265); /* off-white */
+    /* surface-1 */ --color-surface: oklch(0.16 0.008 265);
+    /* surface-2 */ --color-card: oklch(0.19 0.008 265);
+  }
+antiPatterns:
+  - Pure black background (#000)
+  - Pure white text (#fff) on dark
+  - Inverting light mode colors directly

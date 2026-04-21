@@ -1,0 +1,10 @@
+namespace: frontend.ui-ux
+principles:
+  type-scale:
+    file: type-scale.yaml
+  wcag-contrast:
+    file: wcag-contrast.yaml
+  dark-mode-principles:
+    file: dark-mode-principles.yaml
+  touch-targets:
+    file: touch-targets.yaml

@@ -1,0 +1,17 @@
+name: type-scale
+domain: typography
+rule: Use mathematical ratios for type scale, not arbitrary sizes.
+detail: >-
+  Common ratios: 1.25 (Major Third), 1.333 (Perfect Fourth), 1.414 (Augmented
+  Fourth). Recommended web scale: Display 48-72px, H1 40-56px, H2 28-40px,
+  H3 20-24px, Subtitle 16-20px, Body 16px, Body-sm 14px, Caption 13px,
+  Overline 12px.
+cssExample: |
+  /* fluid headings, fixed body */
+  font-size: clamp(2.5rem, 4vw, 3.5rem);  /* h1 */
+  font-size: clamp(1.75rem, 3vw, 2.5rem); /* h2 */
+  font-size: 1rem;                          /* body - fixed */
+antiPatterns:
+  - Random px values with no ratio
+  - Fluid body text (causes reflow)
+  - More than 2 type families
