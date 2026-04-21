@@ -1,0 +1,29 @@
+name: hello-world
+category: routing
+description: Minimal Echo server with a single GET route
+when: Starting a new Echo project or verifying your setup
+code: |
+  package main
+
+  import (
+  	"net/http"
+
+  	"github.com/labstack/echo/v4"
+  )
+
+  func main() {
+  	e := echo.New()
+
+  	e.GET("/", func(c echo.Context) error {
+  		return c.String(http.StatusOK, "Hello, World!")
+  	})
+
+  	e.Logger.Fatal(e.Start(":8080"))
+  }
+gotchas:
+  - e.Logger.Fatal calls os.Exit on error - use it only in main
+  - "echo.New() returns a configured instance; always use this, not raw http.Server"
+relatedRecipes:
+  - crud-api
+  - middleware-chain
+  - graceful-shutdown

@@ -13,6 +13,8 @@ namespaces:
     index: frontend/shadcn/index.yaml
   backend.golang:
     index: backend/golang/index.yaml
+  backend.echo:
+    index: backend/echo/index.yaml
   frontend.ui-ux:
     index: frontend/ui-ux/index.yaml
   frontend.react:
