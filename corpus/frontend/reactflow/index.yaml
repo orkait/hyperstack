@@ -2,3 +2,13 @@ namespace: frontend.reactflow
 apis:
   reactflow:
     file: reactflow.yaml
+  handle:
+    file: handle.yaml
+  background:
+    file: background.yaml
+  controls:
+    file: controls.yaml
+  minimap:
+    file: minimap.yaml
+  usereactflow:
+    file: usereactflow.yaml

@@ -16,11 +16,7 @@ type CorpusIndex = {
 
 type CorpusNamespaceIndex = {
   namespace?: string;
-  apis?: {
-    reactflow?: {
-      file?: string;
-    };
-  };
+  apis?: Record<string, { file?: string }>;
 };
 
 type CorpusApiEntry = {
@@ -36,21 +32,27 @@ type CorpusApiEntry = {
   relatedApis?: string[];
 };
 
+type LoadedCorpusApi = {
+  api: Parameters<typeof formatApiReference>[0];
+  source: string;
+};
+
+type ReactFlowExample = Parameters<typeof formatApiReference>[0]["examples"][number];
+
 const moduleDir = dirname(fileURLToPath(import.meta.url));
 const corpusRoot = join(moduleDir, "../../../../corpus");
 const corpusNamespace = "frontend.reactflow";
-const corpusApiName = "ReactFlow";
-type ReactFlowExample = Parameters<typeof formatApiReference>[0]["examples"][number];
 
-let cachedCorpusReactFlowApi: { api: Parameters<typeof formatApiReference>[0]; source: string } | null | undefined;
+const cachedCorpusApis = new Map<string, LoadedCorpusApi | null>();
 
 function normalizeApiName(name: string): string {
   return name.toLowerCase().replace(/[<>/()]/g, "").trim();
 }
 
-function loadCorpusReactFlowApi(): { api: Parameters<typeof formatApiReference>[0]; source: string } | null {
-  if (cachedCorpusReactFlowApi !== undefined) {
-    return cachedCorpusReactFlowApi;
+function loadCorpusApi(name: string): LoadedCorpusApi | null {
+  const key = normalizeApiName(name);
+  if (cachedCorpusApis.has(key)) {
+    return cachedCorpusApis.get(key) ?? null;
   }
 
   try {
@@ -58,35 +60,35 @@ function loadCorpusReactFlowApi(): { api: Parameters<typeof formatApiReference>[
     const index = YAML.parse(indexRaw) as CorpusIndex | null;
     const namespaceIndexPath = index?.namespaces?.[corpusNamespace]?.index;
     if (!namespaceIndexPath) {
-      cachedCorpusReactFlowApi = null;
-      return cachedCorpusReactFlowApi;
+      cachedCorpusApis.set(key, null);
+      return null;
     }
 
     const namespaceRaw = readFileSync(join(corpusRoot, namespaceIndexPath), "utf8");
     const namespaceIndex = YAML.parse(namespaceRaw) as CorpusNamespaceIndex | null;
-    const apiPath = namespaceIndex?.apis?.reactflow?.file;
+    const apiPath = namespaceIndex?.apis?.[key]?.file;
     if (!apiPath) {
-      cachedCorpusReactFlowApi = null;
-      return cachedCorpusReactFlowApi;
+      cachedCorpusApis.set(key, null);
+      return null;
     }
 
     const apiRaw = readFileSync(join(corpusRoot, "frontend/reactflow", apiPath), "utf8");
     const api = YAML.parse(apiRaw) as CorpusApiEntry | null;
     if (
       !api ||
-      normalizeApiName(api.name ?? "") !== normalizeApiName(corpusApiName) ||
+      normalizeApiName(api.name ?? "") !== key ||
       !api.usage ||
       !api.importPath ||
       !api.description ||
       !api.kind
     ) {
-      cachedCorpusReactFlowApi = null;
-      return cachedCorpusReactFlowApi;
+      cachedCorpusApis.set(key, null);
+      return null;
     }
 
-    cachedCorpusReactFlowApi = {
+    const loaded: LoadedCorpusApi = {
       api: {
-        name: api.name ?? corpusApiName,
+        name: api.name ?? name,
         kind: api.kind as Parameters<typeof formatApiReference>[0]["kind"],
         description: api.description,
         importPath: api.importPath,
@@ -108,24 +110,12 @@ function loadCorpusReactFlowApi(): { api: Parameters<typeof formatApiReference>[
       },
       source: corpusNamespace,
     };
-    return cachedCorpusReactFlowApi ?? null;
+    cachedCorpusApis.set(key, loaded);
+    return loaded;
   } catch {
-    cachedCorpusReactFlowApi = null;
+    cachedCorpusApis.set(key, null);
     return null;
   }
-}
-
-function getReactFlowApi(name: string) {
-  if (normalizeApiName(name) !== normalizeApiName(corpusApiName)) {
-    return getApiByName(name, ALL_APIS);
-  }
-
-  const corpusEntry = loadCorpusReactFlowApi();
-  if (corpusEntry) {
-    return corpusEntry.api;
-  }
-
-  return getApiByName(name, ALL_APIS);
 }
 
 export function register(server: McpServer): void {
@@ -140,8 +130,8 @@ export function register(server: McpServer): void {
         ),
     },
     async ({ name }) => {
-      const corpusEntry = normalizeApiName(name) === normalizeApiName(corpusApiName) ? loadCorpusReactFlowApi() : null;
-      const api = getReactFlowApi(name);
+      const corpusEntry = loadCorpusApi(name);
+      const api = corpusEntry?.api ?? getApiByName(name, ALL_APIS);
       if (!api) {
         const suggestions = searchApis(name, ALL_APIS)
           .slice(0, 5)

@@ -1,0 +1,71 @@
+name: Handle
+kind: component
+description: >-
+  Used in custom nodes to define connection points. Handles can be sources
+  (outgoing) or targets (incoming).
+importPath: "import { Handle, Position } from '@xyflow/react'"
+props:
+  - name: type
+    type: "'source' | 'target'"
+    description: Whether this is an input or output handle.
+    default: "'source'"
+  - name: position
+    type: Position
+    description: "Side of the node: Position.Top, Bottom, Left, Right."
+    default: Position.Top
+  - name: id
+    type: string
+    description: Handle ID, needed when a node has multiple handles of the same type.
+  - name: isConnectable
+    type: boolean
+    description: Whether connections can be made to/from this handle.
+    default: "true"
+  - name: isConnectableStart
+    type: boolean
+    description: Whether a connection can start from this handle.
+    default: "true"
+  - name: isConnectableEnd
+    type: boolean
+    description: Whether a connection can end on this handle.
+    default: "true"
+  - name: isValidConnection
+    type: IsValidConnection
+    description: Custom validation logic for connections to this handle.
+  - name: onConnect
+    type: OnConnect
+    description: Callback when connection is made to this handle.
+usage: |
+  import { Handle, Position } from '@xyflow/react';
+
+  function CustomNode({ data }) {
+    return (
+      <>
+        <Handle type="target" position={Position.Left} />
+        <div>{data.label}</div>
+        <Handle type="source" position={Position.Right} />
+      </>
+    );
+  }
+examples:
+  - title: Multiple handles
+    category: custom-nodes
+    code: |
+      function MultiHandleNode({ data }) {
+        return (
+          <div className="p-4 border rounded bg-white">
+            <Handle type="target" position={Position.Top} id="a" />
+            <Handle type="target" position={Position.Left} id="b" />
+            <div>{data.label}</div>
+            <Handle type="source" position={Position.Bottom} id="c" />
+            <Handle type="source" position={Position.Right} id="d" />
+          </div>
+        );
+      }
+tips:
+  - Use the id prop when a node has multiple source or target handles.
+  - Prefer isValidConnection on <ReactFlow> over per-handle validation for performance.
+  - Add 'nodrag' class to interactive elements inside a node to prevent drag when clicking them.
+relatedApis:
+  - ReactFlow
+  - NodeResizer
+  - NodeToolbar
