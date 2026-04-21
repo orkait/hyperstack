@@ -4,3 +4,5 @@ patterns:
     file: rsc-default.yaml
   zustand-store:
     file: zustand-store.yaml
+  state-hierarchy:
+    file: state-hierarchy.yaml

@@ -22,10 +22,19 @@ test("react_get_pattern prefers corpus metadata for zustand-store", async () => 
   expect(text).toContain("create<");
 });
 
-test("react_get_pattern falls back to in-file data for non-corpus patterns", async () => {
+test("react_get_pattern prefers corpus metadata for state-hierarchy", async () => {
   const result = await reactGetPattern.invoke({ name: "state-hierarchy" });
   const text = extractTextContent(result);
 
   expect(text).toContain("# state-hierarchy [state]");
+  expect(text).toContain("**Corpus Source:** frontend.react");
+  expect(text).toContain("useSearchParams()");
+});
+
+test("react_get_pattern falls back to in-file data for non-corpus patterns", async () => {
+  const result = await reactGetPattern.invoke({ name: "suspense-boundary" });
+  const text = extractTextContent(result);
+
+  expect(text).toContain("# suspense-boundary [rendering]");
   expect(text).not.toContain("**Corpus Source:** frontend.react");
 });
