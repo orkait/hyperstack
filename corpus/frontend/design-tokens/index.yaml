@@ -12,3 +12,5 @@ procedures:
     file: step-5.yaml
   step-6:
     file: step-6.yaml
+  step-7:
+    file: step-7.yaml

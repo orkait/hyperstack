@@ -58,11 +58,20 @@ test("design_tokens_get_procedure prefers corpus metadata for step 6", async () 
   expect(text).toContain("--shadow-xs: 0 1px 2px 0 oklch(0.30 0.02 60 / 0.08);");
 });
 
-test("design_tokens_get_procedure falls back to in-file data for other steps", async () => {
+test("design_tokens_get_procedure prefers corpus metadata for step 7", async () => {
   const result = await designTokensGetProcedure.invoke({ step: 7 });
   const text = extractTextContent(result);
 
   expect(text).toContain("# Step 7: Define motion and z-index tokens");
+  expect(text).toContain("**Corpus Source:** frontend.design-tokens");
+  expect(text).toContain("--duration-fast: 100ms;");
+});
+
+test("design_tokens_get_procedure falls back to in-file data for other steps", async () => {
+  const result = await designTokensGetProcedure.invoke({ step: 8 });
+  const text = extractTextContent(result);
+
+  expect(text).toContain("# Step 8: Run contrast audit and verify token usage");
   expect(text).toContain("## Code");
   expect(text).not.toContain("**Corpus Source:** frontend.design-tokens");
 });
