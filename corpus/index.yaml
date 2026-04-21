@@ -1,7 +1,11 @@
 namespaces:
   frontend.motion:
     index: frontend/motion/index.yaml
+  frontend.reactflow:
+    index: frontend/reactflow/index.yaml
   frontend.lenis:
     index: frontend/lenis/index.yaml
+  frontend.designer:
+    index: frontend/designer/index.yaml
   frontend.design-tokens:
     index: frontend/design-tokens/index.yaml

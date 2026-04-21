@@ -1,0 +1,84 @@
+name: ReactFlow
+kind: component
+description: >-
+  Core canvas component for rendering nodes and edges, wiring connection
+  interactions, and managing controlled or uncontrolled flow state.
+importPath: "import { ReactFlow } from '@xyflow/react'"
+props:
+  - name: nodes
+    type: Node[]
+    description: Array of nodes for controlled flows.
+    default: "[]"
+  - name: edges
+    type: Edge[]
+    description: Array of edges for controlled flows.
+    default: "[]"
+  - name: defaultNodes
+    type: Node[]
+    description: Initial nodes for uncontrolled flows.
+  - name: defaultEdges
+    type: Edge[]
+    description: Initial edges for uncontrolled flows.
+  - name: onConnect
+    type: OnConnect
+    description: Fires when a new connection is completed.
+  - name: onNodesChange
+    type: OnNodesChange
+    description: Called for drag, select, and position changes in controlled flows.
+  - name: onEdgesChange
+    type: OnEdgesChange
+    description: Called when edges change in controlled flows.
+  - name: nodeTypes
+    type: NodeTypes
+    description: Custom node components keyed by node type.
+  - name: edgeTypes
+    type: EdgeTypes
+    description: Custom edge components keyed by edge type.
+  - name: isValidConnection
+    type: IsValidConnection
+    description: Validate candidate connections before an edge is created.
+  - name: fitView
+    type: boolean
+    description: Fit the viewport to all nodes on initial render.
+    default: "false"
+  - name: defaultViewport
+    type: Viewport
+    description: Initial viewport position and zoom.
+    default: "{ x: 0, y: 0, zoom: 1 }"
+usage: |
+  import { ReactFlow } from '@xyflow/react';
+
+  export function FlowCanvas() {
+    return (
+      <div style={{ width: '100%', height: 480 }}>
+        <ReactFlow nodes={[]} edges={[]} fitView />
+      </div>
+    );
+  }
+examples:
+  - title: Controlled flow
+    category: state-management
+    code: |
+      import { ReactFlow } from '@xyflow/react';
+
+      export function ControlledFlow({ nodes, edges, onNodesChange, onEdgesChange, onConnect }) {
+        return (
+          <ReactFlow
+            nodes={nodes}
+            edges={edges}
+            onNodesChange={onNodesChange}
+            onEdgesChange={onEdgesChange}
+            onConnect={onConnect}
+            fitView
+          />
+        );
+      }
+tips:
+  - Import '@xyflow/react/dist/style.css' once at the app root.
+  - The parent container must have an explicit width and height.
+  - Define nodeTypes and edgeTypes outside the component or memoize them.
+relatedApis:
+  - Background
+  - Controls
+  - MiniMap
+  - useReactFlow

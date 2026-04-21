@@ -1,0 +1,4 @@
+namespace: frontend.reactflow
+apis:
+  reactflow:
+    file: reactflow.yaml
