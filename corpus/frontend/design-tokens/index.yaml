@@ -4,3 +4,5 @@ procedures:
     file: step-1.yaml
   step-2:
     file: step-2.yaml
+  step-3:
+    file: step-3.yaml

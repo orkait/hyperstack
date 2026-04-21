@@ -22,11 +22,20 @@ test("design_tokens_get_procedure prefers corpus metadata for step 2", async () 
   expect(text).toContain("--color-bg: var(--color-neutral-50);");
 });
 
-test("design_tokens_get_procedure falls back to in-file data for other steps", async () => {
+test("design_tokens_get_procedure prefers corpus metadata for step 3", async () => {
   const result = await designTokensGetProcedure.invoke({ step: 3 });
   const text = extractTextContent(result);
 
   expect(text).toContain("# Step 3: Bridge to Tailwind v4 utilities with @theme inline");
+  expect(text).toContain("**Corpus Source:** frontend.design-tokens");
+  expect(text).toContain("--color-background: var(--color-bg);");
+});
+
+test("design_tokens_get_procedure falls back to in-file data for other steps", async () => {
+  const result = await designTokensGetProcedure.invoke({ step: 4 });
+  const text = extractTextContent(result);
+
+  expect(text).toContain("# Step 4: Define spacing system");
   expect(text).toContain("## Code");
   expect(text).not.toContain("**Corpus Source:** frontend.design-tokens");
 });
