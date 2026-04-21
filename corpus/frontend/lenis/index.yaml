@@ -10,3 +10,5 @@ patterns:
     file: framer-motion-integration.yaml
   custom-container:
     file: custom-container.yaml
+  scroll-to-nav:
+    file: scroll-to-nav.yaml

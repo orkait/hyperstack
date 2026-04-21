@@ -49,6 +49,15 @@ test("lenis_get_pattern prefers corpus metadata for custom-container", async () 
   expect(text).toContain("ScrollPanel");
 });
 
+test("lenis_get_pattern prefers corpus metadata for scroll-to-nav", async () => {
+  const result = await lenisGetPattern.invoke({ name: "scroll-to-nav" });
+  const text = extractTextContent(result);
+
+  expect(text).toContain("# Lenis Pattern: scroll-to-nav");
+  expect(text).toContain("**Corpus Source:** frontend.lenis");
+  expect(text).toContain("lenis?.scrollTo(href");
+});
+
 test("lenis_get_pattern falls back to in-file data for non-corpus patterns", async () => {
   const result = await lenisGetPattern.invoke({ name: "accessibility" });
   const text = extractTextContent(result);
