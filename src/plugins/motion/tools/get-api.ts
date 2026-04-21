@@ -16,11 +16,7 @@ type CorpusIndex = {
 
 type CorpusNamespaceIndex = {
   namespace?: string;
-  apis?: {
-    motion?: {
-      file?: string;
-    };
-  };
+  apis?: Record<string, { file?: string }>;
 };
 
 type CorpusApiEntry = {
@@ -34,18 +30,24 @@ type CorpusApiEntry = {
   examples?: Array<{ title: string; code: string; description?: string; category: string }>;
   tips?: string[];
   relatedApis?: string[];
-  source?: string;
 };
+
+type LoadedCorpusApi = { api: CorpusApiEntry; source: string };
 
 const moduleDir = dirname(fileURLToPath(import.meta.url));
 const corpusRoot = join(moduleDir, "../../../../corpus");
 const corpusNamespace = "frontend.motion";
 
-let cachedCorpusMotionApi: { api: CorpusApiEntry; source: string } | null | undefined;
+const cachedCorpusApis = new Map<string, LoadedCorpusApi | null>();
 
-function loadCorpusMotionApi(): { api: CorpusApiEntry; source: string } | null {
-  if (cachedCorpusMotionApi !== undefined) {
-    return cachedCorpusMotionApi;
+function normalizeApiName(name: string): string {
+  return name.toLowerCase().replace(/[<>/()]/g, "").trim();
+}
+
+function loadCorpusApi(name: string): LoadedCorpusApi | null {
+  const key = normalizeApiName(name);
+  if (cachedCorpusApis.has(key)) {
+    return cachedCorpusApis.get(key) ?? null;
   }
 
   try {
@@ -53,44 +55,39 @@ function loadCorpusMotionApi(): { api: CorpusApiEntry; source: string } | null {
     const index = YAML.parse(indexRaw) as CorpusIndex | null;
     const namespaceIndexPath = index?.namespaces?.[corpusNamespace]?.index;
     if (!namespaceIndexPath) {
-      cachedCorpusMotionApi = null;
-      return cachedCorpusMotionApi;
+      cachedCorpusApis.set(key, null);
+      return null;
     }
 
     const namespaceRaw = readFileSync(join(corpusRoot, namespaceIndexPath), "utf8");
     const namespaceIndex = YAML.parse(namespaceRaw) as CorpusNamespaceIndex | null;
-    const apiPath = namespaceIndex?.apis?.motion?.file;
+    const apiPath = namespaceIndex?.apis?.[key]?.file;
     if (!apiPath) {
-      cachedCorpusMotionApi = null;
-      return cachedCorpusMotionApi;
+      cachedCorpusApis.set(key, null);
+      return null;
     }
 
     const apiRaw = readFileSync(join(corpusRoot, "frontend/motion", apiPath), "utf8");
     const api = YAML.parse(apiRaw) as CorpusApiEntry | null;
-    if (!api || api.name?.toLowerCase() !== "motion" || !api.usage || !api.importPath || !api.description || !api.kind) {
-      cachedCorpusMotionApi = null;
-      return cachedCorpusMotionApi;
+    if (
+      !api ||
+      normalizeApiName(api.name ?? "") !== key ||
+      !api.usage ||
+      !api.importPath ||
+      !api.description ||
+      !api.kind
+    ) {
+      cachedCorpusApis.set(key, null);
+      return null;
     }
 
-    cachedCorpusMotionApi = { api, source: corpusNamespace };
-    return cachedCorpusMotionApi;
+    const loaded: LoadedCorpusApi = { api, source: corpusNamespace };
+    cachedCorpusApis.set(key, loaded);
+    return loaded;
   } catch {
-    cachedCorpusMotionApi = null;
-    return cachedCorpusMotionApi;
+    cachedCorpusApis.set(key, null);
+    return null;
   }
-}
-
-function getMotionApi(name: string) {
-  if (name.toLowerCase() !== "motion") {
-    return getApiByName(name);
-  }
-
-  const corpusEntry = loadCorpusMotionApi();
-  if (corpusEntry) {
-    return corpusEntry.api as Parameters<typeof formatApiReference>[0];
-  }
-
-  return getApiByName(name);
 }
 
 export function register(server: McpServer): void {
@@ -101,8 +98,8 @@ export function register(server: McpServer): void {
       name: z.string().describe("API name (e.g., 'motion', 'AnimatePresence', 'useAnimate', 'useScroll', 'stagger', 'Reorder.Group')"),
     },
     async ({ name }) => {
-      const corpusEntry = name.toLowerCase() === "motion" ? loadCorpusMotionApi() : null;
-      const api = getMotionApi(name);
+      const corpusEntry = loadCorpusApi(name);
+      const api = corpusEntry?.api ?? getApiByName(name);
       if (!api) {
         const suggestions = searchApis(name).map((r) => r.api.name);
         return {
@@ -110,7 +107,7 @@ export function register(server: McpServer): void {
           isError: true,
         };
       }
-      const rendered = formatApiReference(api);
+      const rendered = formatApiReference(api as Parameters<typeof formatApiReference>[0]);
       return {
         content: [
           {
