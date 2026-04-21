@@ -22,10 +22,19 @@ test("golang_get_practice prefers corpus metadata for goroutine-lifecycle", asyn
   expect(text).toContain("case <-ctx.Done(): return");
 });
 
-test("golang_get_practice falls back to in-file data for non-corpus practices", async () => {
+test("golang_get_practice prefers corpus metadata for context-first-param", async () => {
   const result = await golangGetPractice.invoke({ name: "context-first-param" });
   const text = extractTextContent(result);
 
   expect(text).toContain("# context-first-param [concurrency] - P0");
+  expect(text).toContain("**Corpus Source:** backend.golang");
+  expect(text).toContain("ctx context.Context, id string");
+});
+
+test("golang_get_practice falls back to in-file data for non-corpus practices", async () => {
+  const result = await golangGetPractice.invoke({ name: "handle-once" });
+  const text = extractTextContent(result);
+
+  expect(text).toContain("# handle-once [error-handling] - P0");
   expect(text).not.toContain("**Corpus Source:** backend.golang");
 });
