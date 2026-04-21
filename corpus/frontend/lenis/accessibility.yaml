@@ -1,0 +1,32 @@
+name: accessibility
+description: >-
+  Respect prefers-reduced-motion by disabling smooth scrolling for users who
+  prefer it.
+code: |
+  "use client";
+
+  import { ReactLenis } from "lenis/react";
+  import "lenis/dist/lenis.css";
+
+  function useReducedMotion() {
+    if (typeof window === "undefined") return false;
+    return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  }
+
+  export function AccessibleSmoothScrollProvider({ children }: { children: React.ReactNode }) {
+    const prefersReducedMotion = useReducedMotion();
+
+    if (prefersReducedMotion) {
+      return <>{children}</>;
+    }
+
+    return (
+      <ReactLenis root options={{ lerp: 0.1 }}>
+        {children}
+      </ReactLenis>
+    );
+  }
+tips:
+  - Never force smooth scrolling on users who have opted out via prefers-reduced-motion.
+  - When skipping ReactLenis, native scroll is used - no polyfill needed.
+  - For a hook-based approach, use the useReducedMotion hook from Framer Motion or write your own with a useEffect + matchMedia listener.
