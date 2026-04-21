@@ -1,0 +1,4 @@
+namespace: frontend.designer
+pageTemplates:
+  dashboard:
+    file: dashboard.yaml

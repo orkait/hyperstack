@@ -1,0 +1,90 @@
+type: dashboard
+description: >-
+  Data-forward workspace with a fixed shell, clear hierarchy, and enough density
+  for power users without sacrificing readability.
+layout: >-
+  App shell: fixed sidebar (240-280px) + header (56-64px) + scrollable content
+  area
+sections:
+  - name: Sidebar Navigation
+    required: true
+    components:
+      - Logo/brand mark
+      - Primary nav items (5-7 max)
+      - Workspace switcher
+      - Collapsed state for mobile
+      - User avatar + settings at bottom
+    notes: >-
+      Persistent, keyboard navigable, and clearly indicates the active route.
+  - name: Header Bar
+    required: true
+    components:
+      - Page title / breadcrumbs
+      - Search (Cmd+K)
+      - Notifications
+      - User menu
+    notes: >-
+      Fixed or sticky. Keep power-user actions in the header so they are always
+      reachable.
+  - name: Metrics Row
+    required: false
+    components:
+      - 3-5 KPI cards
+      - Trend indicator (up/down arrow + %)
+      - Sparkline or mini chart
+    notes: >-
+      Group related metrics and keep visible count within working-memory limits.
+  - name: Primary Content
+    required: true
+    components:
+      - Data table or card grid
+      - Filters + sort controls
+      - Pagination or virtual scroll
+      - Bulk actions toolbar
+    notes: >-
+      Tables should right-align numbers, use monospace for values, and keep
+      header rows sticky.
+  - name: Detail Panel
+    required: false
+    components:
+      - Side drawer (not modal)
+      - Record details
+      - Edit-in-place or form
+      - Action buttons
+    notes: >-
+      Keep list context visible while the user inspects or edits a record.
+  - name: Empty States
+    required: true
+    components:
+      - Illustration (optional)
+      - Headline: what's missing
+      - Body: what to do next
+      - Single CTA
+    notes: >-
+      Every data container needs an empty state that helps the user recover or
+      create the first item.
+cognitiveApply:
+  - miller
+  - hick
+  - gestalt
+  - fitts
+  - doherty
+compositionApply:
+  - grid-theory
+  - visual-hierarchy
+interactionApply:
+  - navigation
+  - skeleton-vs-spinner
+  - progressive-disclosure
+  - empty-states
+  - feedback
+writingApply:
+  - headlines
+  - empty-states-copy
+  - loading-states
+keyRules:
+  - Command palette (Cmd+K) for 50+ feature apps
+  - Keyboard shortcuts for all frequent actions
+  - Skeleton loaders for data panels, not spinners
+  - Right-align quantitative data in monospace font
+  - Compact density: 14px body, 48px section gaps, 20px card padding
