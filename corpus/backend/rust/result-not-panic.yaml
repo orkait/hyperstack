@@ -1,0 +1,14 @@
+name: result-not-panic
+chapter: error-handling
+rule: Return Result<T, E> for fallible operations. Never panic! in production code.
+reason: panic! unwinds the stack and kills the thread. Use it only for programmer errors.
+good: |
+  fn parse_config(path: &str) -> Result<Config, ConfigError> {
+    let text = fs::read_to_string(path)?;
+    toml::from_str(&text).map_err(ConfigError::Parse)
+  }
+bad: |
+  fn parse_config(path: &str) -> Config {
+    let text = fs::read_to_string(path).unwrap(); // panics if file missing
+    toml::from_str(&text).unwrap()
+  }
