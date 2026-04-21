@@ -11,3 +11,5 @@ namespaces:
     index: frontend/design-tokens/index.yaml
   frontend.shadcn:
     index: frontend/shadcn/index.yaml
+  frontend.ui-ux:
+    index: frontend/ui-ux/index.yaml

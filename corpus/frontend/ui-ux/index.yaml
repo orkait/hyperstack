@@ -1,0 +1,4 @@
+namespace: frontend.ui-ux
+principles:
+  type-scale:
+    file: type-scale.yaml
