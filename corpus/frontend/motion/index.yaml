@@ -2,6 +2,8 @@ namespace: frontend.motion
 apis:
   motion:
     file: motion.yaml
+  animatepresence:
+    file: animatepresence.yaml
 examples:
   scroll:
     file: examples/scroll.yaml
