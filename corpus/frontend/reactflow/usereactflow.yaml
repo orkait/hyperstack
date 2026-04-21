@@ -1,0 +1,48 @@
+name: useReactFlow
+kind: hook
+description: >-
+  Returns a ReactFlowInstance to update nodes/edges, manipulate the viewport,
+  or query flow state. Does NOT cause re-renders on state changes.
+importPath: "import { useReactFlow } from '@xyflow/react'"
+returns: ReactFlowInstance
+usage: |
+  const { getNodes, setNodes, addNodes, getEdges, setEdges, addEdges,
+    fitView, zoomIn, zoomOut, getViewport, setViewport,
+    screenToFlowPosition, deleteElements, updateNode, updateNodeData,
+    getIntersectingNodes, toObject } = useReactFlow();
+examples:
+  - title: Add node on button click
+    category: interaction
+    code: |
+      function AddNodeButton() {
+        const { addNodes, screenToFlowPosition } = useReactFlow();
+        const onClick = () => {
+          addNodes({
+            id: crypto.randomUUID(),
+            position: screenToFlowPosition({ x: 200, y: 200 }),
+            data: { label: 'New Node' },
+          });
+        };
+        return <button onClick={onClick}>Add Node</button>;
+      }
+  - title: Delete selected elements
+    category: interaction
+    code: |
+      function DeleteButton() {
+        const { deleteElements, getNodes, getEdges } = useReactFlow();
+        const onClick = async () => {
+          const selectedNodes = getNodes().filter((n) => n.selected);
+          const selectedEdges = getEdges().filter((e) => e.selected);
+          await deleteElements({ nodes: selectedNodes, edges: selectedEdges });
+        };
+        return <button onClick={onClick}>Delete Selected</button>;
+      }
+tips:
+  - Must be used inside <ReactFlowProvider> or <ReactFlow>.
+  - Unlike useNodes/useEdges, this hook won't cause re-renders on state changes. Query state on demand.
+  - "Pass useReactFlow() as dependency to useCallback/useEffect - it's not initialized on first render."
+relatedApis:
+  - ReactFlowProvider
+  - ReactFlowInstance
+  - useNodes
+  - useEdges

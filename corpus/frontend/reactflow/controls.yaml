@@ -1,0 +1,46 @@
+name: Controls
+kind: component
+description: >-
+  Renders a small panel with zoom in, zoom out, fit view, and lock viewport
+  buttons.
+importPath: "import { Controls, ControlButton } from '@xyflow/react'"
+props:
+  - name: showZoom
+    type: boolean
+    description: Show zoom buttons.
+    default: "true"
+  - name: showFitView
+    type: boolean
+    description: Show fit view button.
+    default: "true"
+  - name: showInteractive
+    type: boolean
+    description: Show lock button.
+    default: "true"
+  - name: position
+    type: PanelPosition
+    description: Corner position.
+    default: "'bottom-left'"
+  - name: orientation
+    type: "'horizontal' | 'vertical'"
+    description: Layout direction.
+    default: "'vertical'"
+usage: |
+  <ReactFlow nodes={nodes} edges={edges}>
+    <Controls position="bottom-left" />
+  </ReactFlow>
+examples:
+  - title: Custom control button
+    category: interaction
+    code: |
+      import { Controls, ControlButton } from '@xyflow/react';
+
+      <Controls>
+        <ControlButton onClick={() => console.log('custom action')}>
+          <Icon />
+        </ControlButton>
+      </Controls>
+relatedApis:
+  - ReactFlow
+  - ControlButton
+  - Panel
