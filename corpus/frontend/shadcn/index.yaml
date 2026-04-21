@@ -1,0 +1,4 @@
+namespace: frontend.shadcn
+components:
+  button:
+    file: button.yaml

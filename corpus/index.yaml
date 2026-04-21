@@ -9,3 +9,5 @@ namespaces:
     index: frontend/designer/index.yaml
   frontend.design-tokens:
     index: frontend/design-tokens/index.yaml
+  frontend.shadcn:
+    index: frontend/shadcn/index.yaml
