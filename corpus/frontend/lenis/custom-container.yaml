@@ -1,0 +1,35 @@
+name: custom-container
+description: >-
+  Scoped scroll container using wrapper and content refs for non-window smooth
+  scroll.
+code: |
+  "use client";
+
+  import { useRef } from "react";
+  import { ReactLenis } from "lenis/react";
+  import "lenis/dist/lenis.css";
+
+  export function ScrollPanel({ children }: { children: React.ReactNode }) {
+    const wrapperRef = useRef<HTMLDivElement>(null);
+    const contentRef = useRef<HTMLDivElement>(null);
+
+    return (
+      <ReactLenis
+        options={{
+          lerp: 0.1,
+          wrapper: wrapperRef.current ?? undefined,
+          content: contentRef.current ?? undefined,
+        }}
+      >
+        <div ref={wrapperRef} style={{ height: "100vh", overflow: "hidden" }}>
+          <div ref={contentRef}>
+            {children}
+          </div>
+        </div>
+      </ReactLenis>
+    );
+  }
+tips:
+  - "The wrapper element needs overflow: hidden and a fixed height for container scroll to work."
+  - The content element is the scrollable inner div - it should grow naturally with its children.
+  - This pattern is useful for split-panel layouts, side drawers, or modal scroll areas.

@@ -8,3 +8,5 @@ patterns:
     file: next-js.yaml
   framer-motion-integration:
     file: framer-motion-integration.yaml
+  custom-container:
+    file: custom-container.yaml
