@@ -4,6 +4,8 @@ apis:
     file: motion.yaml
   animatepresence:
     file: animatepresence.yaml
+  usescroll:
+    file: usescroll.yaml
 examples:
   scroll:
     file: examples/scroll.yaml
