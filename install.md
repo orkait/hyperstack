@@ -19,7 +19,7 @@ Three tightly-coupled pieces, installed together:
 
 1. **An internal harness** - bootstrap, internal role routing, and workflow control. Current internal roles include `main` and `website-builder`.
 2. **An MCP server** with 12 plugins and 80 tools - deterministic knowledge for React Flow v12, Motion v12, Lenis, React 19 / Next.js, Echo, Go, Rust, design tokens, UI/UX principles, shadcn/ui (Base UI edition), and the `designer` DESIGN.md pipeline.
-3. **A skill system** with 21 skills including adversarial enforcement gates (`blueprint`, `designer`, `forge-plan`, `ship-gate`, `engineering-discipline`) and a SessionStart hook that face-injects the `hyperstack` skill at every session start.
+3. **A skill system** with 21 skills including adversarial enforcement gates (`blueprint`, `designer`, `forge-plan`, `ship-gate`, `engineering-discipline`) and a SessionStart hook that force-injects the `using-hyperstack` skill at every session start.
 
 The install steps below wire the public pieces the user actually needs: the MCP
 server and the skills. The internal harness is shipped inside the repository and
@@ -32,23 +32,24 @@ If you install only one public piece:
 
 ## Step 1: Detect and Configure (Autopilot)
 
-Hyperstack features an **Autonomous Research-Driven Installer** that identifies your environment and handles the entire configuration automatically.
-
-**If you are an AI assistant reading this file:**
-1. Call `run_command` with: `bun run setup` inside the repository.
-2. The script will automatically detect the IDE, symlink the skills, deep-merge the MCP config, and provision the Docker container.
-3. Inform the user that setup is complete and ask them to restart the session.
-
-> [!CAUTION]
-> **CRITICAL**: RUN ONLY if the installer is not able to do it correctly. If you must install manually for the current IDE/CLI, you must validate that the MCP connection is successful before proceeding.
+Hyperstack features an **Autonomous Research-Driven Installer** that identifies your environment (Claude Code, Cursor, Windsurf, Roo Code, etc.) and generates a tailored configuration patch.
 
 ### 1. Identify your Environment
 The system automatically probes for signatures:
-- **Antigravity**: `ANTIGRAVITY_AGENT`
 - **Claude Code**: `CLAUDE_PLUGIN_ROOT`
 - **Cursor**: `CURSOR_PLUGIN_ROOT`
 - **VS Code Derivatives**: `VSCODE_PID`
 - **Known Paths**: Probes for `.claude.json`, `.cursor/`, `.codeium/windsurf/`, `.roo/`, and `.gemini/`.
+
+### 2. Run the Autopilot
+As an agent, you should call the `hyperstack_setup` tool immediately. **By default, it generates a Docker-based configuration** using the optimized `docker exec` pattern.
+
+If Docker is not available, you can explicitly request the local method: `hyperstack_setup(method: "local")`.
+
+**If the environment is unknown:**
+1. Call `web_search` with a query like `[IDE Name] MCP configuration path`.
+2. Provide the result to `hyperstack_setup(researchResult: "...")`.
+3. The tool will generate the final Docker-based patch.
 
 ## Step 2: Install the Skills
 
@@ -75,8 +76,6 @@ Based on the environment you detected in Step 1, identify the correct target dir
 | IDE/CLI | Target Skill Path | Type |
 |---|---|---|
 | **Claude Code** | `~/.claude/skills/hyperstack` | Global |
-| **Kiro Code** | `~/.kiro/skills/hyperstack` | Global |
-| **Antigravity** | `~/.gemini/antigravity/skills/hyperstack` | Global |
 | **Cursor** | `.cursor/rules/` | Project-level |
 | **Roo Code** | `.roo/rules/` | Project-level |
 | **Windsurf** | `.codeium/windsurf/` | Project-level |
@@ -281,7 +280,7 @@ Then follow Step 2 of Option A to start the single persistent `hyperstack-mcp` c
 
 ### SessionStart hook does not fire
 
-On Claude Code, hooks live in `.claude/hooks.json`. Confirm the file exists in the repository root and references `session-start.mjs`. If the hook is missing or malformed, the `hyperstack` skill will not be injected automatically. You can still invoke skills manually with `/hyperstack`.
+On Claude Code, hooks live in `.claude/hooks.json`. Confirm the file exists in the repository root and references `session-start.mjs`. If the hook is missing or malformed, the `using-hyperstack` skill will not be injected automatically. You can still invoke skills manually with `/using-hyperstack`.
 
 On Qwen Code, there is no plugin system or hook mechanism. Skills are available on disk at `~/.qwen/skills/hyperstack/skills/INDEX.md` but must be referenced manually by the agent - no auto-injection occurs.
 

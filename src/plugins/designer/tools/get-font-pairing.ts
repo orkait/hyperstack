@@ -1,8 +1,8 @@
-import type { ToolServer } from "../../../shared/tool-types.js";
+import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { z } from "zod";
 import { FONT_MOODS, INDUSTRY_CATEGORIES, FONT_PAIRINGS, getFontPairings } from "../data.js";
 
-export function register(server: ToolServer): void {
+export function register(server: McpServer): void {
   server.tool(
     "designer_get_font_pairing",
     "Get curated font pairings filtered by mood (technical, elegant, friendly, editorial, bold, corporate, playful, luxury, startup, minimal) and/or industry. Returns heading + body + mono fonts with weights, tracking, line-height, Google Fonts import, and rationale. 21 pairings available.",

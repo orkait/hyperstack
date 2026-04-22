@@ -1,7 +1,7 @@
-import type { ToolServer } from "../../../shared/tool-types.js";
+import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { getAllGotchas } from "../data.js";
 
-export function register(server: ToolServer): void {
+export function register(server: McpServer): void {
   server.tool(
     "design_tokens_get_gotchas",
     "List all common design token mistakes and fixes across all categories",

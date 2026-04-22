@@ -1,7 +1,7 @@
-import type { ToolServer } from "../../../shared/tool-types.js";
+import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { SHADCN_RULES, ARCHITECTURAL_CHECKLIST } from "../data.js";
 
-export function register(server: ToolServer): void {
+export function register(server: McpServer): void {
   server.tool(
     "shadcn_get_rules",
     "Get the architectural rules and mandatory checklist for shadcn/ui (Base UI edition). Call this before proposing any new component or modification.",

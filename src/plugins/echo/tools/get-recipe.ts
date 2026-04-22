@@ -1,15 +1,15 @@
-import type { ToolServer } from "../../../shared/tool-types.js";
+import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { z } from "zod";
 import { RECIPES, getRecipeByName, searchRecipes, formatRecipe } from "../data.js";
 
-export function register(server: ToolServer): void {
+export function register(server: McpServer): void {
   server.tool(
     "echo_get_recipe",
     "Get a specific Echo framework recipe with full working Go code, gotchas, and related recipes.",
     {
       name: z.string().describe("Recipe name (e.g., 'crud-api', 'websocket', 'sse', 'jwt-auth', 'graceful-shutdown')"),
     },
-    async ({ name }: { name: string }) => {
+    async ({ name }) => {
       const recipe = getRecipeByName(name);
       if (!recipe) {
         const suggestions = searchRecipes(name).map((r) => r.name);
@@ -25,6 +25,6 @@ export function register(server: ToolServer): void {
         };
       }
       return { content: [{ type: "text", text: formatRecipe(recipe) }] };
-    },
+    }
   );
 }

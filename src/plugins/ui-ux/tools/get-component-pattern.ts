@@ -1,8 +1,8 @@
-import type { ToolServer } from "../../../shared/tool-types.js";
+import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { z } from "zod";
 import { COMPONENT_PATTERNS, getComponentPatternByName } from "../data.js";
 
-export function register(server: ToolServer): void {
+export function register(server: McpServer): void {
   server.tool(
     "ui_ux_get_component_pattern",
     "Get component pattern spec including variants, states, and sizing rules",

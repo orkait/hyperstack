@@ -1,8 +1,8 @@
-import type { ToolServer } from "../../../shared/tool-types.js";
+import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { z } from "zod";
 import { TEMPLATES, capitalize } from "../data/index.js";
 
-export function register(server: ToolServer): void {
+export function register(server: McpServer): void {
   server.tool(
     "reactflow_get_template",
     "Get a production-ready code template: custom-node (Tailwind + toolbar + handles + status), custom-edge (delete button + BaseEdge), or zustand-store (full store with selectors)",
@@ -11,7 +11,7 @@ export function register(server: ToolServer): void {
         .enum(["custom-node", "custom-edge", "zustand-store"] as const)
         .describe("Template name"),
     },
-    async ({ template }: { template: "custom-node" | "custom-edge" | "zustand-store" }) => {
+    async ({ template }) => {
       const code = TEMPLATES[template];
       return {
         content: [

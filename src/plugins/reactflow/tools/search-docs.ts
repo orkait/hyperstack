@@ -1,8 +1,8 @@
-import type { ToolServer } from "../../../shared/tool-types.js";
+import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { z } from "zod";
 import { ALL_APIS, CATEGORIES, PATTERN_SECTIONS, searchApis, formatExample } from "../data/index.js";
 
-export function register(server: ToolServer): void {
+export function register(server: McpServer): void {
   server.tool(
     "reactflow_search_docs",
     "Search React Flow documentation by keyword. Searches API names, descriptions, code examples, and tips.",

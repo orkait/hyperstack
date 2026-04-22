@@ -1,15 +1,15 @@
-import type { ToolServer } from "../../../shared/tool-types.js";
+import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { z } from "zod";
 import { ALL_APIS, searchApis, getApiByName, formatApiReference } from "../data.js";
 
-export function register(server: ToolServer): void {
+export function register(server: McpServer): void {
   server.tool(
     "motion_get_api",
     "Get detailed API reference for a specific Motion for React component, hook, or utility. Includes props, usage, examples, and tips.",
     {
       name: z.string().describe("API name (e.g., 'motion', 'AnimatePresence', 'useAnimate', 'useScroll', 'stagger', 'Reorder.Group')"),
     },
-    async ({ name }: { name: string }) => {
+    async ({ name }) => {
       const api = getApiByName(name);
       if (!api) {
         const suggestions = searchApis(name).map((r) => r.api.name);

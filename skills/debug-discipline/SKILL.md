@@ -6,6 +6,15 @@ description: Use when encountering any bug, test failure, or unexpected behaviou
 
 # Systematic Debugging
 
+## The Iron Law
+
+```
+NO FIXES WITHOUT ROOT CAUSE FIRST.
+```
+
+Symptom fix = failure. Random changes = thrashing. Every fix attempt without confirmed root cause → higher probability of a second bug.
+
+Phase 1 not complete → no fix proposed.
 
 ## When to Use
 
@@ -101,6 +110,17 @@ Signals:
 
 Stop fixing. Present findings to user: what you tried, what each attempt revealed, what architectural change appears required.
 
+## Red Flags - STOP
+
+| Thought | Reality |
+|---|---|
+| "Let me just try changing X" | No root cause → don't touch it |
+| "It's probably a race condition" | "Probably" ≠ root cause |
+| "Quick fix now, investigate later" | There is no later |
+| "Multiple small changes at once" | Can't isolate what worked |
+| "The library is broken" | Check MCP docs first |
+| "One more attempt" (after 2 failures) | Stop. Escalate. |
+| "I fixed it - the error is gone" | Run `hyperstack:ship-gate` |
 
 ## Integration
 

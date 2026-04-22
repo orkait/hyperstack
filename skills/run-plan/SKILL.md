@@ -14,6 +14,13 @@ description: Use when you have an existing plan, spec, or task list to execute. 
 
 Creating a new plan from scratch → use `hyperstack:blueprint` → `hyperstack:forge-plan` instead.
 
+## The Iron Law
+
+```
+NO EXECUTION WITHOUT PLAN VALIDATION FIRST.
+```
+
+Plan with wrong API shapes or missing steps → wrong code. 2 minutes of validation saves hours of rework.
 
 ## Process
 
@@ -85,6 +92,15 @@ Blocker mid-task → stop immediately, don't guess or work around it. Report to 
 
 All tasks marked complete → invoke `hyperstack:deliver`.
 
+## Red Flags - STOP
+
+| Thought | Reality |
+|---|---|
+| "The plan looks fine, no need to check MCP" | One wrong prop name = broken code in every task that uses it |
+| "I'll fix the gap as I go" | Undocumented gaps → undocumented decisions |
+| "The user wrote this plan, it must be correct" | Plans have bugs. That's why this step exists. |
+| "Step N is unclear but I can infer what they meant" | Stop and ask. Inferred intent → surprising code. |
+| "I'll skip ship-gate on this task, it's small" | No exceptions. |
 
 ## Integration
 

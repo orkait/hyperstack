@@ -44,9 +44,9 @@ const REQUIRED_BOOTSTRAP_MARKERS = [
   "MCP unavailable",
   "announce it",
   "hyper",
-  "frontend-builder",
+  "website-builder",
   "auto-called",
-  "hyper -> frontend-builder",
+  "hyper -> website-builder",
 ];
 
 function stripFrontmatter(source: string): string {
@@ -62,55 +62,17 @@ function extractTaggedBlock(source: string, tag: string): string {
   return match[1].trim();
 }
 
-function parseHeading(line: string): { level: number; text: string } | null {
-  const match = line.trim().match(/^(#{1,6})\s+(.*)$/);
-  if (!match) {
-    return null;
-  }
-
-  return {
-    level: match[1].length,
-    text: match[2].trim(),
-  };
-}
-
-function matchesHeadingText(text: string, heading: string): boolean {
-  return (
-    text === heading ||
-    text.startsWith(`${heading} `) ||
-    text.startsWith(`${heading}:`) ||
-    text.startsWith(`${heading} -`)
-  );
-}
-
-function extractSection(source: string, heading: string | string[]): string {
+function extractSection(source: string, heading: string): string {
   const lines = source.split("\n");
-  const headings = Array.isArray(heading) ? heading : [heading];
-  let startIndex = -1;
-  let startLevel = 0;
-
-  for (let index = 0; index < lines.length; index += 1) {
-    const headingInfo = parseHeading(lines[index] ?? "");
-    if (!headingInfo) {
-      continue;
-    }
-
-    if (headings.some((candidate) => matchesHeadingText(headingInfo.text, candidate))) {
-      startIndex = index;
-      startLevel = headingInfo.level;
-      break;
-    }
-  }
-
+  const targetHeading = `## ${heading}`;
+  const startIndex = lines.findIndex((line) => line.trim() === targetHeading);
   if (startIndex === -1) {
-    throw new Error(`Could not extract section "${headings.join(", ")}" from source`);
+    throw new Error(`Could not extract section "${heading}" from source`);
   }
-
   const contentLines: string[] = [];
   for (let index = startIndex + 1; index < lines.length; index += 1) {
     const line = lines[index] ?? "";
-    const headingInfo = parseHeading(line);
-    if (headingInfo && headingInfo.level <= startLevel) {
+    if (line.startsWith("## ")) {
       break;
     }
     contentLines.push(line);
@@ -153,7 +115,7 @@ function compactNamespaceTable(section: string): string[] {
 }
 
 function compactWorkflowTables(source: string): string[] {
-  const workflowSection = extractSection(source, ["Layer 2: Skills (Engineering Process)", "Layer 2: When to Invoke Skills"]);
+  const workflowSection = extractSection(source, "Layer 2: Skills (Engineering Process)");
   const rows = parseMarkdownTable(workflowSection).filter((row) => row.cells.length >= 2);
 
   return rows
@@ -161,40 +123,8 @@ function compactWorkflowTables(source: string): string[] {
     .map((row) => `- ${row.cells[0]}: ${row.cells[1]}`);
 }
 
-function extractInternalAgents(source: string): string[] {
-  const section = extractSection(source, [
-    "Layer 3: Agents (Orchestration & Routing)",
-    "Layer 3: Orchestration (Agents)",
-    "Role Registry Details",
-    "Role Registry",
-    "Internal Agents",
-  ]);
-
-  const lines = section.split("\n").map((line) => line.trim()).filter(Boolean);
-  const agents = parseMarkdownTable(section).filter((row) => row.cells.length >= 2);
-  const agentNames = agents.map((row) => row.cells[0].replace(/^`|`$/g, ""));
-  const output: string[] = [];
-
-  if (lines.some((line) => /auto-(invoked|called)/i.test(line))) {
-    output.push("- Internal roles are auto-called, not user-facing.");
-  }
-
-  if (agentNames.includes("hyper") && agentNames.includes("frontend-builder")) {
-    output.push("- hyper -> frontend-builder");
-  }
-
-  output.push(
-    ...agents.map((row) => {
-      const name = row.cells[0].replace(/^`|`$/g, "");
-      return `- \`${name}\`: ${row.cells[1]}`;
-    }),
-  );
-
-  return output;
-}
-
 function extractFinalCheck(source: string): string[] {
-  const finalSection = extractSection(source, ["Final Check Before Any Response", "Final Response Check"]);
+  const finalSection = extractSection(source, "Final Check Before Any Response");
   return finalSection
     .split("\n")
     .map((line) => line.trim())
@@ -203,7 +133,7 @@ function extractFinalCheck(source: string): string[] {
 }
 
 function extractRedFlags(source: string): string[] {
-  const redFlagsSection = extractSection(source, ["Red Flags - STOP", "High-Signal Red Flags"]);
+  const redFlagsSection = extractSection(source, "Red Flags - STOP");
   const rows = parseMarkdownTable(redFlagsSection).filter((row) => row.cells.length >= 2);
   return rows.slice(0, 6).map((row) => `- ${row.cells[0]} -> ${row.cells[1]}`);
 }
@@ -237,13 +167,15 @@ export function compileUsingHyperstackBootstrap(source: string): { content: stri
   const namespaces = compactNamespaceTable(extractSection(body, "Layer 1: MCP Tools (Ground-Truth Data)"));
   const workflowSkills = compactWorkflowTables(body);
   const instructionPriority = extractInstructionPriority(body);
-  const roleRegistry = extractInternalAgents(body);
+  const roleRegistry = extractSimpleBullets(extractSection(body, "Role Registry"));
+  const routingSummary = extractSimpleBullets(extractSection(body, "Routing Summary"));
+  const allowedTransitions = extractSimpleBullets(extractSection(body, "Allowed Transitions"));
   const disallowedTransitions = extractSimpleBullets(extractSection(body, "Disallowed Transitions"));
   const finalCheck = extractFinalCheck(body);
   const redFlags = extractRedFlags(body);
 
   const content = [
-    "<!-- GENERATED FILE. Edit skills/hyperstack/SKILL.md and re-run `bun run compile:context`. -->",
+    "<!-- GENERATED FILE. Edit skills/using-hyperstack/SKILL.md and re-run `bun run compile:context`. -->",
     "# Hyperstack Runtime Bootstrap",
     "",
     "## Critical",
@@ -263,9 +195,15 @@ export function compileUsingHyperstackBootstrap(source: string): { content: stri
     "## Workflow Skills",
     ...workflowSkills,
     "",
-    "## Internal Agents",
+    "## Internal Roles",
     "- Roles are internal and auto-called. Users do not invoke them directly.",
     ...roleRegistry,
+    "",
+    "## Routing Summary",
+    ...routingSummary,
+    "",
+    "## Allowed Transitions",
+    ...allowedTransitions,
     "",
     "## Disallowed Transitions",
     ...disallowedTransitions,
@@ -298,8 +236,8 @@ export function validateUsingHyperstackBootstrap(content: string): string[] {
 }
 
 export function compileContextArtifacts(pluginRoot: string): ContextArtifact[] {
-  const sourcePath = join(pluginRoot, "skills", "hyperstack", "SKILL.md");
-  const outputPath = join(pluginRoot, "generated", "runtime-context", "hyperstack.bootstrap.md");
+  const sourcePath = join(pluginRoot, "skills", "using-hyperstack", "SKILL.md");
+  const outputPath = join(pluginRoot, "generated", "runtime-context", "using-hyperstack.bootstrap.md");
 
   const source = readFileSync(sourcePath, "utf8");
   const { content } = compileUsingHyperstackBootstrap(source);

@@ -1,11 +1,11 @@
-import type { ToolServer } from "../../../shared/tool-types.js";
+import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { z } from "zod";
 import { resolveFullIntent } from "../data.js";
 
 const USER_TYPES = ["developer", "consumer", "enterprise", "child", "creative", "healthcare"] as const;
 const EMOTIONAL_TARGETS = ["trustworthy", "playful", "premium", "energetic", "calm", "technical", "bold", "editorial"] as const;
 
-export function register(server: ToolServer): void {
+export function register(server: McpServer): void {
   server.tool(
     "designer_resolve_intent",
     "Resolve a product description into a full design intent: industry, personality, style, mode, density, color mood, must-have/never-use lists",

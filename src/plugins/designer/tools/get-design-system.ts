@@ -1,8 +1,8 @@
-import type { ToolServer } from "../../../shared/tool-types.js";
+import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { z } from "zod";
 import { DESIGN_SYSTEM_NAMES, getDesignSystem, CROSS_SYSTEM_CONVERGENCES } from "../data.js";
 
-export function register(server: ToolServer): void {
+export function register(server: McpServer): void {
   server.tool(
     "designer_get_design_system",
     "Get design system reference: signature, key insights, typography, color, spacing, reference code, and cross-system convergences",

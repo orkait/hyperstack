@@ -1,8 +1,0 @@
-id: shared
-write_policy: policy_only
-completion_proof: routing_and_verification
-truth_bundles:
-  - shared.system
-required_gates: []
-optional_gates: []
-forbidden_bundles: []

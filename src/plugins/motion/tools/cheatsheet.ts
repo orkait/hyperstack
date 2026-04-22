@@ -1,6 +1,6 @@
-import type { ToolServer } from "../../../shared/tool-types.js";
+import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 
-export function register(server: ToolServer): void {
+export function register(server: McpServer): void {
   server.resource(
     "cheatsheet",
     "motion://react/cheatsheet",

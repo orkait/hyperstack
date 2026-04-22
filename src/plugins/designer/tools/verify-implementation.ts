@@ -1,4 +1,4 @@
-import type { ToolServer } from "../../../shared/tool-types.js";
+import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { z } from "zod";
 import { readFileSync, existsSync, statSync } from "fs";
 import { isAbsolute } from "path";
@@ -7,7 +7,7 @@ import { isAbsolute } from "path";
  * Programmatically verifies an implementation against its DESIGN.md contract.
  * This runs during ship-gate as the hard compliance gate.
  */
-export function register(server: ToolServer): void {
+export function register(server: McpServer): void {
   server.tool(
     "designer_verify_implementation",
     "Verify implementation code against its DESIGN.md contract. Runs pattern checks for anti-patterns (AI purple, font-weight 500 everywhere, cold shadows, etc.), verifies OKLCH tokens present, checks for prefers-reduced-motion, and reports per-section compliance. Use this before ship-gate. Returns a pass/fail report with specific violations.",

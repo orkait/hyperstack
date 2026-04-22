@@ -1,16 +1,18 @@
-import type { ToolServer } from "../../../shared/tool-types.js";
+import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { z } from "zod";
 import { PRINCIPLES } from "../data.js";
 
-export function register(server: ToolServer): void {
+export function register(server: McpServer): void {
   server.tool(
     "ui_ux_get_principle",
     "Get full details for a UI/UX principle including examples, anti-patterns, and CSS examples",
     {
       name: z.string().describe("Principle name (e.g. 'type-scale', 'wcag-contrast', 'dark-mode-principles', 'touch-targets', 'easing-rules')"),
     },
-    async ({ name }: { name: string }) => {
-      const principle = PRINCIPLES.find((p) => p.name.toLowerCase() === name.toLowerCase());
+    async ({ name }) => {
+      const principle = PRINCIPLES.find(
+        (p) => p.name.toLowerCase() === name.toLowerCase()
+      );
 
       if (!principle) {
         const available = PRINCIPLES.map((p) => p.name).join(", ");
@@ -38,7 +40,8 @@ export function register(server: ToolServer): void {
         text += `## Anti-patterns (avoid)\n`;
         for (const ap of principle.antiPatterns) text += `- ❌ ${ap}\n`;
       }
+
       return { content: [{ type: "text", text }] };
-    },
+    }
   );
 }

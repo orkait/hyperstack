@@ -6,6 +6,15 @@ description: Use when creating or editing Hyperstack skills, before shipping the
 
 # Testing Skills With Subagents
 
+## The Iron Law
+
+```
+NO SKILL SHIPS WITHOUT SUBAGENT PRESSURE TEST EVIDENCE
+```
+
+A skill that has not been tested against an adversarial subagent is a paper contract. If you have not watched a subagent try to rationalize its way out of your skill AND fail, you do not know if the skill works.
+
+**Violating the letter of this rule is violating the spirit of this rule.**
 
 ## Core Principle
 
@@ -188,7 +197,7 @@ When GREEN verification produces new rationalizations, iterate:
 
 - "Different wording, so the rule doesn't apply" - add spirit-vs-letter clause
 - "Just this once" - add "no exceptions" to Iron Law
-- "The user said it's OK to skip" - clarify user hierarchy
+- "The user said it's OK to skip" - clarify user hierarchy (user overrides only via CLAUDE.md)
 - "Subagent mode, so gate doesn't apply" - add subagent scope clarification
 - "Partial compliance is still compliance" - define full compliance explicitly
 

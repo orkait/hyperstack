@@ -82,6 +82,14 @@ git commit -m "[single descriptive commit message]"
 git push -u origin [branch-name]
 ```
 
+## Red Flags - STOP
+
+| Thought | Reality |
+|---|---|
+| "Tests mostly pass, I'll fix the rest in a follow-up" | Fix them now or don't deliver. |
+| "The type errors are pre-existing" | Verify with `git stash`. Pre-existing → document it. Not pre-existing → fix it. |
+| "I'll skip ship-gate, I just ran individual verifications" | Individual gates ≠ composition. Run ship-gate. |
+| "Let me also clean up X while I'm here" | Scope creep. Out-of-plan changes → new branch. |
 
 ## Integration
 

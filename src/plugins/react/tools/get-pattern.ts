@@ -1,15 +1,15 @@
-import type { ToolServer } from "../../../shared/tool-types.js";
+import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { z } from "zod";
 import { PATTERNS, getPatternByName } from "../data.js";
 
-export function register(server: ToolServer): void {
+export function register(server: McpServer): void {
   server.tool(
     "react_get_pattern",
     "Get a React/Next.js pattern with full code example and anti-pattern",
     {
       name: z.string().describe("Pattern name (e.g. 'rsc-default', 'state-hierarchy', 'zustand-store', 'suspense-boundary', 'nextjs-metadata', 'composition-pattern', 'component-template')"),
     },
-    async ({ name }: { name: string }) => {
+    async ({ name }) => {
       const pattern = getPatternByName(name);
       if (!pattern) {
         const available = PATTERNS.map((p) => p.name).join(", ");
@@ -32,7 +32,8 @@ export function register(server: ToolServer): void {
         text += `## Tips\n`;
         for (const tip of pattern.tips) text += `- ${tip}\n`;
       }
+
       return { content: [{ type: "text", text }] };
-    },
+    }
   );
 }

@@ -1,4 +1,4 @@
-import type { ToolServer } from "../../../shared/tool-types.js";
+import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { z } from "zod";
 import {
   PERSONALITY_CLUSTERS,
@@ -27,7 +27,7 @@ const PERSONALITY_TO_SYSTEM: Record<string, string> = {
   "enterprise-trust": "ibm-carbon",
 };
 
-export function register(server: ToolServer): void {
+export function register(server: McpServer): void {
   server.tool(
     "designer_generate_design_brief",
     "Generate a complete design brief for a product: resolves intent, then assembles visual theme, industry rules, style, cognitive laws, anti-patterns, design system inspiration, and composition rules",

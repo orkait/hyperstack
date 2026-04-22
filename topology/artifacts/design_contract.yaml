@@ -1,9 +1,0 @@
-id: design_contract
-required_fields:
-  - visual_theme
-  - color_system
-  - typography
-  - spacing
-  - component_states
-  - motion_rules
-proof_mode: visual_contract_conditional

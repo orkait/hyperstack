@@ -138,7 +138,30 @@ Use findings to set expectations in the matrix - "expected behaviour" should be 
 - Every state must be escapable → user should never be stuck
 - Composition must be tested → features that work alone often break together
 
+## The Iron Law
 
+```
+NO BEHAVIOUR CLAIM WITHOUT READING THE CODE PATH
+```
+
+You cannot say "this should work" - trace the actual code path and confirm. Reading code is not optional.
+
+## Red Flags - STOP
+
+| Thought | Reality |
+|---|---|
+| "I'll check a few interactions, not the full matrix" | Partial coverage misses composition bugs. Full matrix. |
+| "This state combination is unlikely" | Unlikely states are where bugs live. Test them. |
+| "Nielsen's heuristics are common sense" | Common sense ≠ verification. Apply them explicitly. |
+| "I already know this code" | Code drifts. Mental models drift faster. Read it. |
+| "Empty states are trivial" | Empty states = #1 place products feel broken. Audit them. |
+| "Transition states will be fine" | Mid-drag/mid-animation/mid-load = where race conditions live. |
+| "The user will report any issues" | Users don't report vague discomfort. They leave. |
+| "Full audit is overkill for a simple component" | Simple components compose into complex flows. Audit it. |
+| "I'll skip heuristics I don't remember exactly" | Open the reference. All 10 get applied. |
+| "The behaviour feels right" | Feelings ≠ evidence. Read the code. |
+| "I tested the happy path manually" | Happy path = 20% of the matrix. Audit the unhappy paths. |
+| "No DESIGN.md → no ground truth" | Search for one. Escalate to designer if missing. |
 
 
 ## Lifecycle Integration

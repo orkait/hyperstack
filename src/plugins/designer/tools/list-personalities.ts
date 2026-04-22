@@ -1,7 +1,7 @@
-import type { ToolServer } from "../../../shared/tool-types.js";
+import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { PERSONALITIES } from "../data.js";
 
-export function register(server: ToolServer): void {
+export function register(server: McpServer): void {
   server.tool(
     "designer_list_personalities",
     "List all 6 designer personality clusters with descriptions and exemplar names",

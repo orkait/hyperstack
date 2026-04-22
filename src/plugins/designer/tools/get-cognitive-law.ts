@@ -1,8 +1,8 @@
-import type { ToolServer } from "../../../shared/tool-types.js";
+import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { z } from "zod";
 import { COGNITIVE_LAW_NAMES, getCognitiveLaw } from "../data.js";
 
-export function register(server: ToolServer): void {
+export function register(server: McpServer): void {
   server.tool(
     "designer_get_cognitive_law",
     "Get a cognitive law: formula, key insight, UI applications, common violations, and academic source",

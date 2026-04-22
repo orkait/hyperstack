@@ -1,15 +1,15 @@
-import type { ToolServer } from "../../../shared/tool-types.js";
+import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { z } from "zod";
 import { getComponentByName, SHADCN_COMPONENTS } from "../data.js";
 
-export function register(server: ToolServer): void {
+export function register(server: McpServer): void {
   server.tool(
     "shadcn_get_component",
     "Get full details for a shadcn/ui component: base primitive, data-slots, variants, sizes, usage example, and which other components it pairs with. Uses curated reference data.",
     {
       name: z.string().describe("Component name (e.g., 'Button', 'Dialog', 'Field', 'Select'). Case-insensitive."),
     },
-    async ({ name }: { name: string }) => {
+    async ({ name }) => {
       const component = getComponentByName(name);
       if (!component) {
         const available = SHADCN_COMPONENTS.map((c) => c.name).join(", ");
@@ -59,6 +59,6 @@ export function register(server: ToolServer): void {
       text += `- [ ] OKLCH color tokens from design system (not hardcoded hex)\n`;
 
       return { content: [{ type: "text" as const, text }] };
-    },
+    }
   );
 }

@@ -1,7 +1,7 @@
-import type { ToolServer } from "../../../shared/tool-types.js";
+import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { z } from "zod";
 
-export function register(server: ToolServer): void {
+export function register(server: McpServer): void {
   server.tool(
     "reactflow_generate_flow",
     "Generate a React Flow component from a natural-language description. Returns ready-to-use TSX with proper imports.",

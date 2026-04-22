@@ -6,7 +6,8 @@ import { fileURLToPath } from "node:url";
 
 const binDir = dirname(fileURLToPath(import.meta.url));
 const rootDir = resolve(binDir, "..");
-const entrypoint = resolve(rootDir, "src/cli.ts");
+const entrypoint = resolve(rootDir, "src/index.ts");
+
 const isBun = !!process.versions.bun;
 
 let child;
@@ -14,7 +15,7 @@ if (isBun) {
   child = spawn(process.execPath, [entrypoint, ...process.argv.slice(2)], {
     cwd: rootDir,
     env: process.env,
-    stdio: ["ignore", "pipe", "pipe"],
+    stdio: "inherit",
   });
 } else {
   const nodeMajor = Number.parseInt(process.versions.node.split(".")[0] ?? "0", 10);
@@ -22,17 +23,9 @@ if (isBun) {
   child = spawn(process.execPath, [...tsxLoaderArgs, entrypoint, ...process.argv.slice(2)], {
     cwd: rootDir,
     env: process.env,
-    stdio: ["ignore", "pipe", "pipe"],
+    stdio: "inherit",
   });
 }
-
-child.stdout?.on("data", (chunk) => {
-  process.stdout.write(chunk);
-});
-
-child.stderr?.on("data", (chunk) => {
-  process.stderr.write(chunk);
-});
 
 const forwardSignal = (signal) => {
   if (!child.killed) {

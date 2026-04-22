@@ -24,10 +24,10 @@ ls -d .worktrees 2>/dev/null || ls -d worktrees 2>/dev/null
 
 Found → use it. Both exist → `.worktrees` wins.
 
-### 2. Check Project Config / Agent Rules
+### 2. Check CLAUDE.md / Project Config
 
 ```bash
-grep -ri "worktree.*director" .cursorrules .roo/ .claude.json 2>/dev/null
+grep -i "worktree.*director" CLAUDE.md 2>/dev/null
 ```
 
 Preference specified → use it without asking.
@@ -92,7 +92,7 @@ echo "Worktree ready at <path>. Tests: <N> passing, 0 failures."
 | `.worktrees/` exists | Use it (verify ignored) |
 | `worktrees/` exists | Use it (verify ignored) |
 | Both exist | Use `.worktrees/` |
-| Neither exists | Check project config, then ask user |
+| Neither exists | Check CLAUDE.md, then ask user |
 | Directory not ignored | Add to `.gitignore` + commit |
 | Baseline tests fail | Report failures, ask user |
 | No package.json/Cargo.toml | Skip dependency install |
@@ -109,6 +109,14 @@ git worktree remove <path>
 # Leave worktree in place, report its location
 ```
 
+## Red Flags - STOP
+
+| Thought | Reality |
+|---|---|
+| "I'll just work on the main branch" | Dirty state → mysterious failures. Isolate. |
+| "Worktree setup is overhead" | 30 seconds of setup prevents hours of state debugging. |
+| "I'll skip baseline tests" | Won't know if failures are yours or pre-existing. |
+| "The directory doesn't need to be ignored" | One `git add .` and the worktree is in your repo. |
 
 ## Integration
 

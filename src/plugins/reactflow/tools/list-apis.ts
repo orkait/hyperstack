@@ -1,8 +1,8 @@
-import type { ToolServer } from "../../../shared/tool-types.js";
+import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { z } from "zod";
 import { ALL_APIS, capitalize, API_KINDS } from "../data/index.js";
 
-export function register(server: ToolServer): void {
+export function register(server: McpServer): void {
   server.tool(
     "reactflow_list_apis",
     "List all React Flow v12 APIs - components, hooks, utilities, and types",

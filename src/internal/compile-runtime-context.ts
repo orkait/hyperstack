@@ -10,7 +10,7 @@ const pluginRoot = join(scriptDir, "../..");
 
 try {
   const artifacts = compileContextArtifacts(pluginRoot);
-  const source = readFileSync(join(pluginRoot, "skills", "hyperstack", "SKILL.md"), "utf8");
+  const source = readFileSync(join(pluginRoot, "skills", "using-hyperstack", "SKILL.md"), "utf8");
   const { stats } = compileUsingHyperstackBootstrap(source);
 
   process.stdout.write(

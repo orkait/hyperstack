@@ -1,8 +1,8 @@
-import type { ToolServer } from "../../../shared/tool-types.js";
+import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { z } from "zod";
 import { ALL_APIS, CATEGORIES, getExamplesByCategory, formatExample, capitalize } from "../data/index.js";
 
-export function register(server: ToolServer): void {
+export function register(server: McpServer): void {
   server.tool(
     "reactflow_get_examples",
     "Get code examples for a specific React Flow category",

@@ -1,35 +1,8 @@
-import type { ToolServer } from "../../../shared/tool-types.js";
+import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { z } from "zod";
 import { TOKEN_PROCEDURES, getProcedureByStep } from "../data.js";
 
-function renderProcedure(proc: {
-  step: number;
-  title: string;
-  description: string;
-  code?: string;
-  rules?: string[];
-  gotchas?: string[];
-}): string {
-  let text = `# Step ${proc.step}: ${proc.title}\n\n${proc.description}\n\n`;
-
-  if (proc.code) {
-    text += `## Code\n\`\`\`css\n${proc.code}\n\`\`\`\n\n`;
-  }
-
-  if (proc.rules && proc.rules.length > 0) {
-    text += `## Rules\n`;
-    for (const rule of proc.rules) text += `- ${rule}\n`;
-  }
-
-  if (proc.gotchas && proc.gotchas.length > 0) {
-    text += `\n## Gotchas\n`;
-    for (const gotcha of proc.gotchas) text += `- ${gotcha}\n`;
-  }
-
-  return text;
-}
-
-export function register(server: ToolServer): void {
+export function register(server: McpServer): void {
   server.tool(
     "design_tokens_get_procedure",
     "Get the step-by-step token system build procedure. Steps 1-8 cover the full production workflow.",
@@ -37,7 +10,7 @@ export function register(server: ToolServer): void {
       step: z.number().min(1).max(8).optional()
         .describe("Step number (1-8). Omit to get all steps."),
     },
-    async ({ step }: { step?: number }) => {
+    async ({ step }) => {
       if (step !== undefined) {
         const proc = getProcedureByStep(step);
         if (!proc) {
@@ -46,7 +19,13 @@ export function register(server: ToolServer): void {
             isError: true,
           };
         }
-        return { content: [{ type: "text", text: renderProcedure(proc) }] };
+        let text = `# Step ${proc.step}: ${proc.title}\n\n${proc.description}\n\n`;
+        text += `## Code\n\`\`\`css\n${proc.code}\n\`\`\`\n\n`;
+        text += `## Rules\n`;
+        for (const rule of proc.rules) text += `- ${rule}\n`;
+        text += `\n## Gotchas\n`;
+        for (const gotcha of proc.gotchas) text += `- ${gotcha}\n`;
+        return { content: [{ type: "text", text }] };
       }
 
       let text = "# Design Token Build Procedure\n\n";
@@ -56,6 +35,6 @@ export function register(server: ToolServer): void {
       }
       text += "\nCall `design_tokens_get_procedure` with a step number for full code + rules.";
       return { content: [{ type: "text", text }] };
-    },
+    }
   );
 }

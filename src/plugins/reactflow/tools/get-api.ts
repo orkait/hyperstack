@@ -1,8 +1,8 @@
-import type { ToolServer } from "../../../shared/tool-types.js";
+import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { z } from "zod";
 import { ALL_APIS, searchApis, getApiByName, formatApiReference } from "../data/index.js";
 
-export function register(server: ToolServer): void {
+export function register(server: McpServer): void {
   server.tool(
     "reactflow_get_api",
     "Get detailed API reference for a specific React Flow component, hook, utility, or type. Includes props, usage, examples, and tips.",
@@ -13,7 +13,7 @@ export function register(server: ToolServer): void {
           "API name (e.g., 'ReactFlow', 'useReactFlow', 'Handle', 'addEdge', 'Node', 'Edge', 'NodeProps')",
         ),
     },
-    async ({ name }: { name: string }) => {
+    async ({ name }) => {
       const api = getApiByName(name, ALL_APIS);
       if (!api) {
         const suggestions = searchApis(name, ALL_APIS)

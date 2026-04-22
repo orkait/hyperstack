@@ -1,8 +1,8 @@
-import type { ToolServer } from "../../../shared/tool-types.js";
+import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { z } from "zod";
 import { ALL_APIS, API_KINDS, capitalize } from "../data.js";
 
-export function register(server: ToolServer): void {
+export function register(server: McpServer): void {
   server.tool(
     "lenis_list_apis",
     "List all Lenis smooth scroll APIs - ReactLenis component, useLenis hook, LenisRef and LenisOptions types.",

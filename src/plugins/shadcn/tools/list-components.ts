@@ -1,8 +1,8 @@
-import type { ToolServer } from "../../../shared/tool-types.js";
+import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { z } from "zod";
 import { SHADCN_COMPONENTS, COMPONENT_CATEGORIES, getComponentsByCategory } from "../data.js";
 
-export function register(server: ToolServer): void {
+export function register(server: McpServer): void {
   server.tool(
     "shadcn_list_components",
     "List all curated shadcn/ui components (Base UI edition). Optionally filter by category: button, input, card, dialog, dropdown, tabs, table, form, navigation, feedback, overlay, data-display.",
