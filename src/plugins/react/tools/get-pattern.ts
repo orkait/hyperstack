@@ -1,4 +1,4 @@
-import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
+import type { ToolServer } from "../../../shared/tool-types.js";
 import { readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -98,7 +98,7 @@ function loadCorpusPattern(name: string): LoadedCorpusPattern | null {
   }
 }
 
-export function register(server: McpServer): void {
+export function register(server: ToolServer): void {
   server.tool(
     "react_get_pattern",
     "Get a React/Next.js pattern with full code example and anti-pattern",

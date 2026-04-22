@@ -1,4 +1,4 @@
-import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
+import type { ToolServer } from "../../../shared/tool-types.js";
 import { readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -97,7 +97,7 @@ function loadCorpusPrinciple(name: string): LoadedCorpusPrinciple | null {
   }
 }
 
-export function register(server: McpServer): void {
+export function register(server: ToolServer): void {
   server.tool(
     "ui_ux_get_principle",
     "Get full details for a UI/UX principle including examples, anti-patterns, and CSS examples",

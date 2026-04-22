@@ -1,8 +1,8 @@
-import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
+import type { ToolServer } from "../../../shared/tool-types.js";
 import { z } from "zod";
 import { COLOR_RAMPS, getRampByName } from "../data.js";
 
-export function register(server: McpServer): void {
+export function register(server: ToolServer): void {
   server.tool(
     "design_tokens_get_color_ramp",
     "Get a color ramp (brand/neutral/pop) with all 11 OKLCH stops, semantic roles, and light/dark mode usage",

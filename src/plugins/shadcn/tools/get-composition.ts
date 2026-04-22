@@ -1,4 +1,4 @@
-import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
+import type { ToolServer } from "../../../shared/tool-types.js";
 import { z } from "zod";
 import { PAGE_TYPE_NAMES, getPageComposition } from "../data.js";
 
@@ -7,7 +7,7 @@ import { PAGE_TYPE_NAMES, getPageComposition } from "../data.js";
  * When forge-plan processes a DESIGN.md with a specific page type, it calls this tool
  * to get concrete shadcn component recommendations per section.
  */
-export function register(server: McpServer): void {
+export function register(server: ToolServer): void {
   server.tool(
     "shadcn_get_composition",
     "Get shadcn/ui component composition for a specific page type. Returns which components to combine per section with rationale. This is the bridge from designer's page templates to concrete implementation. Use after designer_get_page_template.",

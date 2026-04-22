@@ -1,4 +1,4 @@
-import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
+import type { ToolServer } from "../../shared/tool-types.js";
 import type { Plugin } from "../../registry.js";
 import { register as listCategories } from "./tools/list-categories.js";
 import { register as getCategory } from "./tools/get-category.js";
@@ -8,7 +8,7 @@ import { register as search } from "./tools/search.js";
 import { register as getGotchas } from "./tools/get-gotchas.js";
 import { register as generate } from "./tools/generate.js";
 
-function register(server: McpServer): void {
+function register(server: ToolServer): void {
   listCategories(server);
   getCategory(server);
   getColorRamp(server);

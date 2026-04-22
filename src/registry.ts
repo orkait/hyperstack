@@ -1,11 +1,11 @@
-import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
+import type { ToolServer } from "./shared/tool-types.js";
 
 export interface Plugin {
   name: string;
-  register: (server: McpServer) => void;
+  register: (server: ToolServer) => void;
 }
 
-export function loadPlugins(server: McpServer, plugins: Plugin[]): void {
+export function loadPlugins(server: ToolServer, plugins: Plugin[]): void {
   for (const plugin of plugins) {
     plugin.register(server);
   }

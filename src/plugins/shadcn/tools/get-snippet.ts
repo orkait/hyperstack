@@ -1,8 +1,8 @@
-import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
+import type { ToolServer } from "../../../shared/tool-types.js";
 import { z } from "zod";
 import { getComponentByName, SHADCN_COMPONENTS } from "../data.js";
 
-export function register(server: McpServer): void {
+export function register(server: ToolServer): void {
   server.tool(
     "shadcn_get_snippet",
     "Get a usage code snippet for a shadcn/ui component. Returns the canonical example showing variants, sizes, and composition patterns.",

@@ -1,9 +1,9 @@
-import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
+import type { ToolServer } from "../../../shared/tool-types.js";
 import { z } from "zod";
 import * as setup from "../../../internal/setup-hyperstack.js";
 import * as path from "node:path";
 
-export function registerSetupTool(server: McpServer) {
+export function registerSetupTool(server: ToolServer) {
   server.tool(
     "hyperstack_setup",
     "Identify current IDE/CLI environment and generate a tailored MCP configuration patch for Hyperstack.",

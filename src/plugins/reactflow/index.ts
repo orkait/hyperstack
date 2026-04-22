@@ -1,4 +1,4 @@
-import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
+import type { ToolServer } from "../../shared/tool-types.js";
 import type { Plugin } from "../../registry.js";
 import { register as listApis } from "./tools/list-apis.js";
 import { register as getApi } from "./tools/get-api.js";
@@ -10,7 +10,7 @@ import { register as getMigrationGuide } from "./tools/get-migration-guide.js";
 import { register as generateFlow } from "./tools/generate-flow.js";
 import { register as cheatsheet } from "./tools/cheatsheet.js";
 
-function register(server: McpServer): void {
+function register(server: ToolServer): void {
   listApis(server);
   getApi(server);
   searchDocs(server);

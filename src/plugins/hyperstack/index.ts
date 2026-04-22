@@ -1,10 +1,9 @@
-import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
-import { Plugin } from "../../registry.js";
+import type { Plugin, ToolServer } from "../../shared/tool-types.js";
 import { registerSetupTool } from "./tools/setup.js";
 
 export const hyperstackPlugin: Plugin = {
   name: "hyperstack",
-  register: (server: McpServer) => {
+  register: (server: ToolServer) => {
     registerSetupTool(server);
   },
 };

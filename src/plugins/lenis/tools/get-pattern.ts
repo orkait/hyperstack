@@ -1,4 +1,4 @@
-import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
+import type { ToolServer } from "../../../shared/tool-types.js";
 import { readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -71,7 +71,7 @@ function loadCorpusPattern(name: string): { name: string; pattern: CorpusPattern
   }
 }
 
-export function register(server: McpServer): void {
+export function register(server: ToolServer): void {
   server.tool(
     "lenis_get_pattern",
     "Get a complete Lenis integration pattern with full production-ready code. Covers Next.js setup, GSAP integration, Framer Motion sync, custom containers, accessibility, and navigation.",

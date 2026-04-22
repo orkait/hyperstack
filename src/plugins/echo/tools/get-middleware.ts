@@ -1,8 +1,8 @@
-import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
+import type { ToolServer } from "../../../shared/tool-types.js";
 import { z } from "zod";
 import { MIDDLEWARE, getMiddlewareByName, searchMiddleware, formatMiddleware } from "../data.js";
 
-export function register(server: McpServer): void {
+export function register(server: ToolServer): void {
   server.tool(
     "echo_get_middleware",
     "Get detailed config and usage for a specific Echo middleware.",

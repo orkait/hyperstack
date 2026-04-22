@@ -1,4 +1,4 @@
-import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
+import type { ToolServer } from "../../../shared/tool-types.js";
 import { readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -145,7 +145,7 @@ function renderProcedure(proc: {
   return text;
 }
 
-export function register(server: McpServer): void {
+export function register(server: ToolServer): void {
   server.tool(
     "design_tokens_get_procedure",
     "Get the step-by-step token system build procedure. Steps 1-8 cover the full production workflow.",

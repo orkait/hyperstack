@@ -1,8 +1,8 @@
-import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
+import type { ToolServer } from "../../../shared/tool-types.js";
 import { z } from "zod";
 import { searchTokens } from "../data.js";
 
-export function register(server: McpServer): void {
+export function register(server: ToolServer): void {
   server.tool(
     "design_tokens_search",
     "Search design token documentation by keyword across categories, ramps, and procedures",

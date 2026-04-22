@@ -1,7 +1,7 @@
-import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
+import type { ToolServer } from "../../../shared/tool-types.js";
 import { CONSTRAINTS } from "../data.js";
 
-export function register(server: McpServer): void {
+export function register(server: ToolServer): void {
   server.tool(
     "react_get_constraints",
     "List all forbidden React/Next.js patterns and their reasons",

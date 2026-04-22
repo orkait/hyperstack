@@ -1,7 +1,7 @@
-import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
+import type { ToolServer } from "../../../shared/tool-types.js";
 import { TRANSITIONS_REFERENCE } from "../data.js";
 
-export function register(server: McpServer): void {
+export function register(server: ToolServer): void {
   server.tool(
     "motion_get_transitions",
     "Get the complete transition types reference (tween, spring, inertia, orchestration, per-value config)",

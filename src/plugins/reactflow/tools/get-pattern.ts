@@ -1,8 +1,8 @@
-import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
+import type { ToolServer } from "../../../shared/tool-types.js";
 import { z } from "zod";
 import { PATTERNS, PATTERN_SECTIONS } from "../data/index.js";
 
-export function register(server: McpServer): void {
+export function register(server: ToolServer): void {
   server.tool(
     "reactflow_get_pattern",
     "Get an enterprise React Flow pattern with full implementation code. Patterns include store architecture, undo/redo, drag-and-drop, auto-layout, context menus, copy/paste, save/restore, DAG validation, keyboard shortcuts, performance, dark mode, SSR, subflows, edge reconnection, and more.",

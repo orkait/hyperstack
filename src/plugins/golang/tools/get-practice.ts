@@ -1,4 +1,4 @@
-import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
+import type { ToolServer } from "../../../shared/tool-types.js";
 import { readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -98,7 +98,7 @@ function loadCorpusPractice(name: string): LoadedCorpusPractice | null {
   }
 }
 
-export function register(server: McpServer): void {
+export function register(server: ToolServer): void {
   server.tool(
     "golang_get_practice",
     "Get a Go best practice with good/bad code examples",

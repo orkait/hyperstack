@@ -1,7 +1,7 @@
-import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
+import type { ToolServer } from "../../../shared/tool-types.js";
 import { z } from "zod";
 
-export function register(server: McpServer): void {
+export function register(server: ToolServer): void {
   server.tool(
     "motion_generate_animation",
     "Generate a Motion for React animation snippet from a natural-language description. Returns ready-to-use JSX.",

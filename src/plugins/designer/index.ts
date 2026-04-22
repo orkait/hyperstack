@@ -1,4 +1,4 @@
-import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
+import type { ToolServer } from "../../shared/tool-types.js";
 import type { Plugin } from "../../registry.js";
 import { register as listPersonalities } from "./tools/list-personalities.js";
 import { register as getPersonality } from "./tools/get-personality.js";
@@ -20,7 +20,7 @@ import { register as getFontPairing } from "./tools/get-font-pairing.js";
 import { register as generateImplementationPlan } from "./tools/generate-implementation-plan.js";
 import { register as verifyImplementation } from "./tools/verify-implementation.js";
 
-function register(server: McpServer): void {
+function register(server: ToolServer): void {
   listPersonalities(server);
   getPersonality(server);
   getIndustryRules(server);

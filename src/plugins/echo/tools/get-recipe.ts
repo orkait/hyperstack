@@ -1,4 +1,4 @@
-import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
+import type { ToolServer } from "../../../shared/tool-types.js";
 import { readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -98,7 +98,7 @@ function loadCorpusRecipe(name: string): LoadedCorpusRecipe | null {
   }
 }
 
-export function register(server: McpServer): void {
+export function register(server: ToolServer): void {
   server.tool(
     "echo_get_recipe",
     "Get a specific Echo framework recipe with full working Go code, gotchas, and related recipes.",

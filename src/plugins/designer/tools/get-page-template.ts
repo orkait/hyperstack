@@ -1,4 +1,4 @@
-import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
+import type { ToolServer } from "../../../shared/tool-types.js";
 import { readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -111,7 +111,7 @@ function getCorpusAwarePageTemplate(type: (typeof PAGE_TYPES)[number]) {
   return getPageTemplate(type);
 }
 
-export function register(server: McpServer): void {
+export function register(server: ToolServer): void {
   server.tool(
     "designer_get_page_template",
     "Get section anatomy, component inventory, and applicable cognitive laws for a page type. Covers landing, dashboard, auth, settings, checkout, blog, docs, admin, profile, error-page, ai-chat, pricing, and onboarding.",

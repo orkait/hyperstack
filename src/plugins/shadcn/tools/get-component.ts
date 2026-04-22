@@ -1,4 +1,4 @@
-import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
+import type { ToolServer } from "../../../shared/tool-types.js";
 import { readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -107,7 +107,7 @@ function loadCorpusComponent(name: string): LoadedCorpusComponent | null {
   }
 }
 
-export function register(server: McpServer): void {
+export function register(server: ToolServer): void {
   server.tool(
     "shadcn_get_component",
     "Get full details for a shadcn/ui component: base primitive, data-slots, variants, sizes, usage example, and which other components it pairs with. Uses curated reference data.",

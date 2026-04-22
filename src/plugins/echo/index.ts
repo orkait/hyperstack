@@ -1,4 +1,4 @@
-import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
+import type { ToolServer } from "../../shared/tool-types.js";
 import type { Plugin } from "../../registry.js";
 import { register as listRecipes } from "./tools/list-recipes.js";
 import { register as getRecipe } from "./tools/get-recipe.js";
@@ -7,7 +7,7 @@ import { register as getMiddleware } from "./tools/get-middleware.js";
 import { register as searchDocs } from "./tools/search-docs.js";
 import { register as decisionMatrix } from "./tools/decision-matrix.js";
 
-function register(server: McpServer): void {
+function register(server: ToolServer): void {
   listRecipes(server);
   getRecipe(server);
   listMiddleware(server);
