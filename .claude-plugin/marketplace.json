@@ -1,0 +1,24 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "hyperstack",
+  "description": "Hyperstack: MCP server + adversarial skill system with SessionStart bootstrap injection",
+  "owner": {
+    "name": "Orkait",
+    "email": "orkaitsolutions@gmail.com",
+    "url": "https://github.com/orkait"
+  },
+  "metadata": {
+    "description": "Disciplined MCP server + skill system. Iron Laws, 1% Rule, rationalization tables, SessionStart hook injection.",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "hyperstack",
+      "source": "./",
+      "description": "Disciplined MCP server + skill system. 11 plugins and 79 tools covering designer, shadcn/ui, design tokens, ui/ux, React Flow v12, Motion v12, Lenis, React 19, Echo, Go, Rust. 21 skills with adversarial enforcement.",
+      "version": "1.0.0",
+      "category": "productivity",
+      "strict": true
+    }
+  ]
+}

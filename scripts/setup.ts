@@ -42,6 +42,11 @@ async function main() {
   // Proactively apply the patch
   setup.applyMcpPatch(configPath, patch);
 
+  // Register as Claude Code plugin (idempotent; no-op on non-Claude platforms)
+  if (platform === "claude-code") {
+    setup.registerClaudeCodePlugin(pluginRoot);
+  }
+
   console.log("\n📋 Configuration Summary:");
   console.log("---------------------------------");
   console.log(`✅ Environment: ${platform}`);

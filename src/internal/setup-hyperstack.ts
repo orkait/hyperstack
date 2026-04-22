@@ -301,6 +301,136 @@ export function applyMcpPatch(configPath: string, patch: { format: PlatformForma
   }
 }
 
+/**
+ * Registers Hyperstack as a first-class Claude Code plugin so that
+ * `hooks/hooks.json` (including the SessionStart bootstrap) is activated
+ * by Claude Code's native plugin loader.
+ *
+ * Steps (idempotent, user-agnostic, uses os.homedir()):
+ *   1. Ensure `<pluginRoot>/.claude-plugin/marketplace.json` exists
+ *   2. Symlink `<claudeDir>/plugins/marketplaces/hyperstack -> pluginRoot`
+ *   3. Symlink `<claudeDir>/plugins/cache/hyperstack/hyperstack -> pluginRoot`
+ *   4. Merge entry into `<claudeDir>/plugins/known_marketplaces.json`
+ *   5. Merge entry into `<claudeDir>/plugins/installed_plugins.json`
+ *   6. Merge `"hyperstack@hyperstack": true` into
+ *      `<claudeDir>/settings.json::enabledPlugins`
+ *
+ * Claude Code only. Silently no-ops on other platforms.
+ */
+export function registerClaudeCodePlugin(pluginRoot: string): void {
+  const home = os.homedir();
+  const claudeDir = path.join(home, ".claude");
+  const settingsPath = path.join(claudeDir, "settings.json");
+
+  if (!fs.existsSync(settingsPath)) {
+    console.log("ℹ️  Claude Code not detected (no ~/.claude/settings.json). Skipping plugin registration.");
+    return;
+  }
+
+  console.log("\n🔌 Registering Hyperstack as Claude Code plugin...");
+
+  // 1. Ensure marketplace.json in plugin repo
+  const marketplaceJsonPath = path.join(pluginRoot, ".claude-plugin", "marketplace.json");
+  if (!fs.existsSync(marketplaceJsonPath)) {
+    const marketplaceContent = {
+      $schema: "https://anthropic.com/claude-code/marketplace.schema.json",
+      name: "hyperstack",
+      description: "Hyperstack: MCP server + adversarial skill system with SessionStart bootstrap injection",
+      owner: {
+        name: "Orkait",
+        email: "orkaitsolutions@gmail.com",
+        url: "https://github.com/orkait",
+      },
+      metadata: {
+        description: "Disciplined MCP server + skill system. Iron Laws, 1% Rule, rationalization tables, SessionStart hook injection.",
+        version: "1.0.0",
+      },
+      plugins: [
+        {
+          name: "hyperstack",
+          source: "./",
+          description: "Disciplined MCP server + skill system with adversarial enforcement gates.",
+          version: "1.0.0",
+          category: "productivity",
+          strict: true,
+        },
+      ],
+    };
+    fs.mkdirSync(path.dirname(marketplaceJsonPath), { recursive: true });
+    fs.writeFileSync(marketplaceJsonPath, JSON.stringify(marketplaceContent, null, 2));
+    console.log(`   ✓ Created ${marketplaceJsonPath}`);
+  }
+
+  // 2-3. Create symlinks (or directory copies on Windows if symlink fails)
+  const marketplaceLink = path.join(claudeDir, "plugins", "marketplaces", "hyperstack");
+  const cacheDir = path.join(claudeDir, "plugins", "cache", "hyperstack");
+  const cacheLink = path.join(cacheDir, "hyperstack");
+  fs.mkdirSync(path.dirname(marketplaceLink), { recursive: true });
+  fs.mkdirSync(cacheDir, { recursive: true });
+  for (const link of [marketplaceLink, cacheLink]) {
+    try {
+      if (fs.existsSync(link) || fs.lstatSync(link).isSymbolicLink()) {
+        fs.rmSync(link, { recursive: true, force: true });
+      }
+    } catch { /* link may not exist */ }
+    try {
+      fs.symlinkSync(pluginRoot, link, "dir");
+      console.log(`   ✓ Symlinked ${link} -> ${pluginRoot}`);
+    } catch (err) {
+      console.warn(`   ⚠ Symlink failed at ${link}: ${err instanceof Error ? err.message : err}`);
+    }
+  }
+
+  // 4. known_marketplaces.json
+  const knownMarketplacesPath = path.join(claudeDir, "plugins", "known_marketplaces.json");
+  const knownMarketplaces = fs.existsSync(knownMarketplacesPath)
+    ? JSON.parse(fs.readFileSync(knownMarketplacesPath, "utf8"))
+    : {};
+  knownMarketplaces["hyperstack"] = {
+    source: { source: "github", repo: "orkait/hyperstack" },
+    installLocation: pluginRoot,
+    lastUpdated: new Date().toISOString(),
+  };
+  fs.writeFileSync(knownMarketplacesPath, JSON.stringify(knownMarketplaces, null, 2));
+  console.log(`   ✓ Updated known_marketplaces.json`);
+
+  // 5. installed_plugins.json
+  const installedPluginsPath = path.join(claudeDir, "plugins", "installed_plugins.json");
+  const installedPlugins = fs.existsSync(installedPluginsPath)
+    ? JSON.parse(fs.readFileSync(installedPluginsPath, "utf8"))
+    : { version: 2, plugins: {} };
+  if (!installedPlugins.plugins) installedPlugins.plugins = {};
+  const now = new Date().toISOString();
+  installedPlugins.plugins["hyperstack@hyperstack"] = [
+    {
+      scope: "user",
+      installPath: cacheLink,
+      version: "1.0.0",
+      installedAt: now,
+      lastUpdated: now,
+    },
+  ];
+  fs.writeFileSync(installedPluginsPath, JSON.stringify(installedPlugins, null, 2));
+  console.log(`   ✓ Updated installed_plugins.json`);
+
+  // 6. enabledPlugins in settings.json (deep-merge, preserve everything else)
+  try {
+    const settings = JSON.parse(fs.readFileSync(settingsPath, "utf8"));
+    if (!settings.enabledPlugins) settings.enabledPlugins = {};
+    if (settings.enabledPlugins["hyperstack@hyperstack"] !== true) {
+      settings.enabledPlugins["hyperstack@hyperstack"] = true;
+      fs.writeFileSync(settingsPath, JSON.stringify(settings, null, 2));
+      console.log(`   ✓ Enabled hyperstack@hyperstack in settings.json`);
+    } else {
+      console.log(`   ℹ hyperstack@hyperstack already enabled in settings.json`);
+    }
+  } catch (err) {
+    console.warn(`   ⚠ Could not update settings.json enabledPlugins: ${err instanceof Error ? err.message : err}`);
+  }
+
+  console.log("✅ Hyperstack plugin registered. Restart Claude Code to activate hooks.");
+}
+
 export function selfHealDocker() {
   try {
     // Check if Docker is available
