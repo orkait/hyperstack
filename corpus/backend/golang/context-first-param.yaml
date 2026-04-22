@@ -1,9 +1,0 @@
-name: context-first-param
-topic: concurrency
-priority: P0
-rule: Pass context.Context as the first parameter to every function that does I/O.
-reason: Enables cancellation propagation and deadline enforcement across service boundaries.
-good: |
-  func (s *Service) FetchUser(ctx context.Context, id string) (*User, error) { ... }
-bad: |
-  func (s *Service) FetchUser(id string) (*User, error) { ... } // no cancellation possible

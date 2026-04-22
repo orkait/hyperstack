@@ -1,8 +1,0 @@
-name: borrow-over-clone
-chapter: coding-styles
-rule: Prefer &T over .clone() unless ownership transfer is required.
-reason: Cloning allocates heap memory unnecessarily. References are zero-cost.
-good: |
-  fn process(data: &[u8]) -> usize { data.len() }
-bad: |
-  fn process(data: Vec<u8>) -> usize { data.len() } // forces caller to clone or give up ownership

@@ -1,8 +1,0 @@
-namespace: backend.rust
-practices:
-  borrow-over-clone:
-    file: borrow-over-clone.yaml
-  result-not-panic:
-    file: result-not-panic.yaml
-  no-unwrap-in-prod:
-    file: no-unwrap-in-prod.yaml

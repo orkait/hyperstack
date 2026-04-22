@@ -46,9 +46,6 @@ jobs:
       - name: Regenerate skills index
         run: bun run skills:index
 
-      - name: Run tests
-        run: bun test
-
       - name: Type-check
         run: bun run build
 

@@ -1,4 +1,0 @@
-namespace: backend.echo
-recipes:
-  hello-world:
-    file: hello-world.yaml
