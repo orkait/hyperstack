@@ -19,5 +19,5 @@
   transition: box-shadow 200ms ease-out;
 }
 
-/* Improved contrast vs classic neumorphism - WCAG AA+ */
+/* Improved contrast vs classic neumorphism — WCAG AA+ */
 /* Safe premium default for most apps */

@@ -15,7 +15,7 @@ Detailed questions per Nielsen's heuristic, adapted for interactive data visuali
 ## 2. Match Between System and Real World
 
 - Do button labels describe what they DO, not what they ARE? ("Clear" not "X")
-- Are view mode names intuitive? ("Live" vs "Results" vs "Highlight" - does a new user understand these?)
+- Are view mode names intuitive? ("Live" vs "Results" vs "Highlight" — does a new user understand these?)
 - Do edge/node labels match the domain vocabulary?
 - Are slider labels clear about what they control?
 
@@ -62,7 +62,7 @@ Detailed questions per Nielsen's heuristic, adapted for interactive data visuali
 ## 8. Aesthetic and Minimalist Design
 
 - Are controls only shown when relevant? (dagre sliders hidden in cluster mode)
-- Is information density appropriate - not too sparse, not overwhelming?
+- Is information density appropriate — not too sparse, not overwhelming?
 - Are animations purposeful (communicate state change) or decorative (just pretty)?
 - Do hover/highlight effects add information or just noise?
 
@@ -71,7 +71,7 @@ Detailed questions per Nielsen's heuristic, adapted for interactive data visuali
 - What happens when the API is unreachable?
 - What happens when a query returns an error?
 - What happens when the graph data is malformed?
-- Are error messages actionable ("server unreachable - is it running?")?
+- Are error messages actionable ("server unreachable — is it running?")?
 - Can the user retry failed operations?
 
 ## 10. Accessibility

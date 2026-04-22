@@ -1,4 +1,4 @@
-/* Technical Developer - Supabase / Warp / Cursor / Raycast */
+/* Technical Developer — Supabase / Warp / Cursor / Raycast */
 :root {
   /* Dark-first, accent-driven */
   --color-bg: oklch(0.14 0.008 260);

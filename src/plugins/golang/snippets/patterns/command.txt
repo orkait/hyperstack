@@ -1,4 +1,4 @@
-// Command pattern using function closures - idiomatic Go
+// Command pattern using function closures — idiomatic Go
 type Job func(context.Context) error
 
 type Worker struct {
@@ -29,7 +29,7 @@ func (w *Worker) Start(ctx context.Context) {
 
 func (w *Worker) Submit(job Job) { w.jobs <- job }
 
-// Usage - commands are just closures
+// Usage — commands are just closures
 worker := NewWorker(100)
 worker.Start(ctx)
 

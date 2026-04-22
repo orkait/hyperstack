@@ -224,7 +224,7 @@ export const DESIGN_PATTERNS: DesignPattern[] = [
   {
     name: "middleware-decorator",
     category: "structural",
-    goApproach: "Higher-order functions wrapping handlers - the standard HTTP middleware pattern",
+    goApproach: "Higher-order functions wrapping handlers — the standard HTTP middleware pattern",
     when: "Adding cross-cutting behavior (logging, auth, rate limiting) without modifying handlers",
     oopEquivalent: "Decorator pattern",
     code: snippet("patterns/middleware-decorator.txt"),
@@ -239,7 +239,7 @@ export const DESIGN_PATTERNS: DesignPattern[] = [
   {
     name: "pipeline",
     category: "concurrency",
-    goApproach: "Chain of goroutines connected by channels - each stage transforms the stream",
+    goApproach: "Chain of goroutines connected by channels — each stage transforms the stream",
     when: "Stage-by-stage stream processing (ETL, data transformation)",
     code: snippet("patterns/pipeline.txt"),
   },
@@ -247,14 +247,14 @@ export const DESIGN_PATTERNS: DesignPattern[] = [
     name: "consumer-side-interface",
     category: "structural",
     goApproach: "Define interfaces in the consuming package, not the implementing package",
-    when: "Always - this is the idiomatic Go approach to dependency management",
+    when: "Always — this is the idiomatic Go approach to dependency management",
     code: snippet("patterns/consumer-side-interface.txt"),
     antiPattern: snippet("patterns/consumer-side-interface-anti.txt"),
   },
   {
     name: "strategy",
     category: "behavioral",
-    goApproach: "Interface injection - pass the algorithm as a function or interface",
+    goApproach: "Interface injection — pass the algorithm as a function or interface",
     when: "Multiple algorithms that can be swapped at runtime",
     oopEquivalent: "Strategy pattern",
     code: snippet("patterns/strategy.txt"),
@@ -269,7 +269,7 @@ export const DESIGN_PATTERNS: DesignPattern[] = [
   {
     name: "observer",
     category: "behavioral",
-    goApproach: "Channel-based event bus - subscribers receive from buffered channels",
+    goApproach: "Channel-based event bus — subscribers receive from buffered channels",
     when: "Decoupling event producers from consumers without shared state",
     oopEquivalent: "Observer / Pub-Sub pattern",
     code: snippet("patterns/observer.txt"),
@@ -277,7 +277,7 @@ export const DESIGN_PATTERNS: DesignPattern[] = [
   {
     name: "command",
     category: "behavioral",
-    goApproach: "Function closures as commands - submitted to a worker channel for execution",
+    goApproach: "Function closures as commands — submitted to a worker channel for execution",
     when: "Job queues, undo stacks, deferred execution, task pipelines",
     oopEquivalent: "Command pattern",
     code: snippet("patterns/command.txt"),
@@ -289,9 +289,9 @@ export const DESIGN_PATTERNS: DesignPattern[] = [
 // ---------------------------------------------------------------------------
 
 export const ANTI_PATTERNS = [
-  { name: "global-mutable-state", description: "Global vars for dependency storage", fix: "Dependency injection - pass deps to constructors" },
+  { name: "global-mutable-state", description: "Global vars for dependency storage", fix: "Dependency injection — pass deps to constructors" },
   { name: "ignoring-errors", description: "_ = someFunc() or no error check", fix: "Always handle: return, log, or wrap" },
-  { name: "business-logic-in-handlers", description: "DB queries, computations in HTTP handlers", fix: "Thin handlers - delegate to service layer" },
+  { name: "business-logic-in-handlers", description: "DB queries, computations in HTTP handlers", fix: "Thin handlers — delegate to service layer" },
   { name: "sql-string-concat", description: "\"SELECT * WHERE id = \" + id", fix: "Always use parameterized queries ($1, ?, ?)" },
   { name: "math-rand-security", description: "math/rand for tokens/secrets", fix: "crypto/rand always for security-sensitive values" },
   { name: "goroutine-leak", description: "Goroutine with no exit condition", fix: "Always pass ctx, select on ctx.Done()" },

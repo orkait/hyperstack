@@ -1,4 +1,4 @@
-# DESIGN.md - Maison Noir (Luxury E-commerce)
+# DESIGN.md — Maison Noir (Luxury E-commerce)
 
 ## 1. Visual Theme & Atmosphere
 

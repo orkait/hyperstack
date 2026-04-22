@@ -9,9 +9,9 @@
   --duration-slowest: 600ms;
 
   /* Easing curves */
-  --ease-default: cubic-bezier(0.4, 0, 0.2, 1);    /* standard - enter & reposition */
-  --ease-in: cubic-bezier(0.4, 0, 1, 1);            /* accelerate - exiting */
-  --ease-out: cubic-bezier(0, 0, 0.2, 1);           /* decelerate - entering */
+  --ease-default: cubic-bezier(0.4, 0, 0.2, 1);    /* standard — enter & reposition */
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);            /* accelerate — exiting */
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);           /* decelerate — entering */
   --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);      /* symmetric */
   --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1); /* slight overshoot */
   --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275); /* spring */
@@ -33,7 +33,7 @@
   --transition-layout: all var(--duration-slow) var(--ease-default);
 }
 
-/* Reduced motion - ALWAYS include */
+/* Reduced motion — ALWAYS include */
 @layer base {
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {

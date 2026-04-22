@@ -1,5 +1,5 @@
 @theme {
-  /* 4px base - sets the multiplier for p-1, p-2, p-4, etc. */
+  /* 4px base — sets the multiplier for p-1, p-2, p-4, etc. */
   --spacing: 0.25rem;
 }
 

@@ -51,7 +51,7 @@ export const PATTERNS: Pattern[] = [
     tips: [
       "Ask: can this live in the URL? If yes → URL state",
       "Context is for injection (stable values), not reactive state",
-      "Redux is banned - Zustand only for shared client state",
+      "Redux is banned — Zustand only for shared client state",
     ],
   },
   {
@@ -120,7 +120,7 @@ export const CONSTRAINTS: Constraint[] = [
   },
   {
     name: "no-redux",
-    rule: "No Redux - Zustand only for shared client state",
+    rule: "No Redux — Zustand only for shared client state",
     reason: "Redux is verbose boilerplate. Zustand achieves the same with 10% of the code.",
     example: "create() from zustand with persist middleware",
   },
@@ -145,7 +145,7 @@ export const CONSTRAINTS: Constraint[] = [
   {
     name: "no-barrel-exports",
     rule: "Avoid barrel exports (index.ts re-exports) in large codebases",
-    reason: "Breaks tree-shaking - bundler must include everything from the barrel",
+    reason: "Breaks tree-shaking — bundler must include everything from the barrel",
     example: "Import directly: import { Button } from '@/components/ui/button'",
   },
   {

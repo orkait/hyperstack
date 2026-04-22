@@ -1,4 +1,4 @@
-/* Linear - Specific Values */
+/* Linear — Specific Values */
 
 /* Color: LCH space, 3 design variables */
 /* 2024 redesign: 98-variable HSL -> 3 vars (base, accent, contrast) */
@@ -11,7 +11,7 @@
 /* Works in "opacities of black and white" during exploration */
 
 /* Spacing: 8px pure powers of 2 */
-/* 8, 16, 32, 64px - no 12px */
+/* 8, 16, 32, 64px — no 12px */
 /* 2024 refresh fixed icon-to-label alignment mismatches */
 
 /* Typography */

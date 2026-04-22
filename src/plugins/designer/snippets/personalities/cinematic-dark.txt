@@ -1,4 +1,4 @@
-/* Cinematic Dark - ElevenLabs / RunwayML / SpaceX / Nothing */
+/* Cinematic Dark — ElevenLabs / RunwayML / SpaceX / Nothing */
 :root {
   /* Stark dark, single accent, neon highlights */
   --color-bg: oklch(0.05 0 0);                 /* near pure black */

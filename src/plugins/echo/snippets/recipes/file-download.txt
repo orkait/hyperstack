@@ -14,7 +14,7 @@ func downloadFile(c echo.Context) error {
 	// In production, look up the file from a database by ID, not by user-supplied name
 	filePath := "uploads/" + filename
 
-	// c.Attachment() sets Content-Disposition: attachment - triggers browser download dialog
+	// c.Attachment() sets Content-Disposition: attachment — triggers browser download dialog
 	return c.Attachment(filePath, filename)
 }
 
@@ -22,7 +22,7 @@ func viewFile(c echo.Context) error {
 	filename := c.Param("filename")
 	filePath := "uploads/" + filename
 
-	// c.Inline() sets Content-Disposition: inline - browser renders if it can
+	// c.Inline() sets Content-Disposition: inline — browser renders if it can
 	return c.Inline(filePath, filename)
 }
 

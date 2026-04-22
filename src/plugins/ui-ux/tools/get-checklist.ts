@@ -25,7 +25,7 @@ export function register(server: McpServer): void {
       if (critical.length) {
         text += `## Critical (must pass)\n`;
         for (const item of critical) {
-          text += `- [ ] **${item.label}** - ${item.detail}\n`;
+          text += `- [ ] **${item.label}** — ${item.detail}\n`;
         }
         text += "\n";
       }
@@ -33,7 +33,7 @@ export function register(server: McpServer): void {
       if (standard.length) {
         text += `## Standard\n`;
         for (const item of standard) {
-          text += `- [ ] ${item.label} - ${item.detail}\n`;
+          text += `- [ ] ${item.label} — ${item.detail}\n`;
         }
       }
 

@@ -58,16 +58,15 @@ export const TOKEN_CATEGORIES: TokenCategory[] = [
       "Status colors (success/error/warning) need L ~0.55 for 4.5:1 contrast with white foreground",
       "Brand color at 500 is the default for light mode; 400 for dark mode primary",
       "@theme inline is REQUIRED to expose CSS custom properties as Tailwind utilities",
-      "Commit to one neutral temperature (warm OR cool) - never mix warm bg with cool borders",
+      "Commit to one neutral temperature (warm OR cool) — never mix warm bg with cool borders",
     ],
     gotchas: [
       "@theme inline vs @theme: inline bridges runtime-swappable CSS vars; plain @theme defines static compile-time primitives. Use @theme for color ramp primitives, @theme inline to expose semantic tokens as utilities.",
-      "Status colors (success green, error red) typically need L reduced from 0.63 to 0.55 for 4.5:1 contrast with white - run a contrast audit after finalizing the palette.",
+      "Status colors (success green, error red) typically need L reduced from 0.63 to 0.55 for 4.5:1 contrast with white — run a contrast audit after finalizing the palette.",
       "Dark mode elevation: shadows are invisible on dark backgrounds. Use progressively lighter bg-color per elevation level instead of box-shadow.",
       "After renaming ramps, grep for stale hue-based names (e.g., old 'violet-500' references) in component files.",
-      "oklch(0.62 0.14 291) and oklch(0.62 0.14 291 / 0.5) are different values - alpha must be explicit in oklch.",
+      "oklch(0.62 0.14 291) and oklch(0.62 0.14 291 / 0.5) are different values — alpha must be explicit in oklch.",
       "Pure black (#000) and pure white (#fff) look harsh. Use near-black (oklch 0.10-0.15) and near-white (oklch 0.97-0.99) instead.",
-      "Before inverting a site's default mode, verify the existing codebase's aesthetic direction. If every component uses dark backgrounds (charcoal-800, charcoal-900) with light text (offwhite, white/60), dark IS the default. Setting :root to light values and adding .dark overrides will make 90% of text unreadable until every component is migrated.",
     ],
   },
   {
@@ -99,7 +98,7 @@ export const TOKEN_CATEGORIES: TokenCategory[] = [
     gotchas: [
       "--spacing in Tailwind v4 sets the multiplier for ALL numeric spacing utilities (p-4 = 4 × 0.25rem = 1rem). Overriding it changes EVERY spacing utility across the project.",
       "Named tokens like --spacing-card generate class p-card, but ONLY if defined in @theme or :root with Tailwind v4's CSS variable scanning. Verify the class exists before shipping.",
-      "Do not use arbitrary pixel values outside the 4px grid (e.g., 7px, 13px, 22px) - they break visual rhythm.",
+      "Do not use arbitrary pixel values outside the 4px grid (e.g., 7px, 13px, 22px) — they break visual rhythm.",
       "section-x padding should be responsive: smaller on mobile (1.5rem), larger on desktop (3-4rem). A single static value often looks wrong on one breakpoint.",
     ],
   },
@@ -122,17 +121,17 @@ export const TOKEN_CATEGORIES: TokenCategory[] = [
       "Large text (24px+) requires tight line height (1.05–1.2); body requires generous (1.6–1.75)",
       "As font size decreases, line height must increase",
       "Headings use negative tracking (-0.01 to -0.03em); body uses zero tracking; overlines use positive (+0.06 to +0.10em)",
-      "NEVER apply negative tracking to body text - it reduces readability",
-      "Body text is FIXED at 16px - never use fluid clamp() for body",
+      "NEVER apply negative tracking to body text — it reduces readability",
+      "Body text is FIXED at 16px — never use fluid clamp() for body",
       "Maximum 2 font families per project; mono only for code, badges, terminal output",
       "Prose max-width: 65ch for optimal reading line length",
       "Type scale ratios: minor third (1.25), perfect fourth (1.333), or augmented fourth (1.414)",
     ],
     gotchas: [
       "Tight line-height on body text (e.g., 1.2) is a critical readability bug. Always use 1.6+ for paragraph text.",
-      "clamp() fluid scaling on body text causes reflow and unpredictable sizing on resize - keep body sizes fixed.",
+      "clamp() fluid scaling on body text causes reflow and unpredictable sizing on resize — keep body sizes fixed.",
       "Mixing font-weight 700 heading with font-weight 400 body in the same font variable file requires a variable font or separate font loads.",
-      "letter-spacing in em is relative to font-size, so -0.03em on display (72px) = -2.16px - verify visually at each size.",
+      "letter-spacing in em is relative to font-size, so -0.03em on display (72px) = -2.16px — verify visually at each size.",
       "overline text-transform: uppercase with positive tracking looks correct; without uppercase it looks odd.",
     ],
   },
@@ -159,7 +158,7 @@ export const TOKEN_CATEGORIES: TokenCategory[] = [
     ],
     gotchas: [
       "A 28px button without a larger hit area (via padding or pseudo-element) fails WCAG 2.5.5 on touch devices.",
-      "Icon-only buttons require an explicit aria-label AND a visible tooltip - an icon alone is not accessible.",
+      "Icon-only buttons require an explicit aria-label AND a visible tooltip — an icon alone is not accessible.",
       "Disabled buttons should still meet minimum size requirements even when opacity: 0.5.",
     ],
   },
@@ -173,14 +172,14 @@ export const TOKEN_CATEGORIES: TokenCategory[] = [
 <button class="btn rounded-btn">Button</button>
 <span class="rounded-full px-2 py-0.5 text-xs bg-primary/10 text-primary">Badge</span>`,
     rules: [
-      "Keep radius consistent within a design system - all cards same radius, all buttons same radius",
+      "Keep radius consistent within a design system — all cards same radius, all buttons same radius",
       "Border radius should scale proportionally with component size (small badges use sm, large modals use xl)",
-      "Pill (radius-full) is for badges, toggles, and avatar images - not general cards",
+      "Pill (radius-full) is for badges, toggles, and avatar images — not general cards",
       "Inputs typically use smaller radius (sm/md) than cards (lg/xl) for visual differentiation",
     ],
     gotchas: [
       "Mixing large (24px) and small (4px) radii in adjacent components looks inconsistent. Pick 1–2 radius values per component tier.",
-      "border-radius on a container does not clip overflowing children by default - add overflow: hidden if children need clipping.",
+      "border-radius on a container does not clip overflowing children by default — add overflow: hidden if children need clipping.",
       "Very large radius (radius-3xl on small components) can make them look bubble-like and unpolished.",
     ],
   },
@@ -201,9 +200,9 @@ export const TOKEN_CATEGORIES: TokenCategory[] = [
 <!-- Modal -->
 <div class="shadow-modal rounded-modal bg-surface p-8">Modal</div>`,
     rules: [
-      "Always use oklch-tinted warm shadows - never rgba(0,0,0) black shadows",
+      "Always use oklch-tinted warm shadows — never rgba(0,0,0) black shadows",
       "5 elevation levels: flat(none) / subtle(xs-sm) / raised(md) / elevated(lg) / floating(xl-2xl)",
-      "Dark mode: shadows are invisible - use progressively lighter bg-color per elevation level instead",
+      "Dark mode: shadows are invisible — use progressively lighter bg-color per elevation level instead",
       "Every elevation level must be visually distinguishable from adjacent levels",
       "Focus ring shadow uses 2px solid ring at 2px offset from element edge",
       "Modal/overlay uses shadow-2xl; dropdown uses shadow-lg; tooltip uses shadow-md",
@@ -212,7 +211,7 @@ export const TOKEN_CATEGORIES: TokenCategory[] = [
       "rgba(0,0,0,0.1) shadows look cold and blue-grey on warm backgrounds. Use oklch-tinted shadows that complement your warm neutrals.",
       "In dark mode, box-shadow with dark backgrounds makes no visual difference. Forgetting to implement bg-color elevation in dark mode results in a flat, no-depth dark UI.",
       "Multiple box-shadow layers (comma-separated) are additive. Test on both dark and light backgrounds before shipping.",
-      "shadow-focus must contrast with both the element background and the page background - test on white AND colored button variants.",
+      "shadow-focus must contrast with both the element background and the page background — test on white AND colored button variants.",
     ],
   },
   {
@@ -237,15 +236,15 @@ export const TOKEN_CATEGORIES: TokenCategory[] = [
       "Default transitions (color, bg, border): 200ms (duration-normal)",
       "Panel open/close: 300ms (duration-slow)",
       "Complex animations: 400–500ms (duration-slower)",
-      "Exits should be faster than entrances - user-initiated dismissal expects immediacy",
+      "Exits should be faster than entrances — user-initiated dismissal expects immediacy",
       "ease-out for entering elements, ease-in for exiting, ease-in-out for repositioning",
       "NEVER use linear easing for UI transitions (only for progress bars and loaders)",
     ],
     gotchas: [
       "Forgetting prefers-reduced-motion is a WCAG 2.3.3 violation. It must be in @layer base with !important to override inline styles.",
-      "ease-in on enter makes the animation feel slow to start - always use ease-out for entering elements.",
+      "ease-in on enter makes the animation feel slow to start — always use ease-out for entering elements.",
       "Long exit durations (300ms+) make the UI feel sluggish because users are waiting to interact with the next state.",
-      "CSS transition shorthand 'all' captures every property change, including layout - can cause jank. Explicitly list only the properties you want to animate.",
+      "CSS transition shorthand 'all' captures every property change, including layout — can cause jank. Explicitly list only the properties you want to animate.",
     ],
   },
   {
@@ -263,15 +262,15 @@ export const TOKEN_CATEGORIES: TokenCategory[] = [
   Modal
 </div>`,
     rules: [
-      "NEVER use arbitrary z-index values (999, 9999) - always use named scale tokens",
+      "NEVER use arbitrary z-index values (999, 9999) — always use named scale tokens",
       "Z-index only works on positioned elements (position: relative/absolute/fixed/sticky)",
-      "Z-index is scoped to the stacking context - a child cannot exceed its parent's stacking context",
+      "Z-index is scoped to the stacking context — a child cannot exceed its parent's stacking context",
       "Sticky header should be below modals (z-sticky < z-modal)",
       "Toast notifications should be above everything except z-max",
-      "Document every new z-index usage - stacking context bugs are very hard to debug",
+      "Document every new z-index usage — stacking context bugs are very hard to debug",
     ],
     gotchas: [
-      "transform, opacity < 1, filter, and will-change create new stacking contexts - a z-index on a child inside one of these is trapped within that context.",
+      "transform, opacity < 1, filter, and will-change create new stacking contexts — a z-index on a child inside one of these is trapped within that context.",
       "z-index: 9999 on a component inside a transform: parent will still be below the parent's stacking context order.",
       "Libraries like Radix UI and Headless UI have their own z-index values (often 50-9999). Check their defaults before setting your own values.",
       "Two modals open simultaneously will stack by DOM order unless z-index is incremented dynamically.",
@@ -295,17 +294,17 @@ export const TOKEN_CATEGORIES: TokenCategory[] = [
   Glass card
 </div>`,
     rules: [
-      "Disabled state: exactly 0.5 opacity (--opacity-disabled) - do not use 0.3 or 0.7",
+      "Disabled state: exactly 0.5 opacity (--opacity-disabled) — do not use 0.3 or 0.7",
       "pointer-events: none must accompany opacity: 0.5 on disabled elements",
       "Glass morphism requires backdrop-filter: blur() + semi-transparent background",
       "Opacity-based text muting (0.65) is acceptable; prefer semantic color tokens where possible",
-      "Never use opacity < 0.35 for interactive elements - they become invisible to low-vision users",
+      "Never use opacity < 0.35 for interactive elements — they become invisible to low-vision users",
     ],
     gotchas: [
       "opacity: 0 is different from visibility: hidden and display: none. opacity: 0 elements still receive pointer events and occupy layout space.",
-      "backdrop-filter is not supported in all contexts - it requires the element to not have overflow: hidden on an ancestor. Test on Safari.",
-      "Using opacity on a parent element reduces opacity of ALL children (including text) - for bg-only opacity, use an rgba/oklch background color with alpha channel instead.",
-      "Disabled state with just opacity: 0.5 and no pointer-events: none still allows clicks - a common security/UX bug.",
+      "backdrop-filter is not supported in all contexts — it requires the element to not have overflow: hidden on an ancestor. Test on Safari.",
+      "Using opacity on a parent element reduces opacity of ALL children (including text) — for bg-only opacity, use an rgba/oklch background color with alpha channel instead.",
+      "Disabled state with just opacity: 0.5 and no pointer-events: none still allows clicks — a common security/UX bug.",
     ],
   },
   {
@@ -326,16 +325,16 @@ const DensityProvider = ({ density, children }) => (
   <DataTable /> {/* Compact row heights, tighter padding */}
 </DensityProvider>`,
     rules: [
-      "Apply density class to the outermost wrapper - all child tokens cascade automatically",
+      "Apply density class to the outermost wrapper — all child tokens cascade automatically",
       "Compact mode (0.75×): data-dense UIs like tables, admin panels, dashboards",
       "Default mode (1×): standard application interfaces",
       "Comfortable mode (1.125×): onboarding flows, marketing pages, reading UIs",
-      "Touch targets must NEVER go below 44px even in compact mode - handle separately",
+      "Touch targets must NEVER go below 44px even in compact mode — handle separately",
       "Only override the tokens that change; inherit everything else from default",
     ],
     gotchas: [
-      "Compact density that reduces button height below 44px violates WCAG 2.5.5 on touch devices - either cap the minimum or apply density only on desktop breakpoints.",
-      "Font sizes should change minimally between density modes (±1–2px) - the spacing/padding difference should drive the perception of density.",
+      "Compact density that reduces button height below 44px violates WCAG 2.5.5 on touch devices — either cap the minimum or apply density only on desktop breakpoints.",
+      "Font sizes should change minimally between density modes (±1–2px) — the spacing/padding difference should drive the perception of density.",
       "Density mode on a nested component (not root) can cause unexpected token cascading if inner components define their own token values.",
     ],
   },
@@ -367,7 +366,7 @@ export const COLOR_RAMPS: ColorRamp[] = [
   {
     name: "neutral",
     description:
-      "Warm neutral ramp (H=60-80, low chroma). Used for backgrounds, borders, text, and surfaces. Commit to warm OR cool - never mix.",
+      "Warm neutral ramp (H=60-80, low chroma). Used for backgrounds, borders, text, and surfaces. Commit to warm OR cool — never mix.",
     stops: [
       { stop: 50,  oklch: "oklch(0.98 0.008 60)", role: "page background",   lightMode: "Main page background (warm off-white)",      darkMode: "Not used" },
       { stop: 100, oklch: "oklch(0.96 0.008 60)", role: "subtle bg",         lightMode: "Subtle backgrounds, zebra rows, code blocks", darkMode: "Not used" },
@@ -413,13 +412,13 @@ export const TOKEN_PROCEDURES: TokenProcedure[] = [
     description: "Create 11-stop OKLCH ramps for brand, neutral, and pop colors. These are static compile-time values.",
     code: snippet("procedures/step-1-colors.txt"),
     rules: [
-      "Use @theme (not :root) for primitive ramps - they become Tailwind static utilities",
+      "Use @theme (not :root) for primitive ramps — they become Tailwind static utilities",
       "Hue angle (H) must be consistent across all stops in a ramp",
       "Chroma (C) peaks around 400-600, decreases toward 50 and 950",
       "Lightness (L) must be monotonically decreasing from 50 to 950",
     ],
     gotchas: [
-      "@theme values are static - they cannot reference CSS custom properties or be overridden at runtime by JavaScript.",
+      "@theme values are static — they cannot reference CSS custom properties or be overridden at runtime by JavaScript.",
       "If you change the H value after building components, all color utilities change across the app. Lock the hue angle early.",
     ],
   },
@@ -436,7 +435,7 @@ export const TOKEN_PROCEDURES: TokenProcedure[] = [
     ],
     gotchas: [
       "Status colors at L=0.63 (typical green/red) fail 4.5:1 AA with white. Always run contrast check after defining status colors.",
-      "Do not use hex values for semantic tokens - use oklch primitives so the color stays in the defined color space.",
+      "Do not use hex values for semantic tokens — use oklch primitives so the color stays in the defined color space.",
     ],
   },
   {
@@ -445,15 +444,14 @@ export const TOKEN_PROCEDURES: TokenProcedure[] = [
     description: "Use @theme inline to expose runtime-swappable CSS custom properties as Tailwind utility classes.",
     code: snippet("procedures/step-3-typography.txt"),
     rules: [
-      "@theme inline is read at runtime - it reflects CSS custom property values dynamically",
-      "Plain @theme is static - values are baked in at build time",
+      "@theme inline is read at runtime — it reflects CSS custom property values dynamically",
+      "Plain @theme is static — values are baked in at build time",
       "Use @theme inline ONLY for semantic tokens; use plain @theme for primitive ramps",
       "Name mapping: --color-X in @theme inline → bg-X, text-X, border-X Tailwind classes",
     ],
     gotchas: [
-      "If you put runtime-swappable vars in plain @theme (not inline), dark mode will NOT work - the values won't update when .dark class is toggled.",
-      "@theme inline does not accept hardcoded values - it should only map CSS var references.",
-      "@theme generates Tailwind utility classes but does NOT emit CSS custom properties on :root. If :root uses var(--color-brand-400) and --color-brand-400 is only defined in @theme, the var() resolves to undefined at runtime - making all text and backgrounds white. Correct architecture: raw OKLCH values on :root and .dark (runtime CSS vars), @theme inline bridges them to utilities, @theme separately generates primitive ramp utilities.",
+      "If you put runtime-swappable vars in plain @theme (not inline), dark mode will NOT work — the values won't update when .dark class is toggled.",
+      "@theme inline does not accept hardcoded values — it should only map CSS var references.",
     ],
   },
   {
@@ -462,7 +460,7 @@ export const TOKEN_PROCEDURES: TokenProcedure[] = [
     description: "Set the 4px base multiplier and create named semantic spacing tokens.",
     code: snippet("procedures/step-4-component-sizing.txt"),
     rules: [
-      "--spacing is the global multiplier - changing it scales ALL numeric spacing utilities",
+      "--spacing is the global multiplier — changing it scales ALL numeric spacing utilities",
       "Named tokens auto-generate Tailwind utilities: p-card, py-section-y, gap-grid-cards",
       "Always follow 4px grid: 0.25rem, 0.5rem, 0.75rem, 1rem, 1.25rem, 1.5rem, 1.75rem...",
     ],
@@ -476,7 +474,7 @@ export const TOKEN_PROCEDURES: TokenProcedure[] = [
     description: "Define fluid heading sizes with clamp(), fixed body sizes, and line-height/tracking tokens.",
     code: snippet("procedures/step-5-remaining.txt"),
     rules: [
-      "Body text (16px) is NEVER fluid - use fixed rem values",
+      "Body text (16px) is NEVER fluid — use fixed rem values",
       "Headings MUST have tight line-height (1.05–1.2), not body line-height (1.6+)",
       "Negative tracking on body text is a readability error",
     ],
@@ -506,12 +504,12 @@ export const TOKEN_PROCEDURES: TokenProcedure[] = [
     description: "After building the full token system, run a contrast audit on all color token pairs.",
     code: snippet("procedures/step-8-deliverables.txt"),
     rules: [
-      "Run contrast audit AFTER finalizing the palette - before building components",
+      "Run contrast audit AFTER finalizing the palette — before building components",
       "Status colors often need L adjusted to ~0.55 for AA compliance with white foreground",
       "Grep for stale hue-name references after renaming ramps",
     ],
     gotchas: [
-      "WCAG contrast is calculated on final rendered colors. If CSS vars are not resolving correctly in dark mode, contrast tools won't catch it - test with a browser extension on the live page.",
+      "WCAG contrast is calculated on final rendered colors. If CSS vars are not resolving correctly in dark mode, contrast tools won't catch it — test with a browser extension on the live page.",
     ],
   },
 ];

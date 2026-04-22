@@ -1,7 +1,7 @@
-/* Stripe - Specific Values */
+/* Stripe — Specific Values */
 
 /* Typography: Söhne by Klim Type Foundry */
-/* Body: weight 300 (Söhne Leicht) - "weight-300 elegance" */
+/* Body: weight 300 (Söhne Leicht) — "weight-300 elegance" */
 /* Headers: weight 500 (Söhne Medium) */
 /* fontWeightNormal in Stripe Elements: 500 */
 /* ZERO use of 400 or 700 anywhere */
@@ -16,4 +16,4 @@
 /* HSL darkening -> "dull/muted" | CIELAB maintains vibrancy */
 
 /* Hero: complex multi-point gradient meshes */
-/* Not 2-stop gradients - multi-point with organic flow */
+/* Not 2-stop gradients — multi-point with organic flow */

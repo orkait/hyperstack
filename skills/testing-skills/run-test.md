@@ -14,7 +14,7 @@ This is a procedural reference for running a skill pressure test. Follow it exac
 ### Step 1: Announce
 
 ```
-"Using hyperstack:testing-skills - pressure-testing [skill-name] against [N] scenarios."
+"Using hyperstack:testing-skills — pressure-testing [skill-name] against [N] scenarios."
 ```
 
 ### Step 2: RED Phase (baseline, skill NOT loaded)

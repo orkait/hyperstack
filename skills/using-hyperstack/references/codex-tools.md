@@ -26,5 +26,5 @@ hyperstack:ship-gate
 ## Notes
 
 - Codex discovers skills from the `.codex/` directory after install
-- MCP tools work as normal - the MCP server is harness-independent
+- MCP tools work as normal — the MCP server is harness-independent
 - Check `.codex/INSTALL.md` in this repo for full setup instructions

@@ -9,7 +9,7 @@ export function register(server: McpServer): void {
       mimeType: "text/markdown",
     },
     async () => {
-      const text = `# React Flow v12 - Cheatsheet
+      const text = `# React Flow v12 — Cheatsheet
 
 ## Install & Import
 \`\`\`bash
@@ -63,29 +63,29 @@ const useStore = create((set, get) => ({
 ## Key Hooks
 | Hook | Use |
 |------|-----|
-| \`useReactFlow()\` | Imperative API - getNodes, setNodes, fitView, screenToFlowPosition |
-| \`useNodesState()\` | Quick prototyping - [nodes, setNodes, onNodesChange] |
+| \`useReactFlow()\` | Imperative API — getNodes, setNodes, fitView, screenToFlowPosition |
+| \`useNodesState()\` | Quick prototyping — [nodes, setNodes, onNodesChange] |
 | \`useNodesData(ids)\` | Subscribe to specific node data changes |
 | \`useConnection()\` | Active connection state during drag |
 | \`useNodesInitialized()\` | Wait for all nodes to be measured |
 
 ## Node Types
-- \`"default"\` - both handles
-- \`"input"\` - source handle only
-- \`"output"\` - target handle only
-- \`"group"\` - container for sub-flows
+- \`"default"\` — both handles
+- \`"input"\` — source handle only
+- \`"output"\` — target handle only
+- \`"group"\` — container for sub-flows
 
 ## Edge Types
-- \`"default"\` - bezier curve
-- \`"straight"\` - straight line
-- \`"step"\` - right-angle steps
-- \`"smoothstep"\` - rounded steps
-- \`"simplebezier"\` - simple curve
+- \`"default"\` — bezier curve
+- \`"straight"\` — straight line
+- \`"step"\` — right-angle steps
+- \`"smoothstep"\` — rounded steps
+- \`"simplebezier"\` — simple curve
 
 ## CSS Classes
-- \`nodrag\` - prevent drag on elements inside nodes
-- \`nopan\` - prevent pan when clicking element
-- \`nowheel\` - prevent zoom on scroll
+- \`nodrag\` — prevent drag on elements inside nodes
+- \`nopan\` — prevent pan when clicking element
+- \`nowheel\` — prevent zoom on scroll
 
 ## v12 Key Changes (from v11)
 - Package: \`reactflow\` → \`@xyflow/react\`

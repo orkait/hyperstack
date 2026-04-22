@@ -19,7 +19,7 @@ export function register(server: McpServer): void {
         };
       }
 
-      let text = `# ${component.name} - Usage Snippet\n\n`;
+      let text = `# ${component.name} — Usage Snippet\n\n`;
       text += `\`\`\`tsx\n${component.usageSnippet}\n\`\`\`\n\n`;
       text += `**Base primitive:** ${component.basePrimitive}\n`;
       text += `**Data slots:** ${component.dataSlots.map((s) => `\`${s}\``).join(", ")}\n`;

@@ -24,7 +24,7 @@ export function register(server: McpServer): void {
       for (const [dom, items] of Object.entries(grouped)) {
         text += `## ${dom} (${items.length})\n`;
         for (const p of items) {
-          text += `- **${p.name}** - ${p.rule}\n`;
+          text += `- **${p.name}** — ${p.rule}\n`;
         }
         text += "\n";
       }

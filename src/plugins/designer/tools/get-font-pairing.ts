@@ -22,7 +22,7 @@ export function register(server: McpServer): void {
       }
 
       let text = `# Font Pairings`;
-      if (mood) text += ` - ${mood}`;
+      if (mood) text += ` — ${mood}`;
       if (industry) text += ` for ${industry}`;
       text += `\n\n${results.length} pairing${results.length > 1 ? "s" : ""} found.\n\n`;
 
@@ -32,7 +32,7 @@ export function register(server: McpServer): void {
 
         text += `| Role | Font | Weight | Tracking | Line Height |\n`;
         text += `|---|---|---|---|---|\n`;
-        text += `| Heading | ${f.heading} | ${f.headingWeight} | ${f.trackingHeading} | - |\n`;
+        text += `| Heading | ${f.heading} | ${f.headingWeight} | ${f.trackingHeading} | — |\n`;
         text += `| Body | ${f.body} | ${f.bodyWeight} | ${f.trackingBody} | ${f.lineHeightBody} |\n`;
         text += `| Mono | ${f.mono} | 400 | 0 | 1.5 |\n\n`;
 

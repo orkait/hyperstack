@@ -11,7 +11,7 @@
 ### First-person vs second-person (ContentVerve)
 "Start **my** free 30-day trial" outperformed "Start **your** free 30-day trial" by **90%** in click-through rate.
 
-**Mechanism:** Endowment effect - first-person language makes users mentally take ownership before clicking.
+**Mechanism:** Endowment effect — first-person language makes users mentally take ownership before clicking.
 
 ### Verb choice hierarchy
 Benefit-oriented verbs (get, start, discover, claim, unlock) consistently outperform obligation-oriented verbs (submit, register, sign up). The framing shifts from what the user must *do* to what the user will *receive*.
@@ -31,21 +31,21 @@ Rewrite every button from the user's perspective. Imagine their internal thought
 | "No credit card required" near CTA | +34% trial signups |
 
 ### Anti-patterns
-- "Click here" - meaningless out of context, bad for screen readers
-- "Submit" - obligation framing, zero benefit signal
-- "OK" - ambiguous on confirmation dialogs
-- "Yes/No" on confirmations - forces user to re-read the question
-- "Learn More" as primary CTA - passive, no commitment
+- "Click here" — meaningless out of context, bad for screen readers
+- "Submit" — obligation framing, zero benefit signal
+- "OK" — ambiguous on confirmation dialogs
+- "Yes/No" on confirmations — forces user to re-read the question
+- "Learn More" as primary CTA — passive, no commitment
 
 ---
 
 ## Voice & Tone (Mailchimp System)
 
 ### Four voice dimensions (constant, never change)
-1. **Plainspoken** - strip away fluffy language and emotional manipulation; clarity above all
-2. **Genuine** - speak in a familiar, warm, accessible way rooted in understanding
-3. **Translators** - demystify complex concepts at expert level without dumbing down
-4. **Dry humor** - straight-faced, subtle, a touch eccentric; prefer winking to shouting
+1. **Plainspoken** — strip away fluffy language and emotional manipulation; clarity above all
+2. **Genuine** — speak in a familiar, warm, accessible way rooted in understanding
+3. **Translators** — demystify complex concepts at expert level without dumbing down
+4. **Dry humor** — straight-faced, subtle, a touch eccentric; prefer winking to shouting
 
 ### Five writing goals
 Empower, Respect, Educate, Guide, Speak Truth. Content must be simultaneously Clear, Useful, Friendly, and Appropriate.
@@ -66,7 +66,7 @@ Active voice, positive framing. "You can edit your profile" not "Your profile ca
 
 ---
 
-## Plain Language (GOV.UK - The Gold Standard)
+## Plain Language (GOV.UK — The Gold Standard)
 
 ### Specific, measurable rules
 
@@ -79,7 +79,7 @@ Active voice, positive framing. "You can edit your profile" not "Your profile ca
 | Meta summary | **160 characters** |
 
 ### Research backing
-Even high-literacy expert users prefer plain language - **80% of people** prefer sentences written in clear English. Block capitals are **13-18% harder** to read. Low-literacy users read word-by-word with narrower visual fields and abandon searches more readily.
+Even high-literacy expert users prefer plain language — **80% of people** prefer sentences written in clear English. Block capitals are **13-18% harder** to read. Low-literacy users read word-by-word with narrower visual fields and abandon searches more readily.
 
 ### Word replacements
 
@@ -113,8 +113,8 @@ Active voice mandatory. Form titles: active verb ("Submit your expenses"). Guida
 | **Efficiency** | Safeguard against likely mistakes, preserve input, offer high-probability fixes, contextual help |
 
 **Grading:** A (3.3-4.0) = top-tier. D (1.5-) = significant deficiencies.
-- Craigslist: **D (2.08)** - terse messages, cleared input, blamed user
-- J.Crew: **A (3.67)** - clear styling, preserved input, context
+- Craigslist: **D (2.08)** — terse messages, cleared input, blamed user
+- J.Crew: **A (3.67)** — clear styling, preserved input, context
 
 ### Error message structure
 **What happened + Why + How to fix it.**
@@ -130,7 +130,7 @@ Active voice mandatory. Form titles: active verb ("Submit your expenses"). Guida
 - Write in plain English: "Enter your full name" not "Field required"
 - Avoid: "invalid," "forbidden," "please," "sorry," technical codes
 - Hidden "Error:" prefix for screen readers
-- Inline + summary at top of page - **wording must be identical in both**
+- Inline + summary at top of page — **wording must be identical in both**
 - **Never clear user's input**
 
 ### Stripe error standards
@@ -165,11 +165,11 @@ ALL CAPS errors, red-only indicators, generic "Something went wrong" with no nex
 
 **Acceptable use:** Format hints only. "MM/DD/YYYY", "e.g., jane@company.com". Keep short.
 
-**Floating labels** are a compromise - they solve disappearing-label problem but introduce tiny, hard-to-read text. Prefer visible label above + hint below when space permits.
+**Floating labels** are a compromise — they solve disappearing-label problem but introduce tiny, hard-to-read text. Prefer visible label above + hint below when space permits.
 
 ---
 
-## Conversion Copy (Copyhackers - Joanna Wiebe)
+## Conversion Copy (Copyhackers — Joanna Wiebe)
 
 ### Voice-of-Customer research
 Interview 5-10 customers for 60 minutes each. Mine support tickets. Use their **exact language** in copy. This is "an unfair advantage" because you're using words users already think in.
@@ -202,7 +202,7 @@ NNG: confirmation dialogs fail when overused because users develop automatic "Ye
 ### Structure
 - **Title** = the action as a question: "Delete this project?"
 - **Body** = consequences with specifics: "This will permanently delete 'Q4 Marketing' and its 12,847 subscribers. This cannot be undone."
-- **Buttons** = specific verbs: "Delete project" / "Keep project" - never "OK" / "Cancel"
+- **Buttons** = specific verbs: "Delete project" / "Keep project" — never "OK" / "Cancel"
 
 ### Five patterns for destructive actions (strongest → weakest)
 
@@ -271,7 +271,7 @@ Incorporate concrete details: "143 qualified leads in 12 months" > "We help you 
 | < 2s | Spinner only | Text disappears before readable |
 | 2-10s | Verb + ellipsis | "Saving...", "Uploading..." |
 | 10s+ | Progressive with count | "Uploading (3 of 12 files)..." |
-| Unknown long | Time estimate | "Processing - this may take a minute" |
+| Unknown long | Time estimate | "Processing — this may take a minute" |
 
 - Present participle: "Saving..." not "Save in progress"
 - Match verb to action: "Export" click → "Exporting..." not "Loading..."
@@ -306,14 +306,14 @@ Headline (what's missing) + Supporting copy (what happens next) + Single CTA + I
 
 - Users read tooltips **after confusion**, not proactively. Prevent confusion with clear labels first.
 - **One sentence, one idea.** If it needs a paragraph → help doc, not tooltip.
-- Help text below fields > tooltips - always visible, no hover required, accessible by default
-- Never put critical information in a tooltip - if required to complete the task, it's in the UI
+- Help text below fields > tooltips — always visible, no hover required, accessible by default
+- Never put critical information in a tooltip — if required to complete the task, it's in the UI
 - Icon choice: `(i)` for supplementary info, `(?)` for "what is this?"
 - **Mobile: tooltips are hostile.** Hover doesn't exist on touch. Use inline help or expandable sections.
 
 ---
 
-## The Hemingway Principle - Readability Evidence
+## The Hemingway Principle — Readability Evidence
 
 | Source | Reading Level |
 |---|---|
@@ -322,8 +322,8 @@ Headline (what's missing) + Supporting copy (what happens next) + Single CTA + I
 | Copyhackers conversion copy | Grade 6 |
 | Flesch Reading Ease general | 60-70 |
 
-**Evidence:** Morkes and Nielsen (1997): "extremely scannable" text with bullets, bold keywords, and headings helped users complete tasks faster with fewer errors. Screen reading incurs **20-30% performance deficit** vs paper (Dillon 1992) - web text must compensate by being substantially simpler.
+**Evidence:** Morkes and Nielsen (1997): "extremely scannable" text with bullets, bold keywords, and headings helped users complete tasks faster with fewer errors. Screen reading incurs **20-30% performance deficit** vs paper (Dillon 1992) — web text must compensate by being substantially simpler.
 
 **Critical caveat:** Readability scores (Flesch-Kincaid, Gunning Fog) measure only word length and sentence length. They ignore formatting, hierarchy, whitespace, and IA. A wall of Grade 6 text is harder to read than well-formatted Grade 10 text. **Scores are necessary but not sufficient.**
 
-Active voice, short sentences, common words - not style preferences but measurable performance factors.
+Active voice, short sentences, common words — not style preferences but measurable performance factors.

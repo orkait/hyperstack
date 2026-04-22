@@ -3,7 +3,7 @@
 ## Required CSS
 
 ```css
-/* In your global CSS file - or use: import 'lenis/dist/lenis.css' */
+/* In your global CSS file — or use: import 'lenis/dist/lenis.css' */
 html.lenis, html.lenis body {
   height: auto;
 }
@@ -48,7 +48,7 @@ html.lenis, html.lenis body {
 | Modal/overlay blocks page scroll | Lenis still active | Call `lenis.stop()` on open, `lenis.start()` on close |
 | iOS touch feels laggy | `smoothTouch: true` | Set `smoothTouch: false` (default) |
 | `scroll-behavior: smooth` conflicts | CSS fighting Lenis | Add `.lenis.lenis-smooth { scroll-behavior: auto !important; }` |
-| Anchor links don't work | Lenis intercepting | Lenis handles anchors - use `scrollTo` or `data-lenis-prevent` |
+| Anchor links don't work | Lenis intercepting | Lenis handles anchors — use `scrollTo` or `data-lenis-prevent` |
 
 ## lerp Decision Guide
 

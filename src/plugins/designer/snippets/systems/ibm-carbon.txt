@@ -1,4 +1,4 @@
-/* IBM Carbon - Specific Values */
+/* IBM Carbon — Specific Values */
 
 /* Spacing Scale (base-2 with enterprise refinement): */
 /* spacing-01: 2px | spacing-02: 4px | spacing-03: 8px */
@@ -16,4 +16,4 @@
 /* Focus indicators: 3:1 minimum contrast on ring itself */
 /* Teams consuming Carbon inherit a11y, not bolt it on */
 
-/* Open source - teams get accessibility for free */
+/* Open source — teams get accessibility for free */

@@ -1,4 +1,4 @@
-// Observer using channels - idiomatic Go over callbacks
+// Observer using channels — idiomatic Go over callbacks
 type Event struct {
   Type    string
   Payload any
@@ -23,7 +23,7 @@ func (b *EventBus) Publish(e Event) {
   for _, ch := range b.subscribers {
     select {
     case ch <- e:
-    default: // drop if subscriber is full - or use blocking if required
+    default: // drop if subscriber is full — or use blocking if required
     }
   }
 }

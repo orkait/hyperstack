@@ -18,7 +18,7 @@ export function register(server: McpServer): void {
         };
       }
 
-      let text = `# ${practice.name} [${practice.topic}] - ${practice.priority}\n\n`;
+      let text = `# ${practice.name} [${practice.topic}] — ${practice.priority}\n\n`;
       text += `**Rule:** ${practice.rule}\n\n`;
       text += `**Why:** ${practice.reason}\n\n`;
       if (practice.good) text += `## ✅ Good\n\`\`\`go\n${practice.good}\n\`\`\`\n\n`;

@@ -1,6 +1,6 @@
-# Code Tool Reference
+# Claude Code Tool Reference
 
-When skills reference tools
+When skills reference tools, use these in Claude Code:
 
 | Operation | Tool |
 |---|---|
@@ -25,5 +25,5 @@ Skill({ skill: "hyperstack:ship-gate" })
 
 ## Notes
 
-- Never use `Read` on skill files directly - use the `Skill` tool
-- `Agent` tool spawns a subagent with isolated context - provide full task text, do not assume shared context
+- Never use `Read` on skill files directly — use the `Skill` tool
+- `Agent` tool spawns a subagent with isolated context — provide full task text, do not assume shared context

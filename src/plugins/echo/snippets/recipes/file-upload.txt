@@ -30,7 +30,7 @@ func uploadFile(c echo.Context) error {
 	}
 	defer src.Close()
 
-	// Create destination file - sanitize the filename
+	// Create destination file — sanitize the filename
 	safeFilename := filepath.Base(file.Filename)
 	dst, err := os.Create(fmt.Sprintf("uploads/%s", safeFilename))
 	if err != nil {

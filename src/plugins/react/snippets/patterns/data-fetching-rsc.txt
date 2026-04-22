@@ -1,4 +1,4 @@
-// ✅ Fetch in RSC - no loading state, no useEffect
+// ✅ Fetch in RSC — no loading state, no useEffect
 export default async function Page({ params }: { params: { id: string } }) {
   const data = await fetch(`/api/items/${params.id}`, {
     next: { revalidate: 60 }, // ISR: revalidate every 60s

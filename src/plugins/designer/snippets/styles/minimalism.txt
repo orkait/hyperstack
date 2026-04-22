@@ -17,5 +17,5 @@
 /* Grid-based layout, typography hierarchy only */
 .grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 24px; }
 
-/* WCAG AAA target - maximum contrast */
-/* No decorative elements - every pixel justified */
+/* WCAG AAA target — maximum contrast */
+/* No decorative elements — every pixel justified */

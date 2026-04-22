@@ -1,9 +1,9 @@
 # Performance Optimization
 
 ## Rules
-1. **Define nodeTypes/edgeTypes outside the component** or useMemo - never inline.
+1. **Define nodeTypes/edgeTypes outside the component** or useMemo — never inline.
 2. **Use stable selectors** with Zustand to prevent unnecessary re-renders.
-3. **Avoid useNodes/useEdges** in components that don't need the full array - use useNodesData(ids) instead.
+3. **Avoid useNodes/useEdges** in components that don't need the full array — use useNodesData(ids) instead.
 4. **Enable onlyRenderVisibleElements** for large graphs (1000+ nodes).
 5. **Use useReactFlow().getNodes()** for on-demand access instead of subscribing.
 

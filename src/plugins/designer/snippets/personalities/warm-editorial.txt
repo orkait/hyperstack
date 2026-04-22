@@ -1,4 +1,4 @@
-/* Warm Editorial - Notion / Airbnb / Zapier / Medium */
+/* Warm Editorial — Notion / Airbnb / Zapier / Medium */
 :root {
   /* Warm neutrals, cream not white */
   --color-bg: oklch(0.98 0.012 78);            /* warm cream #FAF8F5 */

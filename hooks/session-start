@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+# SessionStart hook for Hyperstack plugin
+# Injects using-hyperstack skill as EXTREMELY_IMPORTANT context at session start
+
+set -euo pipefail
+
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+PLUGIN_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
+
+if ! skill_content=$(cat "${PLUGIN_ROOT}/skills/using-hyperstack/SKILL.md" 2>&1); then
+  error_msg="Hyperstack session-start hook failed: could not read ${PLUGIN_ROOT}/skills/using-hyperstack/SKILL.md"
+  printf '{"error": "%s"}\n' "$error_msg" >&2
+  exit 1
+fi
+
+# Escape string for JSON embedding
+escape_for_json() {
+    local s="$1"
+    s="${s//\\/\\\\}"
+    s="${s//\"/\\\"}"
+    s="${s//$'\n'/\\n}"
+    s="${s//$'\r'/\\r}"
+    s="${s//$'\t'/\\t}"
+    printf '%s' "$s"
+}
+
+skill_escaped=$(escape_for_json "$skill_content")
+session_context="<EXTREMELY_IMPORTANT>\nYou have Hyperstack.\n\n**Below is the full content of your 'hyperstack:using-hyperstack' skill - your introduction to using Hyperstack. For all other skills, use the 'Skill' tool:**\n\n${skill_escaped}\n</EXTREMELY_IMPORTANT>"
+
+# Platform detection - emit the correct JSON field for the current harness
+if [ -n "${CURSOR_PLUGIN_ROOT:-}" ]; then
+  # Cursor
+  printf '{\n  "additional_context": "%s"\n}\n' "$session_context"
+elif [ -n "${CLAUDE_PLUGIN_ROOT:-}" ] && [ -z "${COPILOT_CLI:-}" ]; then
+  # Claude Code
+  printf '{\n  "hookSpecificOutput": {\n    "hookEventName": "SessionStart",\n    "additionalContext": "%s"\n  }\n}\n' "$session_context"
+else
+  # Copilot CLI or unknown platform - SDK standard format
+  printf '{\n  "additionalContext": "%s"\n}\n' "$session_context"
+fi
+
+exit 0

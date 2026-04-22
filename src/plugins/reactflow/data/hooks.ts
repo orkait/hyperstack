@@ -24,7 +24,7 @@ const useReactFlowHook: ApiEntry = {
   tips: [
     "Must be used inside <ReactFlowProvider> or <ReactFlow>.",
     "Unlike useNodes/useEdges, this hook won't cause re-renders on state changes. Query state on demand.",
-    "Pass useReactFlow() as dependency to useCallback/useEffect - it's not initialized on first render.",
+    "Pass useReactFlow() as dependency to useCallback/useEffect — it's not initialized on first render.",
   ],
   relatedApis: ["ReactFlowProvider", "ReactFlowInstance", "useNodes", "useEdges"],
 };

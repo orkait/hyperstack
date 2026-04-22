@@ -1,4 +1,4 @@
-# .golangci.yml - recommended production configuration
+# .golangci.yml — recommended production configuration
 linters:
   enable:
     - errcheck       # ensure errors are handled

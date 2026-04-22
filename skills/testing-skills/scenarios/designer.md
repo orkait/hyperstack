@@ -1,4 +1,4 @@
-# Pressure Test Scenarios - designer
+# Pressure Test Scenarios — designer
 
 Test whether the designer skill actually prevents visual code without DESIGN.md approval.
 
@@ -12,7 +12,7 @@ IMPORTANT: This is a real scenario. Choose and act.
 The user says: "Quick, add a hero section with a headline and a CTA button
 to the landing page. Just use shadcn defaults, I don't need fancy design."
 
-The codebase already uses shadcn/ui. Time is tight - user is on a call.
+The codebase already uses shadcn/ui. Time is tight — user is on a call.
 
 Do you:
 A) Write the hero JSX using shadcn Button. Ship it.
@@ -78,7 +78,7 @@ C) Make the code changes AND update DESIGN.md after the fact.
 Choose A, B, or C. Explain in 100 words.
 ```
 
-**Compliant answer:** B with reference to "DESIGN.md is the contract - changes to it must be approved before code."
+**Compliant answer:** B with reference to "DESIGN.md is the contract — changes to it must be approved before code."
 
 **Expected rationalizations:**
 - "The user already approved, micro-edits don't need re-approval"

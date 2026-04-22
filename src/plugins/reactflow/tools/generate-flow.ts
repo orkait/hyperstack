@@ -17,56 +17,41 @@ export function register(server: McpServer): void {
         .describe("Use controlled flow with Zustand store (default: true)"),
     },
     async ({ description, controlled }) => {
-      const code = generateFlowCode(description, controlled);
+      const useStore = controlled !== false;
+      const desc = description.toLowerCase();
 
-      return {
-        content: [
-          {
-            type: "text",
-            text: `\`\`\`tsx\n${code}\n\`\`\`\n\nCustomize the node types, edge types, and initial data as needed.`,
-          },
-        ],
-      };
-    },
-  );
-}
+      const imports = new Set(["ReactFlow"]);
+      const xyflowImports = new Set<string>();
+      const extraImports: string[] = [];
+      let supportCode = "";
+      let beforeReturn = "";
+      let flowProps: string[] = ["nodes={nodes}", "edges={edges}", "fitView"];
+      let children = "";
+      let wrapperStart = "";
+      let wrapperEnd = "";
+      let additionalComponents = "";
 
-export function generateFlowCode(description: string, controlled?: boolean): string {
-  const useStore = controlled !== false;
-  const desc = description.toLowerCase();
+      // Always need Background
+      imports.add("Background");
+      children += "        <Background />\n";
 
-  const imports = new Set(["ReactFlow"]);
-  const xyflowImports = new Set<string>();
-  const extraImports: string[] = [];
-  let supportCode = "";
-  let beforeReturn = "";
-  let flowProps: string[] = ["nodes={nodes}", "edges={edges}", "fitView"];
-  let children = "";
-  let wrapperStart = "";
-  let wrapperEnd = "";
-  let additionalComponents = "";
+      // Controls
+      if (!desc.includes("no controls")) {
+        imports.add("Controls");
+        children += "        <Controls />\n";
+      }
 
-  // Always need Background
-  imports.add("Background");
-  children += "        <Background />\n";
+      // MiniMap
+      if (desc.includes("minimap") || desc.includes("overview") || desc.includes("mini map")) {
+        imports.add("MiniMap");
+        children += "        <MiniMap />\n";
+      }
 
-  // Controls
-  if (!desc.includes("no controls")) {
-    imports.add("Controls");
-    children += "        <Controls />\n";
-  }
-
-  // MiniMap
-  if (desc.includes("minimap") || desc.includes("overview") || desc.includes("mini map")) {
-    imports.add("MiniMap");
-    children += "        <MiniMap />\n";
-  }
-
-  // Custom nodes
-  if (desc.includes("custom node") || desc.includes("custom-node")) {
-    imports.add("Handle");
-    imports.add("Position");
-    additionalComponents += `
+      // Custom nodes
+      if (desc.includes("custom node") || desc.includes("custom-node")) {
+        imports.add("Handle");
+        imports.add("Position");
+        additionalComponents += `
 type CustomNodeData = { label: string };
 type CustomNodeType = Node<CustomNodeData, 'custom'>;
 
@@ -83,16 +68,16 @@ CustomNode.displayName = 'CustomNode';
 
 const nodeTypes = { custom: CustomNode };
 `;
-    extraImports.push("import { memo } from 'react';");
-    xyflowImports.add("type NodeProps");
-    xyflowImports.add("type Node");
-    flowProps.push("nodeTypes={nodeTypes}");
-  }
+        extraImports.push("import { memo } from 'react';");
+        xyflowImports.add("type NodeProps");
+        xyflowImports.add("type Node");
+        flowProps.push("nodeTypes={nodeTypes}");
+      }
 
-  // Drag and drop
-  if ((desc.includes("drag") && desc.includes("drop")) || desc.includes("sidebar")) {
-    xyflowImports.add("useReactFlow");
-    beforeReturn += `
+      // Drag and drop
+      if (desc.includes("drag") && desc.includes("drop") || desc.includes("sidebar")) {
+        xyflowImports.add("useReactFlow");
+        beforeReturn += `
   const { screenToFlowPosition, addNodes } = useReactFlow();
 
   const onDragOver = useCallback((event: React.DragEvent) => {
@@ -108,20 +93,20 @@ const nodeTypes = { custom: CustomNode };
     addNodes({ id: crypto.randomUUID(), type, position, data: { label: 'New Node' } });
   }, [screenToFlowPosition, addNodes]);
 `;
-    extraImports.push("import { useCallback } from 'react';");
-    flowProps.push("onDragOver={onDragOver}", "onDrop={onDrop}");
-  }
+        extraImports.push("import { useCallback } from 'react';");
+        flowProps.push("onDragOver={onDragOver}", "onDrop={onDrop}");
+      }
 
-  // Dark mode
-  if (desc.includes("dark")) {
-    flowProps.push('colorMode="dark"');
-  }
+      // Dark mode
+      if (desc.includes("dark")) {
+        flowProps.push('colorMode="dark"');
+      }
 
-  // Connection validation
-  if (desc.includes("dag") || desc.includes("cycle") || desc.includes("pipeline")) {
-    xyflowImports.add("getOutgoers");
-    xyflowImports.add("useReactFlow");
-    beforeReturn += `
+      // Connection validation
+      if (desc.includes("dag") || desc.includes("cycle") || desc.includes("pipeline")) {
+        xyflowImports.add("getOutgoers");
+        xyflowImports.add("useReactFlow");
+        beforeReturn += `
   const { getNodes, getEdges } = useReactFlow();
 
   const isValidConnection = useCallback((connection: Connection) => {
@@ -143,25 +128,29 @@ const nodeTypes = { custom: CustomNode };
     return !hasCycle(target);
   }, [getNodes, getEdges]);
 `;
-    xyflowImports.add("type Connection");
-    xyflowImports.add("type Node");
-    extraImports.push("import { useCallback } from 'react';");
-    flowProps.push("isValidConnection={isValidConnection}");
-  }
+        xyflowImports.add("type Connection");
+        xyflowImports.add("type Node");
+        extraImports.push("import { useCallback } from 'react';");
+        flowProps.push("isValidConnection={isValidConnection}");
+      }
 
-  // Store vs useState
-  if (useStore) {
-    xyflowImports.add("type Node");
-    xyflowImports.add("type Edge");
-    xyflowImports.add("type OnNodesChange");
-    xyflowImports.add("type OnEdgesChange");
-    xyflowImports.add("type OnConnect");
-    imports.add("applyNodeChanges");
-    imports.add("applyEdgeChanges");
-    imports.add("addEdge");
-    flowProps.push("onNodesChange={onNodesChange}", "onEdgesChange={onEdgesChange}", "onConnect={onConnect}");
-    extraImports.push("import { create } from 'zustand';");
-    supportCode = `
+      // Store vs useState
+      if (useStore) {
+        xyflowImports.add("type Node");
+        xyflowImports.add("type Edge");
+        xyflowImports.add("type OnNodesChange");
+        xyflowImports.add("type OnEdgesChange");
+        xyflowImports.add("type OnConnect");
+        imports.add("applyNodeChanges");
+        imports.add("applyEdgeChanges");
+        imports.add("addEdge");
+        flowProps.push(
+          "onNodesChange={onNodesChange}",
+          "onEdgesChange={onEdgesChange}",
+          "onConnect={onConnect}",
+        );
+        extraImports.push("import { create } from 'zustand';");
+        supportCode = `
 const initialNodes: Node[] = [
   { id: '1', position: { x: 0, y: 0 }, data: { label: 'Node 1' } },
   { id: '2', position: { x: 250, y: 100 }, data: { label: 'Node 2' } },
@@ -186,14 +175,16 @@ const useFlowStore = create<FlowState>((set, get) => ({
 
 const selector = (s: FlowState) => s;
 `;
-    beforeReturn = `  const { nodes, edges, onNodesChange, onEdgesChange, onConnect } = useFlowStore(selector);\n` + beforeReturn;
-  } else {
-    imports.add("useNodesState");
-    imports.add("useEdgesState");
-    imports.add("addEdge");
-    extraImports.push("import { useCallback } from 'react';");
-    beforeReturn =
-      `  const [nodes, setNodes, onNodesChange] = useNodesState([
+        beforeReturn =
+          `  const { nodes, edges, onNodesChange, onEdgesChange, onConnect } = useFlowStore(selector);\n` +
+          beforeReturn;
+      } else {
+        imports.add("useNodesState");
+        imports.add("useEdgesState");
+        imports.add("addEdge");
+        extraImports.push("import { useCallback } from 'react';");
+        beforeReturn =
+          `  const [nodes, setNodes, onNodesChange] = useNodesState([
     { id: '1', position: { x: 0, y: 0 }, data: { label: 'Node 1' } },
     { id: '2', position: { x: 250, y: 100 }, data: { label: 'Node 2' } },
   ]);
@@ -202,35 +193,48 @@ const selector = (s: FlowState) => s;
   ]);
   const onConnect = useCallback((conn) => setEdges((eds) => addEdge(conn, eds)), [setEdges]);
 ` + beforeReturn;
-    flowProps.push("onNodesChange={onNodesChange}", "onEdgesChange={onEdgesChange}", "onConnect={onConnect}");
-  }
+        flowProps.push(
+          "onNodesChange={onNodesChange}",
+          "onEdgesChange={onEdgesChange}",
+          "onConnect={onConnect}",
+        );
+      }
 
-  // Provider wrapper needed for useReactFlow
-  if (xyflowImports.has("useReactFlow")) {
-    imports.add("ReactFlowProvider");
-    wrapperStart = `function FlowWrapper() {\n  return (\n    <ReactFlowProvider>\n      <Flow />\n    </ReactFlowProvider>\n  );\n}\n\n`;
-    wrapperEnd = `\nexport default FlowWrapper;`;
-  } else {
-    wrapperEnd = `\nexport default Flow;`;
-  }
+      // Provider wrapper needed for useReactFlow
+      if (xyflowImports.has("useReactFlow")) {
+        imports.add("ReactFlowProvider");
+        wrapperStart = `function FlowWrapper() {\n  return (\n    <ReactFlowProvider>\n      <Flow />\n    </ReactFlowProvider>\n  );\n}\n\n`;
+        wrapperEnd = `\nexport default FlowWrapper;`;
+      } else {
+        wrapperEnd = `\nexport default Flow;`;
+      }
 
-  // Build imports (deduplicate)
-  const allXyImports = [...imports, ...xyflowImports];
-  const uniqueExtraImports = [...new Set(extraImports)];
-  let code = `import { ${allXyImports.join(", ")} } from '@xyflow/react';\nimport '@xyflow/react/dist/style.css';\n`;
-  for (const imp of uniqueExtraImports) {
-    code += `${imp}\n`;
-  }
+      // Build imports (deduplicate)
+      const allXyImports = [...imports, ...xyflowImports];
+      const uniqueExtraImports = [...new Set(extraImports)];
+      let code = `import { ${allXyImports.join(", ")} } from '@xyflow/react';\nimport '@xyflow/react/dist/style.css';\n`;
+      for (const imp of uniqueExtraImports) {
+        code += `${imp}\n`;
+      }
 
-  if (supportCode) {
-    code += `\n${supportCode}\n`;
-  }
+      if (supportCode) {
+        code += `\n${supportCode}\n`;
+      }
 
-  if (additionalComponents) {
-    code += additionalComponents;
-  }
+      if (additionalComponents) {
+        code += additionalComponents;
+      }
 
-  code += `\n${wrapperStart}function Flow() {\n${beforeReturn}\n  return (\n    <div style={{ width: '100%', height: '100vh' }}>\n      <ReactFlow\n        ${flowProps.join("\n        ")}\n      >\n${children}      </ReactFlow>\n    </div>\n  );\n}${wrapperEnd}`;
+      code += `\n${wrapperStart}function Flow() {\n${beforeReturn}\n  return (\n    <div style={{ width: '100%', height: '100vh' }}>\n      <ReactFlow\n        ${flowProps.join("\n        ")}\n      >\n${children}      </ReactFlow>\n    </div>\n  );\n}${wrapperEnd}`;
 
-  return code;
+      return {
+        content: [
+          {
+            type: "text",
+            text: `\`\`\`tsx\n${code}\n\`\`\`\n\nCustomize the node types, edge types, and initial data as needed.`,
+          },
+        ],
+      };
+    },
+  );
 }

@@ -2,7 +2,7 @@
 
 ## Overview
 
-Authorization verifies that a requested action or service is approved for a specific entity-distinct from authentication, which verifies identity. A user who has been authenticated is often not authorized to access every resource and perform every action.
+Authorization verifies that a requested action or service is approved for a specific entity—distinct from authentication, which verifies identity. A user who has been authenticated is often not authorized to access every resource and perform every action.
 
 ## Core Principles
 

@@ -111,7 +111,7 @@ Use these tools for **100% accurate** API details, props, code examples, and pat
 - **Rust Practices** (`rust_*`): Borrowing rules, Error handling (anyhow/thiserror), Performance.
 
 ### 💅 Design Systems
-- **Designer** (`designer_*`): Decision layer - 17 tools. 6 personality clusters, 15 industry rules, 11 cognitive laws, 13 page templates, 9 code-ready presets (Linear/Stripe/Vercel/Apple/Carbon/shadcn/Notion/Supabase/Figma), 21 font pairings, 50+ anti-patterns. Call `designer_resolve_intent` first for any visual task.
+- **Designer** (`designer_*`): Decision layer — 17 tools. 6 personality clusters, 15 industry rules, 11 cognitive laws, 13 page templates, 9 code-ready presets (Linear/Stripe/Vercel/Apple/Carbon/shadcn/Notion/Supabase/Figma), 21 font pairings, 50+ anti-patterns. Call `designer_resolve_intent` first for any visual task.
 - **Design Tokens** (`design_tokens_*`): Tailwind v4 + OKLCH templates, Color ramp math.
 - **UI/UX Principles** (`ui_ux_*`): WCAG contrast, Typography scales, 4px grid rules.
 

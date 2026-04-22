@@ -1,7 +1,7 @@
 ---
-name: hyperstack
+name: using-hyperstack
 category: meta
-description: Bootstrap - establishes Hyperstack MCP tools and skills before any technical work. Auto-loaded at session start via SessionStart hook. Do not skip, do not skim, do not rationalize your way out of it.
+description: Bootstrap — establishes Hyperstack MCP tools and skills before any technical work. Auto-loaded at session start via SessionStart hook. Do not skip, do not skim, do not rationalize your way out of it.
 ---
 
 <SUBAGENT-STOP>
@@ -10,16 +10,13 @@ Your context was provided by the orchestrating agent. Do not reload bootstrap.
 </SUBAGENT-STOP>
 
 <EXTREMELY-IMPORTANT>
-You have Hyperstack. This is not optional knowledge - it is how you operate in this repository.
+You have Hyperstack. This is not optional knowledge — it is how you operate in this repository.
 
-Hyperstack is a **Three-Layer Ecosystem**:
-1. **Layer 1: Ground Truth (MCP)** - Deterministic data for the stack.
-2. **Layer 2: Process (Skills)** - Disciplined engineering workflows and gates.
-3. **Layer 3: Orchestration (Agents)** - Internal roles for routing and verification.
-
-**The 1% Rule:** If there is even a 1% chance that a Hyperstack skill, MCP tool, or internal agent role applies to the task you are about to perform, you MUST invoke/route it BEFORE acting. Not after you "check the code quickly." Not after you "just try one thing." Not after you "confirm your understanding." BEFORE.
+**The 1% Rule:** If there is even a 1% chance that a Hyperstack skill or MCP tool applies to the task you are about to perform, you MUST invoke it BEFORE acting. Not after you "check the code quickly." Not after you "just try one thing." Not after you "confirm your understanding." BEFORE.
 
 **You do not have a choice. You cannot rationalize your way out of this.**
+
+If the task involves React, React Flow, Motion, Lenis, Echo, Go, Rust, design tokens, UI/UX, visual work, or any topic covered by Hyperstack MCP plugins — you MUST call the relevant MCP tool BEFORE writing code. Memory is not acceptable. Pattern-matching from training data is not acceptable. Confidence is not acceptable. **Only ground-truth MCP output is acceptable.**
 </EXTREMELY-IMPORTANT>
 
 ---
@@ -38,9 +35,7 @@ Hyperstack is a **Three-Layer Ecosystem**:
 
 4. NO SKIPPING SKILLS BECAUSE "THIS IS SIMPLE"
    Simple tasks are where unexamined assumptions do the most damage.
-
-5. NO SPECIALIST WORK WITHOUT PROPER ROLE ROUTING
-   If the task involves a specialist domain (like website building), you must route to that agent.
+   The skill exists because the shortcut has failed before.
 ```
 
 **Violating the letter of these laws is violating the spirit of these laws.**
@@ -49,15 +44,15 @@ Hyperstack is a **Three-Layer Ecosystem**:
 
 ## Instruction Priority
 
-1. **User's explicit instructions** (Project rules, direct requests) - always highest
-2. **Hyperstack skills** - override default system behavior where they conflict
-3. **Default system behavior** - lowest priority
+1. **User's explicit instructions** (CLAUDE.md, direct requests) — always highest
+2. **Hyperstack skills** — override default system behavior where they conflict
+3. **Default system behavior** — lowest priority
 
-If the project rules say "don't use TDD" and a skill says "always use TDD," follow the user. The user is in control. Everything else is your job to enforce.
+If CLAUDE.md says "don't use TDD" and a skill says "always use TDD," follow the user. The user is in control. Everything else is your job to enforce.
 
 ---
 
-## Red Flags - STOP
+## Red Flags — STOP
 
 These are thoughts you will have. Each one is a rationalization. Each one has a counter.
 
@@ -101,7 +96,7 @@ Call these BEFORE writing any code for these stacks. **Memory is not acceptable.
 ### MCP Degraded Mode
 
 If MCP tools fail or are unavailable:
-1. Tell the user explicitly: "Hyperstack MCP server is unavailable - my answers will be less precise and I am flagging them as uncertain."
+1. Tell the user explicitly: "Hyperstack MCP server is unavailable — my answers will be less precise and I am flagging them as uncertain."
 2. Fall back to training data but FLAG every answer as uncertain.
 3. Never silently answer as if ground-truth data was used.
 4. Do not invent API shapes.
@@ -112,13 +107,13 @@ If MCP tools fail or are unavailable:
 
 Use the `Skill` tool to load these before the relevant task type.
 
-**Full skill index:** See `skills/INDEX.md` - all skills grouped by category (core / domain / meta). Regenerate with `npm run skills:index` after adding or editing any skill.
+**Full skill index:** See `skills/INDEX.md` — all skills grouped by category (core / domain / meta). Regenerate with `bash scripts/generate-skills-index.sh` after adding or editing any skill.
 
 ### Announcement Iron Law
 
 ```
 BEFORE invoking any Hyperstack skill, announce it:
-"Using hyperstack:[skill-name] - [one-line purpose]"
+"Using hyperstack:[skill-name] — [one-line purpose]"
 ```
 
 This is non-negotiable. Silent skill invocations are invisible to the user and cannot be audited. **If you invoke a skill silently, you are lying by omission.**
@@ -127,31 +122,31 @@ This is non-negotiable. Silent skill invocations are invisible to the user and c
 
 | Skill | When to invoke | Gate type |
 |---|---|---|
-| `hyperstack:blueprint` | Before any feature build - MCP survey, design gate, negative doubt | **HARD GATE** |
-| `hyperstack:designer` | Before any visual/UX work - produces DESIGN.md contract | **HARD GATE** |
-| `hyperstack:forge-plan` | After design approval - MCP-verified implementation plan | Requires approved design |
-| `hyperstack:run-plan` | Have an existing plan - validate then execute | Requires plan |
-| `hyperstack:engineering-discipline` | During execution - Senior SDE phase gates | Phase gates |
-| `hyperstack:ship-gate` | Before any completion claim - evidence required | **HARD GATE** |
-| `hyperstack:deliver` | After all tasks complete - final verification and delivery | Gate |
+| `hyperstack:blueprint` | Before any feature build — MCP survey, design gate, negative doubt | **HARD GATE** |
+| `hyperstack:designer` | Before any visual/UX work — produces DESIGN.md contract | **HARD GATE** |
+| `hyperstack:forge-plan` | After design approval — MCP-verified implementation plan | Requires approved design |
+| `hyperstack:run-plan` | Have an existing plan — validate then execute | Requires plan |
+| `hyperstack:engineering-discipline` | During execution — Senior SDE phase gates | Phase gates |
+| `hyperstack:ship-gate` | Before any completion claim — evidence required | **HARD GATE** |
+| `hyperstack:deliver` | After all tasks complete — final verification and delivery | Gate |
 
 ### Execution Skills (invoke during implementation)
 
 | Skill | When to invoke |
 |---|---|
-| `hyperstack:autonomous-mode` | Full autonomous execution - runs end-to-end, only stops on failure |
-| `hyperstack:subagent-ops` | Plans with independent tasks - fresh agent per task, two-stage review |
-| `hyperstack:test-first` | Before writing any implementation code - red-green-refactor |
-| `hyperstack:worktree-isolation` | Before feature work - clean workspace isolation |
-| `hyperstack:code-review` | After completing tasks - dispatch reviewer subagent |
-| `hyperstack:parallel-dispatch` | 2+ independent failures or tasks - concurrent agent dispatch |
+| `hyperstack:autonomous-mode` | Full autonomous execution — runs end-to-end, only stops on failure |
+| `hyperstack:subagent-ops` | Plans with independent tasks — fresh agent per task, two-stage review |
+| `hyperstack:test-first` | Before writing any implementation code — red-green-refactor |
+| `hyperstack:worktree-isolation` | Before feature work — clean workspace isolation |
+| `hyperstack:code-review` | After completing tasks — dispatch reviewer subagent |
+| `hyperstack:parallel-dispatch` | 2+ independent failures or tasks — concurrent agent dispatch |
 
 ### Support Skills (invoke when the situation calls for it)
 
 | Skill | When to invoke |
 |---|---|
-| `hyperstack:designer` | Before any visual/UX work - produces DESIGN.md |
-| `hyperstack:debug-discipline` | Any bug or unexpected behaviour - root cause first |
+| `hyperstack:designer` | Before any visual/UX work — produces DESIGN.md |
+| `hyperstack:debug-discipline` | Any bug or unexpected behaviour — root cause first |
 | `hyperstack:behaviour-analysis` | UI/UX audits, state machine correctness |
 | `hyperstack:design-patterns-skill` | Selecting the right abstraction or design pattern |
 | `hyperstack:security-review` | OWASP audits, API and infrastructure security |
@@ -180,62 +175,7 @@ Debugging:         debug-discipline → parallel-dispatch (if independent failur
 
 For non-trivial tasks, follow the chain in order. Do not skip steps.
 
-**Platform tool equivalences:** See `skills/hyperstack/references/` for tool name mappings per harness.
-
----
-
-## Layer 3: Agents (Orchestration & Routing)
-
-Hyperstack uses internal roles to manage complexity. These roles are **internal and auto-invoked**.
-The bootstrap and orchestrator (`hyper`) choose the correct role based on the request and lifecycle state.
-
-| Agent | Category | Owns |
-|---|---|---|
-| `hyper` | Core | Classification, routing, gate enforcement, final verification, delivery. |
-| `website-builder` | Specialist | Website-facing design/implementation, CTA hierarchy, page structure. |
-
-### Role Hierarchy & Hand-off
-
-1. Every request starts in `hyper`.
-2. `hyper` classifies and delegates to specialists (e.g., `website-builder`) when domain-specific work is detected.
-3. Specialists implement the work following Layers 1 & 2 (MCP + Skills).
-4. Specialists **MUST** hand back to `hyper` for final verification and ship-gate.
-5. `hyper` performs the final check and delivers to the user.
-
----
-
-## Role Registry
-
-- `hyper` - conductor, classifier, gatekeeper, verifier, and delivery owner
-- `website-builder` - first specialist for website-facing design and
-  implementation work
-
-## Routing Summary
-
-- Every request enters through `hyper`
-- `hyper` inspects the workspace first: package manifests, dependency signals,
-  and likely core files for the affected surface
-- `hyper -> website-builder` for website-facing work: landing pages, dashboards,
-  marketing pages, redesigns, page structure, CTA hierarchy, form friction,
-  trust signals, and website-experience-heavy UI work
-- `website-builder -> hyper` after specialist output is ready for review and
-  verification
-- If classification is ambiguous, stay in `hyper`
-
-## Allowed Transitions
-
-- `user request -> hyper`
-- `hyper -> website-builder`
-- `website-builder -> hyper`
-- `hyper -> existing Hyperstack skills/plugins`
-- `hyper -> verification and delivery gates`
-
-## Disallowed Transitions
-
-- `user request -> website-builder`
-- `website-builder -> ship`
-- `website-builder -> deliver`
-- `website-builder` claiming final completion directly
+**Platform tool equivalences:** See `skills/using-hyperstack/references/` for tool name mappings per harness.
 
 ---
 

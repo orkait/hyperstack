@@ -5,7 +5,7 @@ Use this format for Phase 4 output. Every section is required.
 ---
 
 ```markdown
-# DESIGN.md - [Product Name]
+# DESIGN.md — [Product Name]
 
 ## 1. Visual Theme & Atmosphere
 

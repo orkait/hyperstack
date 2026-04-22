@@ -1,5 +1,5 @@
-// Static dispatch - compiler generates specialized code
+// Static dispatch — compiler generates specialized code
 fn process<T: Processor>(p: T) { p.run(); }
 
-// Dynamic dispatch - needed for mixed types
+// Dynamic dispatch — needed for mixed types
 fn run_all(processors: &[Box<dyn Processor>]) { ... }

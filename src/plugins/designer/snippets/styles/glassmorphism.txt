@@ -8,7 +8,7 @@
   padding: 32px;
 }
 
-/* REQUIRES vibrant background - flat bg kills the effect */
+/* REQUIRES vibrant background — flat bg kills the effect */
 .glass-container {
   background: linear-gradient(135deg,
     oklch(0.55 0.20 265),

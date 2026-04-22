@@ -215,7 +215,7 @@ class DatabaseConfig {
 
 **Supported by:** *The Pragmatic Programmer*, Donald Knuth's famous quote
 
-> "Premature optimization is the root of all evil" - Donald Knuth
+> "Premature optimization is the root of all evil" — Donald Knuth
 
 ### Examples
 

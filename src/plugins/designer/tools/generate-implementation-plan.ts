@@ -100,7 +100,7 @@ export function register(server: McpServer): void {
 }
 
 // ---------------------------------------------------------------------------
-// DESIGN.md parser - extracts the 10 canonical sections
+// DESIGN.md parser — extracts the 10 canonical sections
 // ---------------------------------------------------------------------------
 
 export const requiredSections = [
@@ -145,7 +145,7 @@ export function parseDesignMd(raw: string): Record<string, string> {
 }
 
 // ---------------------------------------------------------------------------
-// Task builder - maps each DESIGN.md section to implementation tasks
+// Task builder — maps each DESIGN.md section to implementation tasks
 // ---------------------------------------------------------------------------
 
 export interface PlanTask {
@@ -164,7 +164,7 @@ export function buildTasks(sections: Record<string, string>, framework: string):
   // Task 1: Color tokens (Section 2)
   if (sections["2"]) {
     tasks.push({
-      name: "Color tokens - OKLCH ramps + semantic tokens",
+      name: "Color tokens — OKLCH ramps + semantic tokens",
       sourceSection: "2 (Color Palette)",
       purpose: "Define the complete color system as CSS custom properties in Tailwind v4 @theme blocks",
       files: ["app/globals.css or src/styles/tokens.css"],
@@ -191,7 +191,7 @@ export function buildTasks(sections: Record<string, string>, framework: string):
         "All semantic tokens from DESIGN.md Section 2 present in CSS",
         "Dark mode strategy matches DESIGN.md (bg-color elevation OR tonal overlays)",
         "Body text contrast >= 4.5:1 in both light and dark mode",
-        "No hex/HSL values - only OKLCH",
+        "No hex/HSL values — only OKLCH",
       ],
     });
   }
@@ -199,7 +199,7 @@ export function buildTasks(sections: Record<string, string>, framework: string):
   // Task 2: Typography (Section 3)
   if (sections["3"]) {
     tasks.push({
-      name: "Typography - font loading + type scale",
+      name: "Typography — font loading + type scale",
       sourceSection: "3 (Typography)",
       purpose: "Load fonts and define type scale tokens with correct tracking/line-height per level",
       files: ["app/layout.tsx (font import)", "app/globals.css (type tokens)"],
@@ -231,7 +231,7 @@ export function buildTasks(sections: Record<string, string>, framework: string):
   // Task 3: Spacing (Section 4)
   if (sections["4"]) {
     tasks.push({
-      name: "Spacing - 4px grid + semantic tokens",
+      name: "Spacing — 4px grid + semantic tokens",
       sourceSection: "4 (Spacing)",
       purpose: "Configure Tailwind v4 spacing with 4px base and semantic named tokens",
       files: ["app/globals.css (spacing tokens)"],
@@ -257,13 +257,13 @@ export function buildTasks(sections: Record<string, string>, framework: string):
     });
   }
 
-  // Task 4+: Components (Section 5) - one task per component
+  // Task 4+: Components (Section 5) — one task per component
   if (sections["5"]) {
     const components = extractComponentsFromSection(sections["5"]);
     for (const comp of components) {
       tasks.push({
         name: `Component: ${comp}`,
-        sourceSection: `5 (Components) - ${comp}`,
+        sourceSection: `5 (Components) — ${comp}`,
         purpose: `Implement ${comp} with ALL states and variants per DESIGN.md spec`,
         files: [`components/ui/${comp.toLowerCase()}.tsx`],
         mcpCalls: [
@@ -313,7 +313,7 @@ export function buildTasks(sections: Record<string, string>, framework: string):
   // Task: Motion (Section 6)
   if (sections["6"]) {
     tasks.push({
-      name: "Motion - transitions + animations",
+      name: "Motion — transitions + animations",
       sourceSection: "6 (Motion)",
       purpose: "Define duration/easing tokens and implement animations per DESIGN.md motion spec",
       files: ["app/globals.css (motion tokens)", "components with motion"],
@@ -349,7 +349,7 @@ export function buildTasks(sections: Record<string, string>, framework: string):
   // Task: Elevation (Section 7)
   if (sections["7"]) {
     tasks.push({
-      name: "Elevation - shadows + z-index scale",
+      name: "Elevation — shadows + z-index scale",
       sourceSection: "7 (Elevation)",
       purpose: "Define 5-level shadow system (light) + bg-color elevation (dark) + named z-index scale",
       files: ["app/globals.css (elevation tokens)"],
@@ -382,7 +382,7 @@ export function buildTasks(sections: Record<string, string>, framework: string):
   // Task: Responsive (Section 9)
   if (sections["9"]) {
     tasks.push({
-      name: "Responsive - breakpoint overrides",
+      name: "Responsive — breakpoint overrides",
       sourceSection: "9 (Responsive Breakpoints)",
       purpose: "Apply mobile-first responsive behavior at 375/768/1024/1280/1440px breakpoints",
       files: ["component files (responsive modifiers)"],
@@ -412,7 +412,7 @@ export function buildTasks(sections: Record<string, string>, framework: string):
 
   // Task: Final anti-pattern audit (Section 10)
   tasks.push({
-    name: "Anti-pattern audit - final compliance check",
+    name: "Anti-pattern audit — final compliance check",
     sourceSection: "10 (Anti-Patterns)",
     purpose: "Run full DESIGN.md compliance verification before declaring complete",
     files: ["all source files (audit pass)"],
@@ -429,11 +429,11 @@ export function buildTasks(sections: Record<string, string>, framework: string):
       },
     ],
     steps: [
-      "grep for #6366F1 and AI purple gradients - must be absent",
-      "grep for font-weight: 500 - verify weight contrast exists",
-      "grep for rgba(0,0,0 - verify no cold shadows on warm surfaces",
-      "grep for animate-bounce/animate-pulse - verify only on loading states",
-      "grep for outline: none - verify replaced with focus ring",
+      "grep for #6366F1 and AI purple gradients — must be absent",
+      "grep for font-weight: 500 — verify weight contrast exists",
+      "grep for rgba(0,0,0 — verify no cold shadows on warm surfaces",
+      "grep for animate-bounce/animate-pulse — verify only on loading states",
+      "grep for outline: none — verify replaced with focus ring",
       "Verify every component has ALL required states",
       "Verify prefers-reduced-motion present",
       "Run designer_verify_implementation for programmatic check",

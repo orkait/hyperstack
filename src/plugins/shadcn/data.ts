@@ -1,13 +1,13 @@
 import { snippet } from "./loader.js";
 
 // ---------------------------------------------------------------------------
-// SHADCN COMPONENTS (Base UI Edition - curated reference)
+// SHADCN COMPONENTS (Base UI Edition — curated reference)
 // ---------------------------------------------------------------------------
 //
 // This plugin provides REFERENCE knowledge for shadcn/ui (Base UI variant).
 // Components are bundled as static data so the plugin works independently of
 // the user's project. For live reading of a user's actual shadcn components,
-// use their filesystem directly - this plugin describes the canonical patterns.
+// use their filesystem directly — this plugin describes the canonical patterns.
 
 export const COMPONENT_CATEGORIES = [
   "button", "input", "card", "dialog", "dropdown", "tabs",
@@ -102,13 +102,13 @@ export const ARCHITECTURAL_CHECKLIST = [
   "'use client' directive on stateful components",
   "Props spread (...props) to underlying primitive",
   "Sub-components exported for composition",
-  "No Radix imports - migrated to Base UI",
+  "No Radix imports — migrated to Base UI",
   "OKLCH color tokens from design system, not hardcoded hex",
   "Tailwind v4 native CSS variables for positioning/sizing",
 ];
 
 // ---------------------------------------------------------------------------
-// COMPONENT COMPOSITION - which components to combine for a page type
+// COMPONENT COMPOSITION — which components to combine for a page type
 // This is the bridge between designer's page templates and shadcn primitives.
 // ---------------------------------------------------------------------------
 
@@ -150,7 +150,7 @@ export const PAGE_COMPOSITIONS: PageComposition[] = [
       { name: "KPI row", components: ["Card (metric)", "Skeleton (loading)"], rationale: "Card grid for metrics. Skeleton loaders during fetch." },
       { name: "Data table", components: ["Table", "Input (search)", "Select (filter)", "Pagination", "Checkbox (multi-select)"], rationale: "Standard table with sort/filter/search/bulk. Pagination > infinite scroll." },
       { name: "Detail drawer", components: ["Sheet", "Tabs", "Form"], rationale: "Side drawer keeps list context. Tabs organize detail sections." },
-      { name: "Empty states", components: ["Card", "Button (CTA)"], rationale: "Every empty state gets a single CTA - primary vector for feature adoption." },
+      { name: "Empty states", components: ["Card", "Button (CTA)"], rationale: "Every empty state gets a single CTA — primary vector for feature adoption." },
     ],
   },
   {
@@ -174,13 +174,13 @@ export const PAGE_COMPOSITIONS: PageComposition[] = [
   },
   {
     type: "checkout",
-    description: "Purchase flow - minimize friction, maximize trust",
+    description: "Purchase flow — minimize friction, maximize trust",
     sections: [
       { name: "Cart summary", components: ["Card", "Table (line items)", "Input (quantity)", "Input (promo code)"], rationale: "Sticky on desktop, collapsible on mobile. Always visible total." },
       { name: "Contact info", components: ["Field", "Input (email)", "Input (phone)"], rationale: "Max 2 fields. Guest checkout mandatory (26% abandon if forced account)." },
       { name: "Address", components: ["Field", "Input (autocomplete)", "Select (country)"], rationale: "Address autocomplete reduces fields." },
       { name: "Payment", components: ["Field", "Input (card)", "Badge (trust signals)"], rationale: "Auto-chunk card number. Trust badges adjacent to payment CTA." },
-      { name: "Submit", components: ["Button (specific amount)", "Card (guarantee)"], rationale: "'Place order - $X.XX' specific. Money-back guarantee +32% sales." },
+      { name: "Submit", components: ["Button (specific amount)", "Card (guarantee)"], rationale: "'Place order — $X.XX' specific. Money-back guarantee +32% sales." },
     ],
   },
   {

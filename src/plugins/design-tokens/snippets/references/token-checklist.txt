@@ -1,4 +1,4 @@
-# Complete Token Categories - Production Checklist
+# Complete Token Categories — Production Checklist
 
 Every production design system needs all 10 categories. Missing any = inconsistency.
 

@@ -20,7 +20,7 @@ func main() {
   if err != nil {
     log.Fatalf("failed to load config: %v", err)
   }
-  // Pass cfg to constructors - never use os.Getenv() deep in the code
+  // Pass cfg to constructors — never use os.Getenv() deep in the code
   db := NewDB(cfg.DatabaseURL)
   srv := NewServer(cfg.Port, db)
   srv.Run()

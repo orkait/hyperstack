@@ -25,7 +25,7 @@
 **Must-Have:**
 - Subtle hover transitions on all interactive elements
 - Smooth state changes (loading, success, error)
-- Clear data hierarchy - users need to find things fast
+- Clear data hierarchy — users need to find things fast
 - Empty states for every data container
 - Onboarding checklist (3-5 items, Userpilot: 3x more likely to convert paid)
 
@@ -71,9 +71,9 @@
 **Color Mood:** Calm blue + health green, low saturation (C < 0.12)
 
 **Must-Have:**
-- **WCAG AAA** (not just AA - diverse user base including elderly and disabled)
+- **WCAG AAA** (not just AA — diverse user base including elderly and disabled)
 - Calm colors only (no bright, no neon, no high saturation)
-- Large touch targets (48px+, not just 44px - users may have motor difficulties)
+- Large touch targets (48px+, not just 44px — users may have motor difficulties)
 - Clear error recovery (errors in medical context can have real consequences)
 - Large text option (Dynamic Type / text scaling support)
 - Crisis resources accessible from any screen
@@ -106,7 +106,7 @@
 **Never-Use:**
 - Playful design (destroys institutional trust)
 - AI purple/pink gradients (reads as startup, not bank)
-- Unclear fees or hidden costs (FTC enforcement risk - see Amazon $2.5B case)
+- Unclear fees or hidden costs (FTC enforcement risk — see Amazon $2.5B case)
 - Bright/vivid colors (financial anxiety already high; don't add visual stress)
 - Animations on transaction screens (users need clarity, not entertainment)
 
@@ -179,7 +179,7 @@
 - Distracting animations during text generation
 - Cluttered sidebars competing with the conversation
 - AI purple (#6366F1) as unconscious default (use it only if it's a deliberate brand choice)
-- Anthropomorphized AI persona (the Clippy problem - confidence without competence is a UX disaster)
+- Anthropomorphized AI persona (the Clippy problem — confidence without competence is a UX disaster)
 
 **The AI Purple Problem:** Adam Wathan (Tailwind creator) acknowledged #6366F1 was a "neutral, inoffensive placeholder" not intended as default for 40% of the internet. LLM training data scraped billions of tokens of Tailwind code → models learned "purple = web button" → AI-generated sites used purple → entered next training corpus → bias compounded. Using it says "this was generated."
 
@@ -197,7 +197,7 @@
 - Size guides and detailed specifications
 - Review system with verified purchase indicator
 - Wishlist/save functionality
-- Guest checkout (26% abandon if forced account - Baymard)
+- Guest checkout (26% abandon if forced account — Baymard)
 
 **Never-Use:**
 - Block-based colorful layouts (reads as mass-market, not luxury)
@@ -214,7 +214,7 @@
 **Color Mood:** High contrast, institutional blue, minimal palette
 
 **Must-Have:**
-- **WCAG AAA** (non-negotiable - diverse population including elderly, disabled, non-native speakers)
+- **WCAG AAA** (non-negotiable — diverse population including elderly, disabled, non-native speakers)
 - Skip links for keyboard/screen reader users
 - Plain language at **grade 4-6** reading level (GOV.UK standard)
 - Breadcrumbs for hierarchical navigation

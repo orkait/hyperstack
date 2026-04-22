@@ -11,7 +11,7 @@ export function register(server: McpServer): void {
     },
     async ({ need }) => {
       if (!need) {
-        let text = "# Echo Framework - Decision Matrix\n\n";
+        let text = "# Echo Framework — Decision Matrix\n\n";
         text += "| Need | Pattern | Recipe | Notes |\n";
         text += "|------|---------|--------|-------|\n";
         for (const d of DECISION_MATRIX) {

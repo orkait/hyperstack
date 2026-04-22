@@ -1,10 +1,10 @@
-/* Vercel / Geist - Specific Values */
+/* Vercel / Geist — Specific Values */
 
 /* Geist typeface (commissioned from basement.studio): */
 /* 9 weights, 825 glyphs, 368 language support */
 /* High x-height for small UI legibility */
-/* Short descenders - maximizes text density */
-/* Angular terminals on t, f, descenders - reads "technical" */
+/* Short descenders — maximizes text density */
+/* Angular terminals on t, f, descenders — reads "technical" */
 
 /* Tracking: */
 /* Display: -0.04em (extremely tight) */
@@ -12,9 +12,9 @@
 /* At -0.02em, Inter achieves similar "set" feel */
 
 /* Color (aggressive reduction): */
-/* Primary: #000 / #FFF - pure values, zero tint */
-/* Gray: 11 steps, #F7F7F7 -> #0A0A0A - zero chromatic bias */
-/* Accent: #0070F3 - links, buttons, active only. Never surface. */
+/* Primary: #000 / #FFF — pure values, zero tint */
+/* Gray: 11 steps, #F7F7F7 -> #0A0A0A — zero chromatic bias */
+/* Accent: #0070F3 — links, buttons, active only. Never surface. */
 /* No gradients in UI (marketing only) */
 
 /* Spacing & Typography: */

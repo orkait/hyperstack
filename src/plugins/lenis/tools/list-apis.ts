@@ -5,7 +5,7 @@ import { ALL_APIS, API_KINDS, capitalize } from "../data.js";
 export function register(server: McpServer): void {
   server.tool(
     "lenis_list_apis",
-    "List all Lenis smooth scroll APIs - ReactLenis component, useLenis hook, LenisRef and LenisOptions types.",
+    "List all Lenis smooth scroll APIs — ReactLenis component, useLenis hook, LenisRef and LenisOptions types.",
     {
       kind: z.enum(["all", ...API_KINDS]).optional().describe("Filter by API kind: component, hook, type, utility"),
     },
@@ -18,10 +18,10 @@ export function register(server: McpServer): void {
       for (const api of apis) {
         const k = api.kind;
         if (!grouped[k]) grouped[k] = [];
-        grouped[k].push(`${api.name} - ${api.description.split(".")[0]}`);
+        grouped[k].push(`${api.name} — ${api.description.split(".")[0]}`);
       }
 
-      let text = "# Lenis React - API Reference\n\n";
+      let text = "# Lenis React — API Reference\n\n";
       text += `Import from \`"lenis/react"\` (types from \`"lenis"\`)\n\n`;
       for (const [k, items] of Object.entries(grouped)) {
         text += `## ${capitalize(k)}s\n`;

@@ -26,11 +26,11 @@ Is it SEO-critical?
 
 ## State Hierarchy (Strict Order)
 
-1. URL state (searchParams/pathname) - shareable, bookmarkable
-2. Server state (React Query / SWR / RSC fetch) - cached, deduplicated
-3. Local component state - useState / useReducer
-4. Shared client state - Zustand (Redux prohibited)
-5. Context - injection only (theme, auth tokens, i18n, feature flags)
+1. URL state (searchParams/pathname) — shareable, bookmarkable
+2. Server state (React Query / SWR / RSC fetch) — cached, deduplicated
+3. Local component state — useState / useReducer
+4. Shared client state — Zustand (Redux prohibited)
+5. Context — injection only (theme, auth tokens, i18n, feature flags)
 
 ## Forbidden Patterns
 
@@ -62,10 +62,10 @@ Every implementation response must include:
 
 After drafting output, verify:
 1. Find 5 concrete failure modes + add tests for each
-2. Falsify assumptions - what if they are wrong?
+2. Falsify assumptions — what if they are wrong?
 3. Enforce invariants with guards/validation
-4. Audit dependencies - no circular deps, minimal public surface
-5. Challenge simpler alternatives - is there an easier way?
+4. Audit dependencies — no circular deps, minimal public surface
+5. Challenge simpler alternatives — is there an easier way?
 6. Inject at least one test per failure mode
 7. Revise + repeat pass
 8. Append Negative Doubt Log to response

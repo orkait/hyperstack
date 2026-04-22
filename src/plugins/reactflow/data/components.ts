@@ -79,11 +79,11 @@ const reactFlowComponent: ApiEntry = {
     },
   ],
   tips: [
-    "The parent container must have explicit width and height - React Flow fills its parent.",
+    "The parent container must have explicit width and height — React Flow fills its parent.",
     "Always import '@xyflow/react/dist/style.css' once at your app root.",
     "Define event handlers outside the component or with useCallback to prevent infinite re-render loops.",
     "nodeTypes and edgeTypes must be defined outside the component or memoized.",
-    "v12 uses @xyflow/react (named exports) - not the legacy 'reactflow' package.",
+    "v12 uses @xyflow/react (named exports) — not the legacy 'reactflow' package.",
   ],
   relatedApis: ["ReactFlowProvider", "Background", "Controls", "MiniMap", "useReactFlow"],
 };
@@ -232,7 +232,7 @@ const nodeToolbarComponent: ApiEntry = {
   name: "NodeToolbar",
   kind: "component",
   description:
-    "Renders a toolbar/tooltip to one side of a custom node. Does not scale with viewport - always readable.",
+    "Renders a toolbar/tooltip to one side of a custom node. Does not scale with viewport — always readable.",
   importPath: "import { NodeToolbar } from '@xyflow/react'",
   props: [
     { name: "isVisible", type: "boolean", description: "Control visibility. Defaults to showing when node is selected." },
@@ -389,7 +389,7 @@ const reactFlowProviderComponent: ApiEntry = {
   examples: [],
   tips: [
     "If you render <ReactFlow> and need to use hooks like useReactFlow in sibling or parent components, wrap everything in <ReactFlowProvider>.",
-    "The <ReactFlow> component creates its own provider internally - you only need <ReactFlowProvider> when using hooks outside <ReactFlow>.",
+    "The <ReactFlow> component creates its own provider internally — you only need <ReactFlowProvider> when using hooks outside <ReactFlow>.",
   ],
   relatedApis: ["ReactFlow", "useReactFlow"],
 };

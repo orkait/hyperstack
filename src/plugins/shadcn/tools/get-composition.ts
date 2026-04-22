@@ -42,7 +42,7 @@ export function register(server: McpServer): void {
       text += `2. Call \`shadcn_get_snippet(name)\` for usage example\n`;
       text += `3. Verify against DESIGN.md Section 5 (Component Specifications)\n`;
       text += `4. Call \`shadcn_get_rules\` before writing any code\n\n`;
-      text += `**Integration with designer:** This composition should be cross-referenced with \`designer_get_page_template("${composition.type}")\` to ensure the section anatomy matches. If they conflict, DESIGN.md is the source of truth - escalate back to \`hyperstack:designer\` to reconcile.\n`;
+      text += `**Integration with designer:** This composition should be cross-referenced with \`designer_get_page_template("${composition.type}")\` to ensure the section anatomy matches. If they conflict, DESIGN.md is the source of truth — escalate back to \`hyperstack:designer\` to reconcile.\n`;
 
       return { content: [{ type: "text" as const, text }] };
     }

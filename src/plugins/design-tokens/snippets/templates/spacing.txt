@@ -1,5 +1,5 @@
 /* ============================================================
-   DESIGN TOKEN SYSTEM - Spacing (4px grid + named semantics)
+   DESIGN TOKEN SYSTEM — Spacing (4px grid + named semantics)
    ============================================================ */
 
 @theme {
@@ -16,7 +16,7 @@
   --spacing-card-sm: 1.25rem;      /* 20px */
   --spacing-grid-cards: 1.5rem;    /* 24px */
   --spacing-grid-cards-lg: 2rem;   /* 32px */
-  --spacing-inline: 0.5rem;        /* 8px - icon + label */
+  --spacing-inline: 0.5rem;        /* 8px — icon + label */
   --spacing-form-gap: 1.25rem;     /* 20px */
   --spacing-nav-x: 1.5rem;         /* 24px */
   --spacing-nav-y: 1rem;           /* 16px */

@@ -4,7 +4,7 @@ import { PRESETS } from "../data.js";
 export function register(server: McpServer): void {
   server.tool(
     "designer_list_presets",
-    "List all available design presets - complete, code-ready design token configurations based on real premium design systems (Linear, Stripe, Vercel, Apple, Carbon, shadcn, Notion, Supabase, Figma).",
+    "List all available design presets — complete, code-ready design token configurations based on real premium design systems (Linear, Stripe, Vercel, Apple, Carbon, shadcn, Notion, Supabase, Figma).",
     {},
     async () => {
       let text = "# Design Presets\n\n";
@@ -13,7 +13,7 @@ export function register(server: McpServer): void {
       text += "|---|---|---|---|---|---|\n";
 
       for (const p of PRESETS) {
-        text += `| **${p.displayName}** | ${p.personality} | ${p.tokens.colors.mode} | ${p.tokens.typography.bodySize}/w${p.tokens.typography.bodyWeight} | ${p.tokens.spacing.density} | ${p.tokens.motion.style.split("-")[0].trim()} |\n`;
+        text += `| **${p.displayName}** | ${p.personality} | ${p.tokens.colors.mode} | ${p.tokens.typography.bodySize}/w${p.tokens.typography.bodyWeight} | ${p.tokens.spacing.density} | ${p.tokens.motion.style.split("—")[0].trim()} |\n`;
       }
 
       text += `\nUse \`designer_get_preset(name)\` for full token configuration + CSS example.\n`;

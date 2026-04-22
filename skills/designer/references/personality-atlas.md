@@ -1,4 +1,4 @@
-# Personality Atlas - 6 Design Personality Clusters
+# Personality Atlas — 6 Design Personality Clusters
 
 > Source: awesome-design-md (58 real company design systems), ui-ux-pro-max (67 styles, 161 industry rules)
 > Core insight: Design is communication before aesthetics. A product without a named personality produces polished randomness.
@@ -24,10 +24,10 @@ Without Layer 1, Layers 2 and 3 produce polished randomness. The personality mus
 **What it communicates:** "Engineered by people who care about every pixel. We respect your intelligence."
 
 **Exemplars:**
-- **Linear** - ultra-minimal, zero decoration, tight type (-0.03em), purple accent, no gradients. The 2024 redesign replaced 98-variable HSL with 3 variables (base, accent, contrast). Opacity-based hierarchy: sidebar dimmed via opacity, not different colors.
-- **Vercel** - black + white only, Geist font (high x-height, short descenders, angular terminals), mathematical spacing, section padding 96-128px. No gradients in UI (marketing only). Single accent #0070F3 for interactive elements only.
-- **Apple** - massive whitespace, cinematic imagery, SF Pro with Display/Text split at 20pt. 44pt touch targets non-negotiable. Clarity/Deference/Depth: the UI steps back, content takes center stage.
-- **Stripe** - weight-300 body, weight-500 headers (zero use of 400 or 700 anywhere). Söhne typeface. CIELAB color system where 5-step separation guarantees 4.5:1 contrast mathematically. Complex multi-point gradient meshes in heroes (not 2-stop gradients).
+- **Linear** — ultra-minimal, zero decoration, tight type (-0.03em), purple accent, no gradients. The 2024 redesign replaced 98-variable HSL with 3 variables (base, accent, contrast). Opacity-based hierarchy: sidebar dimmed via opacity, not different colors.
+- **Vercel** — black + white only, Geist font (high x-height, short descenders, angular terminals), mathematical spacing, section padding 96-128px. No gradients in UI (marketing only). Single accent #0070F3 for interactive elements only.
+- **Apple** — massive whitespace, cinematic imagery, SF Pro with Display/Text split at 20pt. 44pt touch targets non-negotiable. Clarity/Deference/Depth: the UI steps back, content takes center stage.
+- **Stripe** — weight-300 body, weight-500 headers (zero use of 400 or 700 anywhere). Söhne typeface. CIELAB color system where 5-step separation guarantees 4.5:1 contrast mathematically. Complex multi-point gradient meshes in heroes (not 2-stop gradients).
 
 **Visual Vocabulary:**
 
@@ -52,10 +52,10 @@ Without Layer 1, Layers 2 and 3 produce polished randomness. The personality mus
 **What it communicates:** "Built by developers, for developers. We share your mental model."
 
 **Exemplars:**
-- **Supabase** - dark emerald accent on near-black. Code-first: SQL editor is the hero, not a marketing page. Documentation density rivals the product itself.
-- **Warp** - dark IDE-like interface, block-based command UI, monospace-heavy. The terminal IS the product - the UI wraps around it.
-- **Cursor** - sleek dark, gradient accents on key features, keyboard-first interaction model. Every action has a keyboard shortcut.
-- **Raycast** - command palette is the entire UX paradigm. Bento grid for feature display. Speed is the design value - every interaction under 100ms.
+- **Supabase** — dark emerald accent on near-black. Code-first: SQL editor is the hero, not a marketing page. Documentation density rivals the product itself.
+- **Warp** — dark IDE-like interface, block-based command UI, monospace-heavy. The terminal IS the product — the UI wraps around it.
+- **Cursor** — sleek dark, gradient accents on key features, keyboard-first interaction model. Every action has a keyboard shortcut.
+- **Raycast** — command palette is the entire UX paradigm. Bento grid for feature display. Speed is the design value — every interaction under 100ms.
 
 **Visual Vocabulary:**
 
@@ -71,9 +71,9 @@ Without Layer 1, Layers 2 and 3 produce polished randomness. The personality mus
 | Default mode | Dark | Convention. Developers spend 8+ hours in dark IDEs. Light mode should be an option, not the default. |
 
 **Critical components:**
-- **Command palette (Cmd+K)** - not optional. This IS the primary navigation for 50+ feature apps.
-- **Keyboard shortcuts** - every frequent action. Display in tooltips and menus.
-- **Code blocks** - syntax highlighting, copy button, language label. Always.
+- **Command palette (Cmd+K)** — not optional. This IS the primary navigation for 50+ feature apps.
+- **Keyboard shortcuts** — every frequent action. Display in tooltips and menus.
+- **Code blocks** — syntax highlighting, copy button, language label. Always.
 
 **When to use:** Developer tools, CLIs with web UI, API dashboards, code editors, DevOps platforms.
 **When NOT to use:** Consumer apps, marketing sites, healthcare, government, children's education.
@@ -85,10 +85,10 @@ Without Layer 1, Layers 2 and 3 produce polished randomness. The personality mus
 **What it communicates:** "We value your time and attention. Reading this should feel like opening a well-made book."
 
 **Exemplars:**
-- **Notion** - warm minimalism with serif headings (now using custom serif). Soft surfaces, cream backgrounds. The editor disappears - content takes center stage via Rams' "unobtrusive" principle.
-- **Airbnb** - warm coral accent (#FF5A5F), photography-driven design where images do the emotional work. Rounded-xl elements (16-20px radius) feel approachable. The warmth is in the neutral background temperature.
-- **Zapier** - warm orange accent, friendly illustration style. Rounded corners. The personality is "helpful guide" not "powerful tool."
-- **Medium** - serif body text (a deliberate, unusual choice), reading-optimized line height (1.75), generous whitespace. The platform IS the reading experience.
+- **Notion** — warm minimalism with serif headings (now using custom serif). Soft surfaces, cream backgrounds. The editor disappears — content takes center stage via Rams' "unobtrusive" principle.
+- **Airbnb** — warm coral accent (#FF5A5F), photography-driven design where images do the emotional work. Rounded-xl elements (16-20px radius) feel approachable. The warmth is in the neutral background temperature.
+- **Zapier** — warm orange accent, friendly illustration style. Rounded corners. The personality is "helpful guide" not "powerful tool."
+- **Medium** — serif body text (a deliberate, unusual choice), reading-optimized line height (1.75), generous whitespace. The platform IS the reading experience.
 
 **Visual Vocabulary:**
 
@@ -96,7 +96,7 @@ Without Layer 1, Layers 2 and 3 produce polished randomness. The personality mus
 |---|---|---|
 | Colors | Warm-tinted neutrals: oklch(0.98 0.012 78) not cold oklch(0.98 0 0). 2-5deg hue shift transforms "digital" into "paper." | The single most impactful change for warmth. BooleanStack evidence: warm cream bg (#FAF8F5) "feels like a premium notebook, not a cold SaaS dashboard." |
 | Typography | Serif or humanist sans for headings. 18px body. Line height 1.6-1.75. | Serif = editorial trust, human craftsmanship. Larger body + generous leading = reading comfort. 1.75 is prose-optimized, not UI-optimized (use 1.5 for UI). |
-| Radius | 12-20px, friendly and approachable | Rounded shapes signal friendliness (Gestalt: round = safe). But cap at 20px - beyond that reads as childish. |
+| Radius | 12-20px, friendly and approachable | Rounded shapes signal friendliness (Gestalt: round = safe). But cap at 20px — beyond that reads as childish. |
 | Shadows | Warm-tinted (oklch(0.22 0.006 56 / 0.06)), soft multi-layer | Cold rgba(0,0,0) shadows on warm surfaces feel disconnected. The shadow hue must complement the background temperature. |
 | Motion | Smooth 200-300ms, ease-in-out. Gentle. No bounce. | The personality is "considered" and "careful." Spring/bounce animations would be tonally wrong. |
 | Density | Comfortable (96px sections, 40px cards, 18px body) | Reading requires breathing room. Dense layouts signal "tool" not "publication." |
@@ -104,7 +104,7 @@ Without Layer 1, Layers 2 and 3 produce polished randomness. The personality mus
 | Default mode | Light | Reading context. Paper metaphor. Dark mode editorial exists (Medium) but light is the natural default. |
 
 **The color temperature insight:**
-A background of oklch(0.98 0.012 78) - warm cream - versus oklch(0.98 0 0) - neutral white - changes the perceived personality of the entire interface from "cold SaaS dashboard" to "premium notebook." This 0.012 chroma at hue 78 is the highest-leverage single design decision for warmth.
+A background of oklch(0.98 0.012 78) — warm cream — versus oklch(0.98 0 0) — neutral white — changes the perceived personality of the entire interface from "cold SaaS dashboard" to "premium notebook." This 0.012 chroma at hue 78 is the highest-leverage single design decision for warmth.
 
 **When to use:** Content platforms, editorial sites, consumer apps, hospitality, lifestyle brands, note-taking tools.
 **When NOT to use:** Developer tools, data-dense dashboards, gaming, fintech (needs more formality).
@@ -116,17 +116,17 @@ A background of oklch(0.98 0.012 78) - warm cream - versus oklch(0.98 0 0) - neu
 **What it communicates:** "We're confident, creative, and not afraid to stand out. This is exciting."
 
 **Exemplars:**
-- **Figma** - multi-color palette (each feature gets its own color), vibrant, playful yet professional. The design tool's own design is a portfolio piece.
-- **Framer** - bold black + vivid blue accent, motion-first (the product IS motion). Design-forward homepage that demonstrates capability.
-- **PostHog** - playful dark UI with hedgehog branding, developer-friendly tone. Proves bold can coexist with technical credibility.
-- **Pitch** - bold gradients, large type (40px+ hero headings), presentation-native aesthetics where the product's visual ambition matches its purpose.
+- **Figma** — multi-color palette (each feature gets its own color), vibrant, playful yet professional. The design tool's own design is a portfolio piece.
+- **Framer** — bold black + vivid blue accent, motion-first (the product IS motion). Design-forward homepage that demonstrates capability.
+- **PostHog** — playful dark UI with hedgehog branding, developer-friendly tone. Proves bold can coexist with technical credibility.
+- **Pitch** — bold gradients, large type (40px+ hero headings), presentation-native aesthetics where the product's visual ambition matches its purpose.
 
 **Visual Vocabulary:**
 
 | Property | Value | Why |
 |---|---|---|
-| Colors | 4-6 vivid colors from complementary or triadic schemes. High chroma (C 0.15+). | Energy requires color contrast. Monochromatic would kill the personality. But cap at 6 - beyond that is chaos. |
-| Typography | Display weight (700-900) for headings, 32px+ size. Tight tracking (-0.02 to -0.03em). | Large, heavy type demands attention. This is intentional - the personality IS attention-demanding. |
+| Colors | 4-6 vivid colors from complementary or triadic schemes. High chroma (C 0.15+). | Energy requires color contrast. Monochromatic would kill the personality. But cap at 6 — beyond that is chaos. |
+| Typography | Display weight (700-900) for headings, 32px+ size. Tight tracking (-0.02 to -0.03em). | Large, heavy type demands attention. This is intentional — the personality IS attention-demanding. |
 | Radius | 12-16px, confident | Not sharp (too cold), not super-rounded (too childish). Confident middle. |
 | Shadows | Medium depth, colored shadows on brand elements (0 8px 24px oklch(brand / 0.10)) | Colored shadows create depth that references the brand. More expressive than neutral shadows. |
 | Motion | Rich 200-400ms. Scroll reveals, spring animations (cubic-bezier(0.34, 1.56, 0.64, 1)). | Bold personality = bold motion. Spring easing adds playfulness. But still under 400ms for UI interactions. |
@@ -143,10 +143,10 @@ A background of oklch(0.98 0.012 78) - warm cream - versus oklch(0.98 0 0) - neu
 **What it communicates:** "This is an experience, not a tool. Immerse yourself."
 
 **Exemplars:**
-- **ElevenLabs** - dark cinematic UI where audio waveform aesthetics define the visual language. The product's output (voice) drives the design metaphor.
-- **RunwayML** - dark + media-rich, full-viewport compositions. The AI-generated content IS the hero - the UI is invisible framing around it.
-- **SpaceX** - stark black + white, full-bleed photography from actual missions. Futuristic through restraint, not through decoration. No UI chrome competes with the imagery.
-- **Nothing** - dot-matrix aesthetic, pure black, futuristic without reference to existing conventions. The brand's visual language is the product.
+- **ElevenLabs** — dark cinematic UI where audio waveform aesthetics define the visual language. The product's output (voice) drives the design metaphor.
+- **RunwayML** — dark + media-rich, full-viewport compositions. The AI-generated content IS the hero — the UI is invisible framing around it.
+- **SpaceX** — stark black + white, full-bleed photography from actual missions. Futuristic through restraint, not through decoration. No UI chrome competes with the imagery.
+- **Nothing** — dot-matrix aesthetic, pure black, futuristic without reference to existing conventions. The brand's visual language is the product.
 
 **Visual Vocabulary:**
 
@@ -177,10 +177,10 @@ A background of oklch(0.98 0.012 78) - warm cream - versus oklch(0.98 0 0) - neu
 **What it communicates:** "We are reliable, professional, and institutional. Your data is safe with us."
 
 **Exemplars:**
-- **IBM** - Carbon design system. Structured blue palette. IBM Plex typeface (squared terminals distinguish from Helvetica). Every component ships WCAG 2.1 AA. Focus indicators at 3:1 contrast on the ring itself.
-- **HashiCorp** - enterprise-clean, black + white with blue accents. Structured layouts. Infrastructure products need infrastructure-grade design.
-- **Coinbase** - clean institutional blue. Trust-focused. The design says "bank" not "startup." Conservative radius, clear hierarchy, no decorative elements.
-- **Salesforce** - Lightning design system. Blue palette throughout. Data-dense but organized. The design handles complexity through structure, not decoration.
+- **IBM** — Carbon design system. Structured blue palette. IBM Plex typeface (squared terminals distinguish from Helvetica). Every component ships WCAG 2.1 AA. Focus indicators at 3:1 contrast on the ring itself.
+- **HashiCorp** — enterprise-clean, black + white with blue accents. Structured layouts. Infrastructure products need infrastructure-grade design.
+- **Coinbase** — clean institutional blue. Trust-focused. The design says "bank" not "startup." Conservative radius, clear hierarchy, no decorative elements.
+- **Salesforce** — Lightning design system. Blue palette throughout. Data-dense but organized. The design handles complexity through structure, not decoration.
 
 **Visual Vocabulary:**
 
@@ -211,9 +211,9 @@ A background of oklch(0.98 0.012 78) - warm cream - versus oklch(0.98 0 0) - neu
 
 The personality is determined by the intersection of:
 
-1. **Industry** - banking demands enterprise-trust; gaming demands cinematic-dark
-2. **User type** - developers expect technical-developer; consumers expect warm-editorial
-3. **Emotional target** - "trustworthy" maps to enterprise-trust; "playful" maps to bold-energetic
+1. **Industry** — banking demands enterprise-trust; gaming demands cinematic-dark
+2. **User type** — developers expect technical-developer; consumers expect warm-editorial
+3. **Emotional target** — "trustworthy" maps to enterprise-trust; "playful" maps to bold-energetic
 
 When two signals conflict (e.g., "playful fintech"), the industry constraint wins. A playful banking app will lose user trust. A conservative gaming site will lose user engagement. Industry is the harder constraint.
 

@@ -2,6 +2,6 @@ node_modules/
 dist/
 *.js.map
 
-# Research archive - lives at ../knowledgebase/ outside this repo.
+# Research archive — lives at ../knowledgebase/ outside this repo.
 # Ignored here as a safety net in case it gets re-introduced by mistake.
 knowledgebase/

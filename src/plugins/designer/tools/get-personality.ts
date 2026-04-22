@@ -24,7 +24,7 @@ export function register(server: McpServer): void {
 
       text += `## Exemplars\n`;
       for (const e of p.exemplars) {
-        text += `- **${e.name}** - ${e.signature}\n`;
+        text += `- **${e.name}** — ${e.signature}\n`;
       }
 
       text += `\n## Visual Vocabulary\n`;

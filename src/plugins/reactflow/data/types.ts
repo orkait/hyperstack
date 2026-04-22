@@ -1,5 +1,5 @@
 // ---------------------------------------------------------------------------
-// React Flow MCP - Data Layer
+// React Flow MCP — Data Layer
 // All API documentation, examples, patterns, and templates for @xyflow/react v12
 // ---------------------------------------------------------------------------
 
@@ -110,7 +110,7 @@ export function formatApiReference(api: ApiEntry): string {
     text += `| Name | Type | Default | Description |\n`;
     text += `|------|------|---------|-------------|\n`;
     for (const p of api.props) {
-      text += `| ${p.name} | \`${p.type}\` | ${p.default ?? "-"} | ${p.description} |\n`;
+      text += `| ${p.name} | \`${p.type}\` | ${p.default ?? "—"} | ${p.description} |\n`;
     }
     text += "\n";
   }

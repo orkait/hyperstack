@@ -8,7 +8,7 @@ description: Use when executing implementation plans with independent tasks. Dis
 
 ## Why Subagents
 
-Fresh context per task prevents context pollution. You construct exactly what each subagent needs - they never inherit your session history. Keeps them focused, preserves your context for coordination.
+Fresh context per task prevents context pollution. You construct exactly what each subagent needs -- they never inherit your session history. This keeps them focused and preserves your context for coordination.
 
 ## When to Use
 
@@ -18,7 +18,7 @@ Use when:
 - You want to stay in this session (not hand off to a separate session)
 
 Don't use when:
-- Tasks are tightly coupled (each depends on prior's exact output)
+- Tasks are tightly coupled (each depends on the prior's exact output)
 - You need exploratory work (use `blueprint` first)
 - Single small task (just do it inline)
 
@@ -26,9 +26,9 @@ Don't use when:
 
 ### Step 1: Extract All Tasks
 
-Read the plan once. Extract every task with its full text, file paths, and MCP references. Create a task list.
+Read the plan once. Extract every task with its full text, file paths, and MCP references. Create a task list tracking all of them.
 
-Don't make subagents read the plan file - provide the full task text directly.
+Do not make subagents read the plan file -- you provide the full task text directly.
 
 ### Step 2: Per-Task Cycle
 
@@ -37,28 +37,28 @@ For each task in order:
 **2a. Dispatch Implementer**
 
 Dispatch a fresh subagent with:
-- Full task text (copied, not referenced)
+- The full task text (copied, not referenced)
 - Relevant context: what prior tasks produced, file paths, types
-- Test-first discipline inline (subagents can't invoke the Skill tool - provide rules inline: write failing test → watch it fail → minimal code → verify green)
+- Include test-first discipline directly in the prompt (subagents cannot invoke the Skill tool -- provide the rules inline: write failing test, watch it fail, minimal code, verify green)
 - Instruction: use MCP tools to verify API shapes before coding
 - Instruction: commit when done, report status
 
 **Implementer statuses:**
-- **DONE** → proceed to review
-- **DONE_WITH_CONCERNS** → read concerns, address if correctness-related, then review
-- **NEEDS_CONTEXT** → provide missing context, re-dispatch
-- **BLOCKED** → assess: context problem (provide more), reasoning problem (use more capable model), task too large (break it up), plan wrong (escalate to user)
+- **DONE** -- proceed to review
+- **DONE_WITH_CONCERNS** -- read concerns, address if correctness-related, then review
+- **NEEDS_CONTEXT** -- provide missing context, re-dispatch
+- **BLOCKED** -- assess: context problem (provide more), reasoning problem (use more capable model), task too large (break it up), plan wrong (escalate to user)
 
 Never ignore a BLOCKED status. Something must change before re-dispatch.
 
 **2b. Spec Compliance Review**
 
 Dispatch a review subagent with:
-- Original task spec (full text)
-- Git diff of what the implementer produced
-- Question: "Does the code match the spec? Flag anything missing, extra, or wrong."
+- The original task spec (full text)
+- The git diff of what the implementer produced
+- Question: "Does the code match the spec? Flag anything missing, anything extra, anything wrong."
 
-Issues found → implementer fixes → reviewer re-reviews. Loop until clean.
+If issues found: implementer fixes them, reviewer re-reviews. Loop until clean.
 
 **2c. Code Quality Review**
 
@@ -66,7 +66,7 @@ Only after spec compliance passes. Dispatch a review subagent with:
 - The git diff
 - Question: "Review for code quality: naming, structure, edge cases, test coverage. Flag Important and Critical issues only."
 
-Issues found → implementer fixes → reviewer re-reviews. Loop until clean.
+If issues found: implementer fixes, reviewer re-reviews. Loop until clean.
 
 **2d. Mark Complete**
 
@@ -74,11 +74,11 @@ Mark task complete in the task list. Move to next task.
 
 ### Step 3: Final Review
 
-After all tasks complete, dispatch one final review subagent covering the entire implementation diff (`git diff <base-branch>..HEAD`). Catches composition issues per-task reviews miss.
+After all tasks complete, dispatch one final review subagent covering the entire implementation diff (`git diff <base-branch>..HEAD`). This catches composition issues that per-task reviews miss.
 
 ### Step 4: Deliver
 
-Invoke `hyperstack:deliver` for full verification and delivery flow.
+Invoke `hyperstack:deliver` to run the full verification and delivery flow.
 
 ## MCP Integration
 
@@ -91,19 +91,19 @@ When constructing implementer prompts, include MCP tool calls the subagent shoul
 | Motion animations | "Call `motion_get_api('[hook]')` before implementing" |
 | Design tokens | "Call `design_tokens_get_procedure` before implementing" |
 
-Subagent verifies API shapes in its own context. Don't assume your earlier MCP calls are still current.
+The subagent verifies API shapes in its own context. Do not assume your earlier MCP calls are still current.
 
 ## Prompt Structure
 
 Good subagent prompts are:
-1. **Focused** → one task, one clear goal
-2. **Self-contained** → all context needed, no "see above"
-3. **Specific about output** → what to return, what format
+1. **Focused** -- one task, one clear goal
+2. **Self-contained** -- all context needed, no "see above"
+3. **Specific about output** -- what to return, what format
 
 Bad: "Fix the tests" (too broad)
 Good: "Fix the 3 failing tests in `src/flow/nodes.test.ts`. Root cause is [X]. Expected: all pass. Return: summary of changes."
 
-## Red Flags - STOP
+## Red Flags -- STOP
 
 | Thought | Reality |
 |---|---|
@@ -117,42 +117,8 @@ Good: "Fix the 3 failing tests in `src/flow/nodes.test.ts`. Root cause is [X]. E
 
 ## Integration
 
-- **Requires:** Plan from `hyperstack:forge-plan` or `hyperstack:run-plan`
-- **Subagents use:** `hyperstack:test-first` discipline (inline)
+- **Requires:** Plan from `hyperstack:forge-plan` or validated plan from `hyperstack:run-plan`
+- **Subagents use:** `hyperstack:test-first` for implementation discipline
 - **Per-task gate:** Spec compliance review + code quality review
-- **Final gate:** `hyperstack:deliver`
-- **If blocked:** `hyperstack:debug-discipline` for root cause investigation
-
-
-## Lifecycle Integration
-
-### Agent Workflow Chains
-
-**Subagent-driven execution:**
-```
-forge-plan → subagent-ops (THIS) → deliver
-                  ↓
-    [per-task: implementer → spec review → quality review]
-                  ↓
-         [final review on full diff]
-```
-
-### Upstream Dependencies
-- `forge-plan` → approved MCP-verified plan
-- `run-plan` → validated existing plan
-
-### Subagent Discipline (provided inline, not invoked)
-- `test-first` → implementer subagents follow red-green-refactor
-- `debug-discipline` → implementer subagents use on BLOCKED status
-- `code-review` → review subagents follow review protocol
-
-### Downstream Consumers
-- `deliver` → final verification and delivery
-
-### Escalation Paths
-| Subagent Status | Action |
-|---|---|
-| DONE | Proceed to review |
-| DONE_WITH_CONCERNS | Address if correctness-related, then review |
-| NEEDS_CONTEXT | Provide missing context, re-dispatch |
-| BLOCKED | Assess: context/reasoning/task-size/plan-wrong → fix → re-dispatch |
+- **Final gate:** `hyperstack:deliver` for full verification and delivery
+- **If blocked:** Use `hyperstack:debug-discipline` for root cause investigation

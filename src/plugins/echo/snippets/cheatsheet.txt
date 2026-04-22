@@ -122,9 +122,9 @@ c.Response().Flush()
 
 ## Key Gotchas
 
-- `c.Bind()` reads body **once** - never call twice
+- `c.Bind()` reads body **once** — never call twice
 - `Logger` MUST come before `Recover`
 - `Flush()` is REQUIRED for SSE and streaming responses
 - Disable Gzip on SSE/streaming routes
-- `echo.Context` is NOT goroutine-safe - copy values before goroutines
+- `echo.Context` is NOT goroutine-safe — copy values before goroutines
 - `AllowCredentials: true` + wildcard origins = browser rejection

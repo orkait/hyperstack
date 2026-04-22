@@ -1,4 +1,4 @@
-/* Enterprise Trust - IBM / HashiCorp / Coinbase / Salesforce */
+/* Enterprise Trust — IBM / HashiCorp / Coinbase / Salesforce */
 :root {
   /* Professional blue, conservative */
   --color-bg: oklch(0.99 0.003 240);

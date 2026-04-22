@@ -15,12 +15,12 @@ Motion auto-selects the transition type based on the animated value:
 **Easing names:** "linear", "easeIn", "easeOut", "easeInOut", "circIn", "circOut", "circInOut", "backIn", "backOut", "backInOut", "anticipate"
 **Custom:** ease: [0.42, 0, 0.58, 1] (cubic bezier) or ease: (t) => t * t (function)
 
-### Spring - Duration-based (default for physical values)
+### Spring — Duration-based (default for physical values)
 { type: "spring", duration: 0.8, bounce: 0.25 }
 - bounce: 0 = no bounce, 1 = very bouncy (default: 0.25)
 - visualDuration: perceived duration (spring settles to 1/10 of movement at this time)
 
-### Spring - Physics-based
+### Spring — Physics-based
 { type: "spring", stiffness: 100, damping: 10, mass: 1 }
 - stiffness: default 100
 - damping: default 10

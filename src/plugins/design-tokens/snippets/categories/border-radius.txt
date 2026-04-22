@@ -1,13 +1,13 @@
 /* Border radius scale */
 @theme {
   --radius-none: 0;
-  --radius-xs: 0.125rem;   /* 2px - sharp, subtle rounding */
-  --radius-sm: 0.25rem;    /* 4px - inputs, tags */
-  --radius-md: 0.375rem;   /* 6px - buttons, cards */
-  --radius-lg: 0.5rem;     /* 8px - modals, large cards */
-  --radius-xl: 0.75rem;    /* 12px - feature cards */
-  --radius-2xl: 1rem;      /* 16px - large containers */
-  --radius-3xl: 1.5rem;    /* 24px - hero sections */
+  --radius-xs: 0.125rem;   /* 2px — sharp, subtle rounding */
+  --radius-sm: 0.25rem;    /* 4px — inputs, tags */
+  --radius-md: 0.375rem;   /* 6px — buttons, cards */
+  --radius-lg: 0.5rem;     /* 8px — modals, large cards */
+  --radius-xl: 0.75rem;    /* 12px — feature cards */
+  --radius-2xl: 1rem;      /* 16px — large containers */
+  --radius-3xl: 1.5rem;    /* 24px — hero sections */
   --radius-full: 9999px;   /* pill */
 }
 

@@ -1,4 +1,4 @@
-/* Premium Precision - Linear / Vercel / Apple / Stripe */
+/* Premium Precision — Linear / Vercel / Apple / Stripe */
 :root {
   /* Monochromatic + single accent */
   --color-bg: oklch(0.99 0 0);

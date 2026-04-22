@@ -250,7 +250,7 @@ const animatePresence: ApiEntry = {
     },
   ],
   tips: [
-    "AnimatePresence must wrap the conditional - it goes OUTSIDE the {show && ...}.",
+    "AnimatePresence must wrap the conditional — it goes OUTSIDE the {show && ...}.",
     "Each direct child needs a unique key prop.",
     "mode='wait' is useful for page transitions where old page exits before new enters.",
     "mode='popLayout' pops exiting elements out of document flow immediately. Custom component children must use forwardRef (React 18) or accept ref prop (React 19).",
@@ -419,7 +419,7 @@ const useMotionValue: ApiEntry = {
     },
   ],
   tips: [
-    "Motion values update outside React - no re-renders. Use useMotionValueEvent to react to changes.",
+    "Motion values update outside React — no re-renders. Use useMotionValueEvent to react to changes.",
     "Events: 'change', 'animationStart', 'animationCancel', 'animationComplete'.",
     "Pass directly to style={{ x }} or SVG attribute props.",
   ],
@@ -817,7 +817,7 @@ const hoverFn: ApiEntry = {
       code: snippet("examples/hover/standalone-hover-with-react-ref.txt"),
     },
   ],
-  tips: ["Under 1kb - smallest hover animation possible.", "Import from 'motion' (not 'motion/react')."],
+  tips: ["Under 1kb — smallest hover animation possible.", "Import from 'motion' (not 'motion/react')."],
   relatedApis: ["motion"],
 };
 
@@ -841,7 +841,7 @@ const scrollFn: ApiEntry = {
   returns: "() => void (cleanup)",
   usage: snippet("usage/scroll.txt"),
   examples: [],
-  tips: ["Framework-agnostic - works without React.", "Import from 'motion' (not 'motion/react')."],
+  tips: ["Framework-agnostic — works without React.", "Import from 'motion' (not 'motion/react')."],
   relatedApis: ["useScroll", "animate"],
 };
 
@@ -853,7 +853,7 @@ const inViewFn: ApiEntry = {
   returns: "() => void (cleanup)",
   usage: snippet("usage/inView.txt"),
   examples: [],
-  tips: ["Framework-agnostic - works without React.", "Import from 'motion' (not 'motion/react')."],
+  tips: ["Framework-agnostic — works without React.", "Import from 'motion' (not 'motion/react')."],
   relatedApis: ["useInView"],
 };
 
@@ -963,7 +963,7 @@ export function formatApiReference(api: ApiEntry): string {
   if (api.props && api.props.length > 0) {
     out += `## Props\n\n`;
     for (const p of api.props) {
-      out += `- **${p.name}**: \`${p.type}\`${p.default ? ` (default: ${p.default})` : ""} - ${p.description}\n`;
+      out += `- **${p.name}**: \`${p.type}\`${p.default ? ` (default: ${p.default})` : ""} — ${p.description}\n`;
     }
     out += "\n";
   }

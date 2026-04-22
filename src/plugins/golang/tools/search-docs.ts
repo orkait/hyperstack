@@ -18,12 +18,12 @@ export function register(server: McpServer): void {
       let text = `# Go Search: "${query}"\n\n`;
       if (practices.length) {
         text += `## Best Practices (${practices.length})\n`;
-        for (const p of practices) text += `- [${p.priority}] **${p.name}** [${p.topic}] - ${p.rule}\n`;
+        for (const p of practices) text += `- [${p.priority}] **${p.name}** [${p.topic}] — ${p.rule}\n`;
         text += "\n";
       }
       if (patterns.length) {
         text += `## Design Patterns (${patterns.length})\n`;
-        for (const p of patterns) text += `- **${p.name}** [${p.category}] - ${p.goApproach.split(".")[0]}\n`;
+        for (const p of patterns) text += `- **${p.name}** [${p.category}] — ${p.goApproach.split(".")[0]}\n`;
       }
       return { content: [{ type: "text", text }] };
     }

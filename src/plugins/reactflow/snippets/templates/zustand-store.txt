@@ -35,7 +35,7 @@ const useFlowStore = create<FlowState>((set, get) => ({
   }),
 }));
 
-// Stable selector - use to prevent re-renders
+// Stable selector — use to prevent re-renders
 export const flowSelector = (s: FlowState) => ({
   nodes: s.nodes,
   edges: s.edges,

@@ -29,14 +29,14 @@ export function register(server: McpServer): void {
       if (patterns.length) {
         text += `## Patterns (${patterns.length})\n`;
         for (const p of patterns) {
-          text += `- **${p.name}** [${p.category}] - ${p.description}\n`;
+          text += `- **${p.name}** [${p.category}] — ${p.description}\n`;
         }
         text += "\n";
       }
       if (constraints.length) {
         text += `## Constraints (${constraints.length})\n`;
         for (const c of constraints) {
-          text += `- **${c.name}** - ${c.rule}\n`;
+          text += `- **${c.name}** — ${c.rule}\n`;
         }
       }
       return { content: [{ type: "text", text }] };

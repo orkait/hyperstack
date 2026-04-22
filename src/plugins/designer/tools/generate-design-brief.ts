@@ -74,7 +74,7 @@ export function register(server: McpServer): void {
         text += `- **Density:** ${personalityProfile.vocabulary.density}\n\n`;
         text += `### Exemplars\n`;
         for (const e of personalityProfile.exemplars) {
-          text += `- **${e.name}** - ${e.signature}\n`;
+          text += `- **${e.name}** — ${e.signature}\n`;
         }
         text += "\n";
       }
@@ -148,13 +148,13 @@ export function register(server: McpServer): void {
       if (industryAntiPatterns.length) {
         text += `### Industry-Specific (${finalIndustry})\n`;
         for (const ap of industryAntiPatterns) {
-          text += `- **${ap.pattern}** - ${ap.whyItFails}. Fix: ${ap.fix}\n`;
+          text += `- **${ap.pattern}** — ${ap.whyItFails}. Fix: ${ap.fix}\n`;
         }
         text += "\n";
       }
       text += `### General\n`;
       for (const ap of generalAntiPatterns) {
-        text += `- **${ap.pattern}** - ${ap.whyItFails}. Fix: ${ap.fix}\n`;
+        text += `- **${ap.pattern}** — ${ap.whyItFails}. Fix: ${ap.fix}\n`;
       }
       text += "\n";
 

@@ -23,7 +23,7 @@ export function register(server: McpServer): void {
       let text = "# Rust Best Practices (Apollo GraphQL Handbook)\n\n";
       for (const [ch, items] of Object.entries(grouped)) {
         text += `## Chapter: ${ch}\n`;
-        for (const p of items) text += `- **${p.name}** - ${p.rule}\n`;
+        for (const p of items) text += `- **${p.name}** — ${p.rule}\n`;
         text += "\n";
       }
       text += `\n**Total:** ${list.length} practices`;

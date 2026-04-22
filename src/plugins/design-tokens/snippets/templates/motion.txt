@@ -1,5 +1,5 @@
 /* ============================================================
-   DESIGN TOKEN SYSTEM - Motion
+   DESIGN TOKEN SYSTEM — Motion
    ============================================================ */
 
 @theme {
@@ -32,7 +32,7 @@
   --transition-fade: opacity var(--duration-normal) var(--ease-in-out);
 }
 
-/* REQUIRED - prefers-reduced-motion */
+/* REQUIRED — prefers-reduced-motion */
 @layer base {
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {

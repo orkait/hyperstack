@@ -10,7 +10,7 @@
   --z-popover: 1060;     /* popovers on top of modal */
   --z-tooltip: 1070;     /* tooltips highest */
   --z-toast: 1080;       /* toast notifications */
-  --z-max: 9999;         /* nuclear option - use sparingly */
+  --z-max: 9999;         /* nuclear option — use sparingly */
 }
 
 /* Usage in components */

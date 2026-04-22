@@ -12,21 +12,9 @@ function emit(payload) {
 }
 
 try {
-  const compiledBootstrapPath = join(pluginRoot, "generated", "runtime-context", "hyperstack.bootstrap.md");
-  const fallbackSkillPath = join(pluginRoot, "skills", "hyperstack", "SKILL.md");
-
-  let bootstrapContent;
-  let bootstrapLabel;
-
-  try {
-    bootstrapContent = readFileSync(compiledBootstrapPath, "utf8");
-    bootstrapLabel = "compiled runtime bootstrap";
-  } catch {
-    bootstrapContent = readFileSync(fallbackSkillPath, "utf8");
-    bootstrapLabel = "full content of your 'hyperstack:hyperstack' skill";
-  }
-
-  const sessionContext = `<EXTREMELY_IMPORTANT>\nYou have Hyperstack.\n\n**Below is the ${bootstrapLabel} - your introduction to using Hyperstack. For all other skills, use the 'Skill' tool:**\n\n${bootstrapContent}\n</EXTREMELY_IMPORTANT>`;
+  const skillPath = join(pluginRoot, "skills", "using-hyperstack", "SKILL.md");
+  const skillContent = readFileSync(skillPath, "utf8");
+  const sessionContext = `<EXTREMELY_IMPORTANT>\nYou have Hyperstack.\n\n**Below is the full content of your 'hyperstack:using-hyperstack' skill - your introduction to using Hyperstack. For all other skills, use the 'Skill' tool:**\n\n${skillContent}\n</EXTREMELY_IMPORTANT>`;
 
   if (process.env.CURSOR_PLUGIN_ROOT) {
     emit({ additional_context: sessionContext });

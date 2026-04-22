@@ -17,7 +17,7 @@ func main() {
 	e.Use(middleware.Logger())
 	e.Use(middleware.Recover())
 
-	// Serve embedded static files - no external filesystem needed at runtime
+	// Serve embedded static files — no external filesystem needed at runtime
 	subFS, err := fs.Sub(publicFS, "public")
 	if err != nil {
 		e.Logger.Fatal(err)

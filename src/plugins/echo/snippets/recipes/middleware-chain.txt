@@ -33,10 +33,10 @@ func main() {
 	e := echo.New()
 
 	// ORDER MATTERS:
-	// 1. Logger FIRST - logs ALL requests including those that panic (Recover catches the panic, Logger records it)
-	// 2. Recover SECOND - catches panics from all subsequent middleware and handlers
-	// 3. CORS (if applicable) - must be before auth so OPTIONS preflight passes
-	// 4. Auth middleware - reject unauthorized before expensive processing
+	// 1. Logger FIRST — logs ALL requests including those that panic (Recover catches the panic, Logger records it)
+	// 2. Recover SECOND — catches panics from all subsequent middleware and handlers
+	// 3. CORS (if applicable) — must be before auth so OPTIONS preflight passes
+	// 4. Auth middleware — reject unauthorized before expensive processing
 	// 5. Custom business middleware last
 
 	e.Use(middleware.Logger())     // 1: log every request

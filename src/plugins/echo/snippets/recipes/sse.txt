@@ -26,7 +26,7 @@ func sseHandler(c echo.Context) error {
 		case t := <-ticker.C:
 			// Write SSE event
 			fmt.Fprintf(c.Response(), "data: %s\n\n", t.Format(time.RFC3339))
-			// Flush is REQUIRED - without it the client never receives data
+			// Flush is REQUIRED — without it the client never receives data
 			c.Response().Flush()
 		}
 	}

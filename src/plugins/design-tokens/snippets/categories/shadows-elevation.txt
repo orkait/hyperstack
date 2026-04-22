@@ -1,6 +1,6 @@
 /* Shadow / Elevation scale */
 :root {
-  /* Warm-tinted shadows - oklch, NOT rgba(0,0,0) */
+  /* Warm-tinted shadows — oklch, NOT rgba(0,0,0) */
   --shadow-xs: 0 1px 2px 0 oklch(0.30 0.02 60 / 0.08);
   --shadow-sm:
     0 1px 3px 0 oklch(0.30 0.02 60 / 0.10),
@@ -28,7 +28,7 @@
   --shadow-tooltip: var(--shadow-md);
 }
 
-/* Dark mode - use bg-color elevation, skip shadows */
+/* Dark mode — use bg-color elevation, skip shadows */
 .dark {
   --shadow-xs: none;
   --shadow-sm: none;

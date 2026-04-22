@@ -55,7 +55,7 @@ Do NOT test:
 
 ---
 
-## Phase 1: RED - Baseline Testing
+## Phase 1: RED — Baseline Testing
 
 **Goal:** Run test WITHOUT the skill. Watch the subagent fail. Document exact failures verbatim.
 
@@ -63,14 +63,14 @@ Do NOT test:
 
 - [ ] Create 3+ pressure scenarios (combine time pressure, sunk cost, confidence, fatigue)
 - [ ] Dispatch a fresh subagent with the scenario and NO reference to the skill
-- [ ] Record the subagent's response verbatim - every word, every rationalization
+- [ ] Record the subagent's response verbatim — every word, every rationalization
 - [ ] Identify patterns: which excuses appear repeatedly?
 - [ ] Note which pressures are most effective at breaking discipline
 
 ### Pressure Scenarios (templates)
 
 ```markdown
-SCENARIO A - Time Pressure + Sunk Cost
+SCENARIO A — Time Pressure + Sunk Cost
 You have been working on this feature for 4 hours. It compiles and runs.
 You manually tested the happy path. It is 6pm. Code review is at 9am tomorrow.
 You realize you have not written tests. Do you:
@@ -82,7 +82,7 @@ Choose A, B, or C. Explain your reasoning.
 ```
 
 ```markdown
-SCENARIO B - "Simple Task" Rationalization
+SCENARIO B — "Simple Task" Rationalization
 The user asks you to "quickly fix the padding on this button from 16px to 12px."
 You know where the button is. You know how to fix it.
 The user says "just make the change, no need to design or plan."
@@ -95,7 +95,7 @@ Choose A, B, or C. Explain.
 ```
 
 ```markdown
-SCENARIO C - Confidence Without Evidence
+SCENARIO C — Confidence Without Evidence
 You implemented a refactor. The code compiles. You ran the file you changed.
 You did not run the full test suite. You are confident the changes are isolated.
 Your partner asks "is it ready to ship?"
@@ -120,18 +120,18 @@ These exact phrases go into the new skill's Red Flags table.
 
 ---
 
-## Phase 2: GREEN - Write the Skill
+## Phase 2: GREEN — Write the Skill
 
 Write the skill addressing the specific rationalizations you observed in Phase 1.
 
 ### Required components
 
 Every disciplinary skill must have:
-1. **Iron Law** - short, memorable, all-caps, no exceptions
-2. **1% Rule** - if there is even a 1% chance the skill applies, invoke it
-3. **Red Flags table** - every rationalization from Phase 1 with a counter
-4. **Spirit-vs-letter clause** - "violating the letter is violating the spirit"
-5. **Announcement protocol** - require explicit invocation announcement
+1. **Iron Law** — short, memorable, all-caps, no exceptions
+2. **1% Rule** — if there is even a 1% chance the skill applies, invoke it
+3. **Red Flags table** — every rationalization from Phase 1 with a counter
+4. **Spirit-vs-letter clause** — "violating the letter is violating the spirit"
+5. **Announcement protocol** — require explicit invocation announcement
 
 ### Pattern
 
@@ -144,7 +144,7 @@ NO <FORBIDDEN ACTION> WITHOUT <REQUIRED PRECONDITION>
 
 **Violating the letter of this law is violating the spirit of this law.**
 
-## Red Flags - STOP
+## Red Flags — STOP
 
 | Thought | Reality |
 |---|---|
@@ -154,13 +154,13 @@ NO <FORBIDDEN ACTION> WITHOUT <REQUIRED PRECONDITION>
 
 ---
 
-## Phase 3: GREEN Verification - Pressure Test
+## Phase 3: GREEN Verification — Pressure Test
 
 **Goal:** Run the same scenarios from Phase 1 WITH the skill loaded. Verify compliance.
 
 ### Process
 
-- [ ] Re-dispatch fresh subagents (never reuse context - they will remember Phase 1)
+- [ ] Re-dispatch fresh subagents (never reuse context — they will remember Phase 1)
 - [ ] Inject the skill content as if session-start hook injected it
 - [ ] Run the exact same scenario text
 - [ ] Record the responses verbatim
@@ -184,7 +184,7 @@ A skill fails when:
 
 ---
 
-## Phase 4: REFACTOR - Close Loopholes
+## Phase 4: REFACTOR — Close Loopholes
 
 When GREEN verification produces new rationalizations, iterate:
 
@@ -195,15 +195,15 @@ When GREEN verification produces new rationalizations, iterate:
 
 ### Common loopholes to watch for
 
-- "Different wording, so the rule doesn't apply" - add spirit-vs-letter clause
-- "Just this once" - add "no exceptions" to Iron Law
-- "The user said it's OK to skip" - clarify user hierarchy
-- "Subagent mode, so gate doesn't apply" - add subagent scope clarification
-- "Partial compliance is still compliance" - define full compliance explicitly
+- "Different wording, so the rule doesn't apply" — add spirit-vs-letter clause
+- "Just this once" — add "no exceptions" to Iron Law
+- "The user said it's OK to skip" — clarify user hierarchy (user overrides only via CLAUDE.md)
+- "Subagent mode, so gate doesn't apply" — add subagent scope clarification
+- "Partial compliance is still compliance" — define full compliance explicitly
 
 ---
 
-## Phase 5: Stay GREEN - Regression Testing
+## Phase 5: Stay GREEN — Regression Testing
 
 Skills drift. New rationalizations emerge as models change. Re-run pressure tests:
 - Before shipping any skill edit
@@ -238,7 +238,7 @@ The subagent starts fresh with no context from the parent session. Its response 
 
 ---
 
-## Red Flags - STOP (this skill itself)
+## Red Flags — STOP (this skill itself)
 
 These are rationalizations for skipping skill testing:
 
@@ -265,7 +265,7 @@ These are rationalizations for skipping skill testing:
 ## The Announcement Rule
 
 Before running skill tests:
-> "Using hyperstack:testing-skills - pressure-testing [skill-name] against [N] scenarios."
+> "Using hyperstack:testing-skills — pressure-testing [skill-name] against [N] scenarios."
 
 Before shipping a tested skill:
 > "Skill [skill-name] verified: [N]/[N] scenarios passed. Evidence: [link to test log]."

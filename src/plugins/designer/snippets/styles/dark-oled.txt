@@ -12,7 +12,7 @@
   background: var(--surface-1);
   border: 1px solid oklch(1 0 0 / 0.06);
   border-radius: 8px;
-  /* NO box-shadow - invisible on dark backgrounds */
+  /* NO box-shadow — invisible on dark backgrounds */
   /* Use bg-color elevation instead */
 }
 

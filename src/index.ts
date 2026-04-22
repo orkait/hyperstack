@@ -14,22 +14,13 @@ import { designTokensPlugin } from "./plugins/design-tokens/index.js";
 import { uiUxPlugin } from "./plugins/ui-ux/index.js";
 import { designerPlugin } from "./plugins/designer/index.js";
 import { shadcnPlugin } from "./plugins/shadcn/index.js";
-import { hyperstackPlugin } from "./plugins/hyperstack/index.js";
-
-import { readFileSync } from "node:fs";
-import { dirname, join } from "node:path";
-import { fileURLToPath } from "node:url";
-
-const __dirname = dirname(fileURLToPath(import.meta.url));
-const pkgPath = join(__dirname, "..", "package.json");
-const pkg = JSON.parse(readFileSync(pkgPath, "utf-8"));
 
 const server = new McpServer({
   name: "hyperstack",
-  version: pkg.version,
+  version: "1.0.0",
 });
 
-export const allPlugins = [
+loadPlugins(server, [
   reactflowPlugin,
   motionPlugin,
   lenisPlugin,
@@ -41,20 +32,11 @@ export const allPlugins = [
   uiUxPlugin,
   designerPlugin,
   shadcnPlugin,
-  hyperstackPlugin,
-];
-
-loadPlugins(server, allPlugins);
+]);
 
 async function main() {
   const transport = new StdioServerTransport();
   await server.connect(transport);
-
-  const shutdown = () => process.exit(0);
-  process.stdin.on("close", shutdown);
-  process.stdin.on("end", shutdown);
-  process.on("SIGTERM", shutdown);
-  process.on("SIGINT", shutdown);
 }
 
 main().catch((err) => {

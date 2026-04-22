@@ -1,11 +1,11 @@
-# DESIGN.md - Acme Analytics Dashboard
+# DESIGN.md — Acme Analytics Dashboard
 
 ## 1. Visual Theme & Atmosphere
 
 **Emotional Target:** Technical precision with warmth
 **Personality Cluster:** premium-precision
 **Design System Inspiration:** Linear (opacity hierarchy, 8px grid) + Vercel (aggressive whitespace)
-**One-Sentence Identity:** A data tool that feels considered, not cold - precision without sterility.
+**One-Sentence Identity:** A data tool that feels considered, not cold — precision without sterility.
 
 > Clean, structured, data-forward. Every pixel serves information density without sacrificing readability. Warm neutrals prevent the "cold spreadsheet" feel. The design says "engineered by someone who uses this daily." A playful illustration or decorative gradient would NOT fit here.
 

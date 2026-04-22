@@ -1,4 +1,4 @@
-/* Apple HIG - Specific Values */
+/* Apple HIG — Specific Values */
 
 /* Dynamic Type Scale (default "Large" category) */
 /* Large Title: 34pt Regular */

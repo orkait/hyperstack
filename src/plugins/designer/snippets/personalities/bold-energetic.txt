@@ -1,4 +1,4 @@
-/* Bold Energetic - Figma / Framer / PostHog / Pitch */
+/* Bold Energetic — Figma / Framer / PostHog / Pitch */
 :root {
   /* Vivid multi-color palette */
   --color-bg: oklch(0.99 0 0);

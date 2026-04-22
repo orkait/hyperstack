@@ -1,13 +1,13 @@
-# DESIGN.md - DevForge CLI Dashboard
+# DESIGN.md — DevForge CLI Dashboard
 
 ## 1. Visual Theme & Atmosphere
 
 **Emotional Target:** Technical mastery
 **Personality Cluster:** technical-developer
 **Design System Inspiration:** Linear (opacity hierarchy) + Vercel (Geist typography, aggressive whitespace)
-**One-Sentence Identity:** A tool built by developers for developers - keyboard-first, information-dense, zero friction.
+**One-Sentence Identity:** A tool built by developers for developers — keyboard-first, information-dense, zero friction.
 
-> Dark-first, terminal-native. Monospace for values, sans for UI. The interface disappears - users see their data, not chrome. A rounded-corner pastel card or playful illustration would be alien here. Every interaction is < 200ms.
+> Dark-first, terminal-native. Monospace for values, sans for UI. The interface disappears — users see their data, not chrome. A rounded-corner pastel card or playful illustration would be alien here. Every interaction is < 200ms.
 
 ## 2. Color Palette
 
@@ -67,7 +67,7 @@ True dark default. Near-black base (oklch 0.08). Surface elevation via lighter b
 - Recent commands, fuzzy matching
 
 ### Button
-Sizes: sm (28px), md (34px), lg (42px). Compact - desktop-first.
+Sizes: sm (28px), md (34px), lg (42px). Compact — desktop-first.
 Ghost variant default. Primary only for final actions.
 
 ## 6. Motion

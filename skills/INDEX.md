@@ -1,12 +1,12 @@
 # Hyperstack Skills Index
 
 Auto-generated from each skill's frontmatter `category` field.
-Regenerate with: `bun scripts/generate-skills-index.ts` or `npm run skills:index`
+Regenerate with: `bash scripts/generate-skills-index.sh`
 
 Categories:
-- **core** - workflow, discipline, and gates used on every task
-- **domain** - specialized skills for specific contexts (visual, components, security, docs)
-- **meta** - skills about skills (bootstrap, testing)
+- **core** — workflow, discipline, and gates used on every task
+- **domain** — specialized skills for specific contexts (visual, components, security, docs)
+- **meta** — skills about skills (bootstrap, testing)
 
 ---
 
@@ -33,10 +33,10 @@ Categories:
 | Skill | Description |
 |---|---|
 | `behaviour-analysis` | Systematic UI/UX behaviour analysis for interactive applications. Audits every user action, state transition, view mode, |
+| `designer` | Evidence-based design decision engine. An intention gate that produces non-slop |
 | `design-patterns-skill` | Apply core programming principles and design patterns from Clean Code, The Pragmatic Programmer, Code Complete, Refactor |
-| `designer` |  |
 | `readme-writer` | Writes or rewrites project README files using repository evidence instead of generic filler. Use when creating a new REA |
-| `security-review` | Security code review for vulnerabilities. Use when asked to "security review", "find vulnerabilities", "check for securi |
+| `security-review` | Security code review for vulnerabilities. Use when asked to security review, find vulnerabilities, check for security is |
 | `shadcn-expert` | Advanced shadcn/ui architect specializing in Base UI, Tailwind v4, data-slot patterns, and component composition. Use wh |
 
 ## Meta (skills about skills)
@@ -44,6 +44,4 @@ Categories:
 | Skill | Description |
 |---|---|
 | `testing-skills` | Use when creating or editing Hyperstack skills, before shipping them, to verify they actually work under pressure and re |
-| `hyperstack` | Bootstrap - establishes Hyperstack MCP tools and skills before any technical work. Auto-loaded at session start via Sess |
-
-
+| `using-hyperstack` | Bootstrap — establishes Hyperstack MCP tools and skills before any technical work. Auto-loaded at session start via Se |

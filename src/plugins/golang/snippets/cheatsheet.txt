@@ -46,11 +46,11 @@ go func() {
 ## Security
 
 ```go
-// crypto/rand - NEVER math/rand for security
+// crypto/rand — NEVER math/rand for security
 token := make([]byte, 32)
 crypto_rand.Read(token)
 
-// Parameterized queries - NEVER string concat
+// Parameterized queries — NEVER string concat
 db.QueryRowContext(ctx, "SELECT * FROM users WHERE id = $1", id)
 
 // Bcrypt for passwords
@@ -99,7 +99,7 @@ server.Shutdown(ctx)
 | Worker Pool | Bounded parallelism |
 | Pipeline | Stage-by-stage stream processing |
 | Fan-Out/Fan-In | Parallel work + merge results |
-| Consumer-Side Interface | Always - decouple without import cycles |
+| Consumer-Side Interface | Always — decouple without import cycles |
 | Strategy | Swappable algorithms at runtime |
 | Observer | Event bus with channels |
 | Command | Job queues, closures as tasks |

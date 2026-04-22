@@ -37,7 +37,7 @@ export function register(server: McpServer): void {
       if (components.length) {
         text += `## Component Patterns (${components.length})\n`;
         for (const c of components) {
-          text += `### ${c.name}\nVariants: ${c.variants?.join(", ") ?? "-"} | States: ${c.states.join(", ")}\n\n`;
+          text += `### ${c.name}\nVariants: ${c.variants?.join(", ") ?? "—"} | States: ${c.states.join(", ")}\n\n`;
         }
       }
 

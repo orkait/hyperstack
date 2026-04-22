@@ -5,43 +5,43 @@
 
 ---
 
-## Visual Hierarchy - The 6 Levers
+## Visual Hierarchy — The 6 Levers
 
 **Define the hierarchy before opening a design tool.** Rank every element 1-N by importance. Then assign levers in this priority order:
 
-### 1. Size (Scale) - Strongest, fastest signal
+### 1. Size (Scale) — Strongest, fastest signal
 
-Bigger = more important. Never create two elements at equal size for different priority levels - they compete and neither wins.
+Bigger = more important. Never create two elements at equal size for different priority levels — they compete and neither wins.
 
 NNG recommends max **3 size variations** in a design: body (14-16px), subheader (18-22px), header (up to 32px). More than 3 creates noise.
 
-### 2. Contrast - Independent from color
+### 2. Contrast — Independent from color
 
 Dark on light reads regardless of colorblindness. **The squint test:** blur your design 5-10px. If the primary action isn't the first thing you see blurred, the hierarchy is broken.
 
 Max **3 contrast variations** in complex designs. Timid contrast (slightly larger, slightly bolder) reads as a **mistake**, not a decision. If two things are different, make them VERY different.
 
-### 3. Color - Attracts but cannot stand alone
+### 3. Color — Attracts but cannot stand alone
 
 Warm saturated colors advance; cool muted tones recede. Reserve red **exclusively** for destructive actions/errors. Limit working palette to 2 primary + 2 secondary for information design.
 
 Color affects 8% of males with colorblindness. Never the sole indicator of anything.
 
-### 4. Typography - Weight is the primary signal
+### 4. Typography — Weight is the primary signal
 
 Bold vs regular is the strongest intra-size hierarchy. All-caps in small sizes signals metadata/labels.
 
 **The trap:** Using too many weight/size/color changes simultaneously. If everything is emphasized, nothing is.
 
-### 5. Spacing - First-resort grouping tool
+### 5. Spacing — First-resort grouping tool
 
-Decreased spacing unites. Increased spacing separates. **An element with more surrounding space receives more attention** - whitespace functions as a spotlight.
+Decreased spacing unites. Increased spacing separates. **An element with more surrounding space receives more attention** — whitespace functions as a spotlight.
 
 Use spacing before reaching for borders or fills.
 
-### 6. Position - Top-left receives most attention
+### 6. Position — Top-left receives most attention
 
-F-pattern: top-left starts the scan. The **optical center** sits slightly above mathematical center - content at true mathematical center feels low. Raise hero content by 5-8% of viewport height.
+F-pattern: top-left starts the scan. The **optical center** sits slightly above mathematical center — content at true mathematical center feels low. Raise hero content by 5-8% of viewport height.
 
 ---
 
@@ -50,7 +50,7 @@ F-pattern: top-left starts the scan. The **optical center** sits slightly above 
 ### Contrast
 Not just color. Operates on size, weight, spacing, and position.
 
-**Failure mode:** "Same-same" design - equal-weight text blocks, equal spacing everywhere, navigation and body at identical weight.
+**Failure mode:** "Same-same" design — equal-weight text blocks, equal spacing everywhere, navigation and body at identical weight.
 
 **Rule:** If two elements are not the same, make them **VERY** different. Timid contrast reads as mistake.
 
@@ -79,7 +79,7 @@ Same gap for all = invisible structure.
 
 ---
 
-## Whitespace - Micro vs Macro
+## Whitespace — Micro vs Macro
 
 ### Micro whitespace
 Between letters (tracking), between lines (leading), between label and input, between list items. **Governs readability.**
@@ -91,26 +91,26 @@ Between major sections, around hero elements, page margins. **Governs perceived 
 
 - **Luxury brands** (Apple, Rolex) use generous macro whitespace as a signal of quality and confidence
 - **Crowded layouts** read as "affordable" and "high volume"
-- This is not aesthetic preference - it's a measurable signal that users decode unconsciously
+- This is not aesthetic preference — it's a measurable signal that users decode unconsciously
 
 ### Active whitespace
-Strategic, not accidental. An element surrounded by more space than its neighbors receives more attention - the emptiness functions as a **spotlight**. Apple isolates product images this way. The whitespace is doing work.
+Strategic, not accidental. An element surrounded by more space than its neighbors receives more attention — the emptiness functions as a **spotlight**. Apple isolates product images this way. The whitespace is doing work.
 
 ### Passive whitespace
-Structural: margins, padding, leading. Defaulting to cramped layouts is not neutral - it signals low value.
+Structural: margins, padding, leading. Defaulting to cramped layouts is not neutral — it signals low value.
 
 ### Implementation
 Use spacing in ratios. 4px or 8px base unit with scale: 4, 8, 12, 16, 24, 32, 48, 64, 96px. All spacing relationships have mathematical coherence.
 
 ---
 
-## The Fold (NNG Data - 57,453 fixations)
+## The Fold (NNG Data — 57,453 fixations)
 
 ### The numbers
 - Content above fold: **102% more views** than immediately below
 - Top half of viewport: **> 65% of viewing time** within above-fold zone
 - Above-fold ads: 73% viewability vs 44% below-fold (Google)
-- **57% of viewing time above fold** (down from 80% in 2010 - users scroll more, but conditionally)
+- **57% of viewing time above fold** (down from 80% in 2010 — users scroll more, but conditionally)
 - Aggregate: ~84% attention difference above vs below
 
 ### The illusion of completeness
@@ -123,7 +123,7 @@ Patterns that cause this:
 
 ### Rules from research
 1. Place primary value proposition and CTA above fold on all standard viewports
-2. **Never fill the exact viewport height** - bleed at least 40-80px of next section into view
+2. **Never fill the exact viewport height** — bleed at least 40-80px of next section into view
 3. The fold is a threshold requiring a "promise" of value to motivate scroll
 4. Scrolling behavior is conditioned by the first 100px. If those 100px aren't relevant, users leave.
 
@@ -146,7 +146,7 @@ Users scan headings only, read body beneath headings that match intent. NNG: "by
 **Response:** Headings must be **meaningful summaries**, not labels. "Overview" is a label. "Users abandon checkout at address validation" is a summary.
 
 ### Z-Pattern
-**Trigger:** Sparse pages - logo top-left, nav top-right, headline bottom-left, CTA bottom-right.
+**Trigger:** Sparse pages — logo top-left, nav top-right, headline bottom-left, CTA bottom-right.
 
 The Z terminal point is the action point. Works for < 50 words.
 
@@ -173,7 +173,7 @@ Weight emerges from interaction of multiple factors (never single-factor):
 | Density | Clustered elements outweigh sum of parts |
 | Isolation | More surrounding whitespace = more weight (spotlight effect) |
 
-**Visual direction:** Shapes with axes (arrows, triangles, diagonals) direct the eye. Human faces and gazes direct toward whatever the subject looks at - place copy in the direction a subject's gaze points.
+**Visual direction:** Shapes with axes (arrows, triangles, diagonals) direct the eye. Human faces and gazes direct toward whatever the subject looks at — place copy in the direction a subject's gaze points.
 
 **Asymmetric balance:** A large, light element on one side balanced by a small, dark element on the other. More visually interesting than symmetry. More dynamic. More human.
 
@@ -229,11 +229,11 @@ Mathematical centering places the geometric center at the container center. Opti
 | Display type | Enable `font-kerning: normal`, manually kern AV/WA/To at 36px+ | Auto-kerning insufficient at display sizes |
 | Circles vs squares | Circle must be **physically larger** to appear same size | Keyline circles extend beyond square boundary (see icon grid specs) |
 
-**The general rule:** Mathematical alignment is a starting point, never the finish. It almost always needs **upward adjustment** - we perceive the lower half of any container as heavier.
+**The general rule:** Mathematical alignment is a starting point, never the finish. It almost always needs **upward adjustment** — we perceive the lower half of any container as heavier.
 
 ---
 
-## Golden Ratio (phi = 1.618) - What It Actually Does
+## Golden Ratio (phi = 1.618) — What It Actually Does
 
 **Concrete value:**
 - Type scale: 16px * 1.618 = ~26px heading (harmonious)

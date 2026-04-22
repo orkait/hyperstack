@@ -78,11 +78,11 @@ export function register(server: McpServer): void {
       text += `| **FAIL** | **${byStatus.fail.length}** |\n\n`;
 
       if (byStatus.fail.length === 0 && byStatus.warn.length === 0) {
-        text += `**VERDICT: PASS** - ready for ship-gate.\n\n`;
+        text += `**VERDICT: PASS** — ready for ship-gate.\n\n`;
       } else if (byStatus.fail.length === 0) {
-        text += `**VERDICT: PASS WITH WARNINGS** - review warnings before shipping.\n\n`;
+        text += `**VERDICT: PASS WITH WARNINGS** — review warnings before shipping.\n\n`;
       } else {
-        text += `**VERDICT: FAIL** - ${byStatus.fail.length} critical issue${byStatus.fail.length > 1 ? "s" : ""}. DO NOT ship until resolved.\n\n`;
+        text += `**VERDICT: FAIL** — ${byStatus.fail.length} critical issue${byStatus.fail.length > 1 ? "s" : ""}. DO NOT ship until resolved.\n\n`;
       }
 
       text += `---\n\n## Details\n\n`;
@@ -92,7 +92,7 @@ export function register(server: McpServer): void {
         text += `### ${category}\n\n`;
         for (const r of items) {
           const icon = r.status === "pass" ? "[PASS]" : r.status === "warn" ? "[WARN]" : "[FAIL]";
-          text += `- ${icon} **${r.rule}** - ${r.message}\n`;
+          text += `- ${icon} **${r.rule}** — ${r.message}\n`;
           if (r.evidence && r.evidence.length > 0) {
             text += `  - Found in:\n`;
             for (const e of r.evidence.slice(0, 5)) {
@@ -164,7 +164,7 @@ function checkAntiPatterns(code: string, files: Array<{ path: string; content: s
     results.push({
       category, rule: "No pure #000 text on #FFF",
       status: "warn",
-      message: `found ${pureBlackMatches.length} uses of pure black - consider near-black (oklch 0.12-0.15)`,
+      message: `found ${pureBlackMatches.length} uses of pure black — consider near-black (oklch 0.12-0.15)`,
       evidence: pureBlackMatches.slice(0, 10),
       fix: "Use oklch(0.12 0.005 60) for warm near-black",
     });
@@ -193,7 +193,7 @@ function checkAntiPatterns(code: string, files: Array<{ path: string; content: s
     results.push({
       category, rule: "No decorative bounce/pulse",
       status: "warn",
-      message: `found ${decorativeAnimMatches.length} decorative animations - verify each is on a loading state`,
+      message: `found ${decorativeAnimMatches.length} decorative animations — verify each is on a loading state`,
       evidence: decorativeAnimMatches.slice(0, 10),
       fix: "Animation should only be on loading/state changes, not static decoration",
     });
@@ -236,7 +236,7 @@ function checkColorCompliance(designMd: string, code: string, files: Array<{ pat
   if (oklchCount === 0) {
     results.push({
       category, rule: "OKLCH tokens present", status: "fail",
-      message: "no oklch() values found in code - DESIGN.md specifies OKLCH",
+      message: "no oklch() values found in code — DESIGN.md specifies OKLCH",
       fix: "Use design_tokens_generate to produce OKLCH-based tokens",
     });
   } else {
@@ -249,7 +249,7 @@ function checkColorCompliance(designMd: string, code: string, files: Array<{ pat
   if (hexCount > oklchCount * 2) {
     results.push({
       category, rule: "OKLCH preferred over hex", status: "warn",
-      message: `${hexCount} hex values vs ${oklchCount} oklch - consider migrating more to OKLCH`,
+      message: `${hexCount} hex values vs ${oklchCount} oklch — consider migrating more to OKLCH`,
     });
   }
 
@@ -285,7 +285,7 @@ function checkTypographyCompliance(code: string, files: Array<{ path: string; co
   if (weight500 > 0 && weight700 === 0 && weight400 === 0) {
     results.push({
       category, rule: "Weight contrast (not all 500)", status: "fail",
-      message: "only font-weight 500 used - no hierarchy",
+      message: "only font-weight 500 used — no hierarchy",
       fix: "Use 400 for body, 600-800 for headings",
     });
   } else {
@@ -304,7 +304,7 @@ function checkTypographyCompliance(code: string, files: Array<{ path: string; co
   } else {
     results.push({
       category, rule: "Prose max-width 65ch applied", status: "warn",
-      message: "no 65ch max-width found - verify body text containers have this constraint",
+      message: "no 65ch max-width found — verify body text containers have this constraint",
       fix: "Add max-w-prose or max-w-[65ch] to body text containers",
     });
   }
@@ -402,7 +402,7 @@ function checkComponentStates(designMd: string, code: string, files: Array<{ pat
     });
   }
 
-  // Emoji icons check - covers emoji ranges U+1F300-1F9FF (misc symbols/pictographs),
+  // Emoji icons check — covers emoji ranges U+1F300-1F9FF (misc symbols/pictographs),
   // U+2600-27BF (misc symbols, dingbats), U+23F0-23FF (clock/hourglass), U+2B00-2BFF (misc symbols+arrows)
   const emojiIconRegex = /[\u{1F300}-\u{1F9FF}\u{2600}-\u{27BF}\u{23F0}-\u{23FF}\u{2B00}-\u{2BFF}\u{1FA70}-\u{1FAFF}]/gu;
   const emojiMatches = findMatches(files, emojiIconRegex);
@@ -410,7 +410,7 @@ function checkComponentStates(designMd: string, code: string, files: Array<{ pat
     results.push({
       category, rule: "No emojis as icons (SVG only)",
       status: "warn",
-      message: `found ${emojiMatches.length} string literals containing emojis - verify none are used as functional icons`,
+      message: `found ${emojiMatches.length} string literals containing emojis — verify none are used as functional icons`,
       evidence: emojiMatches.slice(0, 10),
       fix: "Replace with SVG icons from Lucide, Heroicons, or Phosphor",
     });
@@ -477,12 +477,12 @@ function checkAccessibility(code: string, files: Array<{ path: string; content: 
     results.push({
       category, rule: "aria-label on icon-only buttons",
       status: "warn",
-      message: `${iconButtonMatches.length} icon-only buttons found - verify aria-label present`,
+      message: `${iconButtonMatches.length} icon-only buttons found — verify aria-label present`,
       fix: "Add aria-label to every icon-only button",
     });
   }
 
-  // Heading hierarchy - check for skipping levels in a single file
+  // Heading hierarchy — check for skipping levels in a single file
   for (const f of files) {
     if (!f.path.match(/\.(tsx?|jsx?|vue|svelte|html)$/)) continue;
     const headings = f.content.match(/<h[1-6]/g) || [];
@@ -508,7 +508,7 @@ function checkAccessibility(code: string, files: Array<{ path: string; content: 
     results.push({
       category, rule: "All images have alt text",
       status: "warn",
-      message: `${imgMatches.length} img tags may be missing alt - verify`,
+      message: `${imgMatches.length} img tags may be missing alt — verify`,
       evidence: imgMatches.slice(0, 5),
       fix: 'Add alt="description" for informational, alt="" for decorative',
     });

@@ -9,8 +9,8 @@
 | 4 | Floating | Modals, dialogs | Lightest card bg |
 
 ## Key rules
-- Each level MUST be visually distinguishable - not just via borders
-- Dark mode: shadows invisible - use progressively lighter bg-color per level
+- Each level MUST be visually distinguishable — not just via borders
+- Dark mode: shadows invisible — use progressively lighter bg-color per level
 - Surfaces nest: page → card → inset panel → floating popover
 
 ## Shadow warmth formula

@@ -1,4 +1,4 @@
-// ✅ Composition - pass JSX as children/slots
+// ✅ Composition — pass JSX as children/slots
 function Layout({ sidebar, content }: { sidebar: React.ReactNode; content: React.ReactNode }) {
   return (
     <div className="layout">
@@ -8,7 +8,7 @@ function Layout({ sidebar, content }: { sidebar: React.ReactNode; content: React
   );
 }
 
-// Usage - no prop drilling
+// Usage — no prop drilling
 <Layout
   sidebar={<UserSidebar user={user} />}
   content={<ArticleList articles={articles} />}

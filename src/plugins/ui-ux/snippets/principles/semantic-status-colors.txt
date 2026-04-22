@@ -1,4 +1,4 @@
---color-success:      oklch(0.55 0.15 145); /* solid - white text OK */
+--color-success:      oklch(0.55 0.15 145); /* solid — white text OK */
 --color-success-soft: oklch(0.96 0.04 145); /* tinted bg */
---color-warning:      oklch(0.72 0.15 80);  /* solid - dark text only */
+--color-warning:      oklch(0.72 0.15 80);  /* solid — dark text only */
 --color-warning-soft: oklch(0.97 0.04 80);

@@ -1,5 +1,5 @@
 /* ============================================================
-   DESIGN TOKEN SYSTEM - Typography
+   DESIGN TOKEN SYSTEM — Typography
    ============================================================ */
 
 :root {
@@ -7,13 +7,13 @@
   --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "JetBrains Mono Variable", ui-monospace, monospace;
 
-  /* Fluid headings via clamp() - body stays fixed */
+  /* Fluid headings via clamp() — body stays fixed */
   --text-display: clamp(3rem, 5vw + 1rem, 4.5rem);     /* 48–72px */
   --text-h1: clamp(2.25rem, 3.5vw + 0.5rem, 3rem);     /* 36–48px */
   --text-h2: clamp(1.75rem, 2.5vw + 0.25rem, 2.25rem); /* 28–36px */
   --text-h3: clamp(1.375rem, 1.5vw + 0.25rem, 1.5rem); /* 22–24px */
-  --text-subtitle: 1.125rem; /* 18px - fixed */
-  --text-body: 1rem;         /* 16px - NEVER fluid */
+  --text-subtitle: 1.125rem; /* 18px — fixed */
+  --text-body: 1rem;         /* 16px — NEVER fluid */
   --text-body-sm: 0.875rem;  /* 14px */
   --text-caption: 0.75rem;   /* 12px */
   --text-overline: 0.6875rem;/* 11px */

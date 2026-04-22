@@ -9,91 +9,169 @@ metadata:
 compatibility: Works best in coding agents that can inspect repository files and existing documentation. No network access is required.
 ---
 
-# README Evidence Writer
+# README evidence writer
 
 Write README files that are specific, verifiable, and useful to the next developer.
 
-Main failure mode of LLM-written READMEs: false confidence - invented setup steps, inflated feature claims, vague value propositions, examples not grounded in the repository.
+The main failure mode of LLM-written READMEs is not grammar. It is false confidence: invented setup steps, inflated feature claims, vague value propositions, and examples that are not grounded in the repository.
 
-**Style layer:**
-- Emoji on every section heading
-- Centered hero block with project name, tagline, and badges in `<div align="center">`
-- Library-specific badges with colors and logos (not generic)
-- Collapsible `<details>` blocks for long lists
-- Human tone - sounds like a person, not a spec doc
-- No walls of text - prefer tables and lists over paragraphs
-- No em dashes - use a regular hyphen (`-`) instead
+This skill also applies an explicit presentation style layer inspired by the user's `~/.claude/CLAUDE.md` README rules:
 
-Accuracy comes first. A beautiful README that lies is worse than a plain README that is correct.
+- emoji on every section heading
+- centered hero block with project name, tagline, and badges in `<div align="center">`
+- richer, library-specific badges with logos and colors instead of generic badges
+- collapsible `<details>` blocks for long lists
+- human tone that sounds like a person, not a policy memo
+- no walls of text - prefer tables and lists over dense paragraphs
+- no em dashes - always use a regular hyphen (`-`)
 
-## When to Use
+The style layer is important, but accuracy still comes first. A beautiful README that lies is worse than a plain README that is correct.
 
-- User asks to write, rewrite, improve, or audit a `README.md`
-- Repo has code but documentation is weak
-- Existing README sounds generic, salesy, or inconsistent with the code
-- Project has multiple setup paths, hidden assumptions, or environment constraints
-- User wants a polished README that stays grounded in the repo
+## Use this skill when
 
-## Core Rule
+- The user asks to write, rewrite, improve, or audit a `README.md`
+- The repository already has code but the documentation is weak
+- The existing README sounds generic, salesy, or inconsistent with the code
+- The project has multiple setup paths, hidden assumptions, or environment constraints
+- The agent needs to explain what is missing instead of hallucinating missing facts
+- The user wants a more polished README that still stays grounded in the repo
 
-Every substantive README claim must be backed by repository evidence or explicitly labeled as an assumption, TODO, or open question.
+## Core rule
 
-Do not invent: supported platforms, package names, environment variables, CLI flags, API endpoints, benchmark numbers, deployment steps, version compatibility, feature availability, roadmap promises.
+Every substantive README claim must be backed by repository evidence or be explicitly labeled as an assumption, TODO, or open question.
 
-## Evidence-Gathering Workflow
+Do not invent:
 
-Inspect highest-signal sources in this order:
+- supported platforms
+- package names
+- environment variables
+- CLI flags
+- API endpoints
+- benchmark numbers
+- deployment steps
+- version compatibility
+- feature availability
+- roadmap promises
 
-1. Package metadata and build files (`package.json`, `pyproject.toml`, `Cargo.toml`, `go.mod`, `Dockerfile`)
-2. Executable entry points and public interfaces (`src/`, `cmd/`, `bin/`, exported modules, CLI help text)
-3. Usage evidence (`examples/`, tests that demonstrate real usage, scripts in CI or Makefiles)
-4. Existing documentation (current `README.md`, docs site, `CONTRIBUTING.md`, `LICENSE`, changelog)
-5. Operational constraints (required services, environment variables, supported OS/runtime/toolchain versions)
+## Evidence-gathering workflow
 
-Build a short internal evidence map before drafting:
-- What it is → from package metadata + entrypoint names
-- Who it is for → from API shape, CLI design, docs, examples
-- How to install → from package manager files and lockfiles
-- How to run → from scripts, tests, examples, CI
-- Limitations → from TODOs, issue notes, missing integrations, platform checks
+Before writing, inspect the highest-signal sources in this order when available:
 
-Missing evidence → say so plainly or provide a marked placeholder section.
+1. Package metadata and build files
+   - `package.json`
+   - `pyproject.toml`, `requirements.txt`, `setup.py`
+   - `Cargo.toml`
+   - `go.mod`
+   - `pom.xml`, `build.gradle`
+   - `Dockerfile`, `docker-compose.yml`
+2. Executable entry points and public interfaces
+   - `src/`, `cmd/`, `bin/`, `main.*`
+   - exported modules and public APIs
+   - CLI help text and subcommands
+3. Usage evidence
+   - `examples/`
+   - tests that demonstrate real usage
+   - scripts in CI or Makefiles
+4. Existing documentation
+   - current `README.md`
+   - docs site content
+   - `CONTRIBUTING.md`, `LICENSE`, changelog
+5. Operational constraints
+   - required services
+   - environment variables
+   - supported OS/runtime/toolchain versions
 
-## What Usually Goes Wrong in LLM-Written READMEs
+Build a short internal evidence map before drafting. Example:
 
-See `references/readme-anti-patterns.md` for the full list. Prioritize fixing:
+- What it is: from package metadata + entrypoint names
+- Who it is for: from API shape, CLI design, docs, examples
+- How to install: from package manager files and lockfiles
+- How to run: from scripts, tests, examples, CI
+- Limitations: from TODOs, issue notes, missing integrations, platform checks
 
-1. **Invented reality** → features described that don't exist, install steps with absent tools, fictional commands
-2. **Weak opening** → first paragraph says almost nothing concrete, doesn't explain what problem it solves, for whom, in what form
-3. **No fast path** → setup exists but quickest path to first success is buried
-4. **Audience mismatch** → explains basic concepts to experts or assumes expertise from beginners
-5. **Missing boundaries** → no limitations, non-goals, compatibility constraints, or required infrastructure
-6. **Unverifiable examples** → code snippets don't match real APIs, filenames, imports, or flags
-7. **Presentation mismatch** → ignores desired style system, long sections not scannable, robotic tone
+If evidence is missing, say so plainly in the README or provide a marked placeholder section.
 
-## Drafting Rules
+## What usually goes wrong in LLM-written READMEs
 
-### 1. Open with precision
+See `references/readme-anti-patterns.md` for the detailed list. Prioritize fixing these categories:
 
-First 2-4 lines answer:
+1. **Invented reality**
+   - Features are described that the repo does not implement
+   - Install steps mention tools or package names absent from the repo
+   - Examples use fictional commands or environment variables
+
+2. **Weak opening**
+   - The first paragraph says almost nothing concrete
+   - The README does not explain what problem the project solves, for whom, and in what form (library, CLI, service, app, template)
+
+3. **No fast path**
+   - Setup exists but the quickest path to first success is buried
+   - The user cannot tell what command to run first
+
+4. **Audience mismatch**
+   - The text explains basic concepts to experts or assumes expertise from beginners
+   - The README does not state whether the project targets users, contributors, or operators
+
+5. **Missing boundaries**
+   - No limitations, non-goals, compatibility constraints, or required infrastructure
+   - No note on current project status if the repo looks experimental or internal
+
+6. **Unverifiable examples**
+   - Code snippets do not match real APIs, filenames, imports, or flags
+   - Pseudocode is presented as ready-to-run code
+
+7. **Presentation mismatch**
+   - The README ignores the desired style system
+   - Long sections are not scannable
+   - The tone sounds robotic or boilerplate-heavy
+   - Section headings do not use icons
+   - Hero content is missing or sloppy
+
+## Drafting rules
+
+### 1) Open with precision
+
+The first 2-4 lines should answer:
+
 - What is this?
 - Who is it for?
 - What does it help them do?
-- How is it used: library, CLI, service, starter, desktop app?
+- How is it used: library, CLI, service, starter, desktop app, etc.?
 
-Bad: "A powerful and flexible toolkit for modern development workflows."
-Better: "`toolname` is a Rust CLI for running untrusted code inside a constrained sandbox. Intended for agent and judge-style workloads that need process isolation, resource limits, and reproducible execution."
+Bad:
 
-### 2. Use the required visual style
+> A powerful and flexible toolkit for modern development workflows.
 
-- Centered hero block using `<div align="center">`
-- Project title, one-line tagline, and curated badges in the hero block
-- Emoji on every major section heading
-- Tables for option comparison, prerequisites, or support matrices
-- Bullet lists instead of long explanatory paragraphs
+Better:
+
+> `toolname` is a Rust CLI for running untrusted code inside a constrained sandbox. It is intended for agent and judge-style workloads that need process isolation, resource limits, and reproducible execution.
+
+### 2) Use the required visual style
+
+Unless the user asks for a different style, default to:
+
+- a centered hero block using `<div align="center">`
+- project title, one-line tagline, and curated badges in the hero block
+- emoji on every major section heading
+- tables for option comparison, prerequisites, or support matrices
+- bullet lists instead of long explanatory paragraphs
 - `<details>` blocks for long examples, install variants, integrations, or FAQ-style content
 
-### 3. Default section order
+Bad:
+
+- giant wall of prose before any runnable step
+- plain top section with no visual anchor
+- generic badges that could belong to any repo
+
+Better:
+
+- concise hero block + concrete quickstart near the top
+- badges tied to actual language, package manager, version, license, docs, CI, or release channels
+- collapsible sections for advanced or secondary material
+
+### 3) Prefer a success-oriented structure
+
+Default section order:
 
 1. Hero block
 2. Quick project description
@@ -108,115 +186,151 @@ Better: "`toolname` is a Rust CLI for running untrusted code inside a constraine
 
 Only include sections that add practical value.
 
-### 4. Write the quickest truthful quickstart
+### 4) Write the quickest truthful quickstart
+
+The quickstart should get a reader to first success in the smallest number of steps supported by the repository.
 
 - Use real commands
 - Mention prerequisites only if required
 - Prefer one working path over many variants at the top
 - Move advanced options later
 
-### 5. Separate facts from assumptions
+### 5) Separate facts from assumptions
 
-Unclear detail → either omit it or label clearly as `TODO`, `Assumption`, or `Project-specific note needed`. Never guess.
+If a detail is unclear:
 
-### 6. Match examples to the repo
+- either omit it
+- or label it clearly as `TODO`, `Assumption`, or `Project-specific note needed`
 
-Examples must reuse real binary names, real module imports, real file paths, real config keys, real environment variable names. Incomplete examples → say they are illustrative.
+Never guess.
 
-### 7. State boundaries
+### 6) Match examples to the repo
 
-Add a concise boundaries section when relevant: supported OS or runtime, required external services, current maturity level, non-goals, known limitations.
+Examples must reuse:
 
-### 8. Sound human, not institutional
+- real binary names
+- real module imports
+- real file paths
+- real config keys
+- real environment variable names
 
-Prefer direct language, short explanation followed by runnable detail, confident statements only when supported by evidence.
+When examples are incomplete, say they are illustrative.
 
-Delete: robust, seamless, cutting-edge, powerful, modern, enterprise-grade (unless immediately justified).
+### 7) State boundaries
 
-### 9. Never use em dashes
+Add a concise boundaries section when relevant:
 
-Replace with: a regular hyphen, a colon, parentheses, or a new sentence.
+- supported OS or runtime
+- required external services
+- current maturity level
+- non-goals
+- known limitations
 
-## Presentation Audit Checks
+### 8) Sound human, not institutional
 
-- All major headings prefixed with an emoji?
-- Hero block centered and visually clean?
-- Badges specific to the actual project stack and status?
-- Long sections collapsed with `<details>` where helpful?
-- Text sounds like a human explaining the project?
-- Tables or lists used where they reduce text density?
-- No em dashes?
+Prefer:
 
-## README Audit Checklist
+- direct language
+- short explanation followed by runnable detail
+- confident statements only when supported by evidence
+
+Avoid:
+
+- over-formal policy tone
+- bloated intro copy
+- stock marketing adjectives
+- spec-document voice unless the repo itself requires it
+
+### 9) Remove fluff
+
+Delete words like:
+
+- robust
+- seamless
+- cutting-edge
+- powerful
+- modern
+- enterprise-grade
+
+unless the claim is immediately justified.
+
+### 10) Never use em dashes
+
+Replace em dashes with:
+
+- a regular hyphen
+- a colon
+- parentheses
+- a new sentence
+
+## Presentation rules to enforce during audit
+
+When auditing an LLM-written README, explicitly check:
+
+- Are all major headings prefixed with an emoji?
+- Is the hero block centered and visually clean?
+- Are badges specific to the actual project stack and status?
+- Are long sections collapsed with `<details>` where that improves scanning?
+- Does the text sound like a human explaining the project?
+- Are tables or lists used where they reduce text density?
+- Are there any em dashes that must be replaced?
+
+## README audit checklist
+
+Before finalizing, verify:
 
 - Every command appears to exist in the repo or docs
 - Every package name matches the manifest or install instructions
 - Every feature bullet maps to code, tests, or docs
 - Every example uses existing identifiers
-- Opening paragraph identifies artifact type and audience
-- Quickstart is shorter than the full installation section
+- The opening paragraph identifies artifact type and audience
+- The quickstart is shorter than the full installation section
 - Missing facts are marked, not invented
-- Limitations included where they materially affect adoption
-- Contributor guidance separated from end-user setup
-- Hero block centered and not cluttered
+- Limitations are included where they materially affect adoption
+- Contributor guidance is separated from end-user setup
+- The hero block is centered and not cluttered
 - Badges are curated and evidence-backed
 - Major headings use icons
-- Long content collapsed where helpful
-- No em dashes in the final output
+- Long content is collapsed where helpful
+- There are no em dashes in the final output
 
 See `references/readme-rubric.md` for the scoring rubric.
 
-## Output Modes
+## Output modes
 
-**Mode A: New README** → full README with only evidence-backed sections
+Choose one depending on the task.
 
-**Mode B: Rewrite existing README** → keep valid project-specific details, remove generic filler, fix ordering, tighten language, apply style rules
+### Mode A: New README
 
-**Mode C: Audit an LLM-written README** → return:
-1. What is inaccurate
-2. What is vague
-3. What is missing
-4. What violates the style rules
-5. What should be reordered
-6. Rewritten README
+Produce a full README with only evidence-backed sections.
 
-## Preferred Response Pattern
+### Mode B: Rewrite existing README
 
-1. Short evidence summary used for drafting
+Keep valid project-specific details, remove generic filler, fix ordering, tighten language, and apply the style rules above.
+
+### Mode C: Audit an LLM-written README
+
+Return:
+
+1. `What is inaccurate`
+2. `What is vague`
+3. `What is missing`
+4. `What violates the style rules`
+5. `What should be reordered`
+6. `Rewritten README`
+
+## Preferred response pattern
+
+When the user asks for a README, respond in this order:
+
+1. A short evidence summary used for drafting
 2. Any missing facts that could not be verified
 3. The rewritten README
-4. Short audit note listing what was fixed
+4. A short audit note listing what was fixed
 
-## Assets and References
+## Assets and references
 
 - Template: `assets/README.template.md`
 - Anti-patterns: `references/readme-anti-patterns.md`
 - Rubric: `references/readme-rubric.md`
 
-
-## Lifecycle Integration
-
-### Agent Workflow Chains
-
-**Documentation task (standalone):**
-```
-user request → readme-writer (THIS) → [evidence gathering] → [README.md output]
-```
-
-**Post-delivery documentation:**
-```
-deliver → readme-writer (if README needed)
-```
-
-### Upstream Dependencies
-- Repository with code but weak/missing documentation
-- User request to write/improve/audit README
-
-### Downstream Consumers
-- None (documentation task)
-
-### Evidence Sources
-- Package metadata (package.json, Cargo.toml, etc.)
-- Executable entry points (src/, cmd/, bin/)
-- Usage evidence (examples/, tests, CI scripts)
-- Existing docs (current README, CONTRIBUTING, LICENSE)

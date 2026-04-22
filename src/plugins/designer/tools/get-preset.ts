@@ -26,9 +26,9 @@ export function register(server: McpServer): void {
 
       text += `## Colors\n\n`;
       text += `| Property | Value |\n|---|---|\n`;
-      text += `| Brand hue | ${t.colors.brand.hue}° - ${t.colors.brand.description} |\n`;
+      text += `| Brand hue | ${t.colors.brand.hue}° — ${t.colors.brand.description} |\n`;
       text += `| Neutral | H:${t.colors.neutral.hue}° C:${t.colors.neutral.chroma} (${t.colors.neutral.temperature}) |\n`;
-      text += `| Accent | H:${t.colors.accent.hue}° - ${t.colors.accent.description} |\n`;
+      text += `| Accent | H:${t.colors.accent.hue}° — ${t.colors.accent.description} |\n`;
       text += `| Default mode | ${t.colors.mode} |\n`;
       text += `| Dark strategy | ${t.colors.darkStrategy} |\n\n`;
 

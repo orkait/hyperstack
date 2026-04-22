@@ -7,9 +7,9 @@
 /* --color-border on --color-bg → target 1.1:1+ (perceptible) */
 
 /* Tools: */
-/* - https://oklch.com - build and preview oklch colors */
-/* - https://www.myndex.com/APCA/ - APCA contrast checker */
-/* - Storybook a11y addon - automated component-level checks */
+/* - https://oklch.com — build and preview oklch colors */
+/* - https://www.myndex.com/APCA/ — APCA contrast checker */
+/* - Storybook a11y addon — automated component-level checks */
 
 /* Check for stale hue references: */
 /* grep -r "violet-\|purple-\|blue-" src/  (old hardcoded Tailwind hue names) */

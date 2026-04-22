@@ -1,13 +1,13 @@
-# Design Masters - Principles, Rules & Convergence
+# Design Masters — Principles, Rules & Convergence
 
 > Source: Primary writings - Rams' 10 Principles, Norman's "Design of Everyday Things" (2013 revised),
 >   Vignelli's Canon (RIT PDF), Spiekermann (Google Design, Creative Bloq), Tufte's "Visual Display of
 >   Quantitative Information", Kare (Smithsonian, 99% Invisible), Apple HIG
-> Core insight: 7 designers working independently across decades converged on the same 5 principles. This is not coincidence - it's the structure of good design.
+> Core insight: 7 designers working independently across decades converged on the same 5 principles. This is not coincidence — it's the structure of good design.
 
 ---
 
-## Dieter Rams - "Weniger, aber besser" (Less, but better)
+## Dieter Rams — "Weniger, aber besser" (Less, but better)
 
 Designed 500+ products at Braun (1955-1995). His 10 principles are the direct ancestor of every premium digital design system.
 
@@ -19,7 +19,7 @@ Designed 500+ products at Braun (1955-1995). His 10 principles are the direct an
 | 2 | **Useful** | Usefulness = function + psychology + aesthetics together. A dashboard with poor hierarchy is harder to use, not just ugly. |
 | 3 | **Aesthetic** | "Products we use every day affect our well-being." Beauty is integral to usefulness, not optional decoration. |
 | 4 | **Understandable** | Zero-onboarding standard: a well-designed interface teaches itself through clarity of structure. |
-| 5 | **Unobtrusive** | "Products are tools, not decorative objects." Medium's reading view, Apple Notes, Linear's editor - the canvas disappears. |
+| 5 | **Unobtrusive** | "Products are tools, not decorative objects." Medium's reading view, Apple Notes, Linear's editor — the canvas disappears. |
 | 6 | **Honest** | Never make a product appear more powerful than it is. Dark patterns violate this directly. |
 | 7 | **Long-lasting** | Avoids fashion. Structural clarity doesn't age. Trendy glassmorphism does. |
 | 8 | **Thorough to the last detail** | "Nothing must be arbitrary." Every 404 page, empty state, error message, loading animation signals whether you respected the user. |
@@ -30,21 +30,21 @@ Designed 500+ products at Braun (1955-1995). His 10 principles are the direct an
 
 ---
 
-## Don Norman - How Things Work (And Fail)
+## Don Norman — How Things Work (And Fail)
 
 "The Design of Everyday Things" (1988, revised 2013). Central thesis: **when users fail to operate a product, the fault is the design, not the user.**
 
 ### Six Core Principles
 
-**Affordances** - The real relationship between object properties and user capabilities. A flat panel affords pushing. This exists regardless of whether the user perceives it. Designers cannot create affordances; they can only create signifiers.
+**Affordances** — The real relationship between object properties and user capabilities. A flat panel affords pushing. This exists regardless of whether the user perceives it. Designers cannot create affordances; they can only create signifiers.
 
-**Signifiers** - The visible indicators that communicate affordances. "PUSH" label on a door. Underlined blue link. **This is what designers actually control.** Most UI failures are signifier failures. A button that doesn't look clickable is not missing an affordance (clicking works) - it's missing a signifier (nothing tells the user to click).
+**Signifiers** — The visible indicators that communicate affordances. "PUSH" label on a door. Underlined blue link. **This is what designers actually control.** Most UI failures are signifier failures. A button that doesn't look clickable is not missing an affordance (clicking works) — it's missing a signifier (nothing tells the user to click).
 
-**Mapping** - Layout of controls matches results. Four stove knobs spatially correspond to four burners = natural mapping, zero learning. Apply to: scroll position ↔ document position, zoom controls next to content they affect, form fields ordered in the sequence users think about them.
+**Mapping** — Layout of controls matches results. Four stove knobs spatially correspond to four burners = natural mapping, zero learning. Apply to: scroll position ↔ document position, zoom controls next to content they affect, form fields ordered in the sequence users think about them.
 
-**Feedback** - Must be: immediate (< 100ms), informative (tells what happened), calibrated (not too little, not too much). Missing feedback is a bug. Notification spam is equally broken. The Doherty Threshold is feedback's speed constraint.
+**Feedback** — Must be: immediate (< 100ms), informative (tells what happened), calibrated (not too little, not too much). Missing feedback is a bug. Notification spam is equally broken. The Doherty Threshold is feedback's speed constraint.
 
-**Constraints** - Four types:
+**Constraints** — Four types:
 - Physical (USB-A won't insert inverted)
 - Semantic (save icon = saving action)
 - Cultural (red = stop)
@@ -52,7 +52,7 @@ Designed 500+ products at Braun (1955-1995). His 10 principles are the direct an
 
 Constraints define what is impossible, making what is possible obvious.
 
-**Conceptual Models** - The mental image users form about how a system works. When the system image (all visible affordances, signifiers) is weak or misleading, the user model diverges from the design model → confusion, errors, blame misattributed to the user.
+**Conceptual Models** — The mental image users form about how a system works. When the system image (all visible affordances, signifiers) is weak or misleading, the user model diverges from the design model → confusion, errors, blame misattributed to the user.
 
 ### The Two Gulfs
 
@@ -64,7 +64,7 @@ Good design narrows both gulfs simultaneously.
 
 ---
 
-## Massimo Vignelli - "Design Is One"
+## Massimo Vignelli — "Design Is One"
 
 NYC Subway map (1972), American Airlines identity, Knoll catalogs. The Vignelli Canon (2010) is free and essential reading.
 
@@ -74,7 +74,7 @@ NYC Subway map (1972), American Airlines identity, Knoll catalogs. The Vignelli 
 - **Syntactics:** How elements structure together: typefaces interacting, images relating to grids. "God is in the details."
 - **Pragmatics:** If your design isn't understood, it is useless. Semantic meaning + syntactic structure must produce clarity.
 
-The NYC subway map succeeded aesthetically but failed pragmatically - geographical inaccuracy misled actual commuters. He acknowledged this. **Lesson: aesthetics ≠ effectiveness.**
+The NYC subway map succeeded aesthetically but failed pragmatically — geographical inaccuracy misled actual commuters. He acknowledged this. **Lesson: aesthetics ≠ effectiveness.**
 
 ### Typography Discipline
 
@@ -92,7 +92,7 @@ The NYC subway map succeeded aesthetically but failed pragmatically - geographic
 
 ---
 
-## Erik Spiekermann - Type Is Voice
+## Erik Spiekermann — Type Is Voice
 
 Berlin Transit signage, The Economist redesign, VW/Audi/Deutsche Bahn corporate typefaces. The most commercially deployed typographer alive.
 
@@ -100,7 +100,7 @@ Berlin Transit signage, The Economist redesign, VW/Audi/Deutsche Bahn corporate 
 
 **Type is brand.** "Nothing communicates a brand's personality quite like a custom typeface." Nokia, Bosch, VW commissioning proprietary typefaces = purchasing differentiation that cannot be copied. A logo can be mimicked. A color matched. A typeface encodes character in every glyph.
 
-**Helvetica is broken for screens.** At small sizes, Helvetica's letterforms become ambiguous (I/l/1 confusion, closed apertures collapse at low resolution). FF Meta (1991) was his explicit antithesis - open apertures, humanist stroke variation, letters that remain distinct under duress.
+**Helvetica is broken for screens.** At small sizes, Helvetica's letterforms become ambiguous (I/l/1 confusion, closed apertures collapse at low resolution). FF Meta (1991) was his explicit antithesis — open apertures, humanist stroke variation, letters that remain distinct under duress.
 
 **The open aperture principle:** The opening of `c`, `e`, `a`, `s` is critical for screen legibility. Closed-aperture typefaces (Helvetica, geometric sans) collapse at low resolution. Humanist sans-serifs (Meta, Frutiger, Myriad) maintain distinction because their open forms reference handwritten letterforms, which human vision evolved to parse.
 
@@ -108,18 +108,18 @@ Berlin Transit signage, The Economist redesign, VW/Audi/Deutsche Bahn corporate 
 
 ---
 
-## Jony Ive / Apple HIG - Simplicity as Consequence
+## Jony Ive / Apple HIG — Simplicity as Consequence
 
 ### Core Distinction
 "Simplicity is not the absence of clutter, that's a consequence of simplicity. Simplicity is somehow essentially describing the purpose and place of an object."
 
-Removing clutter without achieving purpose is just a clutter-free product - not simple. There is a critical difference.
+Removing clutter without achieving purpose is just a clutter-free product — not simple. There is a critical difference.
 
 ### Operating Principles
 
-**Design and engineering are inseparable.** The aluminum unibody MacBook required engineers + designers in parallel from day one. Sequential handoffs produce compromises. This is why the designer skill produces a DESIGN.md contract before code - the design and implementation must be integrated.
+**Design and engineering are inseparable.** The aluminum unibody MacBook required engineers + designers in parallel from day one. Sequential handoffs produce compromises. This is why the designer skill produces a DESIGN.md contract before code — the design and implementation must be integrated.
 
-**Reduction is active work.** Steve Jobs: "Saying no to 1,000 things." Not passive restraint - the hardest design work.
+**Reduction is active work.** Steve Jobs: "Saying no to 1,000 things." Not passive restraint — the hardest design work.
 
 **9:1 rejection ratio.** "There are nine rejected ideas for every idea that works." The discipline is the rigor of the rejection process, not having the right idea first.
 
@@ -127,11 +127,11 @@ Removing clutter without achieving purpose is just a clutter-free product - not 
 
 - **Clarity:** Text legible at every size. Icons precise. Decorative elements never interfere with content. The interface is a transparent carrier for meaning.
 - **Deference:** The UI steps back. Fluid animations and translucent UI exist to surface content, not display themselves.
-- **Depth:** Visual layers and realistic motion convey hierarchy. Spring animations communicate mass and physicality - they are signifiers in Norman's vocabulary.
+- **Depth:** Visual layers and realistic motion convey hierarchy. Spring animations communicate mass and physicality — they are signifiers in Norman's vocabulary.
 
 ---
 
-## Edward Tufte - The Anti-Slop Data Framework
+## Edward Tufte — The Anti-Slop Data Framework
 
 "The Visual Display of Quantitative Information" (1983). Operating premise: **"Above all else, show the data."**
 
@@ -144,9 +144,9 @@ Goal: maximize toward 1.0. Practical test: **"Can this element be erased without
 Elements that fail this test: most gridlines, axis borders, background fills, drop shadows on charts, 3D effects on 2D data, legend boxes that could be direct labels, decorative illustrations in dashboards.
 
 ### Chartjunk (three types)
-1. **Unintentional optical art** - Moiré patterns, cross-hatching creating visual noise
-2. **The grid** - Gridlines that dominate the data they reference
-3. **The duck** - Self-promoting graphics where the chart's design becomes the message
+1. **Unintentional optical art** — Moiré patterns, cross-hatching creating visual noise
+2. **The grid** — Gridlines that dominate the data they reference
+3. **The duck** — Self-promoting graphics where the chart's design becomes the message
 
 ### The Lie Factor
 
@@ -162,23 +162,23 @@ Same graphic structure, vary only the data. Eye reads structure once, then reads
 
 ---
 
-## Susan Kare - Icons as Universal Language
+## Susan Kare — Icons as Universal Language
 
 Original Macintosh icons (1982-84), Chicago typeface, cursor system. The foundation of icon design.
 
 ### Three Principles
 
-**Meaningful.** Every icon must stand for something real and recognizable. She used Henry Dreyfuss's "Symbol Sourcebook" - grounding in existing symbol systems, not invention. Trash can, folder, paint bucket - physical behaviors map to digital functions.
+**Meaningful.** Every icon must stand for something real and recognizable. She used Henry Dreyfuss's "Symbol Sourcebook" — grounding in existing symbol systems, not invention. Trash can, folder, paint bucket — physical behaviors map to digital functions.
 
 **Memorable.** "An icon is successful if you could tell someone what it is once and they don't forget it." Test: one-trial learning. Requires strong metaphor + visual distinctiveness.
 
-**Clear.** "Good icons should function like traffic signs - simple symbols with few extraneous details, which makes them more universal." Designed against English puns because they don't translate.
+**Clear.** "Good icons should function like traffic signs — simple symbols with few extraneous details, which makes them more universal." Designed against English puns because they don't translate.
 
 ### Constraint as Creative Tool
 "I loved the puzzle-like nature of working in 16x16 and 32x32 pixel grids." The constraint forced simplicity. Rams' "as little design as possible" at the pixel level.
 
 ### The Durability Test
-"Nobody seems to need to redesign the stop sign every two years." A well-designed icon achieves permanence - the metaphor was structurally correct. The trash can has survived 40 years without redesign.
+"Nobody seems to need to redesign the stop sign every two years." A well-designed icon achieves permanence — the metaphor was structurally correct. The trash can has survived 40 years without redesign.
 
 ---
 
@@ -211,7 +211,7 @@ Good constraints remove decisions that distract from the core problem.
 | Vignelli | Restricted palette forces discipline |
 | Norman | Physical constraints make correct action obvious |
 
-**Design implication:** A strict type scale, spacing grid, and color palette are not limitations. They are preconditions for quality. This is why design tokens exist - they are constraints that enable speed.
+**Design implication:** A strict type scale, spacing grid, and color palette are not limitations. They are preconditions for quality. This is why design tokens exist — they are constraints that enable speed.
 
 ### 3. Timelessness Over Trend
 
@@ -235,7 +235,7 @@ Usefulness and beauty are not separate concerns. Both required simultaneously.
 | Spiekermann | Type is function (form carries meaning) |
 | Rams | "Aesthetic quality is integral to usefulness" |
 
-**Design implication:** A dashboard with poor visual hierarchy is not just ugly - it is harder to use. Form serves function. A beautiful but confusing interface fails. A functional but ugly interface fails. Both must be present.
+**Design implication:** A dashboard with poor visual hierarchy is not just ugly — it is harder to use. Form serves function. A beautiful but confusing interface fails. A functional but ugly interface fails. Both must be present.
 
 ### 5. Design Communicates Trust
 

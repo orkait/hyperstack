@@ -23,7 +23,7 @@ export function register(server: McpServer): void {
       let text = "# Go Best Practices\n\n**P0** = critical (bugs/security if violated). **P1** = standard (maintainability).\n\n";
       for (const [t, items] of Object.entries(grouped)) {
         text += `## ${t}\n`;
-        for (const p of items) text += `- [${p.priority}] **${p.name}** - ${p.rule}\n`;
+        for (const p of items) text += `- [${p.priority}] **${p.name}** — ${p.rule}\n`;
         text += "\n";
       }
       text += `\n**Total:** ${list.length} practices`;

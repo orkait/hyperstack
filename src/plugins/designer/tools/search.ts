@@ -29,7 +29,7 @@ export function register(server: McpServer): void {
       for (const [kind, items] of Object.entries(grouped)) {
         text += `## ${kind} (${items.length})\n`;
         for (const item of items) {
-          text += `- **${item.name}** - ${item.summary}\n`;
+          text += `- **${item.name}** — ${item.summary}\n`;
         }
         text += "\n";
       }

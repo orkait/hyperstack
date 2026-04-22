@@ -7,7 +7,7 @@ export function register(server: McpServer): void {
     "Get the architectural rules and mandatory checklist for shadcn/ui (Base UI edition). Call this before proposing any new component or modification.",
     {},
     async () => {
-      let text = `# shadcn/ui (Base UI Edition) - Architectural Rules\n\n`;
+      let text = `# shadcn/ui (Base UI Edition) — Architectural Rules\n\n`;
 
       text += `## Core Conventions\n\n`;
       text += `| Rule | Standard |\n|---|---|\n`;
@@ -31,7 +31,7 @@ export function register(server: McpServer): void {
       }
       text += `\n`;
 
-      text += `## Red Flags - STOP\n\n`;
+      text += `## Red Flags — STOP\n\n`;
       text += `| Anti-pattern | Fix |\n|---|---|\n`;
       text += `| \`import ... from "@radix-ui/react-*"\` | Migrate to \`@base-ui/react\` |\n`;
       text += `| \`className="trigger"\` for identification | Use \`data-slot="trigger"\` |\n`;

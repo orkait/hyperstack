@@ -6,7 +6,7 @@ export function register(server: McpServer): void {
     "motion://react/cheatsheet",
     { description: "Motion for React quick reference cheatsheet", mimeType: "text/markdown" },
     async () => {
-      const text = `# Motion for React - Cheatsheet
+      const text = `# Motion for React — Cheatsheet
 
 ## Import
 \`\`\`tsx

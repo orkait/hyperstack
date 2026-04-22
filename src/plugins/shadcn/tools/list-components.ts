@@ -19,7 +19,7 @@ export function register(server: McpServer): void {
         };
       }
 
-      let text = `# shadcn/ui Components${category ? ` - ${category}` : ""}\n\n`;
+      let text = `# shadcn/ui Components${category ? ` — ${category}` : ""}\n\n`;
       text += `${components.length} component${components.length > 1 ? "s" : ""} found.\n\n`;
       text += `| Component | Category | Base Primitive | Variants | Client |\n`;
       text += `|---|---|---|---|---|\n`;

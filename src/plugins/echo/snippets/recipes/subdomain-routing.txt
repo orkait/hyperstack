@@ -28,7 +28,7 @@ func main() {
 		return c.String(http.StatusOK, "admin panel")
 	})
 
-	// Wildcard subdomain - :subdomain captures the dynamic part
+	// Wildcard subdomain — :subdomain captures the dynamic part
 	wildcard := e.Host(":subdomain.example.com")
 	wildcard.GET("/", func(c echo.Context) error {
 		sub := c.Param("subdomain")

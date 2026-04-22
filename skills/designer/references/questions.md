@@ -24,7 +24,7 @@ Every answer changes the output. Questions ordered from high-level (personality)
 
 **Determines:** Industry category, anti-pattern set, style priority
 **Example:** "A project management tool for software engineers"
-**Resolution:** Maps to `designer_get_industry_rules` - returns recommended style, color mood, must-haves, never-uses
+**Resolution:** Maps to `designer_get_industry_rules` — returns recommended style, color mood, must-haves, never-uses
 
 ---
 
@@ -58,7 +58,7 @@ Every answer changes the output. Questions ordered from high-level (personality)
 
 ## Q4: Light or dark default?
 
-Not a preference - a product and brand decision:
+Not a preference — a product and brand decision:
 - **Developer tools** → dark (convention, reduces eye strain in code)
 - **Marketing/consumer** → light (reading context, warm backgrounds)
 - **Editorial/content** → light (paper metaphor)

@@ -41,7 +41,7 @@ export const BEST_PRACTICES: BestPractice[] = [
   {
     name: "copy-by-value",
     chapter: "coding-styles",
-    rule: "Small Copy types (≤24 bytes) can be passed by value - no need for &T.",
+    rule: "Small Copy types (≤24 bytes) can be passed by value — no need for &T.",
     reason: "Copying small types (u32, bool, small structs) is as fast or faster than a reference.",
     good: snippet("practices/copy-by-value-good.txt"),
   },
@@ -100,7 +100,7 @@ export const BEST_PRACTICES: BestPractice[] = [
     name: "prefer-iterators",
     chapter: "performance",
     rule: "Prefer iterator chains over manual loops. Avoid premature .collect().",
-    reason: "Iterators are lazy - they don't allocate until consumed. collect() is the allocation point.",
+    reason: "Iterators are lazy — they don't allocate until consumed. collect() is the allocation point.",
     good: snippet("practices/prefer-iterators-good.txt"),
     bad: snippet("practices/prefer-iterators-bad.txt"),
   },
@@ -146,7 +146,7 @@ export const BEST_PRACTICES: BestPractice[] = [
     name: "doc-tests",
     chapter: "documentation",
     rule: "Use doc tests (///) for public API usage examples. They run with cargo test.",
-    reason: "Doc tests are the only examples guaranteed to stay correct - they compile and run.",
+    reason: "Doc tests are the only examples guaranteed to stay correct — they compile and run.",
     good: snippet("practices/doc-tests-good.txt"),
   },
 
@@ -155,7 +155,7 @@ export const BEST_PRACTICES: BestPractice[] = [
     name: "static-over-dynamic-dispatch",
     chapter: "generics",
     rule: "Prefer generics (static dispatch) for performance-critical code. Use dyn Trait for heterogeneous collections.",
-    reason: "Generics monomorphize at compile time - zero runtime cost. dyn Trait has vtable overhead.",
+    reason: "Generics monomorphize at compile time — zero runtime cost. dyn Trait has vtable overhead.",
     good: snippet("practices/static-over-dynamic-dispatch-good.txt"),
   },
 
@@ -166,7 +166,7 @@ export const BEST_PRACTICES: BestPractice[] = [
     rule: "Encode valid state transitions in the type system using PhantomData.",
     reason: "Catches invalid operations at compile time, not runtime. Zero cost abstraction.",
     good: snippet("practices/type-state-pattern-good.txt"),
-    tips: ["Use when invalid state transitions are a real risk", "Don't over-engineer - simple enums often suffice"],
+    tips: ["Use when invalid state transitions are a real risk", "Don't over-engineer — simple enums often suffice"],
   },
 
   // POINTERS
@@ -178,7 +178,7 @@ export const BEST_PRACTICES: BestPractice[] = [
     tips: [
       "Arc<T>: shared ownership across threads (T: Send + Sync)",
       "Mutex<T>: interior mutability for T: Send",
-      "Rc<T> and RefCell<T> are NOT thread-safe - local only",
+      "Rc<T> and RefCell<T> are NOT thread-safe — local only",
     ],
     good: snippet("practices/send-sync-good.txt"),
     bad: snippet("practices/send-sync-bad.txt"),

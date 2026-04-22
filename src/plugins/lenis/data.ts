@@ -56,7 +56,7 @@ export function formatApiReference(api: ApiEntry): string {
   if (api.props && api.props.length > 0) {
     out += `## Props / Options\n\n`;
     for (const p of api.props) {
-      out += `- **${p.name}**: \`${p.type}\`${p.default ? ` (default: \`${p.default}\`)` : ""} - ${p.description}\n`;
+      out += `- **${p.name}**: \`${p.type}\`${p.default ? ` (default: \`${p.default}\`)` : ""} — ${p.description}\n`;
     }
     out += "\n";
   }
@@ -175,9 +175,9 @@ const reactLenis: ApiEntry = {
     },
   ],
   tips: [
-    "Always import 'lenis/dist/lenis.css' - without it, the scroll container loses its overflow styles and the scroller breaks visibly.",
-    "In Next.js App Router, ReactLenis must be in a 'use client' file or wrapped in a client component - it uses refs and effects internally.",
-    "root={true} delegates to the window scroll. root={false} (default) creates a div-based scroller - you need to set height/overflow on the parent.",
+    "Always import 'lenis/dist/lenis.css' — without it, the scroll container loses its overflow styles and the scroller breaks visibly.",
+    "In Next.js App Router, ReactLenis must be in a 'use client' file or wrapped in a client component — it uses refs and effects internally.",
+    "root={true} delegates to the window scroll. root={false} (default) creates a div-based scroller — you need to set height/overflow on the parent.",
     "autoRaf defaults to true. If you integrate GSAP or Framer Motion, set autoRaf={false} and tick manually to avoid double-frame rendering.",
   ],
   relatedApis: ["useLenis", "LenisRef", "LenisOptions"],
@@ -237,8 +237,8 @@ const useLenis: ApiEntry = {
     },
   ],
   tips: [
-    "useLenis() outside a ReactLenis provider returns undefined - always guard with optional chaining: lenis?.scrollTo(...).",
-    "The scroll callback fires every frame when scrolling - avoid expensive operations or setState directly inside it. Use refs for DOM mutation or debounce for state.",
+    "useLenis() outside a ReactLenis provider returns undefined — always guard with optional chaining: lenis?.scrollTo(...).",
+    "The scroll callback fires every frame when scrolling — avoid expensive operations or setState directly inside it. Use refs for DOM mutation or debounce for state.",
     "lenis.scrollTo() accepts a CSS selector string, HTMLElement, or number (pixel offset). Passing 0 scrolls to top.",
     "lenis.stop() and lenis.start() are the correct way to lock scroll (e.g. modals). Do NOT manipulate overflow on body manually.",
   ],
@@ -276,7 +276,7 @@ const lenisRef: ApiEntry = {
     },
   ],
   tips: [
-    "LenisRef.lenis is undefined until ReactLenis mounts - always check for its existence before calling methods.",
+    "LenisRef.lenis is undefined until ReactLenis mounts — always check for its existence before calling methods.",
     "Prefer useLenis() over LenisRef for components inside the provider tree. LenisRef is mainly for components that render the provider itself.",
   ],
   relatedApis: ["ReactLenis", "useLenis"],
@@ -339,7 +339,7 @@ const lenisOptions: ApiEntry = {
     {
       name: "infinite",
       type: "boolean",
-      description: "Enable infinite scroll - wraps around when reaching start or end.",
+      description: "Enable infinite scroll — wraps around when reaching start or end.",
       default: "false",
     },
     {
@@ -373,10 +373,10 @@ const lenisOptions: ApiEntry = {
     },
   ],
   tips: [
-    "lerp: 0.1 is the default - values closer to 0 are smoother but feel slower. 0.05-0.15 is the practical range.",
-    "Do NOT set smoothTouch: true on production sites targeting iOS - it introduces perceivable input lag.",
+    "lerp: 0.1 is the default — values closer to 0 are smoother but feel slower. 0.05-0.15 is the practical range.",
+    "Do NOT set smoothTouch: true on production sites targeting iOS — it introduces perceivable input lag.",
     "duration and lerp are mutually exclusive; duration-based scrolling uses an easing function while lerp uses linear interpolation per frame.",
-    "infinite: true works best with a content height that is a multiple of the viewport - otherwise it jumps.",
+    "infinite: true works best with a content height that is a multiple of the viewport — otherwise it jumps.",
   ],
   relatedApis: ["ReactLenis"],
 };
@@ -394,11 +394,11 @@ export const ALL_APIS: ApiEntry[] = [reactLenis, useLenis, lenisRef, lenisOption
 export const PATTERNS: Record<string, Pattern> = {
   "full-page": {
     name: "full-page",
-    description: "Standard root layout setup - ReactLenis wraps the entire app for full-page smooth scrolling.",
+    description: "Standard root layout setup — ReactLenis wraps the entire app for full-page smooth scrolling.",
     code: snippet("patterns/full-page.txt"),
     tips: [
-      "root={true} is required for full-page scroll - without it, Lenis creates an overflow:hidden container.",
-      "The CSS import is mandatory - skip it and the layout breaks.",
+      "root={true} is required for full-page scroll — without it, Lenis creates an overflow:hidden container.",
+      "The CSS import is mandatory — skip it and the layout breaks.",
     ],
   },
   "next-js": {
@@ -406,7 +406,7 @@ export const PATTERNS: Record<string, Pattern> = {
     description: "Next.js App Router pattern using a dedicated SmoothScrollProvider client component to wrap the layout.",
     code: snippet("patterns/next-js.txt"),
     tips: [
-      "Keep app/layout.tsx as a Server Component - extract the 'use client' directive into SmoothScrollProvider.",
+      "Keep app/layout.tsx as a Server Component — extract the 'use client' directive into SmoothScrollProvider.",
       "This preserves RSC boundaries and avoids unnecessarily client-rendering the entire layout.",
     ],
   },
@@ -415,9 +415,9 @@ export const PATTERNS: Record<string, Pattern> = {
     description: "Integrate Lenis with GSAP ScrollTrigger by disabling autoRaf and driving Lenis from GSAP's ticker.",
     code: snippet("patterns/gsap-integration.txt"),
     tips: [
-      "autoRaf: false is required - if GSAP and Lenis both run their own RAF loops, scroll updates fire twice per frame causing desync.",
+      "autoRaf: false is required — if GSAP and Lenis both run their own RAF loops, scroll updates fire twice per frame causing desync.",
       "gsap.ticker.lagSmoothing(0) prevents GSAP from adjusting delta time which would cause Lenis to stutter after tab switches.",
-      "lenis.raf() expects milliseconds - multiply GSAP time (seconds) by 1000.",
+      "lenis.raf() expects milliseconds — multiply GSAP time (seconds) by 1000.",
     ],
   },
   "framer-motion-integration": {
@@ -425,9 +425,9 @@ export const PATTERNS: Record<string, Pattern> = {
     description: "Integrate Lenis with Framer Motion by disabling autoRaf and syncing via frame.update.",
     code: snippet("patterns/framer-motion-integration.txt"),
     tips: [
-      "Use frame from 'motion' (not 'framer-motion') - this is the Framer Motion v11+ low-level scheduler.",
+      "Use frame from 'motion' (not 'framer-motion') — this is the Framer Motion v11+ low-level scheduler.",
       "frame.update(fn, true) schedules the update to run on every frame. The second argument (true) enables loop mode.",
-      "autoRaf: false is mandatory - same reasoning as with GSAP, prevent double-ticking.",
+      "autoRaf: false is mandatory — same reasoning as with GSAP, prevent double-ticking.",
     ],
   },
   "custom-container": {
@@ -436,7 +436,7 @@ export const PATTERNS: Record<string, Pattern> = {
     code: snippet("patterns/custom-container.txt"),
     tips: [
       "The wrapper element needs overflow: hidden and a fixed height for container scroll to work.",
-      "The content element is the scrollable inner div - it should grow naturally with its children.",
+      "The content element is the scrollable inner div — it should grow naturally with its children.",
       "This pattern is useful for split-panel layouts, side drawers, or modal scroll areas.",
     ],
   },
@@ -446,7 +446,7 @@ export const PATTERNS: Record<string, Pattern> = {
     code: snippet("patterns/accessibility.txt"),
     tips: [
       "Never force smooth scrolling on users who have opted out via prefers-reduced-motion.",
-      "When skipping ReactLenis, native scroll is used - no polyfill needed.",
+      "When skipping ReactLenis, native scroll is used — no polyfill needed.",
       "For a hook-based approach, use the useReducedMotion hook from Framer Motion or write your own with a useEffect + matchMedia listener.",
     ],
   },
@@ -455,7 +455,7 @@ export const PATTERNS: Record<string, Pattern> = {
     description: "Navigation link that uses lenis.scrollTo() for smooth in-page anchor navigation.",
     code: snippet("patterns/scroll-to-nav.txt"),
     tips: [
-      "offset compensates for sticky headers - pass a negative value equal to the header height.",
+      "offset compensates for sticky headers — pass a negative value equal to the header height.",
       "lenis.scrollTo() accepts a CSS selector ('#section'), HTMLElement, or pixel number.",
       "For Next.js App Router, use usePathname to detect route changes and reset scroll position.",
     ],

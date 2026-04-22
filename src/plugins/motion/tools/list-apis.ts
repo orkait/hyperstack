@@ -18,10 +18,10 @@ export function register(server: McpServer): void {
       for (const api of apis) {
         const k = api.kind;
         if (!grouped[k]) grouped[k] = [];
-        grouped[k].push(`${api.name} - ${api.description.split(".")[0]}`);
+        grouped[k].push(`${api.name} — ${api.description.split(".")[0]}`);
       }
 
-      let text = "# Motion for React - API Reference\n\n";
+      let text = "# Motion for React — API Reference\n\n";
       text += `Import from \`"motion/react"\` (or \`"motion/react-client"\` for RSC)\n\n`;
       for (const [kind, items] of Object.entries(grouped)) {
         text += `## ${capitalize(kind)}s\n`;

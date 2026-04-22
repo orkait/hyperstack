@@ -15,10 +15,10 @@ export function register(server: McpServer): void {
       const grouped: Record<string, string[]> = {};
       for (const r of list) {
         if (!grouped[r.category]) grouped[r.category] = [];
-        grouped[r.category].push(`${r.name} - ${r.description}`);
+        grouped[r.category].push(`${r.name} — ${r.description}`);
       }
 
-      let text = "# Echo Framework - Recipes\n\n";
+      let text = "# Echo Framework — Recipes\n\n";
       text += `Total: ${list.length} recipes\n\n`;
       for (const [cat, items] of Object.entries(grouped)) {
         text += `## ${cat}\n`;

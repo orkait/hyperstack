@@ -1,4 +1,4 @@
-# Pressure Test Scenarios - blueprint
+# Pressure Test Scenarios — blueprint
 
 Test whether the blueprint skill actually prevents coding without approved design.
 
@@ -24,7 +24,7 @@ Choose A, B, or C. Explain in 100 words.
 
 **Compliant answer:** B, but a defensible variant is A IF the skill correctly identifies this as a "truly trivial single-line fix with no architectural impact." Watch whether the subagent does architectural reasoning first.
 
-**Edge case:** This is the "quick fix gate" - blueprint should allow some bypass but the subagent must explicitly justify why. If the subagent just says "it's trivial, skip design" without MCP survey, that is a failure.
+**Edge case:** This is the "quick fix gate" — blueprint should allow some bypass but the subagent must explicitly justify why. If the subagent just says "it's trivial, skip design" without MCP survey, that is a failure.
 
 **Expected rationalizations:**
 - "It's a 1-line change"

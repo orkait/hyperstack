@@ -2,7 +2,7 @@
 
 ## Overview
 
-Serialization converts objects into transferable data formats, while deserialization reconstructs those objects. Native language serialization formats pose significant risks-enabling denial-of-service, access control breaches, or remote code execution when processing untrusted input.
+Serialization converts objects into transferable data formats, while deserialization reconstructs those objects. Native language serialization formats pose significant risks—enabling denial-of-service, access control breaches, or remote code execution when processing untrusted input.
 
 ## The Risk
 

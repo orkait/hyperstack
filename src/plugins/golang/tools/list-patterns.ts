@@ -24,7 +24,7 @@ export function register(server: McpServer): void {
       for (const [cat, items] of Object.entries(grouped)) {
         text += `## ${cat}\n`;
         for (const p of items) {
-          text += `- **${p.name}** - ${p.goApproach.split(".")[0]}`;
+          text += `- **${p.name}** — ${p.goApproach.split(".")[0]}`;
           if (p.oopEquivalent) text += ` *(OOP: ${p.oopEquivalent})*`;
           text += "\n";
         }

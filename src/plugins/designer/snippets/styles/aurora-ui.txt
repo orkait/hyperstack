@@ -1,4 +1,4 @@
-/* Aurora UI - Mesh Gradient */
+/* Aurora UI — Mesh Gradient */
 .aurora-hero {
   background: linear-gradient(
     135deg,
@@ -20,7 +20,7 @@
 
 /* Complementary pairs: blue-orange, purple-yellow */
 /* 8-12s animation loop, never faster */
-/* Hero sections only - not for entire page */
+/* Hero sections only — not for entire page */
 /* MUST verify text contrast on gradient */
 
 @media (prefers-reduced-motion: reduce) {

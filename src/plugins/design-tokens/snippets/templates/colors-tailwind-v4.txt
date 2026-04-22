@@ -1,5 +1,5 @@
 /* ============================================================
-   DESIGN TOKEN SYSTEM - Colors (Tailwind v4 + shadcn/ui)
+   DESIGN TOKEN SYSTEM — Colors (Tailwind v4 + shadcn/ui)
    Architecture: @theme primitives → :root/:dark semantics → @theme inline utilities
    ============================================================ */
 
@@ -7,7 +7,7 @@
 
 /* ── Layer 1: Primitive ramps ─────────────────────────────── */
 @theme {
-  /* Brand ramp - change hue angle here to swap palette globally */
+  /* Brand ramp — change hue angle here to swap palette globally */
   --color-brand-50:  oklch(0.97 0.02 291);
   --color-brand-100: oklch(0.94 0.04 291);
   --color-brand-200: oklch(0.88 0.06 291);

@@ -6,7 +6,7 @@ export function register(server: McpServer): void {
     "lenis://react/cheatsheet",
     { description: "Lenis React quick reference cheatsheet", mimeType: "text/markdown" },
     async () => {
-      const text = `# Lenis React - Cheatsheet
+      const text = `# Lenis React — Cheatsheet
 
 ## Install
 \`\`\`bash
@@ -45,14 +45,14 @@ export function SmoothScrollProvider({ children }) {
 <SmoothScrollProvider>{children}</SmoothScrollProvider>
 \`\`\`
 
-### useLenis - scroll callback
+### useLenis — scroll callback
 \`\`\`tsx
 useLenis(({ scroll, progress, velocity }) => {
   // fires every frame while scrolling
 });
 \`\`\`
 
-### useLenis - scroll to element
+### useLenis — scroll to element
 \`\`\`tsx
 const lenis = useLenis();
 lenis?.scrollTo("#section", { offset: -80, duration: 1.2 });
@@ -97,19 +97,19 @@ useEffect(() => {
 | Option | Default | Notes |
 |---|---|---|
 | lerp | 0.1 | Smoothing factor. Lower = smoother. 0.05–0.15 range |
-| duration | - | For programmatic scrolls. Overrides lerp |
+| duration | — | For programmatic scrolls. Overrides lerp |
 | orientation | vertical | 'vertical' or 'horizontal' |
 | smoothWheel | true | Mouse wheel smooth scroll |
-| smoothTouch | false | Touch smooth scroll - avoid on iOS |
+| smoothTouch | false | Touch smooth scroll — avoid on iOS |
 | autoRaf | true | Set false for GSAP/Framer sync |
 | infinite | false | Infinite loop scroll |
 
 ## Common Pitfalls
-- Missing \`import "lenis/dist/lenis.css"\` - scroll breaks visually
-- Using \`autoRaf: true\` with GSAP ticker - causes desync / double frames
-- Calling \`useLenis()\` outside \`<ReactLenis>\` - returns undefined, crashes
-- Missing \`"use client"\` in Next.js App Router - Lenis uses refs and effects
-- \`smoothTouch: true\` on iOS - perceivable input lag on low-end devices
+- Missing \`import "lenis/dist/lenis.css"\` — scroll breaks visually
+- Using \`autoRaf: true\` with GSAP ticker — causes desync / double frames
+- Calling \`useLenis()\` outside \`<ReactLenis>\` — returns undefined, crashes
+- Missing \`"use client"\` in Next.js App Router — Lenis uses refs and effects
+- \`smoothTouch: true\` on iOS — perceivable input lag on low-end devices
 `;
       return { contents: [{ uri: "lenis://react/cheatsheet", mimeType: "text/markdown", text }] };
     },

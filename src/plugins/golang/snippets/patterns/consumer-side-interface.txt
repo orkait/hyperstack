@@ -12,4 +12,4 @@ package postgres
 
 type UserRepo struct { db *pgx.Conn }
 func (r *UserRepo) FindByID(ctx context.Context, id string) (*User, error) { ... }
-// UserRepo satisfies service.UserStore implicitly - no import of service needed
+// UserRepo satisfies service.UserStore implicitly — no import of service needed

@@ -1,4 +1,4 @@
-// ✅ RSC by default - no directive needed
+// ✅ RSC by default — no directive needed
 export default async function ProductList() {
   const products = await db.query("SELECT * FROM products");
   return <ul>{products.map(p => <li key={p.id}>{p.name}</li>)}</ul>;

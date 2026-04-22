@@ -36,7 +36,7 @@ const nodeType: ApiEntry = {
     },
   ],
   tips: [
-    "Don't set width/height directly - use style or className for sizing.",
+    "Don't set width/height directly — use style or className for sizing.",
     "v12: measured dimensions are at node.measured.width, not node.width.",
     "Default node types: 'default' (both handles), 'input' (source only), 'output' (target only), 'group' (container).",
   ],

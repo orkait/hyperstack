@@ -1,4 +1,4 @@
-/* Required Lenis CSS - import via 'lenis/dist/lenis.css' or add manually */
+/* Required Lenis CSS — import via 'lenis/dist/lenis.css' or add manually */
 
 html.lenis,
 html.lenis body {

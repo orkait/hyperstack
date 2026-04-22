@@ -5,7 +5,7 @@ import { ALL_APIS, searchApis, getApiByName, formatApiReference } from "../data.
 export function register(server: McpServer): void {
   server.tool(
     "lenis_get_api",
-    "Get detailed API reference for a specific Lenis API - props, options, usage examples, and tips.",
+    "Get detailed API reference for a specific Lenis API — props, options, usage examples, and tips.",
     {
       name: z.string().describe("API name (e.g., 'ReactLenis', 'useLenis', 'LenisRef', 'LenisOptions')"),
     },

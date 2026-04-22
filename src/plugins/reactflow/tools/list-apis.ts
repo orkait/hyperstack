@@ -5,7 +5,7 @@ import { ALL_APIS, capitalize, API_KINDS } from "../data/index.js";
 export function register(server: McpServer): void {
   server.tool(
     "reactflow_list_apis",
-    "List all React Flow v12 APIs - components, hooks, utilities, and types",
+    "List all React Flow v12 APIs — components, hooks, utilities, and types",
     {
       kind: z
         .enum(["all", "component", "hook", "utility", "type"] as const)
@@ -22,10 +22,10 @@ export function register(server: McpServer): void {
       for (const api of apis) {
         const k = api.kind;
         if (!grouped[k]) grouped[k] = [];
-        grouped[k].push(`${api.name} - ${api.description.split(".")[0]}`);
+        grouped[k].push(`${api.name} — ${api.description.split(".")[0]}`);
       }
 
-      let text = "# React Flow v12 - API Reference\n\n";
+      let text = "# React Flow v12 — API Reference\n\n";
       text += `Import from \`@xyflow/react\`\n\n`;
       for (const [kind, items] of Object.entries(grouped)) {
         text += `## ${capitalize(kind)}s (${items.length})\n`;

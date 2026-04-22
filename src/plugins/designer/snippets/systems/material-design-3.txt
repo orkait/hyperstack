@@ -1,7 +1,7 @@
-/* Material Design 3 - Specific Values */
+/* Material Design 3 — Specific Values */
 
 /* HCT Color Space (Hue, Chroma, Tone) */
-/* Tone axis 0=black, 100=white - perceptually uniform */
+/* Tone axis 0=black, 100=white — perceptually uniform */
 /* 13 stops per hue: primary10 through primary99 */
 
 /* Three-layer tokens: */

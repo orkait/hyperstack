@@ -1,7 +1,7 @@
 import { snippet } from "./loader.js";
 
 // ---------------------------------------------------------------------------
-// PERSONALITY CLUSTERS (KB 01 - 58 real company design systems)
+// PERSONALITY CLUSTERS (KB 01 — 58 real company design systems)
 // ---------------------------------------------------------------------------
 
 export const PERSONALITY_CLUSTERS = [
@@ -125,7 +125,7 @@ export const PERSONALITIES: PersonalityProfile[] = [
   {
     cluster: "cinematic-dark",
     description:
-      "Stark dark premium. Full-viewport media, futuristic aesthetic. Content is the spectacle - the UI is invisible chrome around immersive experiences.",
+      "Stark dark premium. Full-viewport media, futuristic aesthetic. Content is the spectacle — the UI is invisible chrome around immersive experiences.",
     exemplars: [
       { name: "ElevenLabs", signature: "Dark cinematic, audio-waveform aesthetics" },
       { name: "RunwayML", signature: "Dark + media-rich, full-viewport" },
@@ -167,7 +167,7 @@ export const PERSONALITIES: PersonalityProfile[] = [
 ];
 
 // ---------------------------------------------------------------------------
-// DESIGN STYLES (KB 07 - 67 styles distilled to 7 primary)
+// DESIGN STYLES (KB 07 — 67 styles distilled to 7 primary)
 // ---------------------------------------------------------------------------
 
 export const STYLE_NAMES = [
@@ -213,7 +213,7 @@ export const STYLES: DesignStyle[] = [
   },
   {
     name: "glassmorphism",
-    description: "Translucent surfaces with backdrop blur. Requires vibrant background to work - flat backgrounds kill it.",
+    description: "Translucent surfaces with backdrop blur. Requires vibrant background to work — flat backgrounds kill it.",
     useWhen: ["Modern SaaS", "Financial dashboards", "Modal overlays", "Hero sections"],
     neverUse: ["Low-contrast backgrounds", "Accessibility-critical apps", "Text-heavy content"],
     colors: "Translucent white rgba(255,255,255,0.15) on vibrant bg",
@@ -246,7 +246,7 @@ export const STYLES: DesignStyle[] = [
     neverUse: ["Children's apps", "Healthcare", "Print-heavy content"],
     colors: "#000 or #121212 bg, neon/vibrant accents (green, blue, gold)",
     radius: "4-8px functional",
-    shadows: "None (invisible on dark) - use bg-color elevation instead",
+    shadows: "None (invisible on dark) — use bg-color elevation instead",
     motion: "Minimal glow effects, fast 150ms",
     effects: "Glow on accent elements, subtle gradients",
     antiPatterns: ["Cold #1a1a2e instead of warm dark", "Insufficient contrast", "Box shadows on dark bg"],
@@ -298,7 +298,7 @@ export const STYLES: DesignStyle[] = [
 ];
 
 // ---------------------------------------------------------------------------
-// INDUSTRY RULES (KB 07 - 161 industry rules distilled)
+// INDUSTRY RULES (KB 07 — 161 industry rules distilled)
 // ---------------------------------------------------------------------------
 
 export const INDUSTRY_CATEGORIES = [
@@ -457,7 +457,7 @@ export const INDUSTRY_RULES: IndustryRule[] = [
 ];
 
 // ---------------------------------------------------------------------------
-// COGNITIVE LAWS (KB 11 - empirically documented facts)
+// COGNITIVE LAWS (KB 11 — empirically documented facts)
 // ---------------------------------------------------------------------------
 
 export const COGNITIVE_LAW_NAMES = [
@@ -486,7 +486,7 @@ export const COGNITIVE_LAWS: CognitiveLaw[] = [
     uiApplications: [
       "Touch targets physically >= 44pt (iOS) / 48dp (Android) / 44px (WCAG)",
       "Screen edges are infinite targets for mouse (macOS menu bar exploits this)",
-      "Place submit CTA at bottom of form - pointer is already near last field",
+      "Place submit CTA at bottom of form — pointer is already near last field",
       "Increase padding without visible border for invisible hit-area expansion",
       "Destructive actions must have >= 8px gap from safe actions",
     ],
@@ -544,10 +544,10 @@ export const COGNITIVE_LAWS: CognitiveLaw[] = [
     keyInsight: "Proximity overrides color, size, and shape. Items closer together are perceived as same group.",
     uiApplications: [
       "Form label-to-input gap (4-8px) must be tighter than input-to-next-label (16-24px)",
-      "Skeleton loaders pulse at identical timing (Common Fate) - offset reads as separate",
+      "Skeleton loaders pulse at identical timing (Common Fate) — offset reads as separate",
       "Partial card at viewport bottom = scroll hook (Closure)",
-      "Vertical form alignment creates Continuity - zigzag layouts break it",
-      "All links share consistent treatment (Similarity) - break = break comprehension",
+      "Vertical form alignment creates Continuity — zigzag layouts break it",
+      "All links share consistent treatment (Similarity) — break = break comprehension",
     ],
     violations: [
       "Equal spacing between label, input, and next label (Proximity failure)",
@@ -564,12 +564,12 @@ export const COGNITIVE_LAWS: CognitiveLaw[] = [
     uiApplications: [
       "One primary CTA per view, differentiated from everything else",
       "Notification badges: the only red circle in monochromatic UI",
-      "Pricing tables: recommended plan gets different bg/elevation/scale - only one",
+      "Pricing tables: recommended plan gets different bg/elevation/scale — only one",
       "Error states visually deviate from all other UI (color + icon + weight)",
     ],
     violations: [
-      "Multiple CTAs styled as highlighted - they cancel each other",
-      "6 elements animate on load - none is isolated",
+      "Multiple CTAs styled as highlighted — they cancel each other",
+      "6 elements animate on load — none is isolated",
       "Banner blindness: promo elements styled like features",
     ],
     source: "Von Restorff 1933",
@@ -673,7 +673,7 @@ export const COGNITIVE_LAWS: CognitiveLaw[] = [
     formula: "Remembered experience = avg(peak intensity, final moment). Duration neglect.",
     keyInsight: "Users judge experiences by the most intense moment and the last moment, not the average.",
     uiApplications: [
-      "Order confirmation = peak AND end - invest in it (Mailchimp 'High Five')",
+      "Order confirmation = peak AND end — invest in it (Mailchimp 'High Five')",
       "Onboarding completion = peak: immediate evidence of value (Slack pre-populated channel)",
       "Error recovery = peak management: helpful errors build trust (Stripe specific messages)",
       "Cancellation flow: genuine 'We'll miss you' creates less negative end than dark patterns",
@@ -688,7 +688,7 @@ export const COGNITIVE_LAWS: CognitiveLaw[] = [
 ];
 
 // ---------------------------------------------------------------------------
-// DESIGN SYSTEM REFERENCES (KB 13 - specific values from premium systems)
+// DESIGN SYSTEM REFERENCES (KB 13 — specific values from premium systems)
 // ---------------------------------------------------------------------------
 
 export const DESIGN_SYSTEM_NAMES = [
@@ -712,13 +712,13 @@ export const DESIGN_SYSTEMS: DesignSystemReference[] = [
   {
     name: "apple-hig",
     displayName: "Apple Human Interface Guidelines",
-    signature: "Clarity, Deference, Depth - content takes center stage via translucency and spring physics",
+    signature: "Clarity, Deference, Depth — content takes center stage via translucency and spring physics",
     keyInsights: [
-      "44pt minimum touch targets - Apple rejects apps violating this",
-      "SF Pro Display above 20pt, SF Pro Text below - letterforms literally change shape at threshold",
+      "44pt minimum touch targets — Apple rejects apps violating this",
+      "SF Pro Display above 20pt, SF Pro Text below — letterforms literally change shape at threshold",
       "Letter-spacing inverts: tight at large sizes (-0.003em), positive at small",
       "Dynamic Type: 11pt (Caption 2) absolute minimum",
-      "Spring animations communicate mass and physicality - they are signifiers",
+      "Spring animations communicate mass and physicality — they are signifiers",
     ],
     typography: "SF Pro: Display/Text split at 20pt. Weight range Regular-Semibold only. Type scale: Large Title 34pt, Title 1-3 (28/22/20pt), Headline 17pt semibold, Body 17pt, Caption 12/11pt.",
     color: "System colors adapt to light/dark and high contrast. No fixed hex values in components.",
@@ -728,9 +728,9 @@ export const DESIGN_SYSTEMS: DesignSystemReference[] = [
   {
     name: "material-design-3",
     displayName: "Material Design 3",
-    signature: "HCT color space with tonal elevation - shadows replaced by primary-color overlays at increasing opacity",
+    signature: "HCT color space with tonal elevation — shadows replaced by primary-color overlays at increasing opacity",
     keyInsights: [
-      "HCT (Hue, Chroma, Tone) replaces HSL - perceptually uniform like OKLCH",
+      "HCT (Hue, Chroma, Tone) replaces HSL — perceptually uniform like OKLCH",
       "Elevation = primary color overlay (5%/8%/11%/12%/14%) not drop shadows",
       "Three-layer tokens: reference -> system -> component",
       "Display/Text font variant split (same logic as Apple SF Pro)",
@@ -744,12 +744,12 @@ export const DESIGN_SYSTEMS: DesignSystemReference[] = [
   {
     name: "linear",
     displayName: "Linear",
-    signature: "Opacity-based hierarchy + LCH color space - 3 variables (base, accent, contrast) replace 98-variable HSL",
+    signature: "Opacity-based hierarchy + LCH color space — 3 variables (base, accent, contrast) replace 98-variable HSL",
     keyInsights: [
       "LCH color space (same perceptual uniformity as OKLCH/HCT)",
       "Opacity-based hierarchy: sidebar content dimmed via opacity, not different colors",
       "8px spacing scale: pure powers of 2 (8, 16, 32, 64px)",
-      "No unnecessary dividers - borders reduced, structure from spacing alone",
+      "No unnecessary dividers — borders reduced, structure from spacing alone",
       "Text deliberately darker in light mode, lighter in dark than typical systems",
     ],
     typography: "Inter with negative tracking. Icon-only tab pills. Precision aesthetic from tight typographic control.",
@@ -762,7 +762,7 @@ export const DESIGN_SYSTEMS: DesignSystemReference[] = [
     displayName: "Stripe",
     signature: "Weight-300 elegance in Söhne + CIELAB color system where 5-step separation guarantees 4.5:1 contrast",
     keyInsights: [
-      "Söhne typeface (not Inter, not Helvetica) - contemporary Akzidenz-Grotesk reworking",
+      "Söhne typeface (not Inter, not Helvetica) — contemporary Akzidenz-Grotesk reworking",
       "Weight vocabulary: body 300, headers 500. No 400 or 700 anywhere.",
       "CIELAB color system: 5+ step separation = mathematical 4.5:1 contrast guarantee",
       "Complex multi-point gradient meshes as hero backgrounds (not 2-stop gradients)",
@@ -776,9 +776,9 @@ export const DESIGN_SYSTEMS: DesignSystemReference[] = [
   {
     name: "ibm-carbon",
     displayName: "IBM Carbon Design System",
-    signature: "Accessibility-first enterprise system - every component ships WCAG 2.1 AA with 3:1 focus ring contrast",
+    signature: "Accessibility-first enterprise system — every component ships WCAG 2.1 AA with 3:1 focus ring contrast",
     keyInsights: [
-      "Spacing includes 12px (spacing-04) for tight component internals - pure doubling lacks this",
+      "Spacing includes 12px (spacing-04) for tight component internals — pure doubling lacks this",
       "IBM Plex: squared terminals distinguish from Helvetica/Arial, reads as 'IBM'",
       "Every component ships WCAG 2.1 AA out of the box",
       "Focus indicators: 3:1 minimum contrast on the ring itself",
@@ -794,15 +794,15 @@ export const DESIGN_SYSTEMS: DesignSystemReference[] = [
     displayName: "shadcn/ui + Radix",
     signature: "OKLCH migration + opacity-based dark borders (10% white overlay adapts to any background automatically)",
     keyInsights: [
-      "Radix separates behavior (WAI-ARIA) from appearance - you style, they handle a11y",
+      "Radix separates behavior (WAI-ARIA) from appearance — you style, they handle a11y",
       "OKLCH migration 2024: all tokens in oklch(), only destructive has chroma",
-      "Dark mode borders: oklch(1 0 0 / 10%) - 10% white overlay, not fixed gray",
-      "Semantic naming: bg-background, text-foreground - brand change = CSS vars only",
+      "Dark mode borders: oklch(1 0 0 / 10%) — 10% white overlay, not fixed gray",
+      "Semantic naming: bg-background, text-foreground — brand change = CSS vars only",
       "Architecture: behavior (Radix) + style (you) = brand-agnostic by construction",
     ],
-    typography: "System font stack or custom. No opinion on typeface - that's your brand decision.",
+    typography: "System font stack or custom. No opinion on typeface — that's your brand decision.",
     color: "OKLCH. Light: background oklch(1 0 0), foreground oklch(0.145 0 0). Dark: background oklch(0.145 0 0).",
-    spacing: "Tailwind defaults. No custom spacing opinion - inherits from your design tokens.",
+    spacing: "Tailwind defaults. No custom spacing opinion — inherits from your design tokens.",
     reference: snippet("systems/shadcn-radix.txt"),
   },
   {
@@ -810,11 +810,11 @@ export const DESIGN_SYSTEMS: DesignSystemReference[] = [
     displayName: "Vercel / Geist",
     signature: "Aggressive negative tracking (-0.04em display) + zero chromatic bias + mathematical whitespace",
     keyInsights: [
-      "Geist: high x-height, short descenders, angular terminals - reads as 'technical'",
+      "Geist: high x-height, short descenders, angular terminals — reads as 'technical'",
       "Negative tracking by default: -0.02em body, -0.04em display (Inter ships at 0)",
       "Color: pure #000/#FFF, 11-step neutral gray, single accent #0070F3",
       "No gradients in UI (gradients in marketing only)",
-      "Section padding 96-128px - aggressive whitespace as premium signal",
+      "Section padding 96-128px — aggressive whitespace as premium signal",
     ],
     typography: "Geist: 9 weights, 825 glyphs. -0.04em display, -0.01em body. Line height: 1.15 tight, 1.5 base.",
     color: "Pure black/white. Zero chromatic bias in neutrals. Single blue accent for interactive only.",
@@ -852,7 +852,7 @@ export const CROSS_SYSTEM_CONVERGENCES: { principle: string; systems: string[]; 
 ];
 
 // ---------------------------------------------------------------------------
-// VISUAL COMPOSITION (KB 14 - mathematical alignment + eye tracking evidence)
+// VISUAL COMPOSITION (KB 14 — mathematical alignment + eye tracking evidence)
 // ---------------------------------------------------------------------------
 
 export const COMPOSITION_TOPICS = [
@@ -890,9 +890,9 @@ export const COMPOSITION_RULES: CompositionRule[] = [
   },
   {
     topic: "visual-hierarchy",
-    displayName: "Visual Hierarchy - 6 Levers",
+    displayName: "Visual Hierarchy — 6 Levers",
     keyRule: "Rank every element 1-N by importance, then assign: Size > Contrast > Color > Typography > Spacing > Position.",
-    detail: "The squint test: blur 5-10px - if primary action isn't first thing visible, hierarchy is broken. Max 3 size variations, 3 contrast variations. If everything is emphasized, nothing is.",
+    detail: "The squint test: blur 5-10px — if primary action isn't first thing visible, hierarchy is broken. Max 3 size variations, 3 contrast variations. If everything is emphasized, nothing is.",
     applications: [
       "Size: bigger = more important, never equal size for different priorities",
       "Contrast: operates independently from color (works for colorblind)",
@@ -922,7 +922,7 @@ export const COMPOSITION_RULES: CompositionRule[] = [
   {
     topic: "fold-rules",
     displayName: "The Fold (NNG 57,453 fixations)",
-    keyRule: "Above-fold gets 102% more views. Never fill exact viewport height - bleed 40-80px of next section.",
+    keyRule: "Above-fold gets 102% more views. Never fill exact viewport height — bleed 40-80px of next section.",
     detail: "57% of viewing time above fold (down from 80% in 2010). The illusion of completeness: full-viewport hero with no overflow makes users think page is done. Scrolling is conditioned by first 100px.",
     applications: ["Value prop + CTA above fold on all viewports", "Bleed next section 40-80px into view", "First 100px must be relevant or users leave"],
     violations: ["Full-viewport video with no content peeking below", "Hard horizontal rule at fold position", "Large gap that reads as page-end"],
@@ -954,7 +954,7 @@ export const COMPOSITION_RULES: CompositionRule[] = [
   {
     topic: "optical-alignment",
     displayName: "Optical vs Mathematical Alignment",
-    keyRule: "Mathematical centering is a starting point. The eye overrides the math - almost always needs upward adjustment.",
+    keyRule: "Mathematical centering is a starting point. The eye overrides the math — almost always needs upward adjustment.",
     detail: "Icons in buttons: 1-2px upward offset. Text in buttons: 1-2px more bottom padding. Hero headlines: raise 5-8% above mathematical center. Circles must be physically larger than squares to appear same size.",
     applications: ["Icons in buttons: 1-2px up", "Text in buttons: more bottom padding", "Hero: raise above mathematical center", "Display type: enable font-kerning, manually kern AV/WA/To"],
     violations: ["Relying on mathematical center without visual check", "Icons feeling 'low' in buttons"],
@@ -962,7 +962,7 @@ export const COMPOSITION_RULES: CompositionRule[] = [
 ];
 
 // ---------------------------------------------------------------------------
-// INTERACTION PATTERNS (KB 16 - evidence-based timing and behaviors)
+// INTERACTION PATTERNS (KB 16 — evidence-based timing and behaviors)
 // ---------------------------------------------------------------------------
 
 export const INTERACTION_CATEGORIES = [
@@ -1002,7 +1002,7 @@ export const INTERACTION_PATTERNS: InteractionPattern[] = [
     category: "skeleton-vs-spinner",
     displayName: "Skeleton Screens vs Spinners",
     keyRule: "Skeleton for known structure (cards, lists). Spinner for discrete actions (button submit). Nothing needed for < 300ms.",
-    detail: "2018 ACM: skeletons scored higher perceived speed. Viget 2017: skeletons actually worst for perceived duration. Real advantage is reframing - content arriving vs system stuck.",
+    detail: "2018 ACM: skeletons scored higher perceived speed. Viget 2017: skeletons actually worst for perceived duration. Real advantage is reframing — content arriving vs system stuck.",
     bestPractices: ["Known shape = skeleton", "Unknown shape = spinner", "< 300ms = no indicator", "2s+ = progress bar or skeleton", "App cold start = skeleton over splash"],
     antiPatterns: ["Spinner for page content load", "Skeleton for unpredictable content shape", "No indicator for 1s+ operations"],
   },
@@ -1041,7 +1041,7 @@ export const INTERACTION_PATTERNS: InteractionPattern[] = [
     category: "onboarding",
     displayName: "Onboarding (Userpilot 2024: 188 SaaS)",
     keyRule: "Checklists of 3-5 items outperform 8+. Time to First Value is the metric. Interactive > passive tours.",
-    detail: "Average checklist completion: 19.2% (median 10.1%). Top SaaS: 70-80%. Users completing checklist: 3x more likely to convert paid. Tooltips 'trained to be ignored' - cap at 1-3.",
+    detail: "Average checklist completion: 19.2% (median 10.1%). Top SaaS: 70-80%. Users completing checklist: 3x more likely to convert paid. Tooltips 'trained to be ignored' — cap at 1-3.",
     bestPractices: ["3-5 checklist items", "Interactive walkthroughs over passive tours", "Track Time to First Value", "Describe outcomes not tasks: 'See your first report' not 'Configure data source'"],
     antiPatterns: ["8+ checklist items", "Full-screen takeover hiding product", "Tooltip overload", "Leading with most complex feature"],
   },
@@ -1080,7 +1080,7 @@ export const INTERACTION_PATTERNS: InteractionPattern[] = [
 ];
 
 // ---------------------------------------------------------------------------
-// UX WRITING (KB 17 - evidence-backed copy guidelines)
+// UX WRITING (KB 17 — evidence-backed copy guidelines)
 // ---------------------------------------------------------------------------
 
 export const WRITING_TOPICS = [
@@ -1113,7 +1113,7 @@ export const WRITING_GUIDELINES: WritingGuideline[] = [
     topic: "voice-tone",
     displayName: "Voice & Tone (Mailchimp System)",
     keyRule: "Voice is constant (plainspoken, genuine, translators, dry humor). Tone adjusts to reader's emotional state.",
-    evidence: "Mailchimp Content Style Guide - the industry reference for voice/tone systems.",
+    evidence: "Mailchimp Content Style Guide — the industry reference for voice/tone systems.",
     doExamples: ["Clear over clever", "Active voice: 'You can edit'", "Say what users CAN do"],
     dontExamples: ["Forced humor", "Passive: 'Your profile can be edited'", "Condescending tone", "Snobbish references"],
   },
@@ -1152,7 +1152,7 @@ export const WRITING_GUIDELINES: WritingGuideline[] = [
   {
     topic: "confirmation-dialogs",
     displayName: "Confirmation Dialogs",
-    keyRule: "Kill 'Are you sure?' - it teaches reflexive clicking. Title = action as question. Buttons = specific verbs.",
+    keyRule: "Kill 'Are you sure?' — it teaches reflexive clicking. Title = action as question. Buttons = specific verbs.",
     evidence: "NNG: overused confirmations fail because users develop automatic 'Yes' response.",
     doExamples: ["Title: 'Delete this project?'", "Body: '12,847 subscribers will be lost. Cannot be undone.'", "Buttons: 'Delete project' / 'Keep project'"],
     dontExamples: ["'Are you sure?'", "'OK' / 'Cancel'", "'Yes' / 'No'", "No consequence description"],
@@ -1178,7 +1178,7 @@ export const WRITING_GUIDELINES: WritingGuideline[] = [
     displayName: "Loading State Copy",
     keyRule: "< 2s: spinner only (text disappears before readable). 2-10s: verb + ellipsis. 10s+: progressive with count.",
     evidence: "Doherty Threshold: > 400ms breaks flow. UIE: Amazon rated faster at 36s than About.com at 8s (task completion drives perception).",
-    doExamples: ["'Saving...'", "'Uploading (3 of 12 files)...'", "'Processing - this may take a minute'"],
+    doExamples: ["'Saving...'", "'Uploading (3 of 12 files)...'", "'Processing — this may take a minute'"],
     dontExamples: ["'Loading...' for everything", "'Save in progress' (use participle)", "Text on < 2s operations"],
   },
   {
@@ -1200,7 +1200,7 @@ export const WRITING_GUIDELINES: WritingGuideline[] = [
 ];
 
 // ---------------------------------------------------------------------------
-// LANDING PAGE PATTERNS (KB 18 - conversion science with hard numbers)
+// LANDING PAGE PATTERNS (KB 18 — conversion science with hard numbers)
 // ---------------------------------------------------------------------------
 
 export const LANDING_TOPICS = [
@@ -1337,7 +1337,7 @@ export const LANDING_PATTERNS: LandingPattern[] = [
 ];
 
 // ---------------------------------------------------------------------------
-// ANTI-PATTERNS (KB 09 - the AI slop fingerprint)
+// ANTI-PATTERNS (KB 09 — the AI slop fingerprint)
 // ---------------------------------------------------------------------------
 
 export const ANTI_PATTERN_CATEGORIES = [
@@ -1364,7 +1364,7 @@ export const ANTI_PATTERNS: AntiPattern[] = [
   { category: "color", pattern: "Pure #000 text on pure #FFF", whyItFails: "Irradiation: light bleeds into dark at high contrast, causes eye strain", fix: "Near-black (oklch 0.12-0.15) on tinted white (oklch 0.97-0.99)" },
   // TYPOGRAPHY
   { category: "typography", pattern: "Random font sizes (17px, 23px, 37px)", whyItFails: "No mathematical scale, no visual harmony", fix: "Use ratio-based scale (1.25/1.333/1.414)" },
-  { category: "typography", pattern: "font-weight: 500 for everything", whyItFails: "No hierarchy - flat reading experience", fix: "Weight contrast: 700-800 heading, 400 body" },
+  { category: "typography", pattern: "font-weight: 500 for everything", whyItFails: "No hierarchy — flat reading experience", fix: "Weight contrast: 700-800 heading, 400 body" },
   { category: "typography", pattern: "Positive tracking on headings", whyItFails: "Looks corporate and cheap", fix: "Negative tracking: -0.01 to -0.03em on headings" },
   { category: "typography", pattern: "Line-height 1.75 on app UI", whyItFails: "1.75 is prose line height, not app UI", fix: "1.5 for app body, 1.05-1.2 for display" },
   { category: "typography", pattern: "3+ font families", whyItFails: "Visual chaos", fix: "Max 2 families (sans + mono for apps)" },
@@ -1386,13 +1386,13 @@ export const ANTI_PATTERNS: AntiPattern[] = [
   { category: "motion", pattern: "No prefers-reduced-motion", whyItFails: "Causes nausea in motion-sensitive users, WCAG 2.3.3 violation", fix: "@media (prefers-reduced-motion: reduce) with !important" },
   { category: "motion", pattern: "Transitions longer than 500ms", whyItFails: "Feels sluggish, breaks flow", fix: "150-300ms for UI, 400-500ms max for complex animations" },
   { category: "motion", pattern: "Linear easing", whyItFails: "Robotic, unnatural", fix: "ease-out (enter), ease-in (exit), ease-in-out (reposition)" },
-  { category: "motion", pattern: "Animating width/height/top/left", whyItFails: "Triggers layout reflow - jank", fix: "Use transform and opacity only (GPU-accelerated)" },
+  { category: "motion", pattern: "Animating width/height/top/left", whyItFails: "Triggers layout reflow — jank", fix: "Use transform and opacity only (GPU-accelerated)" },
   // LAYOUT
   { category: "layout", pattern: "Arbitrary z-index (999, 9999)", whyItFails: "Stacking context conflicts", fix: "Named scale: dropdown=1000, modal=1050, tooltip=1070" },
   { category: "layout", pattern: "No aspect-ratio on images", whyItFails: "CLS when image loads", fix: "Always set aspect-ratio or width+height on images" },
   { category: "layout", pattern: "Sticky nav without body padding", whyItFails: "Nav covers first section of content", fix: "padding-top: nav-height on body/main" },
   // FEELS WRONG (passes tests but feels off)
-  { category: "feels-wrong", pattern: "24px spacing everywhere", whyItFails: "Visual monotony - no rhythm", fix: "Vary spacing by semantic context (tight/medium/loose/section)" },
+  { category: "feels-wrong", pattern: "24px spacing everywhere", whyItFails: "Visual monotony — no rhythm", fix: "Vary spacing by semantic context (tight/medium/loose/section)" },
   { category: "feels-wrong", pattern: "All colors same chroma level", whyItFails: "No focal point, flat feeling", fix: "One high-chroma accent, rest muted" },
   { category: "feels-wrong", pattern: "Pure #000 text on warm bg", whyItFails: "Feels harsh and disconnected", fix: "Warm near-black: oklch(0.12 0.005 60)" },
   { category: "feels-wrong", pattern: "Tables with no row hover", whyItFails: "Impossible to track which row you're reading", fix: "Subtle background highlight on row hover" },
@@ -1408,7 +1408,7 @@ export const ANTI_PATTERNS: AntiPattern[] = [
 ];
 
 // ---------------------------------------------------------------------------
-// DESIGN MASTERS (KB 12 - 5 convergence points from 7 masters)
+// DESIGN MASTERS (KB 12 — 5 convergence points from 7 masters)
 // ---------------------------------------------------------------------------
 
 export interface MasterPrinciple {
@@ -1420,7 +1420,7 @@ export interface MasterPrinciple {
 export const MASTER_PRINCIPLES: MasterPrinciple[] = [
   { master: "Dieter Rams", principle: "As little design as possible", application: "Every element must serve function. Remove features, not just decorations." },
   { master: "Dieter Rams", principle: "Good design is honest", application: "No dark patterns. Product doesn't appear more powerful than it is." },
-  { master: "Dieter Rams", principle: "Thorough down to last detail", application: "404 pages, empty states, error messages, loading states - all are design surfaces." },
+  { master: "Dieter Rams", principle: "Thorough down to last detail", application: "404 pages, empty states, error messages, loading states — all are design surfaces." },
   { master: "Don Norman", principle: "Signifiers over affordances", application: "Designers control what communicates the action, not the action itself. Blue underlined = link." },
   { master: "Don Norman", principle: "Feedback must be immediate and calibrated", application: "< 100ms response. Not too little (missing), not too much (notification spam)." },
   { master: "Don Norman", principle: "Narrow Gulf of Execution and Evaluation", application: "Make possible actions obvious (execution) and outcomes perceivable (evaluation)." },
@@ -1689,7 +1689,7 @@ export function searchDesigner(query: string): SearchResult[] {
   }
   for (const f of FONT_PAIRINGS) {
     if (matchAny(q, f.name, f.heading, f.body, f.mood, f.why, ...f.industries)) {
-      results.push({ kind: "font-pairing", name: f.name, summary: `${f.heading} + ${f.body} - ${f.mood}` });
+      results.push({ kind: "font-pairing", name: f.name, summary: `${f.heading} + ${f.body} — ${f.mood}` });
     }
   }
 
@@ -1881,7 +1881,7 @@ export const PAGE_TEMPLATES: PageTemplate[] = [
       { name: "Contact Info", required: true, components: ["Email (pre-fill if logged in)", "Phone (only if shipping requires)"], notes: "2 fields max. Guest checkout option mandatory (26% abandon if forced account)." },
       { name: "Shipping", required: false, components: ["Address form (with autocomplete)", "Shipping method selector", "Delivery estimate"], notes: "Address autocomplete reduces fields. Show delivery date, not just method name." },
       { name: "Payment", required: true, components: ["Card number (auto-chunked)", "Expiry + CVV", "Trust badges (SSL, payment icons)", "Billing same-as-shipping checkbox"], notes: "Auto-chunk card number. Trust badges within visual proximity. Stripe-style inline validation." },
-      { name: "Review + Submit", required: true, components: ["Order summary", "Edit links per section", "Submit button ('Place order - $X.XX')", "Guarantee/return policy"], notes: "Specific amount on button. Money-back guarantee = +32% sales." },
+      { name: "Review + Submit", required: true, components: ["Order summary", "Edit links per section", "Submit button ('Place order — $X.XX')", "Guarantee/return policy"], notes: "Specific amount on button. Money-back guarantee = +32% sales." },
     ],
     cognitiveApply: ["hick", "fitts", "doherty", "peak-end"],
     compositionApply: ["visual-hierarchy", "reading-patterns"],
@@ -1933,7 +1933,7 @@ export const PAGE_TEMPLATES: PageTemplate[] = [
     writingApply: ["plain-language", "headlines"],
     keyRules: [
       "Every code block must have a copy button",
-      "Search is critical - Cmd+K with instant results",
+      "Search is critical — Cmd+K with instant results",
       "Syntax highlighting for all code",
       "Callout boxes for warnings/breaking changes",
     ],
@@ -1992,7 +1992,7 @@ export const PAGE_TEMPLATES: PageTemplate[] = [
     keyRules: [
       "Never a generic browser error page",
       "Always provide a path forward (home link, search, popular pages)",
-      "Match the site's personality - error pages are brand moments",
+      "Match the site's personality — error pages are brand moments",
       "404: friendly and helpful. 500: honest and apologetic.",
     ],
   },
@@ -2017,7 +2017,7 @@ export const PAGE_TEMPLATES: PageTemplate[] = [
       "Tool/function indicators: show what's happening, not just 'thinking...'",
       "Empty state: suggest prompts or show capabilities",
       "Keyboard: Enter to send, Shift+Enter for newline, Escape to stop generation",
-      "Do NOT use AI purple (#6366F1) as default - choose intentional brand color",
+      "Do NOT use AI purple (#6366F1) as default — choose intentional brand color",
       "Dark mode should be an option, not forced",
     ],
   },
@@ -2052,7 +2052,7 @@ export const PAGE_TEMPLATES: PageTemplate[] = [
       { name: "Welcome", required: true, components: ["Personalized greeting", "Value proposition (what they'll achieve)", "Get started CTA", "Skip option"], notes: "'Here's what you'll do in 3 minutes' not 'Welcome to [Product]'. User is the hero." },
       { name: "Setup Steps", required: true, components: ["3-5 step checklist", "Progress indicator (numbered or bar)", "One action per step", "Skip option per step"], notes: "3-5 items outperform 8+. Interactive > passive tours. Describe outcomes not tasks." },
       { name: "Aha Moment", required: true, components: ["First meaningful result", "Celebration/success feedback", "Next steps guidance"], notes: "The single most important screen. Peak-End Rule: this IS the peak. Invest in it." },
-      { name: "Ongoing Guidance", required: false, components: ["Tooltip hints (max 1-3)", "Help beacon", "Checklist sidebar (dismissable)"], notes: "Tooltips 'trained to be ignored' - cap at 1-3. Never supermodal (full-screen blocking)." },
+      { name: "Ongoing Guidance", required: false, components: ["Tooltip hints (max 1-3)", "Help beacon", "Checklist sidebar (dismissable)"], notes: "Tooltips 'trained to be ignored' — cap at 1-3. Never supermodal (full-screen blocking)." },
     ],
     cognitiveApply: ["hick", "peak-end", "doherty", "serial-position"],
     compositionApply: ["visual-hierarchy", "whitespace"],
@@ -2152,9 +2152,9 @@ export const PRESETS: DesignPreset[] = [
     inspiration: "Linear's 2024 redesign: 98-variable HSL → 3 variables (base, accent, contrast). Karri Saarinen's process: works in opacities of black and white first.",
     tokens: {
       colors: {
-        brand: { hue: 265, description: "Indigo-violet - Linear's signature, used with discipline (not as AI-purple default)" },
+        brand: { hue: 265, description: "Indigo-violet — Linear's signature, used with discipline (not as AI-purple default)" },
         neutral: { hue: 260, temperature: "cool", chroma: 0.008 },
-        accent: { hue: 265, description: "Same as brand - single-accent system" },
+        accent: { hue: 265, description: "Same as brand — single-accent system" },
         mode: "light",
         darkStrategy: "Opacity-based borders (oklch(1 0 0 / 8%)), progressively lighter surfaces, text deliberately lighter than typical",
       },
@@ -2181,8 +2181,8 @@ export const PRESETS: DesignPreset[] = [
         density: "compact",
       },
       radius: { sm: "6px", md: "8px", lg: "10px", pill: "9999px", style: "Sharp, functional" },
-      shadows: { style: "Minimal - structure from spacing, not shadows. No unnecessary dividers.", tintHue: 260 },
-      motion: { fast: "100ms", normal: "150ms", slow: "200ms", easing: "ease-out", style: "Snappy, precise - every interaction under 200ms" },
+      shadows: { style: "Minimal — structure from spacing, not shadows. No unnecessary dividers.", tintHue: 260 },
+      motion: { fast: "100ms", normal: "150ms", slow: "200ms", easing: "ease-out", style: "Snappy, precise — every interaction under 200ms" },
     },
     css: snippet("personalities/premium-precision.txt"),
   },
@@ -2194,11 +2194,11 @@ export const PRESETS: DesignPreset[] = [
     inspiration: "Stripe Engineering: any two palette colors 5+ steps apart guarantee 4.5:1 contrast. Zero use of weight 400 or 700. Söhne (Klim) replaces Helvetica heritage with warmth.",
     tokens: {
       colors: {
-        brand: { hue: 265, description: "Signature purple - used deliberately for hero gradients, not as UI default" },
+        brand: { hue: 265, description: "Signature purple — used deliberately for hero gradients, not as UI default" },
         neutral: { hue: 240, temperature: "cool", chroma: 0.005 },
         accent: { hue: 220, description: "Clean blue for interactive elements" },
         mode: "light",
-        darkStrategy: "CIELAB-based - vibrancy maintained during darkening, not muted like HSL",
+        darkStrategy: "CIELAB-based — vibrancy maintained during darkening, not muted like HSL",
       },
       typography: {
         fontSans: "'Söhne', 'Inter', ui-sans-serif, system-ui, sans-serif",
@@ -2224,7 +2224,7 @@ export const PRESETS: DesignPreset[] = [
       },
       radius: { sm: "6px", md: "8px", lg: "12px", pill: "9999px", style: "Subtle, refined" },
       shadows: { style: "Ultra-subtle single layer, warm-tinted", tintHue: 240 },
-      motion: { fast: "150ms", normal: "200ms", slow: "300ms", easing: "ease-out", style: "Smooth, considered - motion serves information" },
+      motion: { fast: "150ms", normal: "200ms", slow: "300ms", easing: "ease-out", style: "Smooth, considered — motion serves information" },
     },
     css: snippet("personalities/premium-precision.txt"),
   },
@@ -2236,11 +2236,11 @@ export const PRESETS: DesignPreset[] = [
     inspiration: "Geist: high x-height, short descenders, angular terminals. -0.04em display tracking. Section padding 96-128px. Single accent #0070F3 for interactive only.",
     tokens: {
       colors: {
-        brand: { hue: 0, description: "Pure black #000 - no hue, zero chromatic bias" },
+        brand: { hue: 0, description: "Pure black #000 — no hue, zero chromatic bias" },
         neutral: { hue: 0, temperature: "neutral", chroma: 0 },
-        accent: { hue: 220, description: "#0070F3 - links, buttons, active states only. Never as surface." },
+        accent: { hue: 220, description: "#0070F3 — links, buttons, active states only. Never as surface." },
         mode: "light",
-        darkStrategy: "Pure inversion - #000 bg, #FFF text. 11-step neutral gray. No chromatic bias.",
+        darkStrategy: "Pure inversion — #000 bg, #FFF text. 11-step neutral gray. No chromatic bias.",
       },
       typography: {
         fontSans: "'Geist', ui-sans-serif, system-ui, sans-serif",
@@ -2265,7 +2265,7 @@ export const PRESETS: DesignPreset[] = [
         density: "normal",
       },
       radius: { sm: "6px", md: "8px", lg: "12px", pill: "9999px", style: "Clean, geometric" },
-      shadows: { style: "Minimal - whitespace creates hierarchy, not shadows", tintHue: 0 },
+      shadows: { style: "Minimal — whitespace creates hierarchy, not shadows", tintHue: 0 },
       motion: { fast: "150ms", normal: "200ms", slow: "300ms", easing: "ease-out", style: "Subtle, purposeful" },
     },
     css: snippet("personalities/premium-precision.txt"),
@@ -2275,10 +2275,10 @@ export const PRESETS: DesignPreset[] = [
     displayName: "Apple HIG",
     personality: "premium-precision",
     description: "Clarity, Deference, Depth. SF Pro with Display/Text split. Spring physics. 44pt touch targets. Translucency for spatial hierarchy.",
-    inspiration: "SF Pro Display above 20pt, Text below - letterforms change shape. Dynamic Type 11pt minimum. Spring animations = signifiers.",
+    inspiration: "SF Pro Display above 20pt, Text below — letterforms change shape. Dynamic Type 11pt minimum. Spring animations = signifiers.",
     tokens: {
       colors: {
-        brand: { hue: 220, description: "System blue - semantic, adapts to light/dark + high contrast automatically" },
+        brand: { hue: 220, description: "System blue — semantic, adapts to light/dark + high contrast automatically" },
         neutral: { hue: 0, temperature: "neutral", chroma: 0 },
         accent: { hue: 220, description: "System blue" },
         mode: "light",
@@ -2306,9 +2306,9 @@ export const PRESETS: DesignPreset[] = [
         contentMax: "1024px",
         density: "comfortable",
       },
-      radius: { sm: "8px", md: "12px", lg: "16px", pill: "9999px", style: "Rounded, soft - continuous corners" },
+      radius: { sm: "8px", md: "12px", lg: "16px", pill: "9999px", style: "Rounded, soft — continuous corners" },
       shadows: { style: "Subtle, multi-layer with translucency", tintHue: 0 },
-      motion: { fast: "200ms", normal: "300ms", slow: "500ms", easing: "cubic-bezier(0.25, 0.1, 0.25, 1)", style: "Spring physics - mass and damping, not CSS easing. Interruptible." },
+      motion: { fast: "200ms", normal: "300ms", slow: "500ms", easing: "cubic-bezier(0.25, 0.1, 0.25, 1)", style: "Spring physics — mass and damping, not CSS easing. Interruptible." },
     },
     css: snippet("personalities/premium-precision.txt"),
   },
@@ -2320,7 +2320,7 @@ export const PRESETS: DesignPreset[] = [
     inspiration: "Spacing includes 12px (pure doubling lacks this). Plex: squared terminals = 'reads as IBM'. Focus ring: 3:1 contrast on the ring itself.",
     tokens: {
       colors: {
-        brand: { hue: 220, description: "IBM Blue - institutional, structured palette" },
+        brand: { hue: 220, description: "IBM Blue — institutional, structured palette" },
         neutral: { hue: 210, temperature: "cool", chroma: 0.005 },
         accent: { hue: 170, description: "Teal for secondary accent" },
         mode: "light",
@@ -2349,9 +2349,9 @@ export const PRESETS: DesignPreset[] = [
         contentMax: "1280px",
         density: "normal",
       },
-      radius: { sm: "0px", md: "0px", lg: "0px", pill: "9999px", style: "Zero radius - sharp, institutional. Only pills for tags/badges." },
+      radius: { sm: "0px", md: "0px", lg: "0px", pill: "9999px", style: "Zero radius — sharp, institutional. Only pills for tags/badges." },
       shadows: { style: "Structured elevation levels, consistent depth", tintHue: 210 },
-      motion: { fast: "70ms", normal: "150ms", slow: "240ms", easing: "cubic-bezier(0.2, 0, 0.38, 0.9)", style: "Productive motion - fast, purposeful, no personality" },
+      motion: { fast: "70ms", normal: "150ms", slow: "240ms", easing: "cubic-bezier(0.2, 0, 0.38, 0.9)", style: "Productive motion — fast, purposeful, no personality" },
     },
     css: snippet("personalities/enterprise-trust.txt"),
   },
@@ -2363,9 +2363,9 @@ export const PRESETS: DesignPreset[] = [
     inspiration: "2024 OKLCH migration. Dark borders: oklch(1 0 0 / 10%) adapts to any background. Destructive is only token with chroma. Brand-agnostic by construction.",
     tokens: {
       colors: {
-        brand: { hue: 0, description: "Achromatic default - your brand color goes here" },
+        brand: { hue: 0, description: "Achromatic default — your brand color goes here" },
         neutral: { hue: 0, temperature: "neutral", chroma: 0 },
-        accent: { hue: 0, description: "Achromatic - customize per project" },
+        accent: { hue: 0, description: "Achromatic — customize per project" },
         mode: "light",
         darkStrategy: "Background oklch(0.145 0 0). Borders: oklch(1 0 0 / 10%). Input: oklch(1 0 0 / 15%). Percentage-white, not fixed gray.",
       },
@@ -2401,11 +2401,11 @@ export const PRESETS: DesignPreset[] = [
     name: "notion",
     displayName: "Notion",
     personality: "warm-editorial",
-    description: "Warm minimalism, cream backgrounds, serif headings. The editor disappears - content takes center stage. Premium notebook feel.",
+    description: "Warm minimalism, cream backgrounds, serif headings. The editor disappears — content takes center stage. Premium notebook feel.",
     inspiration: "Background: warm cream (#FAF8F5). The 0.012 chroma at hue 78 transforms 'cold SaaS' into 'premium notebook.' Rounded-xl elements feel approachable.",
     tokens: {
       colors: {
-        brand: { hue: 0, description: "Achromatic - Notion's identity is in warmth and typography, not brand color" },
+        brand: { hue: 0, description: "Achromatic — Notion's identity is in warmth and typography, not brand color" },
         neutral: { hue: 78, temperature: "warm", chroma: 0.012 },
         accent: { hue: 220, description: "Subtle blue for links and interactive elements" },
         mode: "light",
@@ -2434,9 +2434,9 @@ export const PRESETS: DesignPreset[] = [
         contentMax: "900px",
         density: "comfortable",
       },
-      radius: { sm: "4px", md: "6px", lg: "8px", pill: "9999px", style: "Subtle, not too rounded - content-first" },
-      shadows: { style: "Very subtle, warm-tinted - the editor should feel flat", tintHue: 56 },
-      motion: { fast: "150ms", normal: "200ms", slow: "300ms", easing: "ease-in-out", style: "Gentle, considered - the editor never draws attention to itself" },
+      radius: { sm: "4px", md: "6px", lg: "8px", pill: "9999px", style: "Subtle, not too rounded — content-first" },
+      shadows: { style: "Very subtle, warm-tinted — the editor should feel flat", tintHue: 56 },
+      motion: { fast: "150ms", normal: "200ms", slow: "300ms", easing: "ease-in-out", style: "Gentle, considered — the editor never draws attention to itself" },
     },
     css: snippet("personalities/warm-editorial.txt"),
   },
@@ -2444,13 +2444,13 @@ export const PRESETS: DesignPreset[] = [
     name: "supabase",
     displayName: "Supabase",
     personality: "technical-developer",
-    description: "Dark emerald on near-black. Code-first - SQL editor is the hero. Documentation density rivals the product.",
+    description: "Dark emerald on near-black. Code-first — SQL editor is the hero. Documentation density rivals the product.",
     inspiration: "Emerald accent on dark surfaces. Code examples are first-class content. Dashboard is a developer workspace, not an admin panel.",
     tokens: {
       colors: {
-        brand: { hue: 160, description: "Emerald green - references terminal conventions, signals 'developer-native'" },
+        brand: { hue: 160, description: "Emerald green — references terminal conventions, signals 'developer-native'" },
         neutral: { hue: 260, temperature: "cool", chroma: 0.008 },
-        accent: { hue: 160, description: "Same emerald - single-accent discipline" },
+        accent: { hue: 160, description: "Same emerald — single-accent discipline" },
         mode: "dark",
         darkStrategy: "Near-black base (oklch 0.10). Emerald glow on accent elements. Surface elevation via lighter steps.",
       },
@@ -2478,7 +2478,7 @@ export const PRESETS: DesignPreset[] = [
       },
       radius: { sm: "4px", md: "6px", lg: "8px", pill: "9999px", style: "Functional, compact" },
       shadows: { style: "Glow on emerald accents (0 0 20px oklch(0.65 0.18 160 / 0.15)). No box-shadows.", tintHue: 160 },
-      motion: { fast: "100ms", normal: "150ms", slow: "200ms", easing: "ease-out", style: "Fast, snappy - developers notice 50ms lag" },
+      motion: { fast: "100ms", normal: "150ms", slow: "200ms", easing: "ease-out", style: "Fast, snappy — developers notice 50ms lag" },
     },
     css: snippet("personalities/technical-developer.txt"),
   },
@@ -2487,14 +2487,14 @@ export const PRESETS: DesignPreset[] = [
     displayName: "Figma",
     personality: "bold-energetic",
     description: "Multi-color vivid palette. Each feature gets its own color. Playful yet professional. The design tool that looks designed.",
-    inspiration: "Multi-color palette - each feature is a color. Vibrant yet balanced through careful chroma control. Spring animations for playful feedback.",
+    inspiration: "Multi-color palette — each feature is a color. Vibrant yet balanced through careful chroma control. Spring animations for playful feedback.",
     tokens: {
       colors: {
-        brand: { hue: 265, description: "Vivid blue-violet - primary brand" },
+        brand: { hue: 265, description: "Vivid blue-violet — primary brand" },
         neutral: { hue: 240, temperature: "cool", chroma: 0.005 },
-        accent: { hue: 330, description: "Vivid pink as secondary - multi-color system" },
+        accent: { hue: 330, description: "Vivid pink as secondary — multi-color system" },
         mode: "light",
-        darkStrategy: "Rich dark with maintained vibrancy. Colors don't mute - they pop against dark surfaces.",
+        darkStrategy: "Rich dark with maintained vibrancy. Colors don't mute — they pop against dark surfaces.",
       },
       typography: {
         fontSans: "'Inter', ui-sans-serif, system-ui, sans-serif",
@@ -2520,7 +2520,7 @@ export const PRESETS: DesignPreset[] = [
       },
       radius: { sm: "8px", md: "12px", lg: "16px", pill: "9999px", style: "Confident, rounded" },
       shadows: { style: "Medium depth, colored shadows on brand elements", tintHue: 265 },
-      motion: { fast: "150ms", normal: "250ms", slow: "350ms", easing: "cubic-bezier(0.34, 1.56, 0.64, 1)", style: "Spring animations - playful, bouncy, responsive" },
+      motion: { fast: "150ms", normal: "250ms", slow: "350ms", easing: "cubic-bezier(0.34, 1.56, 0.64, 1)", style: "Spring animations — playful, bouncy, responsive" },
     },
     css: snippet("personalities/bold-energetic.txt"),
   },
@@ -2601,7 +2601,7 @@ export const FONT_PAIRINGS: FontPairing[] = [
     industries: ["b2b-service", "fintech", "government", "healthcare"],
     trackingHeading: "0em", trackingBody: "0em", lineHeightBody: 1.5,
     googleImport: "@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap');",
-    why: "Squared terminals distinguish from Helvetica/Arial - reads as 'IBM'. Sans + Serif + Mono in same family. Carbon Design System default. Enterprise trust through typography.",
+    why: "Squared terminals distinguish from Helvetica/Arial — reads as 'IBM'. Sans + Serif + Mono in same family. Carbon Design System default. Enterprise trust through typography.",
   },
   {
     name: "Source Sans 3 + Source Code Pro",
@@ -2612,7 +2612,7 @@ export const FONT_PAIRINGS: FontPairing[] = [
     industries: ["b2b-service", "government", "education", "healthcare"],
     trackingHeading: "-0.01em", trackingBody: "0em", lineHeightBody: 1.5,
     googleImport: "@import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&family=Source+Code+Pro:wght@400;500&display=swap');",
-    why: "Adobe's open-source workhorse. Excellent legibility at small sizes (open apertures). Professional without personality - lets content speak.",
+    why: "Adobe's open-source workhorse. Excellent legibility at small sizes (open apertures). Professional without personality — lets content speak.",
   },
 
   // ELEGANT / LUXURY
@@ -2647,7 +2647,7 @@ export const FONT_PAIRINGS: FontPairing[] = [
     industries: ["ecommerce-luxury", "wellness", "creative-agency", "portfolio"],
     trackingHeading: "-0.01em", trackingBody: "0em", lineHeightBody: 1.6,
     googleImport: "@import url('https://fonts.googleapis.com/css2?family=Fraunces:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap');",
-    why: "Variable font with WONK and SOFT axes - adjustable quirky/serious feel. Old-style serif that feels modern. Inter body keeps UI clean.",
+    why: "Variable font with WONK and SOFT axes — adjustable quirky/serious feel. Old-style serif that feels modern. Inter body keeps UI clean.",
   },
 
   // FRIENDLY / CONSUMER
@@ -2660,7 +2660,7 @@ export const FONT_PAIRINGS: FontPairing[] = [
     industries: ["saas", "education", "wellness", "mental-health"],
     trackingHeading: "-0.02em", trackingBody: "0em", lineHeightBody: 1.6,
     googleImport: "@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');",
-    why: "Modern geometric humanist. Rounded terminals feel approachable without being childish. Works from weight 400 (body) to 800 (display) - broad range in one family.",
+    why: "Modern geometric humanist. Rounded terminals feel approachable without being childish. Works from weight 400 (body) to 800 (display) — broad range in one family.",
   },
   {
     name: "Nunito + Nunito Sans",
@@ -2706,7 +2706,7 @@ export const FONT_PAIRINGS: FontPairing[] = [
     industries: ["government", "education", "b2b-service"],
     trackingHeading: "0em", trackingBody: "0em", lineHeightBody: 1.6,
     googleImport: "@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@700;900&family=Open+Sans:wght@400;600&display=swap');",
-    why: "Merriweather was designed for screen reading - thick strokes, open counters. Open Sans is the most neutral body companion. Institutional without being cold.",
+    why: "Merriweather was designed for screen reading — thick strokes, open counters. Open Sans is the most neutral body companion. Institutional without being cold.",
   },
   {
     name: "Newsreader + Inter",
@@ -2717,7 +2717,7 @@ export const FONT_PAIRINGS: FontPairing[] = [
     industries: ["portfolio", "creative-agency"],
     trackingHeading: "-0.01em", trackingBody: "0em", lineHeightBody: 1.6,
     googleImport: "@import url('https://fonts.googleapis.com/css2?family=Newsreader:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap');",
-    why: "Production-quality news serif with optical sizes. Variable font with opsz axis - automatically adjusts at different sizes. Modern editorial.",
+    why: "Production-quality news serif with optical sizes. Variable font with opsz axis — automatically adjusts at different sizes. Modern editorial.",
   },
 
   // BOLD / STARTUP
@@ -2741,7 +2741,7 @@ export const FONT_PAIRINGS: FontPairing[] = [
     industries: ["saas", "creative-agency", "ai-chatbot"],
     trackingHeading: "-0.02em", trackingBody: "0em", lineHeightBody: 1.5,
     googleImport: "@import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap');",
-    why: "Geometric with squared proportions - modern and bold. Looks great at large display sizes. Inter body keeps readability. Modern startup feel.",
+    why: "Geometric with squared proportions — modern and bold. Looks great at large display sizes. Inter body keeps readability. Modern startup feel.",
   },
   {
     name: "Clash Display + Satoshi",
@@ -2752,7 +2752,7 @@ export const FONT_PAIRINGS: FontPairing[] = [
     industries: ["creative-agency", "portfolio", "gaming"],
     trackingHeading: "-0.03em", trackingBody: "0em", lineHeightBody: 1.5,
     googleImport: "/* Clash Display + Satoshi: available from fontshare.com (free for commercial use) */",
-    why: "Clash Display's sharp angles and high contrast = maximum impact. Satoshi is the modern neutral - similar to Inter but with more character. Designer-favorite pairing.",
+    why: "Clash Display's sharp angles and high contrast = maximum impact. Satoshi is the modern neutral — similar to Inter but with more character. Designer-favorite pairing.",
   },
 
   // MINIMAL
@@ -2765,7 +2765,7 @@ export const FONT_PAIRINGS: FontPairing[] = [
     industries: ["saas", "portfolio", "creative-agency"],
     trackingHeading: "-0.02em", trackingBody: "0em", lineHeightBody: 1.5,
     googleImport: "@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap');",
-    why: "Geometric sans with consistent stroke width. Minimal, clean, modern. Variable font - smooth weight transitions. Less common than Inter = more distinctive.",
+    why: "Geometric sans with consistent stroke width. Minimal, clean, modern. Variable font — smooth weight transitions. Less common than Inter = more distinctive.",
   },
   {
     name: "Manrope + Fira Code",
@@ -2789,7 +2789,7 @@ export const FONT_PAIRINGS: FontPairing[] = [
     industries: ["education", "wellness", "mental-health"],
     trackingHeading: "-0.01em", trackingBody: "0em", lineHeightBody: 1.6,
     googleImport: "@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Nunito+Sans:wght@400;600&display=swap');",
-    why: "Rounded geometric - maximum friendliness. Perfect for children's education, wellness, mental health. Nunito Sans body maintains readability. Never for enterprise.",
+    why: "Rounded geometric — maximum friendliness. Perfect for children's education, wellness, mental health. Nunito Sans body maintains readability. Never for enterprise.",
   },
   {
     name: "Fredoka + DM Sans",
@@ -2800,7 +2800,7 @@ export const FONT_PAIRINGS: FontPairing[] = [
     industries: ["education"],
     trackingHeading: "0em", trackingBody: "0em", lineHeightBody: 1.6,
     googleImport: "@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=DM+Sans:wght@400;500;600&display=swap');",
-    why: "Soft, bubbly, child-friendly. Variable font with WDTH axis. DM Sans body keeps things readable. Only for education/children - never professional contexts.",
+    why: "Soft, bubbly, child-friendly. Variable font with WDTH axis. DM Sans body keeps things readable. Only for education/children — never professional contexts.",
   },
 ];
 

@@ -1,6 +1,6 @@
 {
   "name": "hyperstack",
   "description": "Disciplined MCP server + skill system. 11 plugins, 79 tools, 21 skills with adversarial enforcement. Designer/DESIGN.md pipeline, shadcn/ui, React Flow, Motion, Lenis, React 19, Echo, Go, Rust, design tokens, UI/UX.",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "contextFileName": "GEMINI.md"
 }

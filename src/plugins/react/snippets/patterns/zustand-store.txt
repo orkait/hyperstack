@@ -20,5 +20,5 @@ export const useAuthStore = create<AuthStore>()(
   )
 );
 
-// Usage - subscribe only to needed slice (perf)
+// Usage — subscribe only to needed slice (perf)
 const user = useAuthStore((s) => s.user);
