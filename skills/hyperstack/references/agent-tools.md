@@ -1,6 +1,6 @@
-# Claude Code Tool Reference
+# Code Tool Reference
 
-When skills reference tools, use these in Claude Code:
+When skills reference tools
 
 | Operation | Tool |
 |---|---|

@@ -16,9 +16,17 @@ import { designerPlugin } from "./plugins/designer/index.js";
 import { shadcnPlugin } from "./plugins/shadcn/index.js";
 import { hyperstackPlugin } from "./plugins/hyperstack/index.js";
 
+import { readFileSync } from "node:fs";
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const pkgPath = join(__dirname, "..", "package.json");
+const pkg = JSON.parse(readFileSync(pkgPath, "utf-8"));
+
 const server = new McpServer({
   name: "hyperstack",
-  version: "1.0.5",
+  version: pkg.version,
 });
 
 export const allPlugins = [

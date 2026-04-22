@@ -1,6 +1,7 @@
 import * as fs from "node:fs";
 import * as path from "node:path";
 import * as os from "node:os";
+import { execSync } from "node:child_process";
 
 export interface SetupResult {
   detectedPlatform: string;
@@ -36,6 +37,12 @@ const KNOWN_PLATFORMS: Record<string, {
     configFiles: [".gemini/settings.json"],
     format: "json-mcpServers",
     notes: "Run '/mcp' inside Gemini CLI to verify connection",
+  },
+  // Antigravity (Google DeepMind) - local user config
+  "antigravity": {
+    configFiles: [".gemini/antigravity/mcp_config.json"],
+    skillPath: ".gemini/antigravity/skills",
+    format: "json-mcpServers",
   },
   // Qwen Code (Alibaba) - global user config
   // Source: github.io/qwen-code official docs (April 2025)
@@ -130,6 +137,7 @@ const KNOWN_PLATFORMS: Record<string, {
 
 export function detectEnvironment(): string {
   // Env-var hints (fast path, but unreliable in nested terminals)
+  if (process.env.ANTIGRAVITY_AGENT) return "antigravity";
   if (process.env.CLAUDE_PLUGIN_ROOT) return "claude-code";
   if (process.env.CURSOR_PLUGIN_ROOT) return "cursor";
   // VSCODE_PID fires inside any VS Code-hosted terminal (Gemini, Roo Code, etc.)
@@ -241,4 +249,90 @@ export function generateMcpPatch(
       },
     },
   };
+}
+
+/**
+ * Persistently applies the generated patch to the user's config file
+ * without destroying existing settings.
+ */
+export function applyMcpPatch(configPath: string, patch: { format: PlatformFormat; content: any }) {
+  if (!fs.existsSync(configPath)) {
+    // If it doesn't exist, create it with the patch
+    if (typeof patch.content === "string") {
+      fs.writeFileSync(configPath, patch.content);
+    } else {
+      fs.writeFileSync(configPath, JSON.stringify(patch.content, null, 2));
+    }
+    return;
+  }
+
+  if (patch.format === "toml-mcp_servers") {
+    let content = fs.readFileSync(configPath, "utf8");
+    if (!content.includes("[mcp_servers.hyperstack]")) {
+      fs.appendFileSync(configPath, "\n" + patch.content);
+      console.log(`✅ Appended Hyperstack block to ${configPath}`);
+    } else {
+      console.log(`ℹ️  Hyperstack block already exists in ${configPath}`);
+    }
+    return;
+  }
+
+  // JSON deep-merge
+  try {
+    const existing = JSON.parse(fs.readFileSync(configPath, "utf8"));
+    const patchObj = patch.content as any;
+
+    if (patch.format === "json-contextServers") {
+      existing.context_servers = {
+        ...(existing.context_servers || {}),
+        ...patchObj.context_servers,
+      };
+    } else {
+      existing.mcpServers = {
+        ...(existing.mcpServers || {}),
+        ...patchObj.mcpServers,
+      };
+    }
+
+    fs.writeFileSync(configPath, JSON.stringify(existing, null, 2));
+    console.log(`✅ Deep-merged Hyperstack config into ${configPath}`);
+  } catch (err) {
+    console.error(`❌ Failed to merge config: ${err}`);
+  }
+}
+
+export function selfHealDocker() {
+  try {
+    // Check if Docker is available
+    execSync("docker --version", { stdio: "ignore" });
+    
+    console.log("\n🛡️  Running Docker Self-Healing Protocol...");
+    
+    // Check for existing containers
+    try {
+      // Find containers with our image or the exact name
+      const cmd = 'docker ps -aq --filter "ancestor=ghcr.io/orkait/hyperstack:main"';
+      const existing = execSync(cmd).toString().trim().split(/\r?\n/).filter(Boolean);
+      
+      const namedCmd = 'docker ps -aq --filter "name=hyperstack-mcp"';
+      const named = execSync(namedCmd).toString().trim().split(/\r?\n/).filter(Boolean);
+      
+      const allToPurge = [...new Set([...existing, ...named])];
+      
+      if (allToPurge.length > 0) {
+        console.log(`🧹 Found ${allToPurge.length} old container(s) and fragments. Purging immediately...`);
+        execSync(`docker rm -f ${allToPurge.join(' ')}`, { stdio: "ignore" });
+      }
+    } catch(e) {}
+    
+    console.log("📥 Pulling the absolute latest ghcr.io/orkait/hyperstack:main...");
+    execSync("docker pull ghcr.io/orkait/hyperstack:main", { stdio: "inherit" });
+
+    console.log("🏥 Booting clean persistent container (hyperstack-mcp)...");
+    execSync("docker run -d --name hyperstack-mcp --restart unless-stopped --memory=512m --cpus=1 --entrypoint sleep ghcr.io/orkait/hyperstack:main infinity", { stdio: "ignore" });
+    
+    console.log("✅ Registry & Engine synchronized successfully.");
+  } catch (err) {
+    console.log("\\n⚠️  Docker skipped: Docker engine not responsive or not installed on this host.");
+  }
 }

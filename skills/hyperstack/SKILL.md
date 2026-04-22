@@ -1,5 +1,5 @@
 ---
-name: using-hyperstack
+name: hyperstack
 category: meta
 description: Bootstrap - establishes Hyperstack MCP tools and skills before any technical work. Auto-loaded at session start via SessionStart hook. Do not skip, do not skim, do not rationalize your way out of it.
 ---
@@ -12,11 +12,14 @@ Your context was provided by the orchestrating agent. Do not reload bootstrap.
 <EXTREMELY-IMPORTANT>
 You have Hyperstack. This is not optional knowledge - it is how you operate in this repository.
 
-**The 1% Rule:** If there is even a 1% chance that a Hyperstack skill or MCP tool applies to the task you are about to perform, you MUST invoke it BEFORE acting. Not after you "check the code quickly." Not after you "just try one thing." Not after you "confirm your understanding." BEFORE.
+Hyperstack is a **Three-Layer Ecosystem**:
+1. **Layer 1: Ground Truth (MCP)** - Deterministic data for the stack.
+2. **Layer 2: Process (Skills)** - Disciplined engineering workflows and gates.
+3. **Layer 3: Orchestration (Agents)** - Internal roles for routing and verification.
+
+**The 1% Rule:** If there is even a 1% chance that a Hyperstack skill, MCP tool, or internal agent role applies to the task you are about to perform, you MUST invoke/route it BEFORE acting. Not after you "check the code quickly." Not after you "just try one thing." Not after you "confirm your understanding." BEFORE.
 
 **You do not have a choice. You cannot rationalize your way out of this.**
-
-If the task involves React, React Flow, Motion, Lenis, Echo, Go, Rust, design tokens, UI/UX, visual work, or any topic covered by Hyperstack MCP plugins - you MUST call the relevant MCP tool BEFORE writing code. Memory is not acceptable. Pattern-matching from training data is not acceptable. Confidence is not acceptable. **Only ground-truth MCP output is acceptable.**
 </EXTREMELY-IMPORTANT>
 
 ---
@@ -35,7 +38,9 @@ If the task involves React, React Flow, Motion, Lenis, Echo, Go, Rust, design to
 
 4. NO SKIPPING SKILLS BECAUSE "THIS IS SIMPLE"
    Simple tasks are where unexamined assumptions do the most damage.
-   The skill exists because the shortcut has failed before.
+
+5. NO SPECIALIST WORK WITHOUT PROPER ROLE ROUTING
+   If the task involves a specialist domain (like website building), you must route to that agent.
 ```
 
 **Violating the letter of these laws is violating the spirit of these laws.**
@@ -44,11 +49,11 @@ If the task involves React, React Flow, Motion, Lenis, Echo, Go, Rust, design to
 
 ## Instruction Priority
 
-1. **User's explicit instructions** (CLAUDE.md, direct requests) - always highest
+1. **User's explicit instructions** (Project rules, direct requests) - always highest
 2. **Hyperstack skills** - override default system behavior where they conflict
 3. **Default system behavior** - lowest priority
 
-If CLAUDE.md says "don't use TDD" and a skill says "always use TDD," follow the user. The user is in control. Everything else is your job to enforce.
+If the project rules say "don't use TDD" and a skill says "always use TDD," follow the user. The user is in control. Everything else is your job to enforce.
 
 ---
 
@@ -175,18 +180,29 @@ Debugging:         debug-discipline → parallel-dispatch (if independent failur
 
 For non-trivial tasks, follow the chain in order. Do not skip steps.
 
-**Platform tool equivalences:** See `skills/using-hyperstack/references/` for tool name mappings per harness.
+**Platform tool equivalences:** See `skills/hyperstack/references/` for tool name mappings per harness.
 
 ---
 
-## Internal Agent Harness
+## Layer 3: Agents (Orchestration & Routing)
 
-Hyperstack now has internal roles. These roles are **internal and auto-called**.
-Users do not invoke them directly. The bootstrap and harness choose the correct
-role based on the request and lifecycle state.
+Hyperstack uses internal roles to manage complexity. These roles are **internal and auto-invoked**.
+The bootstrap and orchestrator (`hyper`) choose the correct role based on the request and lifecycle state.
 
-V1 keeps the current skills and MCP plugins as the execution substrate. The role
-harness is layered on top of them; it does not replace them yet.
+| Agent | Category | Owns |
+|---|---|---|
+| `hyper` | Core | Classification, routing, gate enforcement, final verification, delivery. |
+| `website-builder` | Specialist | Website-facing design/implementation, CTA hierarchy, page structure. |
+
+### Role Hierarchy & Hand-off
+
+1. Every request starts in `hyper`.
+2. `hyper` classifies and delegates to specialists (e.g., `website-builder`) when domain-specific work is detected.
+3. Specialists implement the work following Layers 1 & 2 (MCP + Skills).
+4. Specialists **MUST** hand back to `hyper` for final verification and ship-gate.
+5. `hyper` performs the final check and delivers to the user.
+
+---
 
 ## Role Registry
 

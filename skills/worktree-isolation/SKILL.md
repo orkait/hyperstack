@@ -24,10 +24,10 @@ ls -d .worktrees 2>/dev/null || ls -d worktrees 2>/dev/null
 
 Found → use it. Both exist → `.worktrees` wins.
 
-### 2. Check CLAUDE.md / Project Config
+### 2. Check Project Config / Agent Rules
 
 ```bash
-grep -i "worktree.*director" CLAUDE.md 2>/dev/null
+grep -ri "worktree.*director" .cursorrules .roo/ .claude.json 2>/dev/null
 ```
 
 Preference specified → use it without asking.
@@ -92,7 +92,7 @@ echo "Worktree ready at <path>. Tests: <N> passing, 0 failures."
 | `.worktrees/` exists | Use it (verify ignored) |
 | `worktrees/` exists | Use it (verify ignored) |
 | Both exist | Use `.worktrees/` |
-| Neither exists | Check CLAUDE.md, then ask user |
+| Neither exists | Check project config, then ask user |
 | Directory not ignored | Add to `.gitignore` + commit |
 | Baseline tests fail | Report failures, ask user |
 | No package.json/Cargo.toml | Skip dependency install |

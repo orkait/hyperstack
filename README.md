@@ -35,7 +35,9 @@ Unlike standard "polite" instructions, Hyperstack uses **Iron Laws** and a **Ses
 
 The fastest way to install Hyperstack is to let your AI agent do it for you. This works with **Cursor, Windsurf, Roo Code, Claude Code, or Gemini**. Simply paste this command:
 
-> **Fetch and follow the instructions at https://raw.githubusercontent.com/orkait/hyperstack/main/install.md**
+```text
+Fetch and follow the instructions at https://raw.githubusercontent.com/orkait/hyperstack/main/install.md
+```
 
 The autopilot will autonomously detect your environment, install the MCP server (Docker or Local), and **automatically link the Skills repository**. This is the only step required.
 
@@ -184,7 +186,7 @@ The MCP server gives you tools. The skills give you discipline. Install both:
 git clone https://github.com/orkait/hyperstack.git ~/.claude/skills/hyperstack
 ```
 
-After installing, the SessionStart hook (at `hooks/session-start.mjs`) will auto-inject the `using-hyperstack` skill into every session. No manual activation needed.
+After installing, the SessionStart hook (at `hooks/session-start.mjs`) will auto-inject the `hyperstack` skill into every session. No manual activation needed.
 
 ### 💻 From source
 
@@ -202,9 +204,9 @@ Node 18+ required.
 
 ---
 
-## 🧠 The Two-Layer System
+## 🧠 The Three-Layer System
 
-Hyperstack's strength comes from the friction between **Ground Truth** (MCP) and **Enforcement** (Skills).
+Hyperstack's strength comes from the friction between **Ground Truth** (MCP), **Enforcement** (Skills), and **Orchestration** (Agents).
 
 ### Layer 1: MCP Plugins (Ground Truth)
 
@@ -234,9 +236,9 @@ Markdown with adversarial enforcement. Each skill contains an **Iron Law** that 
 
 These laws are backed by **Rationalization Tables**-pre-written counters to every excuse an AI agent uses to skip quality gates.
 
-### Internal Harness (role routing + bootstrap)
+### Layer 3: Agents (Orchestration & Routing)
 
-The internal harness is what ties the public layers together:
+The internal harness is what ties the public layers together by managing process and domains:
 
 - bootstrap is injected at session start from generated runtime context
 - `hyper` owns classification, routing, gates, and verification
@@ -283,7 +285,7 @@ The internal harness is what ties the public layers together:
 
 | Skill | Role |
 |---|---|
-| `using-hyperstack` | Force-injected at session start via hook - the enforcement payload |
+| `hyperstack` | Force-injected at session start via hook - the enforcement payload |
 | `testing-skills` | RED-GREEN-REFACTOR pressure testing for skills using subagents |
 
 </details>
@@ -307,7 +309,7 @@ Ordinary skill markdown is a polite suggestion. Polite suggestion fails when an 
 
 When you say, **“build me a SaaS dashboard”**:
 
-1. **SessionStart** already puts in `using-hyperstack`, so AI know system is there.
+1. **SessionStart** already puts in `hyperstack`, so AI know system is there.
 2. **Blueprint skill** sees visual job and sends it to `hyperstack:designer`.
 3. **Designer skill** runs `designer_resolve_intent(product)` to guess industry, personality, style, density, and mode.
 4. Designer asks **3 questions** in base mode, or **12 questions** in advanced mode.
@@ -325,6 +327,26 @@ AI cannot jump ahead. Every step has hard gate. Excuses already blocked by ratio
 ---
 
 ## 🛠️ Available Tools
+
+### 📦 Supported Versions
+
+Opinionated stack support for the latest stable stable releases. This prevents "AI Slop" by enforcing modern patterns (e.g., React 19 Actions, Tailwind v4 tokens).
+
+| Technology | Supported Version | Role |
+| :--- | :--- | :--- |
+| **React** | 19.x | Core Library |
+| **Next.js** | 15.x | Application Framework |
+| **Tailwind CSS** | v4.x | Design Tokens & Constraints |
+| **Motion** | 12.x (fka Framer Motion) | Orchestrated Animations |
+| **React Flow** | 12.x | Node-based Systems |
+| **Lenis** | 1.1.x+ | Smooth Scroll Engine |
+| **Zustand** | 5.x | State Management |
+| **shadcn/ui** | Base UI Edition | Component Primitive Patterns |
+| **Echo (Go)** | v4.x | Backend Framework |
+| **Go** | 1.22+ | Backend Language |
+| **Rust** | 1.77+ | Systems Language |
+| **Bun** | 1.1.x+ | Runtime Environment |
+
 
 <details>
 <summary><strong>🎨 Designer</strong> - <code>designer_*</code> (19 tools)</summary>

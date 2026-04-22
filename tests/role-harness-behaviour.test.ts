@@ -73,8 +73,8 @@ test("role lifecycle and checks documents expose required headings", () => {
   expect(checksContent).toMatch(/^## Red Flags$/m);
 });
 
-test("using-hyperstack bootstrap compiler preserves role-routing markers", () => {
-  const source = normalize(readFileSync(resolve("skills/using-hyperstack/SKILL.md"), "utf8"));
+test("hyperstack bootstrap compiler preserves role-routing markers", () => {
+  const source = normalize(readFileSync(resolve("skills/hyperstack/SKILL.md"), "utf8"));
   const { content } = compileUsingHyperstackBootstrap(source);
   const missing = validateUsingHyperstackBootstrap(content);
 

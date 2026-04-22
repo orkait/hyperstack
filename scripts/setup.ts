@@ -33,28 +33,25 @@ async function main() {
   }
 
   const pluginRoot = process.cwd();
+  
+  // Attempt to proactively self-heal/upgrade the docker setup
+  setup.selfHealDocker();
+  
   const patch = setup.generateMcpPatch(configPath, pluginRoot, platform);
+  
+  // Proactively apply the patch
+  setup.applyMcpPatch(configPath, patch);
 
-  console.log("\n📋 Proposed Configuration Patch:");
+  console.log("\n📋 Configuration Summary:");
   console.log("---------------------------------");
-
-  if (patch.format === "toml-mcp_servers") {
-    console.log("# Append this to:", configPath);
-    console.log(patch.content as string);
-    console.log("---------------------------------\n");
-    console.log("To finish manual setup:");
-    console.log(`1. Run the symlink command above (if applicable).`);
-    console.log(`2. Append the TOML block above to ${configPath}`);
-    console.log("3. Run 'codex /mcp' to verify the connection.");
-  } else {
-    console.log(JSON.stringify(patch.content, null, 2));
-    console.log("---------------------------------\n");
-    console.log("To finish manual setup:");
-    console.log(`1. Run the symlink command above (if applicable).`);
-    console.log(`2. Open ${configPath}`);
-    console.log("3. Merge the patch above into your config (deep-merge, don't replace).");
-    console.log("4. Restart your AI client.");
+  console.log(`✅ Environment: ${platform}`);
+  console.log(`✅ Config Path: ${configPath}`);
+  if (skillPath) {
+    console.log(`✅ Skill Target: ${path.join(skillPath, "hyperstack")}`);
   }
+  console.log("---------------------------------\n");
+  
+  console.log("🚀 Setup Complete! You must restart your AI client to pick up the new tools.");
 }
 
 main().catch(console.error);
