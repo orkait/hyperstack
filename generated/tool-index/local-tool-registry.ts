@@ -37,7 +37,6 @@ export const LOCAL_TOOL_REGISTRY = {
   "golang_list_patterns": () => import("src/plugins/golang/tools/list-patterns.js"),
   "golang_list_practices": () => import("src/plugins/golang/tools/list-practices.js"),
   "golang_search_docs": () => import("src/plugins/golang/tools/search-docs.js"),
-  "hyperstack_setup": () => import("src/plugins/hyperstack/tools/setup.js"),
   "lenis_generate_setup": () => import("src/plugins/lenis/tools/generate-setup.js"),
   "lenis_get_api": () => import("src/plugins/lenis/tools/get-api.js"),
   "lenis_get_pattern": () => import("src/plugins/lenis/tools/get-pattern.js"),

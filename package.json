@@ -1,7 +1,7 @@
 {
   "name": "@orkait-ai/hyperstack",
-  "version": "1.1.3",
-  "description": "Disciplined MCP server + skill system. 12 plugins, 80 tools, 21 skills with adversarial enforcement. Designer/DESIGN.md pipeline, shadcn/ui, React Flow, Motion, Lenis, React 19, Echo, Go, Rust, design tokens, UI/UX.",
+  "version": "2.0.0",
+  "description": "Topology-driven CLI for 11 plugin tool families covering designer, design tokens, UI/UX, React, shadcn, Motion, Lenis, React Flow, Echo, Go, and Rust.",
   "bin": {
     "hyperstack": "bin/hyperstack.mjs"
   },
@@ -11,12 +11,7 @@
     "compile:context": "tsx src/internal/compile-runtime-context.ts",
     "generate:local-tools": "tsx scripts/generate-local-tool-registry.ts",
     "generate:topology": "tsx scripts/generate-topology-artifacts.ts",
-    "start": "bun src/index.ts",
-    "dev": "bun --watch src/index.ts",
-    "docker:run": "bun scripts/ensure-singleton.ts",
-    "skills:index": "tsx scripts/generate-skills-index.ts",
-    "mcp:start": "bun scripts/start-mcp.ts",
-    "setup": "tsx scripts/setup.ts"
+    "skills:index": "tsx scripts/generate-skills-index.ts"
   },
   "author": "Orkait",
   "license": "MIT",
@@ -24,7 +19,6 @@
     "node": ">=18"
   },
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^1.17.0",
     "tsx": "^4.21.0",
     "yaml": "^2.5.1",
     "zod": "^3.23.0"

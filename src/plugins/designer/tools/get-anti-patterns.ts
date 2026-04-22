@@ -1,8 +1,8 @@
-import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
+import type { ToolServer } from "../../../shared/tool-types.js";
 import { z } from "zod";
 import { ANTI_PATTERN_CATEGORIES, INDUSTRY_CATEGORIES, getAntiPatterns } from "../data.js";
 
-export function register(server: McpServer): void {
+export function register(server: ToolServer): void {
   server.tool(
     "designer_get_anti_patterns",
     "Get design anti-patterns filtered by category and/or industry",

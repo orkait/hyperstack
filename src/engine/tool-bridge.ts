@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
+import type { ToolServer } from "../shared/tool-types.js";
 
 type ToolResult = {
   content?: Array<{ type?: string; text?: string }>;
@@ -9,7 +9,7 @@ type ToolResult = {
 type ToolHandler = (args: Record<string, unknown>) => Promise<ToolResult> | ToolResult;
 
 export async function invokeRegisteredTool(
-  register: (server: McpServer) => void,
+  register: (server: ToolServer) => void,
   args: Record<string, unknown>,
 ): Promise<ToolResult> {
   let capturedHandler: ToolHandler | undefined;
@@ -18,7 +18,7 @@ export async function invokeRegisteredTool(
     tool(_name: string, _description: string, _schema: unknown, handler: ToolHandler) {
       capturedHandler = handler;
     },
-  } as unknown as McpServer;
+  } as unknown as ToolServer;
 
   register(server);
 

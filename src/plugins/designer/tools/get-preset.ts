@@ -1,8 +1,8 @@
-import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
+import type { ToolServer } from "../../../shared/tool-types.js";
 import { z } from "zod";
 import { PRESET_NAMES, PRESETS, getPreset } from "../data.js";
 
-export function register(server: McpServer): void {
+export function register(server: ToolServer): void {
   server.tool(
     "designer_get_preset",
     "Get a complete, code-ready design token preset based on a real premium design system. Returns colors (OKLCH), typography (font, scale, weights, tracking), spacing, radius, shadows, motion, and CSS example. Available presets: linear, stripe, vercel, apple, carbon, shadcn, notion, supabase, figma.",

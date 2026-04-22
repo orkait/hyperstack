@@ -1,7 +1,7 @@
-import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
+import type { ToolServer } from "../../../shared/tool-types.js";
 import { z } from "zod";
 
-export function register(server: McpServer): void {
+export function register(server: ToolServer): void {
   server.tool(
     "lenis_generate_setup",
     "Generate complete Lenis setup code from a natural-language description. Handles Next.js, GSAP, Framer Motion, basic React, and custom container scenarios.",

@@ -1,7 +1,7 @@
-import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
+import type { ToolServer } from "../../../shared/tool-types.js";
 import { PRESETS } from "../data.js";
 
-export function register(server: McpServer): void {
+export function register(server: ToolServer): void {
   server.tool(
     "designer_list_presets",
     "List all available design presets - complete, code-ready design token configurations based on real premium design systems (Linear, Stripe, Vercel, Apple, Carbon, shadcn, Notion, Supabase, Figma).",

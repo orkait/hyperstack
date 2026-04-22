@@ -1,4 +1,4 @@
-import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
+import type { ToolServer } from "../../../shared/tool-types.js";
 import { z } from "zod";
 import { readFileSync, existsSync } from "fs";
 import { isAbsolute } from "path";
@@ -8,7 +8,7 @@ import { isAbsolute } from "path";
  * an implementation plan with exact MCP calls per section. This is the bridge
  * that forge-plan uses to turn a DESIGN.md contract into executable tasks.
  */
-export function register(server: McpServer): void {
+export function register(server: ToolServer): void {
   server.tool(
     "designer_generate_implementation_plan",
     "Parse a DESIGN.md file into its 10 sections and generate a structured implementation plan. Each section becomes one or more tasks with exact MCP calls (shadcn_get_component, motion_generate_animation, design_tokens_generate, etc.) and self-review assertions. This is the bridge from designer to forge-plan.",

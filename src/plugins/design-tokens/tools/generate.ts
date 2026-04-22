@@ -1,4 +1,4 @@
-import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
+import type { ToolServer } from "../../../shared/tool-types.js";
 import { z } from "zod";
 import { snippet } from "../loader.js";
 
@@ -7,7 +7,7 @@ const TEMPLATE_SPACING = snippet("templates/spacing.txt");
 const TEMPLATE_TYPOGRAPHY = snippet("templates/typography.txt");
 const TEMPLATE_MOTION = snippet("templates/motion.txt");
 
-export function register(server: McpServer): void {
+export function register(server: ToolServer): void {
   server.tool(
     "design_tokens_generate",
     "Generate CSS token scaffolding from a description. Returns ready-to-use CSS custom properties.",

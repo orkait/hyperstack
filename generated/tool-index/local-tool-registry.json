@@ -37,7 +37,6 @@
   "golang_list_patterns": "src/plugins/golang/tools/list-patterns.js",
   "golang_list_practices": "src/plugins/golang/tools/list-practices.js",
   "golang_search_docs": "src/plugins/golang/tools/search-docs.js",
-  "hyperstack_setup": "src/plugins/hyperstack/tools/setup.js",
   "lenis_generate_setup": "src/plugins/lenis/tools/generate-setup.js",
   "lenis_get_api": "src/plugins/lenis/tools/get-api.js",
   "lenis_get_pattern": "src/plugins/lenis/tools/get-pattern.js",
