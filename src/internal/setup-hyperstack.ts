@@ -188,10 +188,82 @@ export function detectPlatformFromConfigPath(configPath: string): string {
 export function findSkillPath(platform: string): string | null {
   const info = KNOWN_PLATFORMS[platform];
   if (!info || !info.skillPath) return null;
-  
+
   return path.join(os.homedir(), info.skillPath);
 }
 
+/**
+ * Registers Hyperstack skills for ANY platform that has a skill/rules directory.
+ * Creates a symlink <skillRoot>/hyperstack -> <pluginRoot>/skills so that
+ * `hyperstack:hyperstack` and all other skills are discoverable by the agent.
+ *
+ * For platforms without a skill directory (codex, gemini-cli), injects the
+ * bootstrap content into the platform's persistent context file instead.
+ */
+export function registerSkillsForPlatform(platform: string, pluginRoot: string): void {
+  const skillsSource = path.join(pluginRoot, "skills");
+  const home = os.homedir();
+
+  // Platforms with a skill/rules directory: create namespace symlink
+  const skillRoot = findSkillPath(platform);
+  if (skillRoot) {
+    const skillTarget = path.join(skillRoot, "hyperstack");
+    try {
+      fs.mkdirSync(skillRoot, { recursive: true });
+      try {
+        if (fs.existsSync(skillTarget) || fs.lstatSync(skillTarget).isSymbolicLink()) {
+          fs.rmSync(skillTarget, { recursive: true, force: true });
+        }
+      } catch { /* not found */ }
+      fs.symlinkSync(skillsSource, skillTarget, "dir");
+      console.log(`   ✓ Skills linked: ${skillTarget} -> ${skillsSource}`);
+    } catch (err) {
+      console.warn(`   ⚠ Skill link failed for ${platform}: ${err instanceof Error ? err.message : err}`);
+    }
+    return;
+  }
+
+  // Platforms without a skill system: inject compiled bootstrap into persistent context file
+  const bootstrapPath = path.join(pluginRoot, "generated", "runtime-context", "hyperstack.bootstrap.md");
+  const fallbackPath = path.join(pluginRoot, "skills", "hyperstack", "SKILL.md");
+  let bootstrapContent: string;
+  try {
+    bootstrapContent = fs.readFileSync(bootstrapPath, "utf8");
+  } catch {
+    try {
+      bootstrapContent = fs.readFileSync(fallbackPath, "utf8");
+    } catch {
+      console.warn(`   ⚠ Could not read bootstrap for ${platform} injection`);
+      return;
+    }
+  }
+
+  const PLATFORM_CONTEXT_FILES: Record<string, string> = {
+    "codex":      path.join(home, ".codex", "instructions.md"),
+    "gemini-cli": path.join(home, ".gemini", "GEMINI.md"),
+  };
+
+  const contextFile = PLATFORM_CONTEXT_FILES[platform];
+  if (!contextFile) return;
+
+  const marker = "<!-- hyperstack-bootstrap -->";
+  const injection = `\n${marker}\n${bootstrapContent}\n${marker}\n`;
+
+  try {
+    fs.mkdirSync(path.dirname(contextFile), { recursive: true });
+    const existing = fs.existsSync(contextFile) ? fs.readFileSync(contextFile, "utf8") : "";
+    if (existing.includes(marker)) {
+      const stripped = existing.replace(new RegExp(`\n?${marker}[\\s\\S]*?${marker}\n?`), "");
+      fs.writeFileSync(contextFile, stripped + injection);
+      console.log(`   ✓ Updated bootstrap in ${contextFile}`);
+    } else {
+      fs.appendFileSync(contextFile, injection);
+      console.log(`   ✓ Injected bootstrap into ${contextFile}`);
+    }
+  } catch (err) {
+    console.warn(`   ⚠ Context injection failed for ${platform}: ${err instanceof Error ? err.message : err}`);
+  }
+}
 
 export function getPlatformFormat(platform: string): PlatformFormat {
   return KNOWN_PLATFORMS[platform]?.format ?? "json-mcpServers";

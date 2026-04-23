@@ -1,5 +1,4 @@
 import * as setup from "../src/internal/setup-hyperstack.js";
-import * as fs from "node:fs";
 import * as path from "node:path";
 
 async function main() {
@@ -23,16 +22,10 @@ async function main() {
   const platform = setup.detectPlatformFromConfigPath(configPath);
   console.log(`✅ Found config: ${configPath} (${platform})`);
 
-  const skillPath = setup.findSkillPath(platform);
-  if (skillPath) {
-    const hyperstackSkills = path.join(process.cwd(), "skills");
-    const skillTarget = path.join(skillPath, "hyperstack");
-    console.log(`\n📚 Skill target: ${skillTarget}`);
-    console.log(`Run this to activate adversarial gates:`);
-    console.log(`  ln -s "${hyperstackSkills}" "${skillTarget}"`);
-  }
-
   const pluginRoot = process.cwd();
+
+  console.log("\n📚 Registering skills...");
+  setup.registerSkillsForPlatform(platform, pluginRoot);
   
   // Attempt to proactively self-heal/upgrade the docker setup
   setup.selfHealDocker();
@@ -47,12 +40,13 @@ async function main() {
     setup.registerClaudeCodePlugin(pluginRoot);
   }
 
+  const skillRoot = setup.findSkillPath(platform);
   console.log("\n📋 Configuration Summary:");
   console.log("---------------------------------");
   console.log(`✅ Environment: ${platform}`);
   console.log(`✅ Config Path: ${configPath}`);
-  if (skillPath) {
-    console.log(`✅ Skill Target: ${path.join(skillPath, "hyperstack")}`);
+  if (skillRoot) {
+    console.log(`✅ Skills: ${path.join(skillRoot, "hyperstack")}`);
   }
   console.log("---------------------------------\n");
   
