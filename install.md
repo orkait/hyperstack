@@ -77,11 +77,14 @@ Based on the environment you detected in Step 1, identify the correct target dir
 | **Claude Code** | `~/.claude/skills/hyperstack` | Global |
 | **Kiro Code** | `~/.kiro/skills/hyperstack` | Global |
 | **Antigravity** | `~/.gemini/antigravity/skills/hyperstack` | Global |
+| **Gemini CLI** | `~/.gemini/skills/` | Global (Individual) |
 | **Cursor** | `.cursor/rules/` | Project-level |
 | **Roo Code** | `.roo/rules/` | Project-level |
 | **Windsurf** | `.codeium/windsurf/` | Project-level |
 
-As an agent, you should **symlink** the `~/.hyperstack/skills` directory to the target path above. This ensures updates to the central repo are immediately reflected in your active session.
+As an agent, you should **symlink** the `~/.hyperstack/skills` directory to the target path above. 
+
+**Gemini CLI Note:** Unlike other platforms, Gemini CLI requires each individual skill folder to be symlinked separately into `~/.gemini/skills/` for discovery. You must loop through each directory in `~/.hyperstack/skills/` and link them individually.
 
 ## Step 3: Configure the MCP Server
 
@@ -97,6 +100,21 @@ As an agent, you should **symlink** the `~/.hyperstack/skills` directory to the 
 ```
 
 Each CLI invocation spawns a new `bun` process inside the existing `hyperstack-mcp` container - no new container, no startup cost.
+
+**Gemini CLI Note:** The `mcpServers` object must be nested inside a top-level `"mcp"` key in `~/.gemini/settings.json`:
+
+```json
+{
+  "mcp": {
+    "mcpServers": {
+      "hyperstack": {
+        "command": "/path/to/bun",
+        "args": ["/path/to/hyperstack/bin/hyperstack.mjs"]
+      }
+    }
+  }
+}
+```
 
 **Important:** Some environments (like Qwen Code) use `settings.json` at the root level rather than a dedicated `.mcp.json` file. The `mcpServers` object goes at the top level of the settings file. Do not nest it inside another key.
 
