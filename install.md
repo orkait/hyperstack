@@ -47,8 +47,8 @@ The system automatically probes for signatures:
 - **Antigravity**: `ANTIGRAVITY_AGENT`
 - **Claude Code**: `CLAUDE_PLUGIN_ROOT`
 - **Cursor**: `CURSOR_PLUGIN_ROOT`
-- **VS Code Derivatives**: `VSCODE_PID`
-- **Known Paths**: Probes for `.claude.json`, `.cursor/`, `.codeium/windsurf/`, `.roo/`, and `.gemini/`.
+- **VS Code**: `VSCODE_PID`
+- **Known Paths**: Probes for `.claude.json`, `.cursor/mcp.json`, `.codeium/windsurf/mcp_config.json`, `.gemini/settings.json`, `.kiro/settings/mcp.json`, `.codex/config.toml`.
 
 ## Step 2: Install the Skills
 
@@ -75,16 +75,19 @@ Based on the environment you detected in Step 1, identify the correct target dir
 | IDE/CLI | Target Skill Path | Type |
 |---|---|---|
 | **Claude Code** | `~/.claude/skills/hyperstack` | Global |
-| **Kiro Code** | `~/.kiro/skills/hyperstack` | Global |
 | **Antigravity** | `~/.gemini/antigravity/skills/hyperstack` | Global |
-| **Gemini CLI** | `~/.gemini/skills/` | Global (Individual) |
-| **Cursor** | `.cursor/rules/` | Project-level |
-| **Roo Code** | `.roo/rules/` | Project-level |
-| **Windsurf** | `.codeium/windsurf/` | Project-level |
+| **Kiro** | `~/.kiro/skills/hyperstack` | Global |
+| **Codex** | `~/.codex/skills/hyperstack` | Global |
+| **Cursor** | `.cursor/rules/hyperstack.mdc` | Project-level only |
+| **Windsurf** | `.windsurf/rules/hyperstack.md` | Project-level only |
 
-As an agent, you should **symlink** the `~/.hyperstack/skills` directory to the target path above. 
+**Notes:**
+- **Cursor**: Has no global rules filesystem path. Rules must be added per-project at `.cursor/rules/*.mdc`. Global rules are UI-only and not file-based.
+- **Windsurf**: Global rules live at `~/.codeium/windsurf/memories/global_rules.md` (single file, not a directory for symlinks). Project rules at `.windsurf/rules/*.md`.
+- **Gemini CLI**: Has no skill filesystem - Hyperstack bootstrap is injected into `~/.gemini/GEMINI.md` instead.
+- **VS Code**: Has no skill filesystem. MCP is configured via the `"servers"` key (not `"mcpServers"`) in the config file.
 
-**Gemini CLI Note:** Unlike other platforms, Gemini CLI requires each individual skill folder to be symlinked separately into `~/.gemini/skills/` for discovery. You must loop through each directory in `~/.hyperstack/skills/` and link them individually.
+As an agent, you should **symlink** the `~/.hyperstack/skills` directory to the target path for platforms that support global skill directories.
 
 ## Step 3: Configure the MCP Server
 
@@ -101,22 +104,45 @@ As an agent, you should **symlink** the `~/.hyperstack/skills` directory to the 
 
 Each CLI invocation spawns a new `bun` process inside the existing `hyperstack-mcp` container - no new container, no startup cost.
 
-**Gemini CLI Note:** The `mcpServers` object must be nested inside a top-level `"mcp"` key in `~/.gemini/settings.json`:
+**Platform-specific MCP config formats:**
+
+**Gemini CLI** - `mcpServers` nested under top-level `"mcp"` key in `~/.gemini/settings.json`:
 
 ```json
 {
   "mcp": {
     "mcpServers": {
       "hyperstack": {
-        "command": "/path/to/bun",
-        "args": ["/path/to/hyperstack/bin/hyperstack.mjs"]
+        "command": "docker",
+        "args": ["exec", "-i", "hyperstack-mcp", "bun", "/app/src/index.ts"]
       }
     }
   }
 }
 ```
 
-**Important:** Some environments (like Qwen Code) use `settings.json` at the root level rather than a dedicated `.mcp.json` file. The `mcpServers` object goes at the top level of the settings file. Do not nest it inside another key.
+**VS Code + GitHub Copilot** - uses `"servers"` key (not `"mcpServers"`) since VS Code 1.99. Config at `~/.config/Code/User/mcp.json` (Linux) or `~/Library/Application Support/Code/User/mcp.json` (macOS):
+
+```json
+{
+  "servers": {
+    "hyperstack": {
+      "command": "docker",
+      "args": ["exec", "-i", "hyperstack-mcp", "bun", "/app/src/index.ts"]
+    }
+  }
+}
+```
+
+**Codex CLI** - TOML format in `~/.codex/config.toml`:
+
+```toml
+[mcp_servers.hyperstack]
+command = "docker"
+args = ["exec", "-i", "hyperstack-mcp", "bun", "/app/src/index.ts"]
+```
+
+**All other platforms** (Claude Code, Cursor, Windsurf, Kiro, Antigravity) - standard `mcpServers` JSON at the root of the config file.
 
 **Name mismatch repair:** If the MCP config references `hyperstack-mcp` but the container has a different name (e.g., a random Docker name like `kind_bouman` from a previous `docker run`), fix it before proceeding:
 
@@ -230,14 +256,14 @@ If any of these three checks fail, do not proceed. Fix the issue first:
 
 ---
 
-**Verification A: SessionStart hook fires (platforms with hooks only).** On Claude Code and platforms with hook support, the agent should receive the Hyperstack bootstrap at session start. Ask: *"What Hyperstack skills are available?"* The agent should list skills from `skills/INDEX.md` (21 total, grouped into core / domain / meta). On platforms without hook support (e.g., Qwen Code), this step does not apply - skills are on disk but not auto-injected.
+**Verification A: SessionStart hook fires (platforms with hooks only).** On Claude Code and Antigravity, the agent should receive the Hyperstack bootstrap at session start. Ask: *"What Hyperstack skills are available?"* The agent should list skills from `skills/INDEX.md` (21 total, grouped into core / domain / meta). On platforms without hook support (Cursor, Windsurf, VS Code, Codex, Kiro), this step does not apply - skills are on disk but not auto-injected.
 
 **Verification B: Designer workflow triggers.** Ask: *"Help me design a SaaS dashboard for DevOps engineers."* On platforms with the SessionStart hook, the agent should invoke `hyperstack:designer` BEFORE writing any code. If it jumps straight to JSX, the hook did not fire - restart the client and try again. On platforms without hook support, this step is manual (the agent won't auto-invoke designer).
 
 If any verification step fails:
 - For skill issues: confirm the repo was cloned to the correct skills directory for the environment
 - For MCP issues: run the pre-check command above to confirm the server starts independently of the IDE
-- For hook issues: confirm the environment supports `.claude-plugin/hooks.json`, otherwise the enforcement is reduced to documentation rather than automatic injection. Platforms without hook support: Qwen Code.
+- For hook issues: confirm the environment supports `.claude-plugin/hooks.json`, otherwise the enforcement is reduced to documentation rather than automatic injection.
 
 ## Step 5: Inform the User
 
@@ -245,7 +271,7 @@ Tell the user:
 1. Which environment you detected
 2. Where the repository was cloned
 3. Which MCP config file was updated (Docker or Bun fallback)
-4. Whether the SessionStart hook is expected to fire on their platform (yes for Claude Code / platforms with hooks, no for Qwen Code / others)
+4. Whether the SessionStart hook is expected to fire on their platform (yes for Claude Code and Antigravity; no for Cursor, Windsurf, VS Code, Codex, Kiro)
 5. Which verification step they should run first
 
 If installation failed at any step, report the specific error and what would need to be fixed, rather than claiming success.
@@ -279,7 +305,9 @@ The MCP config file may point to the wrong binary or the server is not running. 
 - Docker: run `docker exec -i hyperstack-mcp bun /app/src/index.ts` manually - it should accept JSON-RPC on stdin and respond. If the container isn't running, start it per Step 2 of Option A.
 - Local Bun: confirm the absolute path in `args` exists (`ls /path/to/hyperstack/bin/hyperstack.mjs`)
 - Restart the CLI/IDE after any config change - MCP servers are loaded at startup
-- **Qwen Code:** Uses `~/.qwen/settings.json` (global) or `.qwen/settings.json` (project-level), NOT `.mcp.json`. The `mcpServers` key goes at the root of the settings file.
+- **VS Code:** Ensure you're using the `"servers"` key, not `"mcpServers"`. VS Code 1.99+ changed the key name.
+- **Gemini CLI:** Ensure `mcpServers` is nested under a top-level `"mcp"` key in `~/.gemini/settings.json`.
+- **Codex:** Config is TOML format at `~/.codex/config.toml`, not JSON.
 
 ### Too many hyperstack containers piling up
 
@@ -301,7 +329,7 @@ Then follow Step 2 of Option A to start the single persistent `hyperstack-mcp` c
 
 On Claude Code, hooks live in `.claude/hooks.json`. Confirm the file exists in the repository root and references `session-start.mjs`. If the hook is missing or malformed, the `hyperstack` skill will not be injected automatically. You can still invoke skills manually with `/hyperstack`.
 
-On Qwen Code, there is no plugin system or hook mechanism. Skills are available on disk at `~/.qwen/skills/hyperstack/skills/INDEX.md` but must be referenced manually by the agent - no auto-injection occurs.
+On platforms without a hook/plugin system (Cursor, Windsurf, VS Code, Codex), skills are available on disk but must be invoked manually - no auto-injection occurs at session start.
 
 ### `bun: command not found` when using Option B
 

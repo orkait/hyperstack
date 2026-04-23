@@ -12,7 +12,7 @@ export interface SetupResult {
   message: string;
 }
 
-export type PlatformFormat = "json-mcpServers" | "json-contextServers" | "toml-mcp_servers" | "json-mcpServers-nested";
+export type PlatformFormat = "json-mcpServers" | "json-mcpServers-nested" | "json-servers" | "json-contextServers" | "toml-mcp_servers";
 
 const KNOWN_PLATFORMS: Record<string, {
   env?: string[];
@@ -31,17 +31,18 @@ const KNOWN_PLATFORMS: Record<string, {
     skillPath: ".claude/skills",
     format: "json-mcpServers",
   },
-  // Gemini CLI - global user config
+  // Gemini CLI - global user config (mcpServers nested under "mcp" key)
   // Source: geminicli.com (April 2025)
   "gemini-cli": {
     configFiles: [".gemini/settings.json"],
-    format: "json-mcpServers",
+    format: "json-mcpServers-nested",
     notes: "Run '/mcp' inside Gemini CLI to verify connection",
   },
-  // OpenAI Codex CLI - global user config (TOML format)
+  // OpenAI Codex CLI - global user config (TOML format + ~/.codex/skills/ for skills)
   // Source: openai.com official docs (April 2025)
   "codex": {
     configFiles: [".codex/config.toml"],
+    skillPath: ".codex/skills",
     format: "toml-mcp_servers",
     notes: "CLI alternative: codex mcp add hyperstack -- bun ~/.hyperstack/bin/hyperstack.mjs",
   },
@@ -55,30 +56,30 @@ const KNOWN_PLATFORMS: Record<string, {
     skillPath: ".gemini/antigravity/skills",
     format: "json-mcpServers",
   },
-  // Kiro (Amazon AI IDE) - global user config
+  // Kiro (Amazon AI IDE) - global user config + ~/.kiro/skills/ for skills
   // Source: kiro.dev official docs (April 2025)
   "kiro": {
     configFiles: [".kiro/settings/mcp.json"],
+    skillPath: ".kiro/skills",
     format: "json-mcpServers",
     notes: "Workspace-level: .kiro/settings/mcp.json in project root",
   },
-  // Cursor IDE - global user config
+  // Cursor IDE - global user config; rules are project-level only (.cursor/rules/*.mdc)
   // Source: cursor.com docs (April 2025)
   "cursor": {
     env: ["CURSOR_PLUGIN_ROOT"],
     configFiles: [".cursor/mcp.json"],
-    skillPath: ".cursor/rules",
     format: "json-mcpServers",
-    notes: "Project-level: .cursor/mcp.json in project root",
+    notes: "Rules are project-level only: .cursor/rules/*.mdc (no global rules filesystem path)",
   },
   // Windsurf IDE (Codeium) - global user config
   // Source: windsurf.com official docs (April 2025)
   "windsurf": {
     configFiles: [".codeium/windsurf/mcp_config.json"],
     format: "json-mcpServers",
-    notes: "Click 'Refresh' in Cascade panel after editing",
+    notes: "Global rules: ~/.codeium/windsurf/memories/global_rules.md; project: .windsurf/rules/*.md",
   },
-  // VS Code + GitHub Copilot - platform-specific global config
+  // VS Code + GitHub Copilot - uses "servers" key (not "mcpServers") since VS Code 1.99
   // Source: code.visualstudio.com official docs (April 2025)
   "vscode": {
     env: ["VSCODE_PID"],
@@ -86,7 +87,7 @@ const KNOWN_PLATFORMS: Record<string, {
       ".config/Code/User/mcp.json",                          // Linux
       "Library/Application Support/Code/User/mcp.json",      // macOS
     ],
-    format: "json-mcpServers",
+    format: "json-servers",
     notes: "Project-level: .vscode/mcp.json in project root",
   },
 };
@@ -195,8 +196,8 @@ export function registerSkillsForPlatform(platform: string, pluginRoot: string):
     }
   }
 
+  // Only platforms with no skillPath and no skills directory get bootstrap injection
   const PLATFORM_CONTEXT_FILES: Record<string, string> = {
-    "codex":      path.join(home, ".codex", "instructions.md"),
     "gemini-cli": path.join(home, ".gemini", "GEMINI.md"),
   };
 
@@ -266,8 +267,36 @@ export function generateMcpPatch(
     return { format, content: tomlBlock };
   }
 
+  // Gemini CLI: mcpServers nested under top-level "mcp" key
+  // Source: geminicli.com (April 2025)
+  if (format === "json-mcpServers-nested") {
+    return {
+      format,
+      content: {
+        mcp: {
+          mcpServers: {
+            hyperstack: serverConfig,
+          },
+        },
+      },
+    };
+  }
+
+  // VS Code + GitHub Copilot: uses "servers" key since VS Code 1.99
+  // Source: code.visualstudio.com (April 2025)
+  if (format === "json-servers") {
+    return {
+      format,
+      content: {
+        servers: {
+          hyperstack: serverConfig,
+        },
+      },
+    };
+  }
+
   // Default: standard mcpServers JSON schema
-  // Covers: Claude Code, Cursor, Windsurf, Roo Code, VS Code, Kiro, Qwen, Gemini, Cline, Continue.dev
+  // Covers: Claude Code, Cursor, Windsurf, Kiro
   return {
     format,
     content: {
@@ -313,6 +342,19 @@ export function applyMcpPatch(configPath: string, patch: { format: PlatformForma
       existing.context_servers = {
         ...(existing.context_servers || {}),
         ...patchObj.context_servers,
+      };
+    } else if (patch.format === "json-mcpServers-nested") {
+      // Gemini CLI: merge into existing.mcp.mcpServers
+      if (!existing.mcp) existing.mcp = {};
+      existing.mcp.mcpServers = {
+        ...(existing.mcp.mcpServers || {}),
+        ...patchObj.mcp.mcpServers,
+      };
+    } else if (patch.format === "json-servers") {
+      // VS Code: merge into existing.servers
+      existing.servers = {
+        ...(existing.servers || {}),
+        ...patchObj.servers,
       };
     } else {
       existing.mcpServers = {
