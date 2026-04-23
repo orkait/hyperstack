@@ -362,11 +362,13 @@ export function registerClaudeCodePlugin(pluginRoot: string): void {
   }
 
   // 2-3. Create symlinks (or directory copies on Windows if symlink fails)
+  // installPath must point to the versioned leaf so Claude Code can find skills/ at <installPath>/skills/
+  const version = "1.0.0";
   const marketplaceLink = path.join(claudeDir, "plugins", "marketplaces", "hyperstack");
-  const cacheDir = path.join(claudeDir, "plugins", "cache", "hyperstack");
-  const cacheLink = path.join(cacheDir, "hyperstack");
+  const cachePackageDir = path.join(claudeDir, "plugins", "cache", "hyperstack", "hyperstack");
+  const cacheLink = path.join(cachePackageDir, version);
   fs.mkdirSync(path.dirname(marketplaceLink), { recursive: true });
-  fs.mkdirSync(cacheDir, { recursive: true });
+  fs.mkdirSync(cachePackageDir, { recursive: true });
   for (const link of [marketplaceLink, cacheLink]) {
     try {
       if (fs.existsSync(link) || fs.lstatSync(link).isSymbolicLink()) {
