@@ -24,7 +24,7 @@ const KNOWN_PLATFORMS: Record<string, {
   // ─── AI CLIs ────────────────────────────────────────────────
 
   // Claude Code (CLI) - global user config
-  // Source: docs.anthropic.com, inventivehq.com (April 2025, multiple)
+  // Source: docs.anthropic.com (April 2025)
   "claude-code": {
     env: ["CLAUDE_PLUGIN_ROOT"],
     configFiles: [".claude.json"],
@@ -32,25 +32,11 @@ const KNOWN_PLATFORMS: Record<string, {
     format: "json-mcpServers",
   },
   // Gemini CLI - global user config
-  // Source: geminicli.com, augmentcode.com (April 2025, multiple)
+  // Source: geminicli.com (April 2025)
   "gemini-cli": {
     configFiles: [".gemini/settings.json"],
     format: "json-mcpServers",
     notes: "Run '/mcp' inside Gemini CLI to verify connection",
-  },
-  // Antigravity (Google DeepMind) - local user config
-  "antigravity": {
-    configFiles: [".gemini/antigravity/mcp_config.json"],
-    skillPath: ".gemini/antigravity/skills",
-    format: "json-mcpServers",
-  },
-  // Qwen Code (Alibaba) - global user config
-  // Source: github.io/qwen-code official docs (April 2025)
-  "qwen-code": {
-    configFiles: [".qwen/settings.json"],
-    skillPath: ".qwen/skills",
-    format: "json-mcpServers",
-    notes: "CLI alternative: qwen mcp add <name> <command>",
   },
   // OpenAI Codex CLI - global user config (TOML format)
   // Source: openai.com official docs (April 2025)
@@ -62,8 +48,22 @@ const KNOWN_PLATFORMS: Record<string, {
 
   // ─── AI IDEs ────────────────────────────────────────────────
 
+  // Antigravity (Google DeepMind)
+  // Source: deepmind.google (April 2025)
+  "antigravity": {
+    configFiles: [".gemini/antigravity/mcp_config.json"],
+    skillPath: ".gemini/antigravity/skills",
+    format: "json-mcpServers",
+  },
+  // Kiro (Amazon AI IDE) - global user config
+  // Source: kiro.dev official docs (April 2025)
+  "kiro": {
+    configFiles: [".kiro/settings/mcp.json"],
+    format: "json-mcpServers",
+    notes: "Workspace-level: .kiro/settings/mcp.json in project root",
+  },
   // Cursor IDE - global user config
-  // Source: cursor.com docs, confirmed via 10+ tutorials (April 2025)
+  // Source: cursor.com docs (April 2025)
   "cursor": {
     env: ["CURSOR_PLUGIN_ROOT"],
     configFiles: [".cursor/mcp.json"],
@@ -72,65 +72,22 @@ const KNOWN_PLATFORMS: Record<string, {
     notes: "Project-level: .cursor/mcp.json in project root",
   },
   // Windsurf IDE (Codeium) - global user config
-  // Source: windsurf.com official docs, bito.ai, zapier (April 2025)
+  // Source: windsurf.com official docs (April 2025)
   "windsurf": {
     configFiles: [".codeium/windsurf/mcp_config.json"],
     format: "json-mcpServers",
     notes: "Click 'Refresh' in Cascade panel after editing",
   },
-  // Kiro (Amazon AI IDE) - global user config
-  // Source: kiro.dev official docs, aws.com (April 2025)
-  "kiro": {
-    configFiles: [".kiro/settings/mcp.json"],
-    format: "json-mcpServers",
-    notes: "Workspace-level: .kiro/settings/mcp.json in project root",
-  },
-  // Zed editor - global user config (uses 'context_servers' key, not 'mcpServers')
-  // Source: zed.dev official docs, skeet.build (April 2025)
-  "zed": {
-    configFiles: [".config/zed/settings.json"],
-    format: "json-contextServers",
-    notes: "Uses 'context_servers' key instead of 'mcpServers'",
-  },
-
-  // ─── VS Code Extensions ─────────────────────────────────────
-
   // VS Code + GitHub Copilot - platform-specific global config
   // Source: code.visualstudio.com official docs (April 2025)
   "vscode": {
     env: ["VSCODE_PID"],
     configFiles: [
-      ".config/Code/User/mcp.json",                            // Linux
-      "Library/Application Support/Code/User/mcp.json",        // macOS
+      ".config/Code/User/mcp.json",                          // Linux
+      "Library/Application Support/Code/User/mcp.json",      // macOS
     ],
     format: "json-mcpServers",
     notes: "Project-level: .vscode/mcp.json in project root",
-  },
-  // Roo Code (VS Code extension)
-  // Global config has no fixed home path (stored in VS Code extension storage).
-  // Source: roocode.com official docs (April 2025)
-  "roo-code": {
-    configFiles: [".roo/mcp.json"],
-    skillPath: ".roo/rules",
-    format: "json-mcpServers",
-    notes: "Global config: open via Roo Code UI > Edit Global MCP",
-  },
-  // Cline (VS Code extension) - Linux global path
-  // Source: cline.bot official docs, reddit (April 2025)
-  "cline": {
-    configFiles: [
-      ".config/Code/User/globalStorage/saoudrizwan.claude-dev/settings/cline_mcp_settings.json", // Linux
-      ".cline/data/settings/cline_mcp_settings.json",          // Cline CLI fallback
-    ],
-    format: "json-mcpServers",
-    notes: "Access via Cline panel > MCP Servers > Configure",
-  },
-  // Continue.dev (VS Code extension) - project-level only
-  // Source: continue.dev official docs (April 2025)
-  "continue-dev": {
-    configFiles: [".continue/mcpServers/mcp.json"],
-    format: "json-mcpServers",
-    notes: "Requires Agent Mode. Place config in .continue/mcpServers/ directory",
   },
 };
 
@@ -289,8 +246,6 @@ export function generateMcpPatch(
   const serverConfig = method === "docker" ? dockerServerConfig : localServerConfig;
   const format = getPlatformFormat(platform);
 
-  // Zed uses 'context_servers' key instead of 'mcpServers'
-  // Source: zed.dev official docs (April 2025)
   if (format === "json-contextServers") {
     return {
       format,

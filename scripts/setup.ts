@@ -12,7 +12,7 @@ async function main() {
 
   if (!configPath) {
     console.warn("⚠️  Could not find an MCP configuration file in any known location.");
-    console.log("Tried: .claude.json, .cursor/mcp.json, .codeium/windsurf/mcp_config.json, .roo/mcp.json, .gemini/settings.json, .kiro/settings/mcp.json, .qwen/settings.json");
+    console.log("Tried: .claude.json, .gemini/settings.json, .codex/config.toml, .gemini/antigravity/mcp_config.json, .kiro/settings/mcp.json, .cursor/mcp.json, .codeium/windsurf/mcp_config.json, .config/Code/User/mcp.json");
     console.log("\n💡 OpenAI Codex CLI? Run: codex mcp add hyperstack -- bun ~/.hyperstack/bin/hyperstack.mjs");
     console.log("   For any unknown IDE, use the Agentic Autopilot instead.");
     process.exit(1);
