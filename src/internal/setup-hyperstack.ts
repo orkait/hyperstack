@@ -12,7 +12,7 @@ export interface SetupResult {
   message: string;
 }
 
-export type PlatformFormat = "json-mcpServers" | "json-contextServers" | "toml-mcp_servers" | "json-mcpServers-nested";
+export type PlatformFormat = "json-mcpServers" | "json-mcpServers-nested" | "json-servers" | "json-contextServers" | "toml-mcp_servers";
 
 const KNOWN_PLATFORMS: Record<string, {
   env?: string[];
@@ -24,113 +24,71 @@ const KNOWN_PLATFORMS: Record<string, {
   // ─── AI CLIs ────────────────────────────────────────────────
 
   // Claude Code (CLI) - global user config
-  // Source: docs.anthropic.com, inventivehq.com (April 2025, multiple)
+  // Source: docs.anthropic.com (April 2025)
   "claude-code": {
     env: ["CLAUDE_PLUGIN_ROOT"],
     configFiles: [".claude.json"],
     skillPath: ".claude/skills",
     format: "json-mcpServers",
   },
-  // Gemini CLI - global user config
-  // Source: geminicli.com, augmentcode.com (April 2025, multiple)
+  // Gemini CLI - global user config (mcpServers nested under "mcp" key)
+  // Source: geminicli.com (April 2025)
   "gemini-cli": {
     configFiles: [".gemini/settings.json"],
-    format: "json-mcpServers",
+    format: "json-mcpServers-nested",
     notes: "Run '/mcp' inside Gemini CLI to verify connection",
   },
-  // Antigravity (Google DeepMind) - local user config
-  "antigravity": {
-    configFiles: [".gemini/antigravity/mcp_config.json"],
-    skillPath: ".gemini/antigravity/skills",
-    format: "json-mcpServers",
-  },
-  // Qwen Code (Alibaba) - global user config
-  // Source: github.io/qwen-code official docs (April 2025)
-  "qwen-code": {
-    configFiles: [".qwen/settings.json"],
-    skillPath: ".qwen/skills",
-    format: "json-mcpServers",
-    notes: "CLI alternative: qwen mcp add <name> <command>",
-  },
-  // OpenAI Codex CLI - global user config (TOML format)
+  // OpenAI Codex CLI - global user config (TOML format + ~/.codex/skills/ for skills)
   // Source: openai.com official docs (April 2025)
   "codex": {
     configFiles: [".codex/config.toml"],
+    skillPath: ".codex/skills",
     format: "toml-mcp_servers",
     notes: "CLI alternative: codex mcp add hyperstack -- bun ~/.hyperstack/bin/hyperstack.mjs",
   },
 
   // ─── AI IDEs ────────────────────────────────────────────────
 
-  // Cursor IDE - global user config
-  // Source: cursor.com docs, confirmed via 10+ tutorials (April 2025)
-  "cursor": {
-    env: ["CURSOR_PLUGIN_ROOT"],
-    configFiles: [".cursor/mcp.json"],
-    skillPath: ".cursor/rules",
+  // Antigravity (Google DeepMind)
+  // Source: deepmind.google (April 2025)
+  "antigravity": {
+    configFiles: [".gemini/antigravity/mcp_config.json"],
+    skillPath: ".gemini/antigravity/skills",
     format: "json-mcpServers",
-    notes: "Project-level: .cursor/mcp.json in project root",
   },
-  // Windsurf IDE (Codeium) - global user config
-  // Source: windsurf.com official docs, bito.ai, zapier (April 2025)
-  "windsurf": {
-    configFiles: [".codeium/windsurf/mcp_config.json"],
-    format: "json-mcpServers",
-    notes: "Click 'Refresh' in Cascade panel after editing",
-  },
-  // Kiro (Amazon AI IDE) - global user config
-  // Source: kiro.dev official docs, aws.com (April 2025)
+  // Kiro (Amazon AI IDE) - global user config + ~/.kiro/skills/ for skills
+  // Source: kiro.dev official docs (April 2025)
   "kiro": {
     configFiles: [".kiro/settings/mcp.json"],
+    skillPath: ".kiro/skills",
     format: "json-mcpServers",
     notes: "Workspace-level: .kiro/settings/mcp.json in project root",
   },
-  // Zed editor - global user config (uses 'context_servers' key, not 'mcpServers')
-  // Source: zed.dev official docs, skeet.build (April 2025)
-  "zed": {
-    configFiles: [".config/zed/settings.json"],
-    format: "json-contextServers",
-    notes: "Uses 'context_servers' key instead of 'mcpServers'",
+  // Cursor IDE - global user config; rules are project-level only (.cursor/rules/*.mdc)
+  // Source: cursor.com docs (April 2025)
+  "cursor": {
+    env: ["CURSOR_PLUGIN_ROOT"],
+    configFiles: [".cursor/mcp.json"],
+    format: "json-mcpServers",
+    notes: "Rules are project-level only: .cursor/rules/*.mdc (no global rules filesystem path)",
   },
-
-  // ─── VS Code Extensions ─────────────────────────────────────
-
-  // VS Code + GitHub Copilot - platform-specific global config
+  // Windsurf IDE (Codeium) - global user config
+  // Source: windsurf.com official docs (April 2025)
+  "windsurf": {
+    configFiles: [".codeium/windsurf/mcp_config.json"],
+    format: "json-mcpServers",
+    notes: "Global rules: ~/.codeium/windsurf/memories/global_rules.md; project: .windsurf/rules/*.md",
+  },
+  // VS Code + GitHub Copilot - uses "servers" key (not "mcpServers") since VS Code 1.99
   // Source: code.visualstudio.com official docs (April 2025)
   "vscode": {
     env: ["VSCODE_PID"],
     configFiles: [
-      ".config/Code/User/mcp.json",                            // Linux
-      "Library/Application Support/Code/User/mcp.json",        // macOS
+      ".config/Code/User/mcp.json",                          // Linux
+      "Library/Application Support/Code/User/mcp.json",      // macOS
     ],
-    format: "json-mcpServers",
+    format: "json-servers",
     notes: "Project-level: .vscode/mcp.json in project root",
-  },
-  // Roo Code (VS Code extension)
-  // Global config has no fixed home path (stored in VS Code extension storage).
-  // Source: roocode.com official docs (April 2025)
-  "roo-code": {
-    configFiles: [".roo/mcp.json"],
-    skillPath: ".roo/rules",
-    format: "json-mcpServers",
-    notes: "Global config: open via Roo Code UI > Edit Global MCP",
-  },
-  // Cline (VS Code extension) - Linux global path
-  // Source: cline.bot official docs, reddit (April 2025)
-  "cline": {
-    configFiles: [
-      ".config/Code/User/globalStorage/saoudrizwan.claude-dev/settings/cline_mcp_settings.json", // Linux
-      ".cline/data/settings/cline_mcp_settings.json",          // Cline CLI fallback
-    ],
-    format: "json-mcpServers",
-    notes: "Access via Cline panel > MCP Servers > Configure",
-  },
-  // Continue.dev (VS Code extension) - project-level only
-  // Source: continue.dev official docs (April 2025)
-  "continue-dev": {
-    configFiles: [".continue/mcpServers/mcp.json"],
-    format: "json-mcpServers",
-    notes: "Requires Agent Mode. Place config in .continue/mcpServers/ directory",
   },
 };
 
@@ -188,10 +146,82 @@ export function detectPlatformFromConfigPath(configPath: string): string {
 export function findSkillPath(platform: string): string | null {
   const info = KNOWN_PLATFORMS[platform];
   if (!info || !info.skillPath) return null;
-  
+
   return path.join(os.homedir(), info.skillPath);
 }
 
+/**
+ * Registers Hyperstack skills for ANY platform that has a skill/rules directory.
+ * Creates a symlink <skillRoot>/hyperstack -> <pluginRoot>/skills so that
+ * `hyperstack:hyperstack` and all other skills are discoverable by the agent.
+ *
+ * For platforms without a skill directory (codex, gemini-cli), injects the
+ * bootstrap content into the platform's persistent context file instead.
+ */
+export function registerSkillsForPlatform(platform: string, pluginRoot: string): void {
+  const skillsSource = path.join(pluginRoot, "skills");
+  const home = os.homedir();
+
+  // Platforms with a skill/rules directory: create namespace symlink
+  const skillRoot = findSkillPath(platform);
+  if (skillRoot) {
+    const skillTarget = path.join(skillRoot, "hyperstack");
+    try {
+      fs.mkdirSync(skillRoot, { recursive: true });
+      try {
+        if (fs.existsSync(skillTarget) || fs.lstatSync(skillTarget).isSymbolicLink()) {
+          fs.rmSync(skillTarget, { recursive: true, force: true });
+        }
+      } catch { /* not found */ }
+      fs.symlinkSync(skillsSource, skillTarget, "dir");
+      console.log(`   ✓ Skills linked: ${skillTarget} -> ${skillsSource}`);
+    } catch (err) {
+      console.warn(`   ⚠ Skill link failed for ${platform}: ${err instanceof Error ? err.message : err}`);
+    }
+    return;
+  }
+
+  // Platforms without a skill system: inject compiled bootstrap into persistent context file
+  const bootstrapPath = path.join(pluginRoot, "generated", "runtime-context", "hyperstack.bootstrap.md");
+  const fallbackPath = path.join(pluginRoot, "skills", "hyperstack", "SKILL.md");
+  let bootstrapContent: string;
+  try {
+    bootstrapContent = fs.readFileSync(bootstrapPath, "utf8");
+  } catch {
+    try {
+      bootstrapContent = fs.readFileSync(fallbackPath, "utf8");
+    } catch {
+      console.warn(`   ⚠ Could not read bootstrap for ${platform} injection`);
+      return;
+    }
+  }
+
+  // Only platforms with no skillPath and no skills directory get bootstrap injection
+  const PLATFORM_CONTEXT_FILES: Record<string, string> = {
+    "gemini-cli": path.join(home, ".gemini", "GEMINI.md"),
+  };
+
+  const contextFile = PLATFORM_CONTEXT_FILES[platform];
+  if (!contextFile) return;
+
+  const marker = "<!-- hyperstack-bootstrap -->";
+  const injection = `\n${marker}\n${bootstrapContent}\n${marker}\n`;
+
+  try {
+    fs.mkdirSync(path.dirname(contextFile), { recursive: true });
+    const existing = fs.existsSync(contextFile) ? fs.readFileSync(contextFile, "utf8") : "";
+    if (existing.includes(marker)) {
+      const stripped = existing.replace(new RegExp(`\n?${marker}[\\s\\S]*?${marker}\n?`), "");
+      fs.writeFileSync(contextFile, stripped + injection);
+      console.log(`   ✓ Updated bootstrap in ${contextFile}`);
+    } else {
+      fs.appendFileSync(contextFile, injection);
+      console.log(`   ✓ Injected bootstrap into ${contextFile}`);
+    }
+  } catch (err) {
+    console.warn(`   ⚠ Context injection failed for ${platform}: ${err instanceof Error ? err.message : err}`);
+  }
+}
 
 export function getPlatformFormat(platform: string): PlatformFormat {
   return KNOWN_PLATFORMS[platform]?.format ?? "json-mcpServers";
@@ -217,8 +247,6 @@ export function generateMcpPatch(
   const serverConfig = method === "docker" ? dockerServerConfig : localServerConfig;
   const format = getPlatformFormat(platform);
 
-  // Zed uses 'context_servers' key instead of 'mcpServers'
-  // Source: zed.dev official docs (April 2025)
   if (format === "json-contextServers") {
     return {
       format,
@@ -239,8 +267,36 @@ export function generateMcpPatch(
     return { format, content: tomlBlock };
   }
 
+  // Gemini CLI: mcpServers nested under top-level "mcp" key
+  // Source: geminicli.com (April 2025)
+  if (format === "json-mcpServers-nested") {
+    return {
+      format,
+      content: {
+        mcp: {
+          mcpServers: {
+            hyperstack: serverConfig,
+          },
+        },
+      },
+    };
+  }
+
+  // VS Code + GitHub Copilot: uses "servers" key since VS Code 1.99
+  // Source: code.visualstudio.com (April 2025)
+  if (format === "json-servers") {
+    return {
+      format,
+      content: {
+        servers: {
+          hyperstack: serverConfig,
+        },
+      },
+    };
+  }
+
   // Default: standard mcpServers JSON schema
-  // Covers: Claude Code, Cursor, Windsurf, Roo Code, VS Code, Kiro, Qwen, Gemini, Cline, Continue.dev
+  // Covers: Claude Code, Cursor, Windsurf, Kiro
   return {
     format,
     content: {
@@ -286,6 +342,19 @@ export function applyMcpPatch(configPath: string, patch: { format: PlatformForma
       existing.context_servers = {
         ...(existing.context_servers || {}),
         ...patchObj.context_servers,
+      };
+    } else if (patch.format === "json-mcpServers-nested") {
+      // Gemini CLI: merge into existing.mcp.mcpServers
+      if (!existing.mcp) existing.mcp = {};
+      existing.mcp.mcpServers = {
+        ...(existing.mcp.mcpServers || {}),
+        ...patchObj.mcp.mcpServers,
+      };
+    } else if (patch.format === "json-servers") {
+      // VS Code: merge into existing.servers
+      existing.servers = {
+        ...(existing.servers || {}),
+        ...patchObj.servers,
       };
     } else {
       existing.mcpServers = {
@@ -362,11 +431,13 @@ export function registerClaudeCodePlugin(pluginRoot: string): void {
   }
 
   // 2-3. Create symlinks (or directory copies on Windows if symlink fails)
+  // installPath must point to the versioned leaf so Claude Code can find skills/ at <installPath>/skills/
+  const version = "1.0.0";
   const marketplaceLink = path.join(claudeDir, "plugins", "marketplaces", "hyperstack");
-  const cacheDir = path.join(claudeDir, "plugins", "cache", "hyperstack");
-  const cacheLink = path.join(cacheDir, "hyperstack");
+  const cachePackageDir = path.join(claudeDir, "plugins", "cache", "hyperstack", "hyperstack");
+  const cacheLink = path.join(cachePackageDir, version);
   fs.mkdirSync(path.dirname(marketplaceLink), { recursive: true });
-  fs.mkdirSync(cacheDir, { recursive: true });
+  fs.mkdirSync(cachePackageDir, { recursive: true });
   for (const link of [marketplaceLink, cacheLink]) {
     try {
       if (fs.existsSync(link) || fs.lstatSync(link).isSymbolicLink()) {

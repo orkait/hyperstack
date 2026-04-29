@@ -96,9 +96,15 @@ If DESIGN.md exists in the repo, completion claim must pass this gate:
 ### Step 1: Run Automated Compliance Checker
 
 ```bash
+# Caller reads files locally (host FS) and passes contents inline.
+# The MCP server runs in an isolated container with no host mounts.
 designer_verify_implementation(
-  design_md_path: "path/to/DESIGN.md",
-  code_paths: ["src/components/**/*.tsx", "src/styles/**/*.css"]
+  design_md_content: "<full DESIGN.md text>",
+  code_files: [
+    { path: "src/app/globals.css",   content: "<file text>" },
+    { path: "src/components/Button.tsx", content: "<file text>" },
+    ...
+  ]
 )
 ```
 
