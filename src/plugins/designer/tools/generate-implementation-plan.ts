@@ -1,41 +1,35 @@
 import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { z } from "zod";
-import { readFileSync, existsSync } from "fs";
-import { isAbsolute } from "path";
 
 /**
  * Parses a DESIGN.md file into its 10 canonical sections and generates
  * an implementation plan with exact MCP calls per section. This is the bridge
  * that forge-plan uses to turn a DESIGN.md contract into executable tasks.
+ *
+ * Accepts content directly (not a path) because the MCP server runs in an
+ * isolated container with no access to the host filesystem.
  */
 export function register(server: McpServer): void {
   server.tool(
     "designer_generate_implementation_plan",
-    "Parse a DESIGN.md file into its 10 sections and generate a structured implementation plan. Each section becomes one or more tasks with exact MCP calls (shadcn_get_component, motion_generate_animation, design_tokens_generate, etc.) and self-review assertions. This is the bridge from designer to forge-plan.",
+    "Parse a DESIGN.md into its 10 sections and generate a structured implementation plan. Each section becomes one or more tasks with exact MCP calls (shadcn_get_component, motion_generate_animation, design_tokens_generate, etc.) and self-review assertions. Caller reads DESIGN.md locally and passes the full text as design_md_content.",
     {
-      design_md_path: z.string().describe("Absolute path to the DESIGN.md file"),
+      design_md_content: z.string().describe("Full text content of the DESIGN.md file"),
       framework: z.enum(["react", "next", "vue", "svelte", "html"]).optional().describe("Target framework (defaults to react+shadcn)"),
     },
-    async ({ design_md_path, framework }) => {
-      if (!isAbsolute(design_md_path)) {
+    async ({ design_md_content, framework }) => {
+      if (!design_md_content || design_md_content.trim().length === 0) {
         return {
-          content: [{ type: "text" as const, text: `Error: design_md_path must be absolute. Got: ${design_md_path}` }],
-          isError: true,
-        };
-      }
-      if (!existsSync(design_md_path)) {
-        return {
-          content: [{ type: "text" as const, text: `Error: DESIGN.md not found at ${design_md_path}. Run hyperstack:designer first to produce one.` }],
+          content: [{ type: "text" as const, text: `Error: design_md_content is empty. Run hyperstack:designer first to produce a DESIGN.md, then pass its text content here.` }],
           isError: true,
         };
       }
 
-      const raw = readFileSync(design_md_path, "utf-8");
+      const raw = design_md_content;
       const sections = parseDesignMd(raw);
       const fw = framework ?? "react";
 
       let text = `# Implementation Plan from DESIGN.md\n\n`;
-      text += `**Source:** \`${design_md_path}\`\n`;
       text += `**Framework:** ${fw}\n`;
       text += `**Sections parsed:** ${Object.keys(sections).length}/10\n\n`;
 
@@ -419,8 +413,8 @@ export function buildTasks(sections: Record<string, string>, framework: string):
     mcpCalls: [
       {
         tool: "designer_verify_implementation",
-        params: `{ design_md_path: "${sections["1"] ? "<DESIGN.md path>" : "unknown"}", code_paths: ["<list>"] }`,
-        purpose: "Programmatic compliance check against DESIGN.md",
+        params: `{ design_md_content: "<DESIGN.md full text>", code_files: [{path, content}, ...] }`,
+        purpose: "Programmatic compliance check against DESIGN.md. Caller reads files locally and passes contents inline.",
       },
       {
         tool: "designer_get_anti_patterns",
