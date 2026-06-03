@@ -7,6 +7,10 @@ export interface Plugin {
 
 export function loadPlugins(server: McpServer, plugins: Plugin[]): void {
   for (const plugin of plugins) {
-    plugin.register(server);
+    try {
+      plugin.register(server);
+    } catch (err) {
+      console.error(`Plugin "${plugin.name}" failed to register:`, err);
+    }
   }
 }

@@ -534,6 +534,6 @@ export function selfHealDocker() {
     
     console.log("✅ Registry & Engine synchronized successfully.");
   } catch (err) {
-    console.log("\\n⚠️  Docker skipped: Docker engine not responsive or not installed on this host.");
+    console.log("\n⚠️  Docker skipped: Docker engine not responsive or not installed on this host.");
   }
 }
