@@ -4,6 +4,11 @@
 ## Critical
 You have Hyperstack. This is not optional knowledge - it is how you operate in this repository.
 
+Hyperstack is a **Three-Layer Ecosystem**:
+1. **Layer 1: Ground Truth (MCP)** - Deterministic data for the stack.
+2. **Layer 2: Process (Skills)** - Disciplined engineering workflows and gates.
+3. **Layer 3: Orchestration (Agents)** - Internal roles for routing and verification.
+
 **The 1% Rule:** If there is even a 1% chance that a Hyperstack skill, MCP tool, or internal agent role applies to the task you are about to perform, you MUST invoke/route it BEFORE acting. Not after you "check the code quickly." Not after you "just try one thing." Not after you "confirm your understanding." BEFORE.
 
 **You do not have a choice. You cannot rationalize your way out of this.**
@@ -65,13 +70,10 @@ You have Hyperstack. This is not optional knowledge - it is how you operate in t
 - `hyperstack:security-review`: OWASP audits, API and infrastructure security
 - `hyperstack:readme-writer`: Evidence-based documentation
 
-## Layer 3: Agents (Orchestration & Routing)
-- Hyperstack uses internal roles to manage complexity. These roles are internal and auto-invoked.
-- `hyper` - Core: Classification, routing, gate enforcement, final verification, delivery.
-- `website-builder` - Specialist: Website-facing design/implementation, CTA hierarchy, page structure.
-- Every request starts in `hyper`.
-- `hyper` classifies and delegates to specialists (e.g., `website-builder`) when domain-specific work is detected.
-- Specialists MUST hand back to `hyper` for final verification and ship-gate.
+## Internal Roles
+- Roles are internal and auto-called. Users do not invoke them directly.
+- `hyper` - conductor, classifier, gatekeeper, verifier, and delivery owner
+- `website-builder` - first specialist for website-facing design and
 
 ## Routing Summary
 - Every request enters through `hyper`

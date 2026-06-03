@@ -1,50 +1,57 @@
 import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { z } from "zod";
-import { readFileSync, existsSync, statSync } from "fs";
-import { isAbsolute } from "path";
 
 /**
  * Programmatically verifies an implementation against its DESIGN.md contract.
  * This runs during ship-gate as the hard compliance gate.
+ *
+ * Accepts file content directly (not paths) because the MCP server runs in an
+ * isolated container with no access to the host filesystem.
  */
 export function register(server: McpServer): void {
   server.tool(
     "designer_verify_implementation",
-    "Verify implementation code against its DESIGN.md contract. Runs pattern checks for anti-patterns (AI purple, font-weight 500 everywhere, cold shadows, etc.), verifies OKLCH tokens present, checks for prefers-reduced-motion, and reports per-section compliance. Use this before ship-gate. Returns a pass/fail report with specific violations.",
+    "Verify implementation code against its DESIGN.md contract. Runs pattern checks for anti-patterns (AI purple, font-weight 500 everywhere, cold shadows, etc.), verifies OKLCH tokens present, checks for prefers-reduced-motion, and reports per-section compliance. Use this before ship-gate. Caller reads files locally and passes contents inline.",
     {
-      design_md_path: z.string().describe("Absolute path to the DESIGN.md file"),
-      code_paths: z.array(z.string()).describe("Array of absolute paths to code files to verify (CSS, TSX, JSX, Vue, etc.)"),
+      design_md_content: z.string().describe("Full text content of the DESIGN.md file"),
+      code_files: z
+        .array(
+          z.object({
+            path: z.string().describe("Display path for the file (used in report output; not read from filesystem)"),
+            content: z.string().describe("Full text content of the file"),
+          })
+        )
+        .describe("Array of code files to verify. Each item has {path, content}. Path is informational only."),
     },
-    async ({ design_md_path, code_paths }) => {
-      if (!isAbsolute(design_md_path)) {
-        return { content: [{ type: "text" as const, text: `Error: design_md_path must be absolute` }], isError: true };
-      }
-      if (!existsSync(design_md_path)) {
-        return { content: [{ type: "text" as const, text: `Error: DESIGN.md not found at ${design_md_path}` }], isError: true };
-      }
+    async ({ design_md_content, code_files }) => {
+      const MAX_FILE_SIZE = 2 * 1024 * 1024;
 
-      const designMd = readFileSync(design_md_path, "utf-8");
-
-      // Collect all readable code files
-      const validPaths: string[] = [];
+      const validFiles: Array<{ path: string; content: string }> = [];
       const invalidPaths: string[] = [];
-      for (const p of code_paths) {
-        if (!isAbsolute(p)) { invalidPaths.push(`${p} (not absolute)`); continue; }
-        if (!existsSync(p)) { invalidPaths.push(`${p} (not found)`); continue; }
-        const stat = statSync(p);
-        if (stat.isDirectory()) { invalidPaths.push(`${p} (is directory)`); continue; }
-        if (stat.size > 2 * 1024 * 1024) { invalidPaths.push(`${p} (> 2MB)`); continue; }
-        validPaths.push(p);
+
+      for (const f of code_files) {
+        const byteLen = Buffer.byteLength(f.content, "utf-8");
+        if (byteLen > MAX_FILE_SIZE) {
+          invalidPaths.push(`${f.path} (> 2MB)`);
+          continue;
+        }
+        validFiles.push(f);
       }
 
-      if (validPaths.length === 0) {
+      if (validFiles.length === 0) {
         return {
-          content: [{ type: "text" as const, text: `Error: no valid code files to verify. Invalid paths:\n${invalidPaths.join("\n")}` }],
+          content: [
+            {
+              type: "text" as const,
+              text: `Error: no valid code files to verify. Invalid entries:\n${invalidPaths.join("\n")}`,
+            },
+          ],
           isError: true,
         };
       }
 
-      const allCode = validPaths.map((p) => ({ path: p, content: readFileSync(p, "utf-8") }));
+      const designMd = design_md_content;
+      const allCode = validFiles;
       const combinedCode = allCode.map((f) => f.content).join("\n");
 
       // Run all verification checks
@@ -66,8 +73,7 @@ export function register(server: McpServer): void {
 
       // Build report
       let text = `# DESIGN.md Compliance Report\n\n`;
-      text += `**DESIGN.md:** \`${design_md_path}\`\n`;
-      text += `**Files checked:** ${validPaths.length}\n`;
+      text += `**Files checked:** ${validFiles.length}\n`;
       if (invalidPaths.length > 0) {
         text += `**Skipped:** ${invalidPaths.length} (${invalidPaths.join(", ")})\n`;
       }
