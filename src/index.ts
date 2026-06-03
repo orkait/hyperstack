@@ -57,7 +57,14 @@ async function main() {
   process.on("SIGINT", shutdown);
 }
 
-main().catch((err) => {
-  console.error("Failed to start MCP server:", err);
-  process.exit(1);
-});
+// Only boot the server when this file is the entry point. Importing it (e.g. from
+// tests) must not start the transport or register the stdin-close exit handlers,
+// which would call process.exit(0) mid-import and kill the test runner. Uses a
+// portable argv check (works on Node + Bun) rather than the Bun-only import.meta.main.
+const isEntrypoint = process.argv[1] === fileURLToPath(import.meta.url);
+if (isEntrypoint) {
+  main().catch((err) => {
+    console.error("Failed to start MCP server:", err);
+    process.exit(1);
+  });
+}
