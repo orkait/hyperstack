@@ -9,6 +9,7 @@
   "scripts": {
     "build": "tsc --noEmit",
     "compile:context": "tsx src/internal/compile-runtime-context.ts",
+    "audit": "bun scripts/audit/run.ts",
     "test": "bun test",
     "start": "bun src/index.ts",
     "dev": "bun --watch src/index.ts",
