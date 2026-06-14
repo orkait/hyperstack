@@ -92,7 +92,7 @@ const useNodesDataHook: ApiEntry = {
   description:
     "Subscribe to data changes of specific nodes by ID. More efficient than useNodes when you only need certain nodes' data.",
   importPath: "import { useNodesData } from '@xyflow/react'",
-  returns: "Pick<Node, 'id' | 'data' | 'type'>[]",
+  returns: "Single-id call: DistributivePick<NodeType, 'id' | 'type' | 'data'> | null; Array call: DistributivePick<NodeType, 'id' | 'type' | 'data'>[]",
   usage: snippet("usage/useNodesData.txt"),
   examples: [
     {
@@ -138,11 +138,12 @@ const useHandleConnectionsHook: ApiEntry = {
   name: "useHandleConnections",
   kind: "hook",
   description:
-    "Returns an array of connections for a specific handle. Re-renders when edge changes affect the handle.",
+    "Deprecated - use `useNodeConnections` instead. Returns an array of connections for a specific handle. Re-renders when edge changes affect the handle.",
   importPath: "import { useHandleConnections } from '@xyflow/react'",
   returns: "HandleConnection[]",
   usage: snippet("usage/useHandleConnections.txt"),
   examples: [],
+  tips: ["Deprecated: migrate to useNodeConnections, which returns connections for an entire node and supports filtering by handle type and ID."],
   relatedApis: ["useNodeConnections", "useConnection", "Handle"],
 };
 
@@ -218,7 +219,7 @@ const useNodesInitializedHook: ApiEntry = {
   name: "useNodesInitialized",
   kind: "hook",
   description:
-    "Returns whether all nodes have been measured and given width/height. Returns false when new nodes are added, then true once measured.",
+    "Returns whether all nodes have been measured and given width/height. Returns false when new nodes are added, then true once measured. Accepts an options object `{ includeHiddenNodes?: boolean }` (default false) to control whether hidden nodes must also be initialized.",
   importPath: "import { useNodesInitialized } from '@xyflow/react'",
   returns: "boolean",
   usage: snippet("usage/useNodesInitialized.txt"),
@@ -229,6 +230,7 @@ const useNodesInitializedHook: ApiEntry = {
       code: snippet("examples/useNodesInitialized/auto-layout-on-mount.txt"),
     },
   ],
+  tips: ["Pass `{ includeHiddenNodes: true }` to wait until hidden nodes are also initialized before returning true."],
   relatedApis: ["useReactFlow"],
 };
 

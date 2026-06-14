@@ -122,6 +122,7 @@ const getNodesBoundsUtil: ApiEntry = {
   returns: "Rect",
   usage: snippet("usage/getNodesBounds.txt"),
   examples: [],
+  tips: ["v12: the second argument is now an options object `{ nodeOrigin }`, not a bare `nodeOrigin` value. Update calls from getNodesBounds(nodes, nodeOrigin) to getNodesBounds(nodes, { nodeOrigin })."],
   relatedApis: ["getViewportForBounds"],
 };
 
