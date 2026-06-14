@@ -89,7 +89,7 @@ export const SHADCN_RULES = {
   coreSelectors: "data-slot attributes on all sub-components",
   responsive: "Container queries (@container) over viewport queries",
   naming: "PascalCase root + sub-components (Dialog, DialogHeader, DialogFooter)",
-  utilities: ["cn from @repo/ui-utils", "cva from class-variance-authority"],
+  utilities: ["cn from @/lib/utils", "cva from class-variance-authority"],
   animation: "data-state modifiers (data-open, data-closed)",
   clientDirective: "'use client' for components with state/effects/browser APIs",
 };
