@@ -30,7 +30,7 @@ export const SOURCES: PluginSource[] = [
     packages: [
       { name: "react", registry: "npm", targetMajor: 19 },
       { name: "react-dom", registry: "npm", targetMajor: 19 },
-      { name: "next", registry: "npm", targetMajor: 15 },
+      { name: "next", registry: "npm", targetMajor: 16 },
     ] },
   { plugin: "design-tokens", editorial: false, skip: false, skills: [],
     packages: [{ name: "tailwindcss", registry: "npm", targetMajor: 4 }] },
