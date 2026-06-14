@@ -22,3 +22,7 @@ export const useAuthStore = create<AuthStore>()(
 
 // Usage - subscribe only to needed slice (perf)
 const user = useAuthStore((s) => s.user);
+
+// Zustand v5 note: persist middleware does NOT auto-persist initial state on store
+// creation. If initial state must be written to storage from first mount, call
+// useAuthStore.setState(initialState) explicitly after store creation.

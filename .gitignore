@@ -5,3 +5,10 @@ dist/
 # Research archive - lives at ../knowledgebase/ outside this repo.
 # Ignored here as a safety net in case it gets re-introduced by mistake.
 knowledgebase/
+
+# Local-only Dockerfile variants with BuildKit cache mounts (not for distribution)
+Dockerfile*.test
+
+# Local-only audit harness artifacts (not for distribution)
+scripts/audit/L2-protocol.md
+generated/audit/

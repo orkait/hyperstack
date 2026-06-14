@@ -1,0 +1,37 @@
+"use client";
+import { useActionState, useOptimistic } from "react";
+import { useFormStatus } from "react-dom";
+
+// useActionState: the React 19 replacement for useFormState (deprecated).
+// Wires a form action to state + pending, no useEffect.
+async function submit(prev: string, formData: FormData): Promise<string> {
+  const name = String(formData.get("name"));
+  // ...server or client mutation...
+  return `Saved ${name}`;
+}
+
+function NameForm() {
+  const [message, formAction, isPending] = useActionState(submit, "");
+  return (
+    <form action={formAction}>
+      <input name="name" />
+      <SubmitButton />
+      {isPending ? <p>Saving...</p> : message && <p>{message}</p>}
+    </form>
+  );
+}
+
+// useFormStatus must be read from a child rendered INSIDE the <form>.
+function SubmitButton() {
+  const { pending } = useFormStatus();
+  return <button type="submit" disabled={pending}>Save</button>;
+}
+
+// useOptimistic: show an instant optimistic value while the action runs.
+function Messages({ messages }: { messages: string[] }) {
+  const [optimistic, addOptimistic] = useOptimistic(
+    messages,
+    (state, next: string) => [...state, next]
+  );
+  return <ul>{optimistic.map((m, i) => <li key={i}>{m}</li>)}</ul>;
+}

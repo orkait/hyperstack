@@ -75,9 +75,9 @@ Hard stop: if correctness/safety is still uncertain after this routine, refuse t
 ## Environment Gate (Step 0)
 
 ```bash
-node -v          # >= 18.x
-npm ls react     # React 18+
-npm ls next      # Next.js 14+ if using App Router / RSC
+node -v          # >= 20.9.0
+npm ls react     # React 19+
+npm ls next      # Next.js 15+ if using App Router / RSC
 ```
 
 Defaults (if unspecified):
@@ -86,3 +86,74 @@ Defaults (if unspecified):
 - Icons: lucide-react
 - Shared client state: Zustand
 - Server state: React Query or SWR (or RSC fetch)
+
+## React 19 Actions (useActionState / useFormStatus / useOptimistic)
+
+The modern mutation pattern. Replaces useEffect-driven mutations and the deprecated `useFormState`.
+
+```tsx
+"use client";
+import { useActionState } from "react";
+import { useFormStatus } from "react-dom";
+import { useOptimistic } from "react";
+
+// Server action (defined in a server module)
+async function submitAction(prevState: State, formData: FormData): Promise<State> {
+  "use server";
+  const value = formData.get("value") as string;
+  return { value, error: null };
+}
+
+// useActionState: replaces deprecated useFormState
+function Form() {
+  const [state, dispatch, isPending] = useActionState(submitAction, { value: "", error: null });
+  return (
+    <form action={dispatch}>
+      <input name="value" />
+      <SubmitButton />
+      {isPending ? <p>Saving...</p> : state.value && <p>{state.value}</p>}
+    </form>
+  );
+}
+
+// useFormStatus reads the nearest form's pending state (must be a child of the <form>)
+function SubmitButton() {
+  const { pending } = useFormStatus();
+  return <button disabled={pending}>{pending ? "Saving..." : "Save"}</button>;
+}
+
+// useOptimistic: show tentative UI before the server responds
+function ItemList({ items }: { items: string[] }) {
+  const [optimisticItems, addOptimistic] = useOptimistic(items, (state, newItem: string) => [...state, newItem]);
+  return <ul>{optimisticItems.map((item, i) => <li key={i}>{item}</li>)}</ul>;
+}
+```
+
+Note: `useFormState` (from `react-dom`) is deprecated in React 19 - use `useActionState` from `react` instead.
+
+## React 19: use() hook
+
+`use(promise)` unwraps a promise inside a client component. Unlike other hooks, it can be called conditionally or in loops. Recommended for reading async `params`/`searchParams` in client components (which cannot be `async`).
+
+```tsx
+"use client";
+import { use } from "react";
+
+function ProductPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = use(params); // suspends until resolved; wrap parent in <Suspense>
+  return <div>{id}</div>;
+}
+```
+
+## React 19: ref as prop (forwardRef no longer needed)
+
+Function components now accept `ref` as a plain prop. `forwardRef` is legacy and no longer required.
+
+```tsx
+// React 19+
+function Input({ ref, ...props }: React.ComponentProps<"input">) {
+  return <input ref={ref} {...props} />;
+}
+
+// forwardRef is legacy - avoid in new code
+```

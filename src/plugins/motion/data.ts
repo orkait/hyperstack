@@ -283,7 +283,7 @@ const lazyMotion: ApiEntry = {
   kind: "component",
   description:
     "Reduces bundle size by loading motion features on demand. Use the m component (from motion/react-m) instead of motion inside LazyMotion.",
-  importPath: 'import { LazyMotion } from "motion/react"\nimport { m } from "motion/react-m"',
+  importPath: 'import { LazyMotion } from "motion/react"\nimport * as m from "motion/react-m"',
   props: [
     { name: "features", type: "FeatureBundle | () => Promise<FeatureBundle>", description: "domAnimation (~15kb: animations, variants, exit, tap, hover, focus) or domMax (~25kb: adds pan, drag, layout)." },
     { name: "strict", type: "boolean", description: "If true, throws error if motion component is used instead of m." },
@@ -299,7 +299,7 @@ const lazyMotion: ApiEntry = {
   tips: [
     "domAnimation includes: animate, variants, exit, tap, hover, focus (~15kb).",
     "domMax adds: pan, drag, layout animations (~25kb).",
-    "Use async import for code splitting: features={() => import('motion').then(m => m.domMax)}.",
+    "Use async import for code splitting: features={() => import('motion/react').then(m => m.domMax)}.",
   ],
   relatedApis: ["motion", "MotionConfig"],
 };

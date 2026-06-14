@@ -103,6 +103,32 @@ export const PATTERNS: Pattern[] = [
       "Always use cn() for conditional classNames",
       "Prefer named exports over default exports for components",
       "Use FC<Props> type annotation",
+      "React 19: ref is now a plain prop - forwardRef is legacy and no longer needed.",
+    ],
+  },
+  {
+    name: "react19-actions",
+    category: "state",
+    description: "React 19 Actions: useActionState, useFormStatus, useOptimistic, and native <form action>. The modern replacement for useEffect-driven mutations.",
+    when: "Any form submission or mutation that previously used useEffect or the deprecated useFormState.",
+    code: snippet("patterns/react19-actions.txt"),
+    tips: [
+      "useActionState is from 'react'; useFormStatus is from 'react-dom'",
+      "useFormState (react-dom) is deprecated in React 19 - use useActionState instead",
+      "useFormStatus must be rendered inside the <form> it observes",
+      "useOptimistic updates are rolled back automatically if the action rejects",
+    ],
+  },
+  {
+    name: "use-hook",
+    category: "data-fetching",
+    description: "use(promise) unwraps a promise in a client component. Can be called conditionally or in loops unlike other hooks. Use this to read async params/searchParams in client components.",
+    when: "Client component needs to consume async params/searchParams (client components cannot be async).",
+    code: snippet("patterns/use-hook.txt"),
+    tips: [
+      "use() suspends - wrap the consumer in <Suspense fallback={...}>",
+      "Server components should still use 'await props.params' directly (fix #1)",
+      "use() works on Context too: use(MyContext) as an alternative to useContext",
     ],
   },
 ];
@@ -159,6 +185,12 @@ export const CONSTRAINTS: Constraint[] = [
     rule: "No useEffect(fn, []) as componentDidMount substitute",
     reason: "In React 18 Strict Mode, effects run twice. Use RSC data fetching or React Query.",
     example: "RSC async functions, useQuery with enabled: true",
+  },
+  {
+    name: "async-params-nextjs15",
+    rule: "In Next.js 15+, params and searchParams are Promises - always await them",
+    reason: "Synchronous destructuring of params is a runtime error in Next.js 15+.",
+    example: "async function Page(props: { params: Promise<{ id: string }> }) { const { id } = await props.params; }",
   },
 ];
 

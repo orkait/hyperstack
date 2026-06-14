@@ -1,6 +1,10 @@
-// ✅ Fetch in RSC - no loading state, no useEffect
-export default async function Page({ params }: { params: { id: string } }) {
-  const data = await fetch(`/api/items/${params.id}`, {
+// ✅ Fetch in RSC - async params (Next.js 15+: params is a Promise)
+export default async function Page(props: { params: Promise<{ id: string }> }) {
+  const { id } = await props.params;
+  // Next.js 15+: fetches are uncached by default (no-store).
+  // Use cache: 'force-cache' when you want caching, or next.revalidate for ISR.
+  const data = await fetch(`/api/items/${id}`, {
+    cache: "force-cache",
     next: { revalidate: 60 }, // ISR: revalidate every 60s
   }).then(r => r.json());
   return <Detail data={data} />;

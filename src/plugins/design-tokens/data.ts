@@ -92,13 +92,13 @@ export const TOKEN_CATEGORIES: TokenCategory[] = [
       "--spacing in Tailwind v4 is the BASE MULTIPLIER (0.25rem), not individual token overrides",
       "ALL spacing values must be multiples of 4px (0.25rem increments)",
       "Space within groups < space between groups (single most important spacing rule)",
-      "Named semantic tokens (--spacing-card, --spacing-section-y) auto-generate Tailwind utilities",
+      "Named semantic tokens (--spacing-card, --spacing-section-y) generate Tailwind utilities ONLY when defined in @theme - not in :root",
       "Use semantic names based on context/role, not pixel values (--spacing-card not --spacing-28)",
       "Mobile section-x: 1.5rem (24px); desktop: 3rem (48px) via responsive override",
     ],
     gotchas: [
       "--spacing in Tailwind v4 sets the multiplier for ALL numeric spacing utilities (p-4 = 4 × 0.25rem = 1rem). Overriding it changes EVERY spacing utility across the project.",
-      "Named tokens like --spacing-card generate class p-card, but ONLY if defined in @theme or :root with Tailwind v4's CSS variable scanning. Verify the class exists before shipping.",
+      "Named tokens like --spacing-card generate class p-card ONLY if defined inside @theme. Variables defined in :root are plain CSS custom properties - they do NOT auto-generate utility classes. There is no CSS variable scanning in Tailwind v4. Verify the class exists before shipping.",
       "Do not use arbitrary pixel values outside the 4px grid (e.g., 7px, 13px, 22px) - they break visual rhythm.",
       "section-x padding should be responsive: smaller on mobile (1.5rem), larger on desktop (3-4rem). A single static value often looks wrong on one breakpoint.",
     ],
@@ -246,6 +246,7 @@ export const TOKEN_CATEGORIES: TokenCategory[] = [
       "ease-in on enter makes the animation feel slow to start - always use ease-out for entering elements.",
       "Long exit durations (300ms+) make the UI feel sluggish because users are waiting to interact with the next state.",
       "CSS transition shorthand 'all' captures every property change, including layout - can cause jank. Explicitly list only the properties you want to animate.",
+      "--ease-bounce, --ease-spring, --ease-snappy, and --ease-linear are custom additions. They DO generate utility classes (ease-bounce, ease-spring etc.) because --ease-* is a mapped namespace in Tailwind v4. No collision with v4 built-in defaults.",
     ],
   },
   {
@@ -275,6 +276,7 @@ export const TOKEN_CATEGORIES: TokenCategory[] = [
       "z-index: 9999 on a component inside a transform: parent will still be below the parent's stacking context order.",
       "Libraries like Radix UI and Headless UI have their own z-index values (often 50-9999). Check their defaults before setting your own values.",
       "Two modals open simultaneously will stack by DOM order unless z-index is incremented dynamically.",
+      "--z-* is NOT a mapped utility namespace in Tailwind v4. Defining --z-dropdown in @theme does NOT create a z-dropdown class. Use z-[var(--z-dropdown)] arbitrary syntax, or add explicit @utility z-dropdown { z-index: var(--z-dropdown); } rules.",
     ],
   },
   {
@@ -452,7 +454,7 @@ export const TOKEN_PROCEDURES: TokenProcedure[] = [
     ],
     gotchas: [
       "If you put runtime-swappable vars in plain @theme (not inline), dark mode will NOT work - the values won't update when .dark class is toggled.",
-      "@theme inline does not accept hardcoded values - it should only map CSS var references.",
+      "@theme inline outputs var(--referenced-var) directly in utility classes rather than going through an indirection variable. Hardcoded values are permitted in @theme inline but unusual - the typical pattern is mapping CSS var() references so dark-mode swaps propagate at runtime.",
       "@theme generates Tailwind utility classes but does NOT emit CSS custom properties on :root. If :root uses var(--color-brand-400) and --color-brand-400 is only defined in @theme, the var() resolves to undefined at runtime - making all text and backgrounds white. Correct architecture: raw OKLCH values on :root and .dark (runtime CSS vars), @theme inline bridges them to utilities, @theme separately generates primitive ramp utilities.",
     ],
   },
@@ -463,7 +465,7 @@ export const TOKEN_PROCEDURES: TokenProcedure[] = [
     code: snippet("procedures/step-4-component-sizing.txt"),
     rules: [
       "--spacing is the global multiplier - changing it scales ALL numeric spacing utilities",
-      "Named tokens auto-generate Tailwind utilities: p-card, py-section-y, gap-grid-cards",
+      "Named tokens generate Tailwind utilities (p-card, py-section-y, gap-grid-cards) ONLY when defined inside @theme, not :root",
       "Always follow 4px grid: 0.25rem, 0.5rem, 0.75rem, 1rem, 1.25rem, 1.5rem, 1.75rem...",
     ],
     gotchas: [
@@ -498,7 +500,10 @@ export const TOKEN_PROCEDURES: TokenProcedure[] = [
     description: "Add duration, easing, and z-index scale with prefers-reduced-motion.",
     code: snippet("procedures/step-7-validation.txt"),
     rules: ["prefers-reduced-motion MUST be in @layer base with !important", "Never use arbitrary z-index values"],
-    gotchas: ["Forgetting prefers-reduced-motion is a WCAG 2.3.3 violation."],
+    gotchas: [
+      "Forgetting prefers-reduced-motion is a WCAG 2.3.3 violation.",
+      "--duration-* is NOT a mapped utility namespace in Tailwind v4. Tokens like --duration-fast generate CSS custom properties but NOT duration-fast utility classes. Use duration-(--duration-fast) arbitrary syntax or the numeric scale (duration-100). Contrast with --ease-* which IS mapped and generates ease-bounce etc.",
+    ],
   },
   {
     step: 8,

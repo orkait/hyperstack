@@ -20,5 +20,7 @@
   --spacing-container-narrow: 42rem; /* 672px - prose/narrow content */
 }
 
-/* Named tokens generate Tailwind utilities automatically in v4 */
-/* Usage: p-card, py-section-y, gap-grid-cards, max-w-container-max */
+/* IMPORTANT: tokens above are in :root, so they are CSS custom properties only.
+   They do NOT auto-generate Tailwind utilities. To get p-card, py-section-y etc.,
+   define these tokens inside @theme (not :root). Only @theme variables generate utility classes.
+   There is no "CSS variable scanning" feature in Tailwind v4 for :root variables. */

@@ -1,4 +1,10 @@
-/* Shadow / Elevation scale */
+/* Shadow / Elevation scale
+   COLLISION WARNING: --shadow-xs, --shadow-sm, --shadow-md are reserved framework
+   token names in Tailwind v4.3.1. Defining them here overrides the framework defaults
+   and changes what the shadow-xs, shadow-sm, shadow-md utility classes render.
+   This is intentional in this system (warm oklch shadows replace the defaults).
+   If you want to keep Tailwind's defaults intact, rename to --shadow-card,
+   --shadow-elevated, --shadow-overlay etc. and alias them via @theme inline. */
 :root {
   /* Warm-tinted shadows - oklch, NOT rgba(0,0,0) */
   --shadow-xs: 0 1px 2px 0 oklch(0.30 0.02 60 / 0.08);

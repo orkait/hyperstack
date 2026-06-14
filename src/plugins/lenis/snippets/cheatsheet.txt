@@ -3,25 +3,32 @@
 ## Required CSS
 
 ```css
-/* In your global CSS file - or use: import 'lenis/dist/lenis.css' */
-html.lenis, html.lenis body {
+/* Prefer importing `lenis/dist/lenis.css` from the package - these selectors change between minor versions. */
+html.lenis,
+html.lenis body {
   height: auto;
 }
 
-.lenis.lenis-smooth {
-  scroll-behavior: auto !important;
+.lenis:not(.lenis-autoToggle).lenis-stopped {
+  overflow: clip;
 }
 
-.lenis.lenis-smooth [data-lenis-prevent] {
+.lenis [data-lenis-prevent],
+.lenis [data-lenis-prevent-wheel],
+.lenis [data-lenis-prevent-touch],
+.lenis [data-lenis-prevent-vertical],
+.lenis [data-lenis-prevent-horizontal] {
   overscroll-behavior: contain;
-}
-
-.lenis.lenis-stopped {
-  overflow: hidden;
 }
 
 .lenis.lenis-smooth iframe {
   pointer-events: none;
+}
+
+.lenis.lenis-autoToggle {
+  transition-property: overflow;
+  transition-duration: 1ms;
+  transition-behavior: allow-discrete;
 }
 ```
 
@@ -46,7 +53,7 @@ html.lenis, html.lenis body {
 | `useLenis` returns undefined | Component outside `<ReactLenis>` tree | Move provider higher, or use `root` prop |
 | Lenis not working in Next.js | Missing `'use client'` | Add directive to provider component |
 | Modal/overlay blocks page scroll | Lenis still active | Call `lenis.stop()` on open, `lenis.start()` on close |
-| iOS touch feels laggy | `smoothTouch: true` | Set `smoothTouch: false` (default) |
+| iOS touch feels laggy | `syncTouch: true` | Set `syncTouch: false` (default) |
 | `scroll-behavior: smooth` conflicts | CSS fighting Lenis | Add `.lenis.lenis-smooth { scroll-behavior: auto !important; }` |
 | Anchor links don't work | Lenis intercepting | Lenis handles anchors - use `scrollTo` or `data-lenis-prevent` |
 

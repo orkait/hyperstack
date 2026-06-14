@@ -1,22 +1,28 @@
-/* Required Lenis CSS - import via 'lenis/dist/lenis.css' or add manually */
+/* Prefer importing `lenis/dist/lenis.css` from the package - these selectors change between minor versions. */
 
 html.lenis,
 html.lenis body {
   height: auto;
 }
 
-.lenis.lenis-smooth {
-  scroll-behavior: auto !important;
+.lenis:not(.lenis-autoToggle).lenis-stopped {
+  overflow: clip;
 }
 
-.lenis.lenis-smooth [data-lenis-prevent] {
+.lenis [data-lenis-prevent],
+.lenis [data-lenis-prevent-wheel],
+.lenis [data-lenis-prevent-touch],
+.lenis [data-lenis-prevent-vertical],
+.lenis [data-lenis-prevent-horizontal] {
   overscroll-behavior: contain;
-}
-
-.lenis.lenis-stopped {
-  overflow: hidden;
 }
 
 .lenis.lenis-smooth iframe {
   pointer-events: none;
+}
+
+.lenis.lenis-autoToggle {
+  transition-property: overflow;
+  transition-duration: 1ms;
+  transition-behavior: allow-discrete;
 }

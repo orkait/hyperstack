@@ -6,7 +6,7 @@
     easing: (t) => 1 - Math.pow(1 - t, 4),
     orientation: "vertical",
     smoothWheel: true,
-    smoothTouch: false,
+    syncTouch: false,
   }}
 >
   {children}

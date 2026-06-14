@@ -1,13 +1,30 @@
-<Select defaultValue="apple">
-  <SelectTrigger>
-    <SelectValue placeholder="Select fruit" />
-  </SelectTrigger>
-  <SelectContent>
-    <SelectGroup>
-      <SelectLabel>Fruits</SelectLabel>
-      <SelectItem value="apple">Apple</SelectItem>
-      <SelectItem value="banana">Banana</SelectItem>
-      <SelectItem value="orange">Orange</SelectItem>
-    </SelectGroup>
-  </SelectContent>
-</Select>
+<Select.Root defaultValue="apple">
+  <Select.Trigger data-slot="select-trigger">
+    <Select.Value data-slot="select-value" placeholder="Select fruit" />
+    <Select.Icon data-slot="select-icon" />
+  </Select.Trigger>
+
+  <Select.Portal>
+    <Select.Positioner data-slot="select-positioner" sideOffset={4} alignItemWithTrigger>
+      <Select.Popup data-slot="select-popup">
+        <Select.List data-slot="select-list">
+          <Select.Group data-slot="select-group">
+            <Select.GroupLabel data-slot="select-group-label">Fruits</Select.GroupLabel>
+            <Select.Item data-slot="select-item" value="apple">
+              <Select.ItemIndicator data-slot="select-item-indicator" />
+              <Select.ItemText data-slot="select-item-text">Apple</Select.ItemText>
+            </Select.Item>
+            <Select.Item data-slot="select-item" value="banana">
+              <Select.ItemIndicator data-slot="select-item-indicator" />
+              <Select.ItemText data-slot="select-item-text">Banana</Select.ItemText>
+            </Select.Item>
+            <Select.Item data-slot="select-item" value="orange">
+              <Select.ItemIndicator data-slot="select-item-indicator" />
+              <Select.ItemText data-slot="select-item-text">Orange</Select.ItemText>
+            </Select.Item>
+          </Select.Group>
+        </Select.List>
+      </Select.Popup>
+    </Select.Positioner>
+  </Select.Portal>
+</Select.Root>

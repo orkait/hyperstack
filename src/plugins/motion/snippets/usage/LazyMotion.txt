@@ -1,4 +1,4 @@
-import { domAnimation } from "motion";
+import { domAnimation } from "motion/react";
 
 <LazyMotion features={domAnimation}>
   <m.div animate={{ opacity: 1 }} />

@@ -3,7 +3,8 @@
    ============================================================ */
 
 @theme {
-  /* Durations */
+  /* Durations - NOTE: --duration-* does NOT generate utility classes in Tailwind v4.
+     Use duration-(--duration-fast) or the numeric scale (duration-100 etc.) in markup. */
   --duration-instant: 50ms;
   --duration-fast: 100ms;
   --duration-normal: 200ms;
@@ -11,14 +12,15 @@
   --duration-slower: 400ms;
   --duration-slowest: 600ms;
 
-  /* Easing */
+  /* Easing - --ease-* IS a mapped namespace; these DO generate utility classes (ease-bounce etc.).
+     Custom additions below are safe additions: they don't collide with v4 built-in defaults. */
   --ease-out: cubic-bezier(0, 0, 0.2, 1);           /* entering */
   --ease-in: cubic-bezier(0.4, 0, 1, 1);            /* exiting */
   --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);      /* repositioning */
-  --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1); /* playful */
-  --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  --ease-snappy: cubic-bezier(0.2, 0, 0, 1);
-  --ease-linear: linear;                             /* progress bars only */
+  --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1); /* playful - generates ease-bounce class */
+  --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275); /* generates ease-spring class */
+  --ease-snappy: cubic-bezier(0.2, 0, 0, 1);              /* generates ease-snappy class */
+  --ease-linear: linear;                             /* progress bars only - generates ease-linear class */
 }
 
 :root {

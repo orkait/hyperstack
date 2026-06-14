@@ -125,8 +125,8 @@ const reactLenis: ApiEntry = {
   props: [
     {
       name: "root",
-      type: "boolean",
-      description: "Attach Lenis to the window/document scroll instead of a container element. Use this in your root layout.",
+      type: "boolean | 'asChild'",
+      description: "Attach Lenis to the window/document scroll instead of a container element. Use this in your root layout. 'asChild' renders wrapper/content divs for a custom container while keeping the instance globally accessible.",
       default: "false",
     },
     {
@@ -137,12 +137,12 @@ const reactLenis: ApiEntry = {
     {
       name: "ref",
       type: "React.Ref<LenisRef>",
-      description: "Ref forwarded to expose the Lenis instance and wrapper DOM element. Shape: { lenis: Lenis | undefined, wrapper: HTMLElement }.",
+      description: "Ref forwarded to expose the Lenis instance and wrapper/content DOM elements. Shape: { lenis: Lenis | undefined, wrapper: HTMLDivElement | null, content: HTMLDivElement | null }.",
     },
     {
       name: "autoRaf",
       type: "boolean",
-      description: "Automatically drive Lenis via its internal requestAnimationFrame loop. Set false when integrating with GSAP ticker or Framer Motion's frame scheduler.",
+      description: "Automatically drive Lenis via its internal requestAnimationFrame loop. Set false when integrating with GSAP ticker or Framer Motion's frame scheduler. The component defaults autoRaf to true; options.autoRaf overrides it.",
       default: "true",
     },
     {
@@ -191,7 +191,7 @@ const useLenis: ApiEntry = {
   name: "useLenis",
   kind: "hook",
   description:
-    "Returns the nearest Lenis instance from context. Accepts an optional scroll callback that fires on every scroll frame with the Lenis instance as argument. Must be used inside a ReactLenis provider; returns undefined if no provider is found.",
+    "Returns the nearest Lenis instance from context. Accepts an optional scroll callback that fires on every scroll frame with the Lenis instance as argument. Returns undefined only when no <ReactLenis> exists anywhere in the app. When <ReactLenis root> is used, useLenis() works from anywhere - including outside the component tree (it registers to a module-level root store).",
   importPath: 'import { useLenis } from "lenis/react"',
   props: [
     {
@@ -237,7 +237,7 @@ const useLenis: ApiEntry = {
     },
   ],
   tips: [
-    "useLenis() outside a ReactLenis provider returns undefined - always guard with optional chaining: lenis?.scrollTo(...).",
+    "useLenis() returns undefined only when no ReactLenis is present in the app. With <ReactLenis root>, it works from anywhere via a module-level store. Always guard with optional chaining: lenis?.scrollTo(...).",
     "The scroll callback fires every frame when scrolling - avoid expensive operations or setState directly inside it. Use refs for DOM mutation or debounce for state.",
     "lenis.scrollTo() accepts a CSS selector string, HTMLElement, or number (pixel offset). Passing 0 scrolls to top.",
     "lenis.stop() and lenis.start() are the correct way to lock scroll (e.g. modals). Do NOT manipulate overflow on body manually.",
@@ -263,8 +263,13 @@ const lenisRef: ApiEntry = {
     },
     {
       name: "wrapper",
-      type: "HTMLElement",
+      type: "HTMLDivElement | null",
       description: "The outer wrapper DOM element that Lenis is attached to.",
+    },
+    {
+      name: "content",
+      type: "HTMLDivElement | null",
+      description: "The inner content div. Defined only when root is false or 'asChild'.",
     },
   ],
   usage: snippet("usage/lenis-ref.txt"),
@@ -325,16 +330,34 @@ const lenisOptions: ApiEntry = {
       default: "true",
     },
     {
-      name: "smoothTouch",
+      name: "syncTouch",
       type: "boolean",
-      description: "Enable smooth scrolling for touch (mobile) events. Can feel laggy on low-end iOS devices.",
+      description: "Enable smooth scrolling for touch (mobile) events. Can feel laggy on low-end iOS devices. Replaces the v0 touch option; same purpose, same default.",
       default: "false",
+    },
+    {
+      name: "syncTouchLerp",
+      type: "number",
+      description: "Lerp factor used when syncTouch is active on touch devices.",
+      default: "0.075",
+    },
+    {
+      name: "touchInertiaExponent",
+      type: "number",
+      description: "Exponent applied to touch inertia deceleration curve.",
+      default: "1.7",
     },
     {
       name: "touchMultiplier",
       type: "number",
       description: "Multiplier applied to touch scroll delta.",
-      default: "2",
+      default: "1",
+    },
+    {
+      name: "wheelMultiplier",
+      type: "number",
+      description: "Multiplier applied to mouse wheel scroll delta.",
+      default: "1",
     },
     {
       name: "infinite",
@@ -345,8 +368,31 @@ const lenisOptions: ApiEntry = {
     {
       name: "autoRaf",
       type: "boolean",
-      description: "Automatically run Lenis via its internal RAF loop. Set false when integrating with GSAP ticker or Framer Motion.",
+      description: "Automatically run Lenis via its internal RAF loop. Set false when integrating with GSAP ticker or Framer Motion. Note: this is a core Lenis option; the ReactLenis component defaults autoRaf to true, but options.autoRaf overrides it.",
+      default: "false",
+    },
+    {
+      name: "autoResize",
+      type: "boolean",
+      description: "Automatically re-measure scroll dimensions on window resize.",
       default: "true",
+    },
+    {
+      name: "prevent",
+      type: "(node: Element) => boolean",
+      description: "Escape-hatch predicate. Return true to prevent Lenis from intercepting scroll on a given element (useful for nested scrollers).",
+    },
+    {
+      name: "anchors",
+      type: "boolean | AnchorOptions",
+      description: "Enable built-in anchor link handling. When true, Lenis intercepts same-page anchor clicks and scrolls smoothly to the target.",
+      default: "false",
+    },
+    {
+      name: "allowNestedScroll",
+      type: "boolean",
+      description: "Allow nested Lenis instances to co-exist without one eating the other's scroll events.",
+      default: "false",
     },
     {
       name: "wrapper",
@@ -374,7 +420,7 @@ const lenisOptions: ApiEntry = {
   ],
   tips: [
     "lerp: 0.1 is the default - values closer to 0 are smoother but feel slower. 0.05-0.15 is the practical range.",
-    "Do NOT set smoothTouch: true on production sites targeting iOS - it introduces perceivable input lag.",
+    "Do NOT set syncTouch: true on production sites targeting iOS - it introduces perceivable input lag.",
     "duration and lerp are mutually exclusive; duration-based scrolling uses an easing function while lerp uses linear interpolation per frame.",
     "infinite: true works best with a content height that is a multiple of the viewport - otherwise it jumps.",
   ],
@@ -425,7 +471,7 @@ export const PATTERNS: Record<string, Pattern> = {
     description: "Integrate Lenis with Framer Motion by disabling autoRaf and syncing via frame.update.",
     code: snippet("patterns/framer-motion-integration.txt"),
     tips: [
-      "Use frame from 'motion' (not 'framer-motion') - this is the Framer Motion v11+ low-level scheduler.",
+      "Both 'motion' and 'framer-motion' export frame/cancelFrame - either package works. Prefer cancelFrame as a standalone function to match Lenis's official React example.",
       "frame.update(fn, true) schedules the update to run on every frame. The second argument (true) enables loop mode.",
       "autoRaf: false is mandatory - same reasoning as with GSAP, prevent double-ticking.",
     ],

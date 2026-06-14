@@ -83,13 +83,13 @@ useEffect(() => {
 
 ### Framer Motion integration (autoRaf: false)
 \`\`\`tsx
-import { frame } from "motion";
+import { frame, cancelFrame } from "motion";
 const lenis = useLenis();
 useEffect(() => {
   if (!lenis) return;
   const update = ({ timestamp }) => lenis.raf(timestamp);
   frame.update(update, true);
-  return () => frame.cancel(update);
+  return () => cancelFrame(update);
 }, [lenis]);
 \`\`\`
 
@@ -100,16 +100,16 @@ useEffect(() => {
 | duration | - | For programmatic scrolls. Overrides lerp |
 | orientation | vertical | 'vertical' or 'horizontal' |
 | smoothWheel | true | Mouse wheel smooth scroll |
-| smoothTouch | false | Touch smooth scroll - avoid on iOS |
+| syncTouch | false | Touch smooth scroll - avoid on iOS |
 | autoRaf | true | Set false for GSAP/Framer sync |
 | infinite | false | Infinite loop scroll |
 
 ## Common Pitfalls
 - Missing \`import "lenis/dist/lenis.css"\` - scroll breaks visually
 - Using \`autoRaf: true\` with GSAP ticker - causes desync / double frames
-- Calling \`useLenis()\` outside \`<ReactLenis>\` - returns undefined, crashes
+- Calling \`useLenis()\` with no \`<ReactLenis>\` anywhere - returns undefined
 - Missing \`"use client"\` in Next.js App Router - Lenis uses refs and effects
-- \`smoothTouch: true\` on iOS - perceivable input lag on low-end devices
+- \`syncTouch: true\` on iOS - perceivable input lag on low-end devices
 `;
       return { contents: [{ uri: "lenis://react/cheatsheet", mimeType: "text/markdown", text }] };
     },
