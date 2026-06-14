@@ -42,7 +42,13 @@ HEAD_SHA=$(git rev-parse HEAD)
 
 **Note:** Review subagents get raw diff + spec only. Do not load bootstrap (`hyperstack`) → `<SUBAGENT-STOP>` gate prevents it anyway. Provide exactly what they need to evaluate.
 
-**3. Act on results:**
+**3. Calibrate feedback:**
+
+Review subagents must acknowledge what was done well before listing issues. Accurate praise builds trust and helps the implementer weight the rest of the feedback correctly.
+
+If deviations from the spec are found, flag them specifically so the implementer can confirm whether they were intentional.
+
+**4. Act on results:**
 
 | Severity | Action |
 |---|---|

@@ -10,6 +10,8 @@ description: Use when executing implementation plans with independent tasks. Dis
 
 Fresh context per task prevents context pollution. You construct exactly what each subagent needs - they never inherit your session history. Keeps them focused, preserves your context for coordination.
 
+**Continuous execution:** Do not pause to check in between tasks. Execute all tasks from the plan without stopping. The only reasons to stop are: BLOCKED status you cannot resolve, ambiguity that genuinely prevents progress, or all tasks complete. Progress summaries and "should I continue?" prompts waste time - execute the plan.
+
 ## When to Use
 
 Use when:
