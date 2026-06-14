@@ -13,7 +13,7 @@
 
 <p>
   <img src="https://img.shields.io/badge/12_plugins-80_tools-6366f1?style=flat-square" alt="Plugins" />
-  <img src="https://img.shields.io/badge/21_skills-adversarial_gates-a855f7?style=flat-square" alt="Skills" />
+  <img src="https://img.shields.io/badge/22_skills-adversarial_gates-a855f7?style=flat-square" alt="Skills" />
   <img src="https://img.shields.io/badge/SessionStart-hook_injected-f59e0b?style=flat-square" alt="Hook" />
 </p>
 
@@ -25,7 +25,7 @@
 
 **Hyperstack is a disciplined engineering harness for AI coding agents.** 
 
-It provides the necessary **Ground Truth** (via 79 specialized MCP tools) and **Adversarial Enforcement** (via 21 rigorous skills) to transform a generic LLM into a high-precision Senior Engineer. 
+It provides the necessary **Ground Truth** (via 80 specialized MCP tools) and **Adversarial Enforcement** (via 22 rigorous skills) to transform a generic LLM into a high-precision Senior Engineer. 
 
 Unlike standard "polite" instructions, Hyperstack uses **Iron Laws** and a **SessionStart hook** to force agents to check real documentation, follow precise design specs, and provide binary verification before shipping.
 
@@ -86,7 +86,7 @@ It is not just a library; it is a **disciplined harness** made of three tightly-
 
 1.  **The Harness**: Bootstraps the agent, routes internal specialist roles (`hyper`, `website-builder`), and enforces global development invariants.
 2.  **The MCP Ground Truth**: 12 TypeScript plugins (80 tools) that provide deterministic data. No hallucinated imports or invented component specs.
-3.  **The Adversarial Gates**: 21 skills with **"Enforcement Teeth"**. These aren't suggestions; they are Iron Laws supported by rationalization tables that counter every excuse an agent uses to skip quality gates.
+3.  **The Adversarial Gates**: 22 skills with **"Enforcement Teeth"**. These aren't suggestions; they are Iron Laws supported by rationalization tables that counter every excuse an agent uses to skip quality gates.
 
 > [!IMPORTANT]
 > **Use Hyperstack if** you want to force your agent to check docs, write designs first, and prove its work.
