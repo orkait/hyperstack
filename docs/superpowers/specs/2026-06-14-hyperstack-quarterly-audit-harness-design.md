@@ -28,7 +28,7 @@ Three layers. Two deterministic (free, re-runnable), one judgment-based (headles
 
 ```
 scripts/audit/
-  sources.ts       manifest: plugin -> upstream pkg + targeted major + editorial flag + skills-that-ride-it
+  sources.ts       manifest: plugin -> upstream pkg + targeted major + editorial/skip flag + skills-that-ride-it
   fetch.ts         registry fetchers: npm | go-proxy (add gh-releases/crates only if a future plugin needs them)
   consistency.ts   L3 lint passes over src/plugins + skills
   run.ts           entry (`bun run audit`): drives L1 + L3, writes reports
@@ -68,13 +68,14 @@ Registries by plugin:
 | react | react, react-dom, next | npm |
 | design-tokens | tailwindcss | npm |
 | echo | github.com/labstack/echo/v4 | go-proxy |
-| hyperstack | @modelcontextprotocol/sdk | npm |
 | golang | go toolchain | editorial |
 | rust | rustc / clippy | editorial |
 | ui-ux | WCAG 2.2 | editorial |
 | designer | curated knowledge | editorial |
 
 Editorial plugins skip the fetch, appear as `editorial - L2 direct` rows. No fake version numbers.
+
+The `hyperstack` plugin is not audited (internal setup tool, no upstream library to drift against). It is marked `skip` in the manifest so the coverage test still accounts for all 12 directories under `src/plugins/`. Net audited surface: 7 registry-pinned + 4 editorial = 11 plugins, plus the 21 skill docs.
 
 Confirmed correct in the pilot audit (do not re-flag): `@base-ui/react` is the current canonical Base UI package (v1.5.0, published 2026-05-19), subpath imports `@base-ui/react/<part>` valid. `@base-ui-components/react` is the superseded pre-1.0 name.
 
@@ -142,12 +143,14 @@ L2 is run separately, by hand, against the flagged set (headless).
 
 ## Downstream (out of scope here, queued)
 
-Per-plugin updates are separate sub-projects, one PR each, ordered by the drift report. First queued PR is independent of any version bump:
+Per-plugin updates are separate sub-projects, one PR each, ordered by the drift report.
+
+**Pre-audit PR (ships before the first harness run, independent of any version bump):**
 
 - F1: remove orphan `shadcn/shared/rules.ts` (live source is `data.ts`); single source of truth.
 - F2: replace `cn from @repo/ui-utils` with `@/lib/utils` in `data.ts` (and anywhere the rules surface emits it).
 
-Both ship via `shadcn_get_rules` / the component checklist today, on the path the user uses daily, so they go first.
+Both ship via `shadcn_get_rules` / the component checklist today, on the path the user uses daily. They land as one standalone PR first, ahead of the harness build, since neither depends on the audit.
 
 ## Security
 
