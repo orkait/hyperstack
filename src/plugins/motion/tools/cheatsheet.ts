@@ -12,7 +12,7 @@ export function register(server: McpServer): void {
 \`\`\`tsx
 import { motion, AnimatePresence, useAnimate, useMotionValue, useTransform, useSpring, useScroll, useInView, stagger } from "motion/react"
 // For RSC (Next.js app dir): import from "motion/react-client"
-// For reduced bundle: import { m } from "motion/react-m" + LazyMotion
+// For reduced bundle: import * as m from "motion/react-m" + LazyMotion
 \`\`\`
 
 ## Quick Patterns
