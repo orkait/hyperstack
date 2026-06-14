@@ -156,10 +156,13 @@ This is non-negotiable. Silent skill invocations are invisible to the user and c
 | `hyperstack:design-patterns-skill` | Selecting the right abstraction or design pattern |
 | `hyperstack:security-review` | OWASP audits, API and infrastructure security |
 | `hyperstack:readme-writer` | Evidence-based documentation |
+| `hyperstack:codemode` | Understanding an unfamiliar codebase before reviewing or changing it - 7-phase context load |
 
 ### Workflow Chain
 
 ```
+Unfamiliar repo: codemode (structure → deps → architecture → risk → behaviour) ──┐
+                                                                                  ▼ Phase 7 recs feed
 New work:   blueprint → [designer if visual] → forge-plan → choose execution mode → ship-gate → deliver
                     │                      │
                     │                      └── produces DESIGN.md (input to forge-plan)
@@ -173,6 +176,8 @@ Existing:              run-plan ──┤
 Before execution:  worktree-isolation (clean workspace)
 Debugging:         debug-discipline → parallel-dispatch (if independent failures)
 ```
+
+**Understanding gate:** For unfamiliar or large code, `codemode` runs first - it is the deep form of the `hyper` / `website-builder` "inspect the workspace before routing/building" lifecycle step. Its Phase 6 invokes `behaviour-analysis`; its Phase 7 recommendations feed `blueprint` and `forge-plan`; a bug it surfaces routes to `debug-discipline`. Codemode grounds its API reasoning in the MCP plugins, not memory.
 
 **Visual work branch:** If the task changes how something looks, feels, moves, or is interacted with, `blueprint` routes through `designer` BEFORE `forge-plan`. The DESIGN.md produced by designer becomes the input spec for forge-plan.
 
