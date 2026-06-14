@@ -1,0 +1,12 @@
+// use() unwraps a promise in a client component.
+// Unlike other hooks, it can be called conditionally or in loops.
+// Recommended for reading async params/searchParams in client components
+// (client components cannot be async functions).
+"use client";
+import { use } from "react";
+
+function ProductPage({ params }: { params: Promise<{ id: string }> }) {
+  // Suspends until resolved - wrap parent in <Suspense fallback={...}>
+  const { id } = use(params);
+  return <div>{id}</div>;
+}
