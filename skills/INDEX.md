@@ -43,7 +43,6 @@ Categories:
 
 | Skill | Description |
 |---|---|
-| `audit-drift` | Layer-2 semantic drift research for the quarterly audit. Use after `bun run audit` flags a plugin, to research real upst |
 | `hyperstack` | Bootstrap - establishes Hyperstack MCP tools and skills before any technical work. Auto-loaded at session start via Sess |
 | `testing-skills` | Use when creating or editing Hyperstack skills, before shipping them, to verify they actually work under pressure and re |
 
