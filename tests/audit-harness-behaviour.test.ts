@@ -78,3 +78,58 @@ test("classifyBump distinguishes major-behind from current", () => {
   expect(classifyBump(12, "12.11.0")).toBe("current-major");
   expect(majorOf("1.0.0-rc.0")).toBe(1);
 });
+
+import {
+  lintInternalImportLeaks,
+  lintDuplicateExports,
+  lintOrphanModules,
+  lintSnippetRefs,
+} from "../scripts/audit/consistency.ts";
+
+test("lintInternalImportLeaks flags @repo/ and @workspace/ paths", () => {
+  const f = [{ path: "src/plugins/x/data.ts", content: 'cn from "@repo/ui-utils"' }];
+  const out = lintInternalImportLeaks(f);
+  expect(out.length).toBe(1);
+  expect(out[0].rule).toBe("internal-import-leak");
+});
+
+test("lintDuplicateExports flags a const duplicated within one plugin", () => {
+  const f = [
+    { path: "src/plugins/shadcn/data.ts", content: "export const SHADCN_RULES = {}" },
+    { path: "src/plugins/shadcn/shared/rules.ts", content: "export const SHADCN_RULES = {}" },
+  ];
+  expect(lintDuplicateExports(f).some((x) => x.detail.includes("SHADCN_RULES"))).toBe(true);
+});
+
+test("lintDuplicateExports ignores same-named consts across different plugins", () => {
+  const f = [
+    { path: "src/plugins/a/data.ts", content: "export const API_KINDS = []" },
+    { path: "src/plugins/b/data.ts", content: "export const API_KINDS = []" },
+  ];
+  expect(lintDuplicateExports(f).length).toBe(0);
+});
+
+test("lintOrphanModules flags a module nobody imports", () => {
+  const f = [
+    { path: "src/plugins/x/index.ts", content: 'import { a } from "./data.js"' },
+    { path: "src/plugins/x/data.ts", content: "export const a = 1" },
+    { path: "src/plugins/x/shared/rules.ts", content: "export const ORPHAN = 1" },
+  ];
+  const out = lintOrphanModules(f);
+  expect(out.length).toBe(1);
+  expect(out[0].location).toBe("src/plugins/x/shared/rules.ts");
+});
+
+test("lintOrphanModules skips declared entrypoints", () => {
+  const f = [{ path: "src/internal/cli.ts", content: "export const x = 1" }];
+  expect(lintOrphanModules(f).length).toBe(1);
+  expect(lintOrphanModules(f, new Set(["src/internal/cli.ts"])).length).toBe(0);
+});
+
+test("lintSnippetRefs flags a snippet() call with no backing file", () => {
+  const f = [{ path: "src/plugins/x/data.ts", content: 'snippet("missing.txt")' }];
+  const existing = new Set<string>(["src/plugins/x/snippets/present.txt"]);
+  const out = lintSnippetRefs(f, existing);
+  expect(out.length).toBe(1);
+  expect(out[0].detail).toContain("missing.txt");
+});
