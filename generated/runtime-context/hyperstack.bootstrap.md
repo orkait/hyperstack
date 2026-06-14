@@ -69,6 +69,7 @@ Hyperstack is a **Three-Layer Ecosystem**:
 - `hyperstack:design-patterns-skill`: Selecting the right abstraction or design pattern
 - `hyperstack:security-review`: OWASP audits, API and infrastructure security
 - `hyperstack:readme-writer`: Evidence-based documentation
+- `hyperstack:codemode`: Understanding an unfamiliar codebase before reviewing or changing it - 7-phase context load
 
 ## Internal Roles
 - Roles are internal and auto-called. Users do not invoke them directly.

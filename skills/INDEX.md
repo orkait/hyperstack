@@ -17,6 +17,7 @@ Categories:
 | `autonomous-mode` | Use when the user chooses fully autonomous execution. Aggressively uses the entire Hyperstack to implement the solution  |
 | `blueprint` | Use before any feature build, component creation, or behaviour modification. MCP-surveyed design with a hard gate before |
 | `code-review` | Use when completing tasks, implementing features, or before merging - to dispatch a review subagent and handle feedback  |
+| `codemode` | Deep context-loading protocol. Use when you must understand an unfamiliar codebase before answering, reviewing, or chang |
 | `debug-discipline` | Use when encountering any bug, test failure, or unexpected behaviour. Root cause investigation is mandatory before any f |
 | `deliver` | Use after all implementation tasks are complete. Runs final verification, confirms the branch is clean, and executes the |
 | `engineering-discipline` | Apply senior-level software engineering discipline including design patterns, SOLID principles, architectural reasoning, |
