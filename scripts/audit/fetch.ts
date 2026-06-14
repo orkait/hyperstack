@@ -12,13 +12,13 @@ export async function fetchLatest(name: string, registry: Registry): Promise<Ver
       const enc = name.startsWith("@")
         ? "@" + encodeURIComponent(name.slice(1))
         : encodeURIComponent(name);
-      const res = await fetch(`https://registry.npmjs.org/${enc}/latest`);
+      const res = await fetch(`https://registry.npmjs.org/${enc}/latest`, { signal: AbortSignal.timeout(10000) });
       if (!res.ok) return { name, latest: null, error: `npm ${res.status}` };
       const json = (await res.json()) as { version?: string };
       return { name, latest: json.version ?? null };
     }
     if (registry === "go-proxy") {
-      const res = await fetch(`https://proxy.golang.org/${name}/@latest`);
+      const res = await fetch(`https://proxy.golang.org/${name}/@latest`, { signal: AbortSignal.timeout(10000) });
       if (!res.ok) return { name, latest: null, error: `go-proxy ${res.status}` };
       const json = (await res.json()) as { Version?: string };
       return { name, latest: json.Version ? json.Version.replace(/^v/, "") : null };

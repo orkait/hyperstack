@@ -133,3 +133,7 @@ test("lintSnippetRefs flags a snippet() call with no backing file", () => {
   expect(out.length).toBe(1);
   expect(out[0].detail).toContain("missing.txt");
 });
+
+test("classifyBump labels a target ahead of latest", () => {
+  expect(classifyBump(16, "15.5.0")).toBe("ahead");
+});
