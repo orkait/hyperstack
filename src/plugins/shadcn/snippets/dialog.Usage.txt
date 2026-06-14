@@ -1,14 +1,20 @@
-<Dialog>
-  <DialogTrigger render={<Button />}>Open Dialog</DialogTrigger>
-  <DialogContent title="Confirm Action">
-    <DialogHeader>
-      <DialogTitle>Are you sure?</DialogTitle>
-      <DialogDescription>
-        This action cannot be undone.
-      </DialogDescription>
-    </DialogHeader>
-    <DialogFooter showCloseButton>
-      <Button variant="destructive">Delete</Button>
-    </DialogFooter>
-  </DialogContent>
-</Dialog>
+<Dialog.Root>
+  <Dialog.Trigger render={<Button />}>Open Dialog</Dialog.Trigger>
+  <Dialog.Portal>
+    <Dialog.Backdrop data-slot="dialog-backdrop" />
+    <Dialog.Viewport data-slot="dialog-viewport">
+      <Dialog.Popup data-slot="dialog-popup">
+        <Dialog.Title data-slot="dialog-title">Are you sure?</Dialog.Title>
+        <Dialog.Description data-slot="dialog-description">
+          This action cannot be undone.
+        </Dialog.Description>
+        <div className="flex justify-end gap-2 mt-4">
+          <Dialog.Close data-slot="dialog-close" render={<Button variant="outline" />}>
+            Cancel
+          </Dialog.Close>
+          <Button variant="destructive">Delete</Button>
+        </div>
+      </Dialog.Popup>
+    </Dialog.Viewport>
+  </Dialog.Portal>
+</Dialog.Root>

@@ -1,16 +1,27 @@
-<Field orientation="vertical">
-  <FieldLabel>Username</FieldLabel>
-  <FieldContent>
-    <Input placeholder="Enter username" />
-    <FieldDescription>This is your public display name.</FieldDescription>
-    <FieldError errors={errors.username} />
-  </FieldContent>
-</Field>
+<Field.Root data-slot="field" name="username">
+  <Field.Label data-slot="field-label">Username</Field.Label>
+  <Field.Control data-slot="field-control" render={<Input placeholder="Enter username" />} />
+  <Field.Description data-slot="field-description">
+    This is your public display name.
+  </Field.Description>
+  <Field.Error data-slot="field-error" match="valueMissing">
+    Username is required.
+  </Field.Error>
+</Field.Root>
 
-// Horizontal orientation with Container Queries
-<FieldGroup className="max-w-md">
-  <Field orientation="horizontal">
-    <FieldLabel>Email</FieldLabel>
-    <Input type="email" />
-  </Field orientation="horizontal">
-</FieldGroup>
+{/* Horizontal layout - use className/Tailwind, no orientation prop */}
+<Field.Root className="flex items-center gap-4 max-w-md" name="email">
+  <Field.Label className="w-32 shrink-0">Email</Field.Label>
+  <Field.Control render={<Input type="email" />} />
+</Field.Root>
+
+{/* Checkbox group using Field.Item */}
+<Field.Root name="agree">
+  <Field.Item data-slot="field-item" className="flex items-center gap-2">
+    <Field.Control render={<Checkbox />} />
+    <Field.Label>I agree to the terms</Field.Label>
+  </Field.Item>
+  <Field.Error data-slot="field-error" match="valueMissing">
+    You must accept the terms.
+  </Field.Error>
+</Field.Root>
