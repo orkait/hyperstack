@@ -122,7 +122,7 @@ export function App() {
 import { useEffect } from "react";
 import { ReactLenis, useLenis } from "lenis/react";
 import "lenis/dist/lenis.css";
-import { frame } from "motion";
+import { frame, cancelFrame } from "motion";
 
 function FramerSync() {
   const lenis = useLenis();
@@ -130,7 +130,7 @@ function FramerSync() {
     if (!lenis) return;
     const update = ({ timestamp }: { timestamp: number }) => lenis.raf(timestamp);
     frame.update(update, true);
-    return () => frame.cancel(update);
+    return () => cancelFrame(update);
   }, [lenis]);
   return null;
 }
@@ -156,7 +156,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     </html>
   );
 }` : ""}`;
-    notes = "- Import frame from 'motion' (not 'framer-motion') - this is the v11+ low-level scheduler\n- frame.update(fn, true) loops on every frame\n- autoRaf: false prevents duplicate ticking";
+    notes = "- Both 'motion' and 'framer-motion' export frame/cancelFrame - either package works\n- Prefer cancelFrame as a standalone function to match Lenis's official React example\n- frame.update(fn, true) loops on every frame\n- autoRaf: false prevents duplicate ticking";
   } else if (isHorizontal) {
     code = `// components/horizontal-scroll.tsx
 "use client";

@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 import { ReactLenis, useLenis } from "lenis/react";
 import "lenis/dist/lenis.css";
-import { frame } from "motion";
+import { frame, cancelFrame } from "motion";
 
 function FramerSyncEffect() {
   const lenis = useLenis();
@@ -18,7 +18,7 @@ function FramerSyncEffect() {
     frame.update(update, true);
 
     return () => {
-      frame.cancel(update);
+      cancelFrame(update);
     };
   }, [lenis]);
 
