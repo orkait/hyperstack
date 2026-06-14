@@ -72,6 +72,22 @@ Violating the letter = violating the spirit.
 - Tests lock behavior → no refactor without tests
 - Patterns require justification → no pattern without named force
 
+## Coding Laws
+
+How to write code in any Hyperstack-governed repo. These compose with the Iron Laws above and are enforced at `ship-gate`.
+
+**Law 0 - does this need to exist?** Before any law below, ask whether the code should be written at all. Speculative need, unrequested abstraction, boilerplate "for later" - skip it and say so in one line. The cheapest code is the code never written. Stop at the first rung that holds: needed? → stdlib? → native platform feature? → already-installed dependency? → one line? → only then the minimum that works. (This is the `ponytail` lazy-senior-dev ladder; compose with it for the full minimalism pass before `blueprint`.)
+
+1. **Config out of code.** Every value that varies by environment, deploy, or secret lives in config/env/constants - never inlined. If you type a literal that could change, lift it.
+2. **Build for reuse.** Write each unit so the next caller uses it without copying. Extract the shared shape at the second duplicate, not the fifth - but do not abstract before the duplication is real.
+3. **No hacks, no hot patches.** Never paper over a problem with a local workaround. Find the root cause and propose the complete fix as a plan (`hyperstack:blueprint` / `hyperstack:forge-plan`). If the proper fix is large, say so and let the user decide - never ship the hack silently. When a deliberate simplification IS the right call, mark it inline with its ceiling and upgrade path - `// upgrade: global lock; per-account locks if throughput matters`. A marked shortcut reads as intent, not ignorance, and carries its own fix. (Convention borrowed from `ponytail`'s shortcut markers.)
+4. **React: respect the house.** Follow current industry practice and the project's existing folder structure; do not impose your own layout on an established repo. Ground component and API choices in the `react_*` / `shadcn_*` MCP tools, not memory. When a file outgrows what it should hold, flag it and propose the split - then respect the user's call.
+5. **Lean comments.** A comment explains non-obvious *why*; it never narrates *what* the code already says. Where you find comment poisoning (over-commented code), flag it and propose trimming - do not add to it.
+6. **Docs are source of truth.** Treat docs as code that drifts. When you change behaviour the docs describe, update the docs in the same change. When you find docs that no longer match the code, flag the drift and correct it (`hyperstack:readme-writer`).
+7. **Crisp communication.** Say what you mean in the fewest exact words. No filler, no padding, no vague gestures - every sentence carries intent or it is cut.
+
+These connect outward, they are not an island: Laws 1, 2, and 5 are the same family as `codemode`'s post-load discipline; Law 3 routes to the planning gates; Law 4 to the `react_*` / `shadcn_*` plugins; Law 6 to the doc-maintenance lifecycle. Stated once here; other skills reference, not restate.
+
 ## Quick Reference Index
 
 ### Patterns & Principles
