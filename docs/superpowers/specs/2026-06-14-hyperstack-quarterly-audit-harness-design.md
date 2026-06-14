@@ -30,7 +30,7 @@ Three layers. Two deterministic (free, re-runnable), one judgment-based (headles
 scripts/audit/
   sources.ts       manifest: plugin -> upstream pkg + targeted major + editorial/skip flag + skills-that-ride-it
   fetch.ts         registry fetchers: npm | go-proxy (add gh-releases/crates only if a future plugin needs them)
-  consistency.ts   L3 lint passes over src/plugins + skills
+  consistency.ts   L3 lint over src/plugins TS files (skill-doc drift -> L2)
   run.ts           entry (`bun run audit`): drives L1 + L3, writes reports
 
 generated/audit/
@@ -102,11 +102,13 @@ Catches the class of defect a version check cannot see. Added after the pilot sh
 | Rule | Detects | Pilot finding |
 |---|---|---|
 | orphan-module | a module exported but imported nowhere | `shadcn/shared/rules.ts` (dead, divergent from live `data.ts`) |
-| divergent-duplicate | same constant defined twice with different values | two `SHADCN_RULES` (uppercase vs camelCase keys) |
+| divergent-duplicate | same UPPERCASE const exported in >1 file within one plugin (cross-plugin name reuse is ignored as independent) | two `SHADCN_RULES` (`data.ts` + the now-deleted `shared/rules.ts`) |
 | internal-import-leak | monorepo-internal paths (`@repo/*`, `@workspace/*`) in generic user-facing guidance | `cn from @repo/ui-utils` (should be `@/lib/utils`) |
-| coverage-gap | catalog advertises N items, snippets/data cover M < N | shadcn lists more components than the 4 snippet files cover |
+| snippet-ref | a `snippet("x")` call with no backing `.txt` file (the concrete realization of the coverage-gap intent: a broken ref is a runtime throw) | none on the clean repo |
 
 Output: `generated/audit/consistency.md`. These are bugs to fix regardless of upstream state.
+
+L3 scope is the `src/plugins/` TypeScript surface (orphan/import-graph/duplicate detection only make sense on code). Skill-doc drift is not linted by L3; it is L2's job - the manifest's `skills[]` field records which skills ride which plugin so the `audit-drift` skill re-reads them during research. The orphan rule skips `package.json` script entrypoints so CLI scripts are not false-flagged.
 
 ## Data flow (one `bun run audit`)
 
@@ -114,8 +116,8 @@ Output: `generated/audit/consistency.md`. These are bugs to fix regardless of up
 run.ts
  ├─ read sources.ts
  ├─ L1: fetch latest per non-editorial pkg ─► classify bump ─► version-delta.md
- ├─ L3: lint src/plugins + skills          ─► consistency.md
- └─ print summary: counts of major/minor/editorial + lint findings
+ ├─ L3: lint src/plugins TS files          ─► consistency.md
+ └─ print summary: counts of major-behind/current/editorial/skip + lint findings
 L2 is run separately, by hand, against the flagged set (headless).
 ```
 
