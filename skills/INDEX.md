@@ -19,7 +19,7 @@ Categories:
 | `code-review` | Use when completing tasks, implementing features, or before merging - to dispatch a review subagent and handle feedback  |
 | `codemode` | Deep context-loading protocol. Use when you must understand an unfamiliar codebase before answering, reviewing, or chang |
 | `debug-discipline` | Use when encountering any bug, test failure, or unexpected behaviour. Root cause investigation is mandatory before any f |
-| `deliver` | Use after all implementation tasks are complete. Runs final verification, confirms the branch is clean, and executes the |
+| `deliver` | Use after all implementation tasks are complete. Runs final verification, confirms the branch is clean, detects the work |
 | `engineering-discipline` | Apply senior-level software engineering discipline including design patterns, SOLID principles, architectural reasoning, |
 | `forge-plan` | Use after blueprint design approval to produce a task-by-task implementation plan grounded in MCP-verified API calls. No |
 | `parallel-dispatch` | Use when facing 2+ independent tasks that can be investigated or executed without shared state or sequential dependencie |
