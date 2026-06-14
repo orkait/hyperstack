@@ -3,9 +3,10 @@ name: designer
 category: domain
 description: >-
   Evidence-based design decision engine. Intention gate that produces non-slop
-  UI/UX by forcing every visual choice through industry context, cognitive science,
-  design master principles, and anti-pattern detection before code generation.
-  Outputs DESIGN.md contract all subsequent implementation must follow.
+  UI/UX by grounding in the existing codebase first, then forcing every visual
+  choice through industry context, cognitive science, design master principles,
+  and anti-pattern detection before code generation. Outputs DESIGN.md contract
+  all subsequent implementation must follow.
 metadata:
   author: booleanstack
   version: "3.0.0"
@@ -53,13 +54,18 @@ Single line JSX, CSS, or styling → no DESIGN.md → BREAKING THIS RULE. No exc
 ## HARD GATE
 
 ```
-DO NOT GENERATE VISUAL CODE UNTIL:
+DO NOT GENERATE DESIGN.md OR VISUAL CODE UNTIL:
+  0. Codebase grounded (Phase 0) - existing project inspected (framework, design
+     tokens, component lib, folder structure, current visual patterns) OR
+     confirmed greenfield. This is binding, not advisory.
   1. Intent extracted (Phase 1)
   2. MCP tools consulted (Phase 2)
   3. Anti-patterns checked (Phase 3)
   4. DESIGN.md generated + presented (Phase 4)
   5. User approved DESIGN.md
 ```
+
+Step 0 is FIRST because a DESIGN.md that ignores the project's real tokens, components, and structure ships a second, conflicting design system. Skipping it is the most common designer failure - it makes every project look greenfield.
 
 ## 1% RULE
 
@@ -84,6 +90,8 @@ DO NOT GENERATE VISUAL CODE UNTIL:
 | "Figma has design, I'll translate" | No design resolution = absolute/relative dump. |
 | "I'll pick colors as I go" | How AI slop made. Pick deliberately. |
 | "Dark mode = invert light mode" | No. Exact anti-pattern this skill prevents. |
+| "Existing project, I'll resolve a fresh design system" | No. Inspect the repo's tokens, components, and structure and EXTEND them (Phase 0). |
+| "I'll skip the codebase, the user described it" | The description is not the code. Read the real tokens and folder structure. |
 | "Skill is slow" | 2 min. Wrong design = 2 weeks to undo. |
 
 ---
@@ -137,13 +145,52 @@ User says "use these colors", "keep current design system", "match this app shel
 
 ---
 
+# PHASE 0: CODEBASE GROUNDING (binding gate - runs before Phase 1, BOTH modes)
+
+Skip ONLY if confirmed greenfield (no existing frontend). Otherwise mandatory. Greenfield-biased design - treating an existing app as a blank canvas - is the designer's #1 failure. If `blueprint` already passed codebase context, consume it instead of re-inspecting.
+
+## Inspect (reuse the harness, do not reinvent)
+
+For an existing project, invoke `hyperstack:codemode` (or the `website-builder` workspace-inventory step) on the frontend surface, then read:
+
+| Read | From | Tells you |
+|---|---|---|
+| Framework + stack | `package.json`, lockfile, configs | React/Next/Vue/Svelte, Tailwind version |
+| Component library | deps + `components/` dir | shadcn / MUI / custom - sets Q11b; do NOT re-ask if obvious from the repo |
+| Design tokens | `globals.css`/`theme.css`, `tailwind.config`, `@theme` | the existing color ramp, spacing, type scale, radius - the system to EXTEND |
+| Folder structure | `src/` tree | where components/pages/styles live - respect it, do not impose your own |
+| Current visual patterns | a few core components | the established personality - match it, do not override it |
+| Existing `DESIGN.md` | repo root / `docs/` | a prior contract - extend, do not replace |
+
+## Output: Workspace Reality block (required before Phase 1)
+
+This is a hard input. It overrides auto-resolved defaults (priority #2, below only explicit user prefs):
+
+```
+WORKSPACE REALITY
+- Stack: <framework + tailwind/css>
+- Component lib: <name | none | custom>
+- Existing design system: <yes: token/personality summary | no>
+- Folder convention: <where UI lives>
+- Decision: EXTEND existing system | NEW system (greenfield or user-approved replace)
+```
+
+- **EXTEND** -> Phase 2 reconciles against these tokens/components; do NOT resolve a fresh personality that contradicts them.
+- **NEW** -> proceed normally (greenfield, or user explicitly approved a redesign).
+
+## Skip detection
+
+This is also how you detect the skip condition above ("adding to an existing design system with established tokens"): established system + additive task -> tell the user designer can extend rather than re-design, and let them choose.
+
+---
+
 # PHASE 1: INTENT EXTRACTION
 
-Two modes. Default **Base** unless user says "advanced" or "detailed."
+Two modes. Default **Base** unless user says "advanced" or "detailed." **Phase 0 must be complete first (both modes).**
 
 ## Base Mode (3 Questions + Confirm)
 
-**Step 0:** Existing project → inspect workspace: framework, package manifests, component lib, token system, core frontend files, explicit visual prefs in repo.
+**Step 0:** Phase 0 (Codebase Grounding) is already done - the Workspace Reality block is a hard input now. For an existing system, every auto-resolved default below is a fallback that the repo's real tokens/components override.
 
 **Step 1:** Call `designer_resolve_intent(product_description)`. Auto-detects: industry, personality, style, mode, density, color mood, must-haves, never-uses.
 
@@ -268,6 +315,8 @@ Routing: `shadcn/ui` → `hyperstack:shadcn-expert` | `Raw Tailwind` → forge-p
 ---
 
 # PHASE 2: DESIGN SYSTEM RESOLUTION
+
+**If Phase 0 decided EXTEND:** the existing system is the baseline, not the MCP atlas. Use the MCP calls below only to fill GAPS the existing system does not cover and to check the existing choices against the rules - never to overwrite a token/personality the repo already commits to. Reconcile, do not replace. The auto-resolved personality/industry is a sanity check against reality, not a substitute for it.
 
 Every MCP call fills specific DESIGN.md section. No call without purpose.
 
