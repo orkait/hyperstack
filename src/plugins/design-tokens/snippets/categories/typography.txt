@@ -24,12 +24,15 @@
   --leading-body-sm: 1.6;
   --leading-caption: 1.5;
 
-  /* Letter spacing */
-  --tracking-tight: -0.03em;   /* display headings */
+  /* Letter spacing
+     NOTE: --tracking-tight and --tracking-wide intentionally override Tailwind v4 defaults.
+     Tailwind v4 default --tracking-tight: -0.025em; this plugin uses -0.03em (tighter).
+     Tailwind v4 default --tracking-wide: 0.025em; this plugin uses 0.06em (wider for overlines). */
+  --tracking-tight: -0.03em;   /* display headings - overrides Tailwind default (-0.025em) */
   --tracking-heading: -0.02em; /* h1–h2 */
   --tracking-snug: -0.01em;    /* h3 */
   --tracking-normal: 0em;      /* body */
-  --tracking-wide: 0.06em;     /* overlines */
+  --tracking-wide: 0.06em;     /* overlines - overrides Tailwind default (0.025em) */
   --tracking-wider: 0.10em;    /* strong overlines */
 
   /* Font weights */

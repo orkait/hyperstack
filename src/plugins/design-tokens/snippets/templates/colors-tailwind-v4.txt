@@ -82,5 +82,5 @@
   --color-warning: var(--color-warning);
 }
 
-/* Dark mode variant */
-@custom-variant dark (&:is(.dark *));
+/* Dark mode variant - :where() is zero-specificity and matches .dark itself plus descendants */
+@custom-variant dark (&:where(.dark, .dark *));

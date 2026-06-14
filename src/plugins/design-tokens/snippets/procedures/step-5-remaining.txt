@@ -15,8 +15,11 @@
   --leading-heading: 1.2;
   --leading-body: 1.7;
 
-  --tracking-tight: -0.03em;
+  /* NOTE: intentional overrides of Tailwind v4 defaults.
+     Tailwind v4 default --tracking-tight: -0.025em; this uses -0.03em (tighter for display).
+     Tailwind v4 default --tracking-wide: 0.025em; this uses 0.10em (wider for overlines). */
+  --tracking-tight: -0.03em;   /* overrides Tailwind default (-0.025em) */
   --tracking-heading: -0.02em;
   --tracking-normal: 0em;
-  --tracking-wide: 0.10em;
+  --tracking-wide: 0.10em;     /* overrides Tailwind default (0.025em) */
 }
