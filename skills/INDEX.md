@@ -22,6 +22,7 @@ Categories:
 | `deliver` | Use after all implementation tasks are complete. Runs final verification, confirms the branch is clean, detects the work |
 | `engineering-discipline` | Apply senior-level software engineering discipline including design patterns, SOLID principles, architectural reasoning, |
 | `forge-plan` | Use after blueprint design approval to produce a task-by-task implementation plan grounded in MCP-verified API calls. No |
+| `optimizer` | Teaches runtime analysis - deriving Big-O straight from code - and how to derive a better algorithm by removing redundan |
 | `parallel-dispatch` | Use when facing 2+ independent tasks that can be investigated or executed without shared state or sequential dependencie |
 | `run-plan` | Use when you have an existing plan, spec, or task list to execute. Validates the plan for gaps and MCP accuracy before a |
 | `ship-gate` | Use before claiming any work is complete, fixed, or passing. Run the verification command and show output before making  |

@@ -15,6 +15,7 @@ import { uiUxPlugin } from "./plugins/ui-ux/index.js";
 import { designerPlugin } from "./plugins/designer/index.js";
 import { shadcnPlugin } from "./plugins/shadcn/index.js";
 import { hyperstackPlugin } from "./plugins/hyperstack/index.js";
+import { optimizerPlugin } from "./plugins/optimizer/index.js";
 
 import { readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
@@ -42,6 +43,7 @@ export const allPlugins = [
   designerPlugin,
   shadcnPlugin,
   hyperstackPlugin,
+  optimizerPlugin,
 ];
 
 loadPlugins(server, allPlugins);
