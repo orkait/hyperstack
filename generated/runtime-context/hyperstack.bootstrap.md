@@ -48,6 +48,7 @@ Hyperstack is a **Three-Layer Ecosystem**:
 - `echo_*` -> `echo_get_recipe`, `echo_get_middleware`, `echo_decision_matrix`
 - `golang_*` -> `golang_get_practice`, `golang_get_pattern`, `golang_get_antipatterns`
 - `rust_*` -> `rust_get_practice`, `rust_cheatsheet`, `rust_search_docs`
+- `optimizer_*` -> `optimizer_match_problem`, `optimizer_get_technique`, `optimizer_list_classes`
 
 ## Workflow Skills
 - `hyperstack:blueprint`: Before any feature build - MCP survey, design gate, negative doubt
@@ -70,6 +71,7 @@ Hyperstack is a **Three-Layer Ecosystem**:
 - `hyperstack:security-review`: OWASP audits, API and infrastructure security
 - `hyperstack:readme-writer`: Evidence-based documentation
 - `hyperstack:codemode`: Understanding an unfamiliar codebase before reviewing or changing it - 7-phase context load
+- `hyperstack:optimizer`: Algorithmic optimization - match the problem to the right DSA technique, suggest the complexity win (evidence-gated, not premature)
 
 ## Internal Roles
 - Roles are internal and auto-called. Users do not invoke them directly.
