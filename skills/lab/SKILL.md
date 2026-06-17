@@ -1,6 +1,6 @@
 ---
 name: lab
-category: workflow
+category: core
 description: Use when designing or revamping a frontend section or whole page and you want to explore real-React variants in an isolated, dev-only lab before writing production code. Cook variants for one target at a time, lock the winner, watch an additive page assemble in /lab-view, then wire it properly. Forces real-stack previews (not throwaway HTML/Figma), desktop+mobile side by side, and a clean codebase with only the current target's scratch alive.
 ---
 
