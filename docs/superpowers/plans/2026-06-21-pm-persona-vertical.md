@@ -47,6 +47,15 @@ PART C - skill + binding (composes A+B)
 
 # PART A - `product-manager` MCP plugin
 
+> **Storage (revised during execution):** corpus prose is NOT inlined in `data.ts`.
+> It lives in `src/plugins/product-manager/snippets/**.txt` loaded via
+> `loader.ts` (`createSnippetLoader`), matching the dominant ecosystem pattern
+> (react/golang/designer). `data.ts` keeps typed structure + logic and pulls prose
+> via `snippet("...")`. Also required: a `product-manager` entry in
+> `scripts/audit/sources.ts` (editorial, `skills: []` until Part C sets `["pm-gate"]`),
+> enforced by `tests/audit-harness-behaviour.test.ts`. See the committed plugin
+> for the authoritative shape.
+
 ### Task A1: Plugin data layer (types + frameworks + resolvers)
 
 **Files:**
