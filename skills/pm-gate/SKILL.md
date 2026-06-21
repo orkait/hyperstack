@@ -27,17 +27,17 @@ NO NET-NEW BUILD WITHOUT A PASSED PRODUCT DECISION
 
 ## Steps (MCP-grounded - call the tools, do not reason from memory)
 
-1. `product_manager_opportunity_vs_solution(statement)` - reject a solution-in-disguise.
+1. `product_manager_opportunity_vs_solution(statement)` - apply the returned rubric to reframe a solution into the underlying need. The tool gives the test, you make the call.
 2. `product_manager_get_discovery_rules()` - confirm customer evidence; flag opinion-requirements.
-3. `product_manager_get_four_risks()` - assess all four, especially VALUE and VIABILITY.
+3. `product_manager_get_four_risks()` - then WRITE your value and viability assessments (cite the customer problem and the business case).
 4. `product_manager_score_rice(...)` and `product_manager_get_strategy_rules()` - state the one call, cut scope.
-5. `product_manager_resolve_product_decision(description, isNetNew)` - emit the verdict.
+5. `product_manager_resolve_product_decision(description, valueAssessment, viabilityAssessment, isNetNew)` - returns PASS only if you supplied both assessments, else BLOCK (net-new) or ADVISORY (tweak).
 
 ## Verdict handling
 
 - PASS -> hand to `hyper`; proceed to designer/blueprint.
-- BLOCK -> stop; report the unaddressed risk; do not route to build.
-- NEEDS-INPUT -> ask the user the specific missing question.
+- BLOCK -> assess the missing PM-owned risk and call again; do not route to build.
+- ADVISORY -> tweak with a noted gap; proceed allowed.
 
 ## Red flags (from the corpus)
 

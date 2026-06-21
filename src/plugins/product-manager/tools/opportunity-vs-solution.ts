@@ -1,16 +1,16 @@
 import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { z } from "zod";
-import { classifyOpportunityVsSolution } from "../data.js";
+import { OPPORTUNITY_RUBRIC_DOC } from "../data.js";
 
 export function register(server: McpServer): void {
   server.tool(
     "product_manager_opportunity_vs_solution",
-    "Torres test: is a statement a real opportunity (a need with more than one way to address it) or a solution in disguise? Rejects premature solution-jumping.",
-    { statement: z.string().describe("The problem/feature statement to classify.") },
+    "Returns the Torres opportunity-vs-solution rubric (the test + reframe examples) for YOU to apply - it does not classify for you. Use to reframe a solution-shaped request into the underlying need.",
+    { statement: z.string().optional().describe("Optional: the statement you want to apply the rubric to.") },
     async ({ statement }) => {
-      const r = classifyOpportunityVsSolution(statement);
-      const verdict = r.isOpportunity ? "OPPORTUNITY" : "SOLUTION (reframe needed)";
-      return { content: [{ type: "text" as const, text: `# ${verdict}\n\n**Statement:** ${statement}\n\n${r.reason}\n` }] };
+      let text = `# Opportunity vs Solution (rubric)\n\n${OPPORTUNITY_RUBRIC_DOC}\n`;
+      if (statement) text += `\n---\nApply the test to: "${statement}"\n`;
+      return { content: [{ type: "text" as const, text }] };
     },
   );
 }

@@ -1,11 +1,15 @@
-// Product-Manager persona - typed structure + decision LOGIC.
+// Product-Manager persona - typed structure + the one piece of legitimate gate logic.
 //
-// The prose corpus (risk questions, anti-pattern smells, discovery/strategy
-// rules, JTBD framing) lives in snippets/*.txt and is loaded via the shared
-// createSnippetLoader, identical to the other Hyperstack plugins. Only stable,
-// source-cited PM craft (Cagan/SVPG, Torres, Intercom, Christensen, Doshi),
-// transcribed from docs/research/2026-06-21-pm-craft-corpus.json. No
-// project-specific product opinions live here.
+// PHILOSOPHY (see optimizer/data.ts): tools provide GROUND-TRUTH the LLM should
+// recall and apply, NOT classification/judgment the LLM does better itself.
+// Earlier versions shipped regex "classifiers" (opportunity-vs-solution,
+// job-statement validation) that emitted exclusive verdicts - those were brittle
+// theater and were removed. The agent applies the rubrics (snippets/rubrics/*.txt);
+// the only logic kept here is deterministic STRUCTURE checks, not judgment.
+//
+// Corpus prose lives in snippets/*.txt via createSnippetLoader, identical to the
+// other plugins. Source-cited PM craft (Cagan/SVPG, Torres, Intercom, Christensen,
+// Doshi), transcribed from docs/research/2026-06-21-pm-craft-corpus.json.
 
 import { snippet } from "./loader.js";
 
@@ -50,40 +54,47 @@ export const DISCOVERY_DOC: string = snippet("discovery/rules.txt");
 export const STRATEGY_DOC: string = snippet("strategy/rules.txt");
 export const JTBD_DOC: string = snippet("jtbd/jtbd.txt");
 
-// JTBD job-statement validator - the regex-checkable SUBSET (context, progress,
-// not-a-single-solution). The full 7-point checklist (e.g. "not a trend",
-// "appropriate abstraction") is not mechanically testable and is a Phase 2 item.
-export interface JobCheck { id: string; test: (s: string) => boolean; failHint: string; }
+// Rubrics the AGENT applies (ground truth, not a verdict the tool computes).
+export const OPPORTUNITY_RUBRIC_DOC: string = snippet("rubrics/opportunity-vs-solution.txt");
+export const JOB_CRITERIA_DOC: string = snippet("rubrics/job-criteria.txt");
 
-export const JOB_CHECKS: JobCheck[] = [
-  { id: "has-context", test: (s) => /\b(when|while|after|before|during|because)\b/i.test(s), failHint: "missing context (when/while/because ...)" },
-  { id: "not-single-solution", test: (s) => !/\b(button|toggle|page|dropdown|API|endpoint|screen)\b/i.test(s), failHint: "names a specific solution, not a job" },
-  { id: "expresses-progress", test: (s) => /\b(so that|in order to|to|need|want to)\b/i.test(s), failHint: "does not express the progress sought" },
-];
+// --- The one legitimate piece of logic: a deterministic STRUCTURE gate. ---
+// This does NOT judge whether the value/viability reasoning is good (that is the
+// agent's job, supplied as input). It enforces the discipline: a net-new build
+// cannot PASS unless the PM-owned risks (value AND viability) were actually
+// addressed. A presence/substance check, not a judgment call.
 
-export interface JobValidation { valid: boolean; passed: string[]; failed: { id: string; failHint: string }[]; }
-
-export function validateJobStatement(statement: string): JobValidation {
-  const passed: string[] = [];
-  const failed: { id: string; failHint: string }[] = [];
-  for (const c of JOB_CHECKS) {
-    if (c.test(statement)) passed.push(c.id);
-    else failed.push({ id: c.id, failHint: c.failHint });
-  }
-  return { valid: failed.length === 0, passed, failed };
+export interface DecisionInput {
+  description: string;
+  valueAssessment?: string;
+  viabilityAssessment?: string;
+  isNetNew?: boolean;
 }
 
-export interface OppClassification { isOpportunity: boolean; reason: string; }
+export interface Decision {
+  verdict: "PASS" | "BLOCK" | "ADVISORY";
+  gate: "HARD" | "ADVISORY";
+  missing: string[];
+}
 
-// Torres test: "is there more than one way to address this?" If a statement
-// names a single concrete mechanism, it is a solution disguised as a problem.
-const SOLUTION_MARKERS = /\b(add|build|create|implement|use|toggle|button|dropdown|dark mode|integrate)\b/i;
+const MIN_ASSESSMENT_CHARS = 20;
 
-export function classifyOpportunityVsSolution(statement: string): OppClassification {
-  if (SOLUTION_MARKERS.test(statement)) {
-    return { isOpportunity: false, reason: "Names a single concrete mechanism. Restate as the underlying need it serves (there should be more than one way to address it)." };
-  }
-  return { isOpportunity: true, reason: "Stated as a need/pain with more than one possible solution." };
+function addressed(text?: string): boolean {
+  return typeof text === "string" && text.trim().length >= MIN_ASSESSMENT_CHARS;
+}
+
+export function computeDecision(input: DecisionInput): Decision {
+  const gate: Decision["gate"] = input.isNetNew === false ? "ADVISORY" : "HARD";
+  const missing: string[] = [];
+  if (!addressed(input.valueAssessment)) missing.push("value");
+  if (!addressed(input.viabilityAssessment)) missing.push("viability");
+
+  let verdict: Decision["verdict"];
+  if (missing.length === 0) verdict = "PASS";
+  else if (gate === "ADVISORY") verdict = "ADVISORY";
+  else verdict = "BLOCK";
+
+  return { verdict, gate, missing };
 }
 
 export interface RiceInput { reach: number; impact: number; confidence: number; effort: number; }

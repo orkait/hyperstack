@@ -9,12 +9,11 @@
     "version": { "type": "string" },
     "owns": {
       "type": "object",
-      "required": ["risks", "plugin", "skills", "agent"],
+      "required": ["risks", "plugin", "skills"],
       "properties": {
         "risks": { "type": "array", "items": { "type": "string" } },
         "plugin": { "type": "string" },
-        "skills": { "type": "array", "items": { "type": "string" } },
-        "agent": { "type": "string" }
+        "skills": { "type": "array", "items": { "type": "string" } }
       }
     },
     "engages_when": { "type": "array", "items": { "type": "string" } },

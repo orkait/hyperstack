@@ -5,9 +5,9 @@
   "owns": {
     "risks": ["value", "viability"],
     "plugin": "product-manager",
-    "skills": ["pm-gate"],
-    "agent": "product-manager"
+    "skills": ["pm-gate"]
   },
+  "engaged_by": "hyper",
   "engages_when": ["net-new feature", "new product", "build request", "scope decision"],
   "gate_policy": { "net_new": "hard", "tweak": "advisory", "override": "user-explicit" }
 }

@@ -10,7 +10,8 @@ export interface PersonaManifest {
   id: string;
   name: string;
   version: string;
-  owns: { risks: string[]; plugin: string; skills: string[]; agent: string };
+  owns: { risks: string[]; plugin: string; skills: string[] };
+  engaged_by?: string;
   engages_when: string[];
   gate_policy: { net_new: "hard" | "advisory"; tweak: "hard" | "advisory"; override: string };
 }
