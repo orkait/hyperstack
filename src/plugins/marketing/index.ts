@@ -12,6 +12,9 @@ import { register as getChannels } from "./tools/get-channels.js";
 import { register as getGrowthModel } from "./tools/get-growth-model.js";
 import { register as getAntiPatterns } from "./tools/get-anti-patterns.js";
 import { register as brief } from "./tools/brief.js";
+import { register as getVoiceOfCustomer } from "./tools/get-voice-of-customer.js";
+import { register as getIcp } from "./tools/get-icp.js";
+import { register as getPricing } from "./tools/get-pricing.js";
 
 function register(server: McpServer): void {
   getPositioning(server);
@@ -25,6 +28,9 @@ function register(server: McpServer): void {
   getChannels(server);
   getGrowthModel(server);
   getAntiPatterns(server);
+  getVoiceOfCustomer(server);
+  getIcp(server);
+  getPricing(server);
   brief(server);
 }
 

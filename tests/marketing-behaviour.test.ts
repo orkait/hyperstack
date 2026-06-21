@@ -5,10 +5,12 @@ import { register as getPositioning } from "../src/plugins/marketing/tools/get-p
 import { register as getFormulas } from "../src/plugins/marketing/tools/get-copywriting-formulas.ts";
 import { register as getChannels } from "../src/plugins/marketing/tools/get-channels.ts";
 import { register as brief } from "../src/plugins/marketing/tools/brief.ts";
+import { register as getVoc } from "../src/plugins/marketing/tools/get-voice-of-customer.ts";
 
 // --- the brief assembler ---
-test("full workflow leads with positioning", () => {
-  expect(FULL_WORKFLOW[0].step).toBe("Position");
+test("full workflow leads with VoC research, then positioning", () => {
+  expect(FULL_WORKFLOW[0].step).toBe("Research");
+  expect(FULL_WORKFLOW.map((s) => s.step)).toContain("Position");
 });
 
 test("buildBrief returns the full workflow when no deliverables given", () => {
@@ -51,4 +53,11 @@ test("brief assembles an ordered plan for a specific brand", async () => {
   const text = extractTextContent(await tool.invoke({ brand: "a meditation app for busy parents" }));
   expect(text).toMatch(/meditation app/);
   expect(text).toMatch(/Position/);
+});
+
+test("get_voice_of_customer returns the message-mining method", async () => {
+  const tool = captureTool(getVoc);
+  expect(tool.name).toBe("marketing_get_voice_of_customer");
+  const text = extractTextContent(await tool.invoke({}));
+  expect(text).toMatch(/exact words|verbatim|reviews/i);
 });

@@ -1,0 +1,19 @@
+# Pricing & packaging (a marketing lever, not just finance)
+
+## Price on VALUE, not cost. Anchor to the outcome delivered or the cost of the alternative - never cost-plus.
+
+## Good-Better-Best (3 tiers) - the default packaging
+- Three tiers; most buyers pick the MIDDLE. Design the middle as the plan you want sold (the target).
+- A high "Best"/enterprise tier anchors perception and makes the middle look reasonable (anchoring / decoy effect).
+- "Fences" between tiers = what gates the upgrade: usage (seats/volume), features, support/SLA, security/compliance.
+
+## Value metric: charge for the thing that scales with the value the customer gets (seats, GB, contacts, API calls, transactions). A good value metric grows revenue as the customer succeeds.
+
+## Tactics
+- Anchor high first (show the expensive option before the cheap one).
+- Annual discount for commitment; charm/odd pricing where it fits the brand.
+- Free tier / trial ONLY if it drives activation and the value metric pulls users to paid (PLG).
+
+## Test willingness-to-pay: van Westendorp ("at what price is it too expensive / too cheap / getting expensive / a bargain?").
+
+Anti-pattern: cost-plus pricing, one-size pricing, a free tier that cannibalizes instead of converting, a price the buyer cannot map to value.

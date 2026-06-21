@@ -15,3 +15,10 @@ Loop types: viral (users invite users), content (UGC -> indexable pages -> SEO -
 Design at least one loop; loops compound, funnels do not.
 
 ## North Star metric: one number capturing delivered customer value (nights booked, messages sent, docs created). Align the team to move it.
+
+## Unit economics (know these cold)
+- CAC = total sales + marketing spend / new customers acquired (track per channel).
+- LTV = ARPA x gross margin / churn rate (or avg revenue x margin x avg lifetime).
+- LTV:CAC >= 3:1 is the healthy benchmark; < 1 means you lose money on every customer.
+- CAC payback < 12 months (SMB) or < 18-24 months (enterprise) is healthy.
+- Retention/churn is the master variable - a small churn improvement swings LTV massively. Fix retention before scaling acquisition.

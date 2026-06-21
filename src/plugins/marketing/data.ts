@@ -25,6 +25,9 @@ export const GTM_DOC: string = join(snippet("gtm/motions.txt"), snippet("gtm/lau
 export const CHANNELS_DOC: string = snippet("gtm/channels.txt");
 export const GROWTH_DOC: string = snippet("gtm/growth-model.txt");
 export const ANTI_PATTERNS_DOC: string = snippet("anti-patterns/marketing.txt");
+export const VOC_DOC: string = snippet("research/voice-of-customer.txt");
+export const ICP_DOC: string = snippet("positioning/icp.txt");
+export const PRICING_DOC: string = snippet("gtm/pricing.txt");
 
 // --- The brief assembler: deterministic, real (not a fake verdict). ---
 // Given which deliverables the brand needs, return the ordered workflow steps +
@@ -33,23 +36,25 @@ export const ANTI_PATTERNS_DOC: string = snippet("anti-patterns/marketing.txt");
 export interface BriefStep { step: string; tools: string; why: string; }
 
 export const FULL_WORKFLOW: BriefStep[] = [
-  { step: "Position", tools: "marketing_get_positioning", why: "Dunford's 5 components in order - decide what it is and who it is for." },
+  { step: "Research", tools: "marketing_get_voice_of_customer", why: "mine the customer's exact words (VoC) - the raw material for all the copy." },
+  { step: "Position", tools: "marketing_get_positioning, marketing_get_icp", why: "Dunford's 5 components in order + define the ICP; decide what it is and who exactly it is for." },
   { step: "Message", tools: "marketing_get_messaging", why: "value-prop canvas + StoryBrand + strategic narrative; build the message hierarchy." },
   { step: "Awareness", tools: "marketing_get_awareness_stages", why: "match the copy to how aware the market already is." },
-  { step: "Write", tools: "marketing_get_copywriting_formulas, marketing_get_persuasion", why: "pick a formula, write headline + body + CTA with proof." },
+  { step: "Write", tools: "marketing_get_copywriting_formulas, marketing_get_persuasion", why: "pick a formula, write headline + body + CTA with proof - in the customer's words." },
   { step: "Voice", tools: "marketing_get_voice", why: "pick a brand archetype + tone dimensions, apply consistently." },
-  { step: "GTM", tools: "marketing_get_gtm, marketing_get_channels, marketing_get_growth_model", why: "choose the motion, Bullseye the channels, design a growth loop." },
+  { step: "GTM", tools: "marketing_get_gtm, marketing_get_channels, marketing_get_growth_model, marketing_get_pricing", why: "choose the motion, Bullseye the channels, design a growth loop, package the pricing." },
   { step: "Check", tools: "marketing_get_anti_patterns", why: "no feature-dump, we-we copy, or vague unproven claims." },
 ];
 
 const DELIVERABLE_STEPS: Record<string, string[]> = {
-  positioning: ["Position"],
+  positioning: ["Research", "Position"],
   messaging: ["Message", "Awareness"],
-  copy: ["Awareness", "Write", "Voice"],
-  copywriting: ["Awareness", "Write", "Voice"],
+  copy: ["Research", "Awareness", "Write", "Voice"],
+  copywriting: ["Research", "Awareness", "Write", "Voice"],
   brand: ["Voice"],
   gtm: ["GTM"],
   growth: ["GTM"],
+  pricing: ["GTM"],
 };
 
 export function buildBrief(deliverables?: string[]): BriefStep[] {
