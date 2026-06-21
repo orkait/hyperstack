@@ -1,9 +1,13 @@
-// Product-Manager persona - the PM DECISION MENU, not project opinions.
+// Product-Manager persona - typed structure + decision LOGIC.
 //
-// Carries only stable, source-cited PM craft (Cagan/SVPG, Torres, Intercom,
-// Christensen, Doshi) transcribed from docs/research/2026-06-21-pm-craft-corpus.json.
-// Tools surface these frameworks so the agent makes grounded value+viability
-// calls before design/build. No project-specific product opinions live here.
+// The prose corpus (risk questions, anti-pattern smells, discovery/strategy
+// rules, JTBD framing) lives in snippets/*.txt and is loaded via the shared
+// createSnippetLoader, identical to the other Hyperstack plugins. Only stable,
+// source-cited PM craft (Cagan/SVPG, Torres, Intercom, Christensen, Doshi),
+// transcribed from docs/research/2026-06-21-pm-craft-corpus.json. No
+// project-specific product opinions live here.
+
+import { snippet } from "./loader.js";
 
 export interface ProductRisk {
   id: "value" | "usability" | "feasibility" | "viability";
@@ -12,10 +16,10 @@ export interface ProductRisk {
 }
 
 export const FOUR_RISKS: ProductRisk[] = [
-  { id: "value",       question: "Will customers buy it, or will users choose to use it?", owner: "product-manager" },
-  { id: "usability",   question: "Can users figure out how to use it?", owner: "designer" },
-  { id: "feasibility", question: "Can engineers build it with available time, skills, and tech?", owner: "engineer" },
-  { id: "viability",   question: "Does it work for the business - legal, sales, finance, marketing, support?", owner: "product-manager" },
+  { id: "value",       question: snippet("risks/value.txt"),       owner: "product-manager" },
+  { id: "usability",   question: snippet("risks/usability.txt"),   owner: "designer" },
+  { id: "feasibility", question: snippet("risks/feasibility.txt"), owner: "engineer" },
+  { id: "viability",   question: snippet("risks/viability.txt"),   owner: "product-manager" },
 ];
 
 export const PM_OWNED_RISKS: ReadonlySet<string> = new Set(
@@ -28,42 +32,23 @@ export interface AntiPattern {
   source: string;
 }
 
-export const ANTI_PATTERNS: AntiPattern[] = [
-  { id: "feature-factory", smell: "Shipping as many stakeholder features as possible. Cagan: that is 'really no product strategy at all.'", source: "Cagan/SVPG" },
-  { id: "reactivity", smell: "Driven by reacting to sales, competitors, requests, or price pressure instead of a product vision.", source: "Cagan/SVPG" },
-  { id: "viability-avoidance", smell: "Reasoning covers value/desirability but is silent on whether the business can sell, support, fund, or legally ship it.", source: "Cagan/SVPG" },
-  { id: "execution-misdiagnosis", smell: "Treating a strategy, interpersonal, OR culture problem as an execution problem and band-aiding it.", source: "Doshi" },
-  { id: "opinion-requirement", smell: "A requirement justified by 'a customer said they want X' (opinion/hypothetical) instead of an observed past-behaviour story.", source: "Torres / The Mom Test" },
+const ANTI_PATTERN_META: { id: string; source: string }[] = [
+  { id: "feature-factory", source: "Cagan/SVPG" },
+  { id: "reactivity", source: "Cagan/SVPG" },
+  { id: "viability-avoidance", source: "Cagan/SVPG" },
+  { id: "execution-misdiagnosis", source: "Doshi" },
+  { id: "opinion-requirement", source: "Torres / The Mom Test" },
 ];
 
-export const DISCOVERY_RULES: string[] = [
-  "Engage customers continuously (aspirationally weekly); minimize build decisions made without customer evidence.",
-  "Never ask customers what they want or need - cognitive biases make opinion answers unreliable.",
-  "Elicit needs, pains, and desires through specific PAST-BEHAVIOUR stories.",
-  "Demographics do not predict intent; the JOB the customer hires the product for does.",
-];
+export const ANTI_PATTERNS: AntiPattern[] = ANTI_PATTERN_META.map((m) => ({
+  id: m.id,
+  source: m.source,
+  smell: snippet(`anti-patterns/${m.id}.txt`),
+}));
 
-export const STRATEGY_RULES: string[] = [
-  "Strategy decides which problems to solve NOW by focusing on a FEW (2-3) critical business levers.",
-  "Prioritization is an act of saying NO: focus means rejecting the hundred other good ideas.",
-  "A 'strategy' that is a long list rejecting nothing is not a strategy.",
-];
-
-export interface Jtbd {
-  definition: string;
-  dimensions: string[];
-  fourForces: { push: string[]; resist: string[]; rule: string };
-}
-
-export const JTBD: Jtbd = {
-  definition: "A job is the PROGRESS a person wants to make under specific circumstances - a process, not a single action.",
-  dimensions: ["functional", "emotional", "social"],
-  fourForces: {
-    push: ["frustration with the status quo (F1)", "attraction to the new solution (F2)"],
-    resist: ["anxiety of learning the new (F3)", "habit/comfort of the current solution (F4)"],
-    rule: "A switch happens only when Push + Pull > Anxiety + Habit.",
-  },
-};
+export const DISCOVERY_DOC: string = snippet("discovery/rules.txt");
+export const STRATEGY_DOC: string = snippet("strategy/rules.txt");
+export const JTBD_DOC: string = snippet("jtbd/jtbd.txt");
 
 // JTBD job-statement validator - the regex-checkable SUBSET (context, progress,
 // not-a-single-solution). The full 7-point checklist (e.g. "not a trend",

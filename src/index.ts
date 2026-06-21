@@ -16,6 +16,7 @@ import { designerPlugin } from "./plugins/designer/index.js";
 import { shadcnPlugin } from "./plugins/shadcn/index.js";
 import { hyperstackPlugin } from "./plugins/hyperstack/index.js";
 import { optimizerPlugin } from "./plugins/optimizer/index.js";
+import { productManagerPlugin } from "./plugins/product-manager/index.js";
 
 import { readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
@@ -44,6 +45,7 @@ export const allPlugins = [
   shadcnPlugin,
   hyperstackPlugin,
   optimizerPlugin,
+  productManagerPlugin,
 ];
 
 loadPlugins(server, allPlugins);

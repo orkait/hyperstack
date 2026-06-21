@@ -1,0 +1,4 @@
+- Engage customers continuously (aspirationally weekly); minimize build decisions made without customer evidence.
+- Never ask customers what they want or need - cognitive biases make opinion answers unreliable.
+- Elicit needs, pains, and desires through specific PAST-BEHAVIOUR stories.
+- Demographics do not predict intent; the JOB the customer hires the product for does.
