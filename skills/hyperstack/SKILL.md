@@ -246,6 +246,23 @@ The bootstrap and orchestrator (`hyper`) choose the correct role based on the re
 
 ---
 
+## Layer 4: Personas
+
+Personas are judgment lenses that OWN a class of decision and gate it before
+execution. They are internal and auto-engaged by `hyper`.
+
+| Persona | Owns | Gate |
+|---|---|---|
+| `product-manager` | value + viability product risk | hard for net-new builds, advisory for tweaks, user override always |
+
+## Persona Registry
+
+- `product-manager` - grounds build decisions in validated customer problems
+  (opportunity-vs-solution, four risks, RICE), owns value+viability, hands back
+  to `hyper`. Engaged before design/build on net-new feature/product/scope work.
+
+---
+
 ## The Rationalization Catalog (Read Before Every Session)
 
 These are the exact thoughts you will have when you want to skip a skill. Every one is a bug in your reasoning. Every one has been written down because someone (probably you in a past session) used it to ship bad code.

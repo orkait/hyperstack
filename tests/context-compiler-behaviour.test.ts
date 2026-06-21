@@ -48,6 +48,9 @@ ${"x".repeat(2000)}
 ## Role Registry
 - Role 1
 
+## Persona Registry
+- product-manager - PM gate
+
 ## Routing Summary
 - Route 1
 
@@ -74,6 +77,8 @@ ${"x".repeat(2000)}
   expect(content).toMatch(/invariant-1/);
   expect(content).toMatch(/invariant-2/);
   expect(content.length).toBeLessThan(source.length);
+  expect(content).toMatch(/Personas/);
+  expect(content).toMatch(/product-manager/);
 });
 
 test("generated bootstrap artifact stays in sync with the compiler output", () => {

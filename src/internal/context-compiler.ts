@@ -45,6 +45,8 @@ const REQUIRED_BOOTSTRAP_MARKERS = [
   "announce it",
   "hyper",
   "website-builder",
+  "Personas",
+  "product-manager",
   "auto-called",
   "hyper -> website-builder",
 ];
@@ -168,6 +170,7 @@ export function compileUsingHyperstackBootstrap(source: string): { content: stri
   const workflowSkills = compactWorkflowTables(body);
   const instructionPriority = extractInstructionPriority(body);
   const roleRegistry = extractSimpleBullets(extractSection(body, "Role Registry"));
+  const personaRegistry = extractSimpleBullets(extractSection(body, "Persona Registry"));
   const routingSummary = extractSimpleBullets(extractSection(body, "Routing Summary"));
   const allowedTransitions = extractSimpleBullets(extractSection(body, "Allowed Transitions"));
   const disallowedTransitions = extractSimpleBullets(extractSection(body, "Disallowed Transitions"));
@@ -198,6 +201,10 @@ export function compileUsingHyperstackBootstrap(source: string): { content: stri
     "## Internal Roles",
     "- Roles are internal and auto-called. Users do not invoke them directly.",
     ...roleRegistry,
+    "",
+    "## Personas",
+    "- Personas are internal judgment lenses that own and gate a decision class.",
+    ...personaRegistry,
     "",
     "## Routing Summary",
     ...routingSummary,
