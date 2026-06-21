@@ -1,0 +1,15 @@
+# Product metrics - measure outcomes, not output
+
+## North Star Metric (NSM): the ONE metric that best captures the value customers get (nights booked, messages sent, weekly active teams). A leading indicator of sustainable growth - align the org to move it, and pair with 2-4 input metrics that drive it.
+
+## One Metric That Matters (OMTM): at any stage, focus the team on the single metric that matters most right now (it changes by stage and goal).
+
+## OKRs: Objective (qualitative, ambitious, time-boxed) + 2-4 Key Results (measurable OUTCOMES, not tasks). A KR is a result ("activation 20% -> 35%"), never a to-do ("ship feature X").
+
+## HEART (Google) - UX quality: Happiness, Engagement, Adoption, Retention, Task success. For each, define Goals -> Signals -> Metrics.
+
+## AARRR pirate funnel (acquisition / activation / retention / referral / revenue) - find the leakiest stage. (see marketing_get_growth_model)
+
+## Input vs output (leading vs lagging): optimize the INPUT metrics you control (the levers); watch OUTPUT metrics (revenue) as results. Avoid vanity metrics - totals that only go up and do not tie to value.
+
+## Rule: a metric without a target and an owner is decoration. Instrument activation and retention before scaling acquisition.

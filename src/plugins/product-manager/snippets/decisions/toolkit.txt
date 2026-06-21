@@ -1,0 +1,16 @@
+# Decision-making toolkit (make better calls under uncertainty)
+
+## Type 1 vs Type 2 decisions (Bezos) - match speed to reversibility
+- Type 1 / one-way door: hard or impossible to reverse. Decide carefully, more data, senior eyes.
+- Type 2 / two-way door: easily reversible. Decide FAST, delegate, do not agonize - you can undo it.
+Anti-pattern: treating reversible (Type 2) decisions as if they were irreversible -> slow, over-analyzed. Most product decisions are Type 2.
+
+## The 70% rule (Bezos): decide with ~70% of the info you wish you had. Waiting for 90% is too slow. Be good at being wrong fast and course-correcting.
+
+## Pre-mortem (Gary Klein, via Kahneman): BEFORE committing, imagine it is months later and the project FAILED. Everyone writes why. Surfaces the blind spots and failure modes optimism hides. Run it on every significant build.
+
+## Disagree and commit: once the call is made, even dissenters commit fully. State the disagreement, then row in the same direction. Kills passive resistance and endless re-litigation.
+
+## Decision record (log it): for any non-trivial call write down the decision, date, options considered, the reasoning, the assumptions, and what would make you reverse it. Cheap to write; kills hindsight bias and re-arguing later.
+
+## Decision quality != outcome quality: a good decision (good process + best available info) can have a bad outcome, and vice versa. Judge the process. For repeated bets, use expected value (probability x payoff), not gut.

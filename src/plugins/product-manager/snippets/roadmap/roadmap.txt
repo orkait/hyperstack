@@ -1,0 +1,15 @@
+# Roadmapping - communicate direction without faking precision
+
+## Now / Next / Later - the default modern roadmap. Three horizons of decreasing certainty:
+- Now: committed, in progress (specific).
+- Next: likely next, shaped but not committed (themes).
+- Later: directional bets (problems / outcomes, not features).
+Shows direction without false-precision date promises.
+
+## Outcome-based, not feature-based (Cagan): give teams a prioritized set of PROBLEMS / OUTCOMES to solve, not a dated feature list. A feature roadmap with deadlines is the feature-factory anti-pattern.
+
+## Theme-based: organize around customer problems / strategic themes, each tied to an outcome metric.
+
+## GIST (Itamar Gilad): Goals -> Ideas -> Steps -> Tasks. Goals are outcomes; ideas are many and cheap; step-projects test them; tasks execute. Decouples stable direction from disposable features.
+
+## Rules: tie every roadmap item to a goal/outcome; the further out, the fuzzier (problems, not features); revisit continuously - the roadmap is a living bet, not a contract.

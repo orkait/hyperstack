@@ -57,6 +57,11 @@ export const JTBD_DOC: string = snippet("jtbd/jtbd.txt");
 // Rubrics the AGENT applies (ground truth, not a verdict the tool computes).
 export const OPPORTUNITY_RUBRIC_DOC: string = snippet("rubrics/opportunity-vs-solution.txt");
 export const JOB_CRITERIA_DOC: string = snippet("rubrics/job-criteria.txt");
+export const PRIORITIZATION_DOC: string = snippet("prioritization/frameworks.txt");
+export const DECISION_TOOLKIT_DOC: string = snippet("decisions/toolkit.txt");
+export const MVP_DOC: string = snippet("scope/mvp.txt");
+export const ROADMAP_DOC: string = snippet("roadmap/roadmap.txt");
+export const METRICS_DOC: string = snippet("metrics/metrics.txt");
 
 // --- The one legitimate piece of logic: a deterministic STRUCTURE gate. ---
 // This does NOT judge whether the value/viability reasoning is good (that is the
