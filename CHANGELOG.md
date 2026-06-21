@@ -2,6 +2,17 @@
 
 All notable changes to Hyperstack are documented here. Format follows Keep a Changelog; versioning is SemVer.
 
+## [1.2.0] - 2026-06-22
+
+### Added
+- **Personas (Layer 4)**: a new `personas/` vertical of domain-expert lenses that `hyper` auto-engages, in two modes - **gate** (owns a risk and blocks) and **capability** (produces domain output). Manifest schema + registry (`src/personas/`), compiled into the runtime bootstrap.
+- **`product-manager` persona** (gate): owns the value+viability product risks Hyperstack left unowned. 15 ground-truth MCP tools (four-risks, JTBD, discovery, opportunity-vs-solution + job rubrics, RICE + prioritization MoSCoW/Kano/ICE/WSJF, MVP/scope-cutting, decision toolkit type-1/2 + pre-mortem, roadmapping, metrics, product-sense) + the `pm-gate` skill (tiered: hard for net-new, advisory for tweaks, user override).
+- **`marketing` persona** (capability): does product marketing for any brand. 17 ground-truth MCP tools over a 25-snippet corpus (VoC, positioning Dunford+ICP+differentiation, messaging StoryBrand+value-prop, copy formulas+hooks+Schwartz-awareness+Cialdini+landing, brand archetypes+Byron-Sharp+category, GTM motions+Traction-channels+AARRR/loops+lifecycle+pricing+launch, anti-patterns) + a brief assembler + the `marketing` skill.
+
+### Changed
+- Plugin set 13 -> 15 (`product-manager`, `marketing`); tools ~82 -> 114; skills 24 -> 26. Bootstrap Layer 4 (Personas) compiled in.
+- All manifest versions reconciled to 1.2.0 (package.json, marketplace, plugin, cursor, gemini-extension).
+
 ## [1.1.0] - 2026-06-15
 
 ### Added

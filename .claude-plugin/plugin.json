@@ -2,7 +2,7 @@
   "name": "hyperstack",
   "displayName": "Hyperstack",
   "description": "Disciplined MCP server + skill system. 12 plugins and 80 tools covering designer (6 personalities, 13 page templates, 9 presets), shadcn/ui, design tokens, ui/ux, React Flow v12, Motion v12, Lenis, React 19, Echo, Go, and Rust. 22 skills with adversarial enforcement: Iron Laws, 1% Rule, rationalization tables, and SessionStart hook injection. Forces your agent to use real docs, real DESIGN.md contracts, and real verification before shipping.",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "author": {
     "name": "Orkait",
     "email": "orkaitsolutions@gmail.com"
