@@ -14,6 +14,7 @@ import { register as getDecisionTools } from "./tools/get-decision-tools.js";
 import { register as getMvpScoping } from "./tools/get-mvp-scoping.js";
 import { register as getRoadmapping } from "./tools/get-roadmapping.js";
 import { register as getMetrics } from "./tools/get-metrics.js";
+import { register as getProductSense } from "./tools/get-product-sense.js";
 
 function register(server: McpServer): void {
   getFourRisks(server);
@@ -30,6 +31,7 @@ function register(server: McpServer): void {
   getMvpScoping(server);
   getRoadmapping(server);
   getMetrics(server);
+  getProductSense(server);
 }
 
 export const productManagerPlugin: Plugin = {

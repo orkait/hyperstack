@@ -15,6 +15,7 @@ import { register as resolveDecision } from "../src/plugins/product-manager/tool
 import { register as getPrioritization } from "../src/plugins/product-manager/tools/get-prioritization.ts";
 import { register as getDecisionTools } from "../src/plugins/product-manager/tools/get-decision-tools.ts";
 import { register as getMvpScoping } from "../src/plugins/product-manager/tools/get-mvp-scoping.ts";
+import { register as getProductSense } from "../src/plugins/product-manager/tools/get-product-sense.ts";
 
 // --- data layer ---
 test("four risks are exactly the canonical four", () => {
@@ -132,4 +133,12 @@ test("get_mvp_scoping includes the riskiest assumption test", async () => {
   const tool = captureTool(getMvpScoping);
   const text = extractTextContent(await tool.invoke({}));
   expect(text).toMatch(/Riskiest Assumption|riskiest assumption/);
+});
+
+test("get_product_sense covers teardowns and customer immersion", async () => {
+  const tool = captureTool(getProductSense);
+  expect(tool.name).toBe("product_manager_get_product_sense");
+  const text = extractTextContent(await tool.invoke({}));
+  expect(text).toMatch(/teardown/i);
+  expect(text).toMatch(/immersion|customer/i);
 });

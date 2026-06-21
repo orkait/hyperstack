@@ -62,6 +62,7 @@ export const DECISION_TOOLKIT_DOC: string = snippet("decisions/toolkit.txt");
 export const MVP_DOC: string = snippet("scope/mvp.txt");
 export const ROADMAP_DOC: string = snippet("roadmap/roadmap.txt");
 export const METRICS_DOC: string = snippet("metrics/metrics.txt");
+export const PRODUCT_SENSE_DOC: string = snippet("product-sense/develop.txt");
 
 // --- The one legitimate piece of logic: a deterministic STRUCTURE gate. ---
 // This does NOT judge whether the value/viability reasoning is good (that is the
