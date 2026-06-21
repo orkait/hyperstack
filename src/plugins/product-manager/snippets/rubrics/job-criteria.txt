@@ -1,0 +1,15 @@
+Judge a JTBD job statement against these 7 criteria yourself (Christensen / Ulwick). This is the rubric, not a pass/fail machine.
+
+A valid job statement:
+1. Is NOT a trend or fad.
+2. Is NOT a vague high-level need ("be productive").
+3. Is NOT tied to one product class or technology.
+4. Does NOT imply a single solution.
+5. States the PROGRESS the person wants to make.
+6. Includes the CONTEXT - the circumstances, external and emotional.
+7. Sits at an appropriate level of abstraction (not too broad, not a feature).
+
+Good:  "When I'm commuting and bored, help me feel productive without needing focus."
+Weak:  "I want a faster app."  (no context, no progress, names a property not a job)
+
+Form: "When [situation], I want to [progress], so I can [outcome]."

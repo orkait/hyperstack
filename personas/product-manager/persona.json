@@ -1,0 +1,13 @@
+{
+  "id": "product-manager",
+  "name": "Product Manager",
+  "version": "0.1.0",
+  "owns": {
+    "risks": ["value", "viability"],
+    "plugin": "product-manager",
+    "skills": ["pm-gate"]
+  },
+  "engaged_by": "hyper",
+  "engages_when": ["net-new feature", "new product", "build request", "scope decision"],
+  "gate_policy": { "net_new": "hard", "tweak": "advisory", "override": "user-explicit" }
+}

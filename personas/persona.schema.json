@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Hyperstack Persona Manifest",
+  "type": "object",
+  "required": ["id", "name", "version", "owns", "engages_when", "gate_policy"],
+  "properties": {
+    "id": { "type": "string", "pattern": "^[a-z][a-z0-9-]*$" },
+    "name": { "type": "string" },
+    "version": { "type": "string" },
+    "owns": {
+      "type": "object",
+      "required": ["risks", "plugin", "skills"],
+      "properties": {
+        "risks": { "type": "array", "items": { "type": "string" } },
+        "plugin": { "type": "string" },
+        "skills": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "engages_when": { "type": "array", "items": { "type": "string" } },
+    "gate_policy": {
+      "type": "object",
+      "required": ["net_new", "tweak", "override"],
+      "properties": {
+        "net_new": { "enum": ["hard", "advisory"] },
+        "tweak": { "enum": ["hard", "advisory"] },
+        "override": { "type": "string" }
+      }
+    }
+  }
+}

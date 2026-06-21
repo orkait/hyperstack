@@ -1,0 +1,349 @@
+{
+  "summary": "Deep research harness — fan-out web searches, fetch sources, adversarially verify claims, synthesize a cited report.",
+  "agentCount": 103,
+  "logs": [
+    "Q: How do strong product managers make high-quality product decisions, and what sep…",
+    "Decomposed into 5 angles: Pillar 1 - Customer/problem grounding & discovery, Pillar 2 - Prioritization frameworks & scope, Pillar 3 - Decision-making under uncertainty & conviction, Failure modes & anti-patterns of weak PMs, Mental models, product sense & frameworks of the best PMs",
+    "Pillar 1 - Customer/problem grounding & discovery: 6 results",
+    "Pillar 2 - Prioritization frameworks & scope: 6 results",
+    "Pillar 3 - Decision-making under uncertainty & conviction: 6 results",
+    "Failure modes & anti-patterns of weak PMs: 6 results",
+    "Mental models, product sense & frameworks of the best PMs: 6 results",
+    "Pillar 3 - Decision-making under uncertainty & conviction: 3 novel (3 filtered)",
+    "Failure modes & anti-patterns of weak PMs: 4 novel (2 filtered)",
+    "Mental models, product sense & frameworks of the best PMs: 2 novel (4 filtered)",
+    "Fetched 21 sources → 94 claims → verifying top 25",
+    "\"An opportunity solution tree is a visual framework…\": 3-0 ✓",
+    "\"Visualizing the discovery/opportunity space preven…\": 3-0 ✓",
+    "\"A concrete test distinguishes a real opportunity f…\": 3-0 ✓",
+    "\"Cagan defines exactly four product risks that stro…\": 3-0 ✓",
+    "\"Responsibility for the four risks is split across …\": 3-0 ✓",
+    "\"Continuous discovery requires engaging with custom…\": 3-0 ✓",
+    "\"PMs must not ask customers directly what they want…\": 3-0 ✓",
+    "\"Cagan argues weak product managers systematically …\": 3-0 ✓",
+    "\"Product discovery is fundamentally a decision-maki…\": 3-0 ✓",
+    "\"The RICE prioritization score is computed as (Reac…\": 3-0 ✓",
+    "\"RICE stands for four distinct scoring factors - Re…\": 3-0 ✓",
+    "\"RICE was created to counteract specific prioritiza…\": 3-0 ✓",
+    "\"Prioritization is fundamentally an act of saying n…\": 3-0 ✓",
+    "\"Product strategy (not the roadmap) is the mechanis…\": 3-0 ✓",
+    "\"Strong product companies decide what to build by p…\": 3-0 ✓",
+    "\"A defining anti-pattern of weak (feature-team) pro…\": 3-0 ✓",
+    "\"A JTBD 'job' is defined as the progress a person w…\": 3-0 ✓",
+    "\"Marty Cagan's core teaching method for product man…\": 3-0 ✓",
+    "\"The source provides an explicit, falsifiable check…\": 3-0 ✓",
+    "\"Jobs to Be Done reframes product decisions around …\": 3-0 ✓",
+    "\"Direct customer feedback questions like 'how can w…\": 3-0 ✓",
+    "\"Christensen's Four Forces of Progress is a codifia…\": 3-0 ✓",
+    "\"JTBD distinguishes a real 'job' from an assumption…\": 1-2 ✗",
+    "\"The LNO framework is a task-prioritization and ant…\": 3-0 ✓",
+    "\"Shreyas Doshi argues that most execution problems …\": 3-0 ✓",
+    "Verify done: 25 claims → 24 confirmed, 1 killed"
+  ],
+  "result": {
+    "question": "How do strong product managers make high-quality product decisions, and what separates good PMs from bad ones? Focus on three pillars: (1) Customer/problem grounding - product discovery, jobs-to-be-done, customer behaviour analysis, user research, distinguishing real needs from assumptions, validation before building; (2) Prioritization and scope - frameworks (RICE, opportunity sizing, Kano, MoSCoW, ICE), MVP definition, scope-cutting, saying no, sequencing/roadmapping; (3) Decision-making and conviction - making opinionated defensible calls under uncertainty, structuring decisions with clear rationale and evidence, product strategy, trade-off reasoning, avoiding generic/hedged decisions. Also cover: the mental models and frameworks the best PMs use, common failure modes and anti-patterns of weak PMs, and how 'product sense' is actually developed. Prioritize authoritative sources (Marty Cagan / SVPG / INSPIRED / EMPOWERED, Lenny Rachitsky, Teresa Torres / continuous discovery, Shreyas Doshi, John Cutler, Melissa Perri, Reforge, Intercom, a16z, classic PM texts). The output will become the ground-truth corpus for a 'product manager' persona/enforcement layer in an AI coding agent system, so emphasize concrete, codifiable frameworks, decision rules, checklists, and red-flag anti-patterns over generic advice.",
+    "summary": "Strong product managers make high-quality decisions by grounding every build choice in validated customer problems, ruthlessly prioritizing a focused set of problems over a long feature list, and making opinionated, evidence-backed calls that explicitly address the four product risks (value, usability, feasibility, viability). The corpus converges on a coherent, codifiable system: discovery is continuous evidence-gathering (weekly customer touchpoints, story-based interviews that never ask customers what they want), prioritization is fundamentally an act of saying no to good ideas mapped against a desired outcome (opportunity solution trees, RICE), and decision-making is principles-first rather than technique-copying. The single sharpest line between good and bad PMs is reactivity vs. vision-driven focus: weak PMs over-index on customer value while avoiding business viability, react to the loudest sales call or support ticket, and ship as many stakeholder features as possible (which Cagan labels \"not a strategy at all\"). Product sense is developed by mastering enduring principles so the PM can judge when each technique applies, and by diagnosing root causes (most \"execution problems\" are really strategy, interpersonal, or culture problems) rather than applying band-aids. The strongest, most enforceable rules in this corpus come from primary sources - Marty Cagan/SVPG, Teresa Torres/Product Talk, and Intercom (RICE's originator) - and are unanimous and current as of 2026.",
+    "findings": [
+      {
+        "claim": "Customer/problem grounding is continuous and evidence-based, not project-based: good discovery teams engage customers AT LEAST WEEKLY so few build decisions are made without customer input, and discovery is fundamentally a decision-making process that includes the customer throughout (not just at the start). Codifiable cadence rule for the persona: enforce a weekly customer-contact touchpoint and flag any build decision lacking customer evidence.",
+        "confidence": "high",
+        "sources": [
+          "https://www.producttalk.org/2021/08/product-discovery/"
+        ],
+        "evidence": "Primary source (Teresa Torres, originator of continuous discovery). Verbatim: 'Good product discovery teams engage with customers at least weekly, minimizing the number of decisions they make without customer input' and 'Product discovery is a decision-making process. Good product discovery includes the customer throughout that process.' Corroborated by IxDF, Product School, Maze, Mind the Product, Headway. Nuance: 'weekly' is an aspirational best-practice benchmark, not an absolute no-exceptions rule.",
+        "vote": "3-0 (claims 6, 8)"
+      },
+      {
+        "claim": "PMs must NOT ask customers directly what they want or need - cognitive biases make opinion-based answers unreliable. Instead, elicit needs, pain points, and desires through specific past-behavior customer STORIES. This is the core story-based-interview rule for distinguishing real needs from assumptions, and a directly enforceable red flag: any requirement justified by 'a customer said they want X' (opinion/hypothetical) rather than an observed story is suspect.",
+        "confidence": "high",
+        "sources": [
+          "https://www.producttalk.org/2021/08/product-discovery/",
+          "https://www.fullstory.com/blog/clayton-christensen-jobs-to-be-done-framework-product-development/"
+        ],
+        "evidence": "Primary (Torres) verbatim: 'We can't simply ask customers what they need or want. Cognitive biases interfere with our customers ability to answer these questions reliably' followed by 'listen for needs, pain points, and desires in the context of specific stories.' Independently reinforced by Rob Fitzpatrick's 'The Mom Test' (avoid opinions/hypotheticals) and the JTBD milkshake case: direct feedback ('how can we improve?') surfaced superficial taste/feature requests, but the real job was occupying a long boring commute - 'they had a long and boring drive to work and they just needed something to do.' Demographics fail to predict intent.",
+        "vote": "3-0 (claims 7, 21)"
+      },
+      {
+        "claim": "The Opportunity Solution Tree is the canonical map from business value to validated solutions: a four-layer hierarchy of (1) desired business OUTCOME at the root, (2) OPPORTUNITY SPACE (customer needs/pains/desires), (3) SOLUTION SPACE, (4) ASSUMPTION TESTS at the bottom. Visualizing the full opportunity space counteracts reactive, anecdote-driven decisions where teams overweight the most recent interview, sales call, or support ticket - letting PMs compare and contrast opportunities instead.",
+        "confidence": "high",
+        "sources": [
+          "https://www.producttalk.org/opportunity-solution-trees/"
+        ],
+        "evidence": "Primary source (Teresa Torres, framework originator). All four layers confirmed verbatim: root = 'desired outcome - the business need that reflects how your team can create business value'; opportunity space = 'customer needs, pain points, and desires'; solution space = 'solutions we are exploring'; assumption tests = 'how we will evaluate which solutions.' Anti-recency mechanism verbatim: 'It is common for product teams to overreact to the most recent customer interview, sales conversation, or support ticket... we are better able to compare and contrast the value of addressing different opportunities.' Corroborated by Shortform, Product School, Amplitude, Maze, Chameleon.",
+        "vote": "3-0 (claims 0, 1)"
+      },
+      {
+        "claim": "A concrete, codifiable test separates a real opportunity from a solution disguised as one: ask 'Is there more than one way to address this?' If only ONE way exists, it is a solution, not an opportunity. This is a directly enforceable red-flag check against premature solution-jumping (e.g. 'I want to go out to eat' is a solution; the underlying 'I don't have time to cook' is the opportunity, satisfiable by takeout, meal-prep, restaurants, etc.).",
+        "confidence": "high",
+        "sources": [
+          "https://www.producttalk.org/opportunity-solution-trees/"
+        ],
+        "evidence": "Primary source verbatim: 'The best way to test if an opportunity is really a solution in disguise is to ask, Is there more than one way to address this opportunity?' Illustrated with the cook/eat example. Corroborated by multiple summaries of Torres's 'Continuous Discovery Habits.' A clean yes/no rule fit for an enforcement layer.",
+        "vote": "3-0 (claim 2)"
+      },
+      {
+        "claim": "Strong teams must address EXACTLY FOUR product risks before building: VALUE (will customers buy / users choose to use it), USABILITY (can users figure out how to use it), FEASIBILITY (can engineers build it with available time/skills/tech), and BUSINESS VIABILITY (does it work for the various parts of the business - legal, sales, finance, marketing, etc.). Cagan deliberately resists a fifth to keep it 'a way of thinking, not a checklist.' This is the master decision-quality checklist for evaluating any product idea.",
+        "confidence": "high",
+        "sources": [
+          "https://www.svpg.com/four-big-risks/"
+        ],
+        "evidence": "Primary (Marty Cagan / SVPG, INSPIRED 2nd ed.) verbatim enumerates all four with definitions matching the claim near word-for-word. The 'exactly four' framing defended in Cagan's 2023 'Product Risk Taxonomy': 'once you get to more than 4, the real worry is that it just becomes a checklist and not a way of thinking.' Corroborated by roadmap.one, Viget, Medium. Foundational and current.",
+        "vote": "3-0 (claim 3)"
+      },
+      {
+        "claim": "Risk ownership is split across the product trio by role: the Product Manager owns VALUE and VIABILITY risk and is accountable for outcomes; the Product Designer owns USABILITY risk and is accountable for the experience; the Lead Engineer owns FEASIBILITY risk and is accountable for delivery. For a PM persona, this scopes exactly what the PM is on the hook for: is it valuable and is it viable for the business.",
+        "confidence": "high",
+        "sources": [
+          "https://www.svpg.com/four-big-risks/"
+        ],
+        "evidence": "Primary (SVPG) verbatim: 'The Product Manager is responsible for the value and viability risks, and overall accountable for the products outcomes. The Product Designer is responsible for the usability risk... The Product Lead Engineer is responsible for the feasibility risk.' Corroborated by Cagan's 'Empowered Product Teams' doctrine. 'Trio' is community shorthand for the three-role structure.",
+        "vote": "3-0 (claim 4)"
+      },
+      {
+        "claim": "A NAMED FAILURE MODE of weak PMs: they systematically over-focus on customer value and under-appreciate, under-estimate, or simply AVOID business viability risk. The four-risks taxonomy exists specifically to correct this gap. Enforcement implication: when a PM's reasoning covers desirability/value but is silent on whether the business can actually sell, support, fund, or legally ship it, flag the missing viability analysis.",
+        "confidence": "high",
+        "sources": [
+          "https://www.svpg.com/four-big-risks/"
+        ],
+        "evidence": "Primary (Cagan) verbatim: 'The business value (viability) risks can be substantial and I find that these are too often under-appreciated and under-estimated (or simply avoided) by the product manager,' and the old model was 'making it too easy for product managers to focus on customer value and overlook business value.' The taxonomy is explicitly framed as the corrective. Minor nuance: Cagan attributes this to 'the product manager' generically (driven by the old mental model) rather than literally labeling them 'weak.'",
+        "vote": "3-0 (claim 5)"
+      },
+      {
+        "claim": "RICE is the canonical comparative prioritization score, computed as (Reach x Impact x Confidence) / Effort, yielding 'total impact per time worked' to rank competing initiatives. The four factors (Reach, Impact, Confidence, Effort) are each estimated SEPARATELY before being combined into one comparable number. RICE was explicitly created to counteract two prioritization failure modes: personal bias toward favorite/pet ideas, and inconsistent, non-comparable decisions across diverse projects.",
+        "confidence": "high",
+        "sources": [
+          "https://www.intercom.com/blog/rice-simple-prioritization-for-product-managers/"
+        ],
+        "evidence": "Primary source = Intercom, the ORIGINATOR of RICE (built by Sean McBride). Verbatim: 'RICE Score Formula: (Reach x Impact x Confidence) / Effort. The resulting score measures total impact per time worked.' Failure modes verbatim: 'satisfying to work on pet ideas you would use yourself, instead of projects with broad reach' and the difficulty 'consistently combining and comparing these factors.' Corroborated by ProductPlan, Product School, Tempo, Ducalis, Whatfix. Caveat: critics (Dovetail, Medium) note inputs remain gameable (effort sandbagging, confidence inflation) - RICE structures consistency rather than mechanically enforcing it.",
+        "vote": "3-0 (claims 9, 10, 11)"
+      },
+      {
+        "claim": "Product STRATEGY (not the roadmap) is the mechanism that decides WHICH problems to solve now, and it works by focusing on a FEW critical business levers - because most companies dilute their efforts by doing too many things at once. Prioritization is fundamentally an act of SAYING NO: focus means rejecting the hundred other good ideas, not just selecting the chosen ones. Enforcement: a 'strategy' that is a long list of everything is a non-strategy; force concentration on 2-3 levers and explicit rejection of the rest.",
+        "confidence": "high",
+        "sources": [
+          "https://www.svpg.com/changing-how-you-decide-which-problems-to-solve/"
+        ],
+        "evidence": "Primary (SVPG / Cagan + Jon Moore) verbatim: 'the product strategy is how we identify the most important problems to solve now... begins by focusing on the most critical areas for business success. Most companies try to do too many things at once, and end up diluting their efforts... on the true levers for the business.' Saying-no principle anchored to authenticated Steve Jobs WWDC 1997 quote: 'focus... means saying no to the hundred other good ideas' (corroborated Farnam Street, CNBC, WWDC transcript). Cagan separately opposes feature-roadmaps, giving teams 'a prioritised set of business problems to solve.' Note: primary URL returned HTTP 403; quotes confirmed via multiple independent renderings.",
+        "vote": "3-0 (claims 12, 13)"
+      },
+      {
+        "claim": "The defining anti-pattern of weak/reactive product organizations: they REACT to sales opportunities, competitors, customer requests, and price pressure instead of pursuing a customer-centric product vision; and in most feature-team companies the de facto 'strategy' is to ship as many stakeholder features as possible - 'which is to say, there really isn't a product strategy at all.' These are the highest-value codifiable red flags for distinguishing strong from weak PM behavior.",
+        "confidence": "high",
+        "sources": [
+          "https://www.svpg.com/changing-how-you-decide-which-problems-to-solve/"
+        ],
+        "evidence": "Primary (SVPG) verbatim: 'So many companies spend their time reacting - reacting to new sales opportunities, reacting to competitors offerings, reacting to customer requests, and reacting to price pressure... in strong product companies, while they care about these factors, they are not driven by them. What drives them is the pursuit of a product vision.' And: 'in most feature-team companies, the product strategy is literally to try to deliver as many features as possible for the different stakeholders. Which is to say, there really isn't a product strategy at all' (verified verbatim via Jina reader + independent search). Consistent across INSPIRED/EMPOWERED/TRANSFORMED. Minor counter-nuance: some commentators argue Cagan's feature-team definition is overstated and stakeholders are partners/constraints, not to be dismissed.",
+        "vote": "3-0 (claims 14, 15)"
+      },
+      {
+        "claim": "Product sense / PM craft is developed PRINCIPLES-FIRST, not techniques-first. A solid grasp of enduring principles is what gives a PM the mental model to judge WHEN a given technique applies and when it does not, and to evaluate new techniques as they emerge. Techniques churn constantly; principles endure. This is presented as the central differentiator between strong PMs and those who merely copy techniques - directly relevant to building a persona that reasons from fundamentals rather than pattern-matching trendy frameworks.",
+        "confidence": "high",
+        "sources": [
+          "https://www.svpg.com/principles/"
+        ],
+        "evidence": "Primary (Cagan / SVPG) verbatim: 'when a person reaches the point that they have a solid understanding of the principles, they develop a good mental model for when each technique is useful and appropriate, and when it is not. Further, as new techniques emerge, they are able to quickly assess the potential value of the technique.' Also 'while the techniques change fairly constantly, the underlying principles endure.' Caveat: the explicit 'strong vs weak PM' contrast is the claimant's faithful gloss, not literal essay text. Note: canonical URL returned 403; verified via AgileAus mirror + multiple searches.",
+        "vote": "3-0 (claim 16)"
+      },
+      {
+        "claim": "Jobs-To-Be-Done reframes product decisions around the JOB a customer 'hires' a product to accomplish (intent/causation) rather than around demographics, which fail to predict purchasing intent. A JTBD 'job' is the PROGRESS a person wants to make under specific circumstances - a process, not a single action - and includes FUNCTIONAL, EMOTIONAL, and SOCIAL dimensions. The operative distinction from a generic feature request is that a job captures progress + context across all three dimensions, not a discrete asked-for feature.",
+        "confidence": "high",
+        "sources": [
+          "https://gopractice.io/product/jobs-to-be-done-the-theory-and-the-frameworks/",
+          "https://www.fullstory.com/blog/clayton-christensen-jobs-to-be-done-framework-product-development/"
+        ],
+        "evidence": "gopractice (secondary) verbatim: 'A job is the progress a person wants to achieve under specific circumstances. It isn't a single action but a process.' Backed by PRIMARY sources: Christensen Institute ('the progress they're trying to make... functional, social, and emotional dimensions') and 'Competing Against Luck' (2016). 'Hire' framing + demographics critique verbatim in FullStory and Christensen's HBR 2005 'Marketing Malpractice': demographics give correlation not causation - 'Demographics fail to predict intent.' Minor nuance: the Ulwick ODI school treats emotional/social as separate jobs rather than dimensions of one; claim states the mainstream Christensen lineage.",
+        "vote": "3-0 (claims 17, 20)"
+      },
+      {
+        "claim": "Christensen's Four Forces of Progress is a codifiable switching predictor: two PUSH forces drive change (F1 frustration with the status quo, F2 attraction to the new product) and two RESISTANCE forces oppose it (F3 anxiety of learning the new, F4 habit/comfort of the current solution). A switch happens ONLY when Push + Pull > Anxiety + Habit. Useful for the persona as a model for predicting adoption and for diagnosing why a 'better' product still fails to win switchers.",
+        "confidence": "high",
+        "sources": [
+          "https://gopractice.io/product/jobs-to-be-done-the-theory-and-the-frameworks/"
+        ],
+        "evidence": "gopractice (secondary) lists F1 push / F2 pull / F3 anxiety / F4 habit. Switching rule corroborated verbatim by learningloop.io and koji.so: 'When Push + Pull > Anxiety + Habit, the switch happens'; also jobstobedone.org (Moesta) and Christensen Institute. Primary grounding: 'Competing Against Luck' (2016). Two minor imprecisions, neither falsifying: the diagram was originated by Bob Moesta & Chris Spiek (~2012) and popularized by Christensen (so 'Christensen's' is loose co-attribution); 'new product' vs canonical 'new solution' is trivial paraphrase.",
+        "vote": "3-0 (claim 18)"
+      },
+      {
+        "claim": "There is an explicit, falsifiable CHECKLIST for whether a job statement is valid: it must NOT be a trend, NOT a high-level need, NOT specific to one product class, must NOT imply a single solution, MUST include both the progress sought and the context (external + emotional), and must sit at the appropriate abstraction level. Directly codifiable as a validator gate for any 'job' or problem statement the persona accepts or emits.",
+        "confidence": "high",
+        "sources": [
+          "https://gopractice.io/product/jobs-to-be-done-the-theory-and-the-frameworks/"
+        ],
+        "evidence": "Verified via direct WebFetch: source contains a 'Checklist for defining a job' with 7 numbered items mapping onto every claim condition (isn't a trend / isn't high-level / isn't one product class / doesn't imply a single solution / includes task+progress AND context external+emotional / appropriate abstraction). Each is a testable yes/no criterion ('falsifiable' is fair). Broader JTBD literature (Christensen Institute, Ulwick/Strategyn, Productboard) corroborates that valid jobs are solution-agnostic, tech-independent, appropriately scoped, with functional+emotional dimensions. Secondary-source quality is sufficient since the claim only asserts the source provides such a checklist.",
+        "vote": "3-0 (claim 19)"
+      },
+      {
+        "claim": "Diagnostic decision rule (Shreyas Doshi): most 'execution problems' are NOT really execution problems - when a team appears to be failing at execution, the root cause is usually a deeper problem being band-aided. IMPORTANT CORPUS CORRECTION: Doshi names THREE roots, not one - STRATEGY, INTERPERSONAL, and CULTURE problems. Good leaders diagnose and fix the root; bad leaders apply band-aids. The persona should state this as 'strategy OR interpersonal OR culture,' not strategy/prioritization alone.",
+        "confidence": "high",
+        "sources": [
+          "https://www.lennysnewsletter.com/p/episode-3-shreyas-doshi"
+        ],
+        "evidence": "Primary (Doshi's own tweet, Oct 2020): 'Most Execution problems are really 1) Strategy problems, or 2) Interpersonal problems, or 3) Culture problems. Good leaders execute well because they understand this. They fix the root problem. Bad leaders struggle because they are always applying band-aids.' Lenny's Podcast topic verbatim: 'Most execution problems are not really execution problems.' SCOPE DEFECT in original claim: it narrowed root cause to strategy/prioritization, dropping interpersonal and culture - corrected here. Core diagnostic (apparent execution failure masks a deeper root) is accurate and primary-sourced.",
+        "vote": "3-0 (claim 22)"
+      },
+      {
+        "claim": "The LNO framework (Shreyas Doshi) is a task-prioritization and anti-procrastination system that classifies work by return on effort into LEVERAGE (10-100x return - invest heavily, pursue excellence/perfectionism), NEUTRAL (~1.1x return - do a solid 'good enough' job), and OVERHEAD (necessary but low return - deliberately do a 'bad'/minimal job). PMs should invest DISPROPORTIONATE effort in high-leverage work rather than treating all tasks equally. Codifiable as an effort-allocation rule: match perfectionism to leverage tier.",
+        "confidence": "high",
+        "sources": [
+          "https://www.lennysnewsletter.com/p/episode-3-shreyas-doshi"
+        ],
+        "evidence": "Primary (Doshi's Coda doc, coda.io/@shreyas/lno-framework): categorizes work by return on effort - Leverage '10x or even 100x return', Neutral '1.0 effort results in 1.1x return', Overhead 'necessary but provide little return' (advice: actively try to do a bad job). Original 2021 X thread: 'all your tasks are not created equal. There are 3 types of PM tasks: 1) Leverage 2) Neutral 3) Overhead.' Anti-procrastination element confirmed in the Coda source (addresses perfectionism-driven avoidance of hard L tasks). Still actively cited 2024-2026.",
+        "vote": "3-0 (claim 23)"
+      }
+    ],
+    "caveats": "SOURCE QUALITY: 18 of 24 confirmed claims rest on PRIMARY sources from the exact authorities the brief prioritized - Marty Cagan/SVPG (4 risks, ownership, viability failure mode, strategy/saying-no, reactive anti-patterns, principles-first), Teresa Torres/Product Talk (continuous discovery, story-based interviews, opportunity solution trees), and Intercom (RICE's originator). These are the strongest, most enforceable rules in the corpus and should carry the most weight in the persona/enforcement layer. The JTBD cluster (5 claims) is anchored to a SECONDARY aggregator (gopractice.io) but is backed throughout by primary Christensen sources (Christensen Institute, HBR 2005, 'Competing Against Luck' 2016), so confidence remains high. The two Shreyas Doshi claims cite a SECONDARY podcast page but are corroborated by Doshi's own primary tweets/Coda docs.\n\nONE MATERIAL CORRECTION (do not propagate the original wording): Claim 22 as originally stated narrowed the root cause of execution problems to 'strategy/prioritization.' Doshi's actual primary source names THREE roots - strategy, interpersonal, AND culture. The persona must use the three-way version; the strategy-only framing is a scope error.\n\nACCESS NOTE: several SVPG URLs (four-big-risks, changing-how-you-decide, principles) returned HTTP 403 to direct fetches; their verbatim quotes were confirmed via independent mirrors (AgileAus), reader proxies (Jina), and multiple WebSearch renderings that agreed word-for-word. The quotes are reliable, but no single first-party page load backs them.\n\nFRAMING NUANCES (faithful but not literal): 'weekly customer contact' is an aspirational best-practice benchmark, not an absolute no-exceptions law (Torres allows context-dependent exceptions). 'Weak PMs' labels in the Cagan claims are interpretive glosses - Cagan attributes the viability-avoidance tendency to 'the product manager' generically, driven by an outdated mental model, not to a named 'weak PM' category. RICE 'enforces' consistency is slightly strong: inputs (effort, confidence) remain gameable, so RICE structures/encourages comparability rather than mechanically guaranteeing it. The Four Forces diagram is co-attributable to Bob Moesta & Chris Spiek, not Christensen alone.\n\nCOVERAGE GAPS: the confirmed corpus is thin on Pillar 2 frameworks beyond RICE and saying-no - Kano, MoSCoW, ICE, opportunity sizing, and explicit MVP/scope-cutting definitions did not survive into confirmed claims, so the persona's prioritization toolkit is currently RICE + opportunity solution trees + Cagan strategy, not the full named set in the brief. Reforge, a16z, John Cutler, and Melissa Perri are not represented among confirmed sources. TIME-SENSITIVITY: all frameworks here are stable, foundational, and still canonical as of 2026; none are at risk of going stale, but the field's tooling references (e.g., AI-assisted discovery) evolve and were not part of this corpus.",
+    "openQuestions": [
+      "How do the best PMs actually DEFINE and CUT an MVP / minimum scope in practice? The confirmed corpus establishes 'saying no' as a principle and RICE for ranking, but contains no codifiable rule for where to draw the MVP line, how to sequence a roadmap, or how to decide what is the smallest valuable slice - a gap for the enforcement layer.",
+      "What are the concrete mechanics of the prioritization frameworks named in the brief but absent from confirmed claims - Kano (delighters vs must-haves), MoSCoW, ICE, and opportunity sizing? Only RICE survived verification; the persona currently lacks rules for the others.",
+      "How is 'product sense' developed beyond the principles-first stance - i.e., what are the repeatable PRACTICES (pattern libraries, deliberate teardowns, mentorship, feedback loops) that the best operators (Doshi, Lenny Rachitsky, Julie Zhuo) prescribe for actually building judgment over time?",
+      "How should a PM structure and document a defensible DECISION under uncertainty (the explicit rationale/evidence template, pre-mortems, decision logs, disagree-and-commit)? The corpus strongly establishes WHY conviction matters and which anti-patterns to avoid, but offers no concrete decision-writeup format to enforce."
+    ],
+    "refuted": [
+      {
+        "claim": "JTBD distinguishes a real 'job' from an assumption/generic need via context: needs are 'fairly universal and don't take into account the person's context,' whereas jobs incorporate the user's specific situation, making context the test for whether a stated need is real.",
+        "vote": "1-2",
+        "source": "https://gopractice.io/product/jobs-to-be-done-the-theory-and-the-frameworks/"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://www.producttalk.org/opportunity-solution-trees/",
+        "quality": "primary",
+        "angle": "Pillar 1 - Customer/problem grounding & discovery",
+        "claimCount": 5
+      },
+      {
+        "url": "https://www.svpg.com/four-big-risks/",
+        "quality": "primary",
+        "angle": "Pillar 1 - Customer/problem grounding & discovery",
+        "claimCount": 5
+      },
+      {
+        "url": "https://gopractice.io/product/jobs-to-be-done-the-theory-and-the-frameworks/",
+        "quality": "secondary",
+        "angle": "Pillar 1 - Customer/problem grounding & discovery",
+        "claimCount": 5
+      },
+      {
+        "url": "https://www.producttalk.org/2021/08/product-discovery/",
+        "quality": "primary",
+        "angle": "Pillar 1 - Customer/problem grounding & discovery",
+        "claimCount": 5
+      },
+      {
+        "url": "https://www.fullstory.com/blog/clayton-christensen-jobs-to-be-done-framework-product-development/",
+        "quality": "secondary",
+        "angle": "Pillar 1 - Customer/problem grounding & discovery",
+        "claimCount": 5
+      },
+      {
+        "url": "https://blog.logrocket.com/product-management/opportunity-solution-trees-definition-examples-how-to/",
+        "quality": "blog",
+        "angle": "Pillar 1 - Customer/problem grounding & discovery",
+        "claimCount": 5
+      },
+      {
+        "url": "https://www.intercom.com/blog/rice-simple-prioritization-for-product-managers/",
+        "quality": "primary",
+        "angle": "Pillar 2 - Prioritization frameworks & scope",
+        "claimCount": 5
+      },
+      {
+        "url": "https://www.lennysnewsletter.com/p/episode-3-shreyas-doshi",
+        "quality": "secondary",
+        "angle": "Pillar 2 - Prioritization frameworks & scope",
+        "claimCount": 5
+      },
+      {
+        "url": "https://www.svpg.com/changing-how-you-decide-which-problems-to-solve/",
+        "quality": "primary",
+        "angle": "Pillar 2 - Prioritization frameworks & scope",
+        "claimCount": 5
+      },
+      {
+        "url": "https://www.productlift.dev/blog/product-prioritization-framework-comparison/",
+        "quality": "blog",
+        "angle": "Pillar 2 - Prioritization frameworks & scope",
+        "claimCount": 5
+      },
+      {
+        "url": "https://www.atlassian.com/agile/product-management/prioritization-framework",
+        "quality": "blog",
+        "angle": "Pillar 2 - Prioritization frameworks & scope",
+        "claimCount": 5
+      },
+      {
+        "url": "https://www.productplan.com/glossary/rice-scoring-model",
+        "quality": "secondary",
+        "angle": "Pillar 2 - Prioritization frameworks & scope",
+        "claimCount": 5
+      },
+      {
+        "url": "https://www.lennyspodcast.com/blog/shreyas-doshi-on-pre-mortems-lno-framework-3-levels-of-product-work-and-prioritization/",
+        "quality": "unreliable",
+        "angle": "Pillar 3 - Decision-making under uncertainty & conviction",
+        "claimCount": 0
+      },
+      {
+        "url": "https://blackboxofpm.com/making-good-decisions-as-a-product-manager-c66ddacc9e2b",
+        "quality": "unreliable",
+        "angle": "Pillar 3 - Decision-making under uncertainty & conviction",
+        "claimCount": 0
+      },
+      {
+        "url": "https://pmctraining.com/articles-and-resources/decision-quality-vs-outcome-quality/",
+        "quality": "secondary",
+        "angle": "Pillar 3 - Decision-making under uncertainty & conviction",
+        "claimCount": 5
+      },
+      {
+        "url": "https://cutlefish.substack.com/p/tbm-852-top-1-product-managers",
+        "quality": "blog",
+        "angle": "Failure modes & anti-patterns of weak PMs",
+        "claimCount": 5
+      },
+      {
+        "url": "https://itamargilad.com/pm-antipatterns/",
+        "quality": "blog",
+        "angle": "Failure modes & anti-patterns of weak PMs",
+        "claimCount": 5
+      },
+      {
+        "url": "https://www.prodpad.com/blog/agile-anti-patterns/",
+        "quality": "blog",
+        "angle": "Failure modes & anti-patterns of weak PMs",
+        "claimCount": 5
+      },
+      {
+        "url": "https://userpilot.com/blog/feature-factory/",
+        "quality": "blog",
+        "angle": "Failure modes & anti-patterns of weak PMs",
+        "claimCount": 5
+      },
+      {
+        "url": "https://www.lennysnewsletter.com/p/product-sense",
+        "quality": "blog",
+        "angle": "Mental models, product sense & frameworks of the best PMs",
+        "claimCount": 5
+      },
+      {
+        "url": "https://www.svpg.com/principles/",
+        "quality": "primary",
+        "angle": "Mental models, product sense & frameworks of the best PMs",
+        "claimCount": 4
+      }
+    ],
+    "stats": {
+      "angles": 5,
+      "sourcesFetched": 21,
+      "claimsExtracted": 94,
+      "claimsVerified": 25,
+      "confirmed": 24,
+      "killed": 1,
+      "afterSynthesis": 16,
+      "urlDupes": 3,
+      "budgetDropped": 6,
+      "agentCalls": 103
+    }
+  }
+}

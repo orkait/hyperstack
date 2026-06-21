@@ -7,6 +7,8 @@
 - `website-builder -> hyper`
 - `hyper -> existing Hyperstack skills/plugins`
 - `hyper -> verification and delivery gates`
+- `hyper -> product-manager persona gate (net-new build/scope)`
+- `product-manager persona gate -> hyper`
 
 ## Disallowed
 
@@ -14,6 +16,8 @@
 - `website-builder -> ship`
 - `website-builder -> deliver`
 - `website-builder` claiming final completion directly
+- `product-manager persona gate -> ship` (must hand back to hyper)
+- `product-manager persona gate -> deliver`
 
 ## V1 Principle
 

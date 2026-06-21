@@ -1,0 +1,15 @@
+Apply this test yourself to any build request (Torres). This is the rubric, not a verdict.
+
+ASK: "Is there more than one way to address this?"
+- Only ONE way exists -> it is a SOLUTION in disguise. Reframe to the underlying need.
+- Several ways exist -> it is an OPPORTUNITY. Keep it.
+
+Also check: does the statement name a MECHANISM (a verb of construction - add / build / integrate / implement - or a specific UI element) or a desired OUTCOME / need? Run the 5 Whys to reach the need beneath a proposed solution.
+
+Reframe examples (solution -> opportunity):
+- "add a dark mode toggle"     -> "reduce eye strain when using the app in low light"
+- "build a Slack integration"  -> "let users act on alerts without leaving their workflow"
+- "add a CSV export button"    -> "let users get their data into their own analysis tools"
+- "implement SSO"              -> "let enterprise users sign in without managing another password"
+
+Note: "add", "build", "integrate" are not always solutions - "build trust with new users" is a need. Judge by structure (mechanism vs outcome), not by keywords. You make the call.

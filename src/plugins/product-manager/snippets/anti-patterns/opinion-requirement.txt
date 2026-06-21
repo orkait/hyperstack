@@ -1,0 +1,1 @@
+A requirement justified by 'a customer said they want X' (opinion/hypothetical) instead of an observed past-behaviour story.

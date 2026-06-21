@@ -78,6 +78,10 @@ Hyperstack is a **Three-Layer Ecosystem**:
 - `hyper` - conductor, classifier, gatekeeper, verifier, and delivery owner
 - `website-builder` - first specialist for website-facing design and
 
+## Personas
+- Personas are internal judgment lenses that own and gate a decision class.
+- `product-manager` - grounds build decisions in validated customer problems
+
 ## Routing Summary
 - Every request enters through `hyper`
 - `hyper` inspects the workspace first: package manifests, dependency signals,

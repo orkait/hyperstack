@@ -41,5 +41,6 @@ export const SOURCES: PluginSource[] = [
   { plugin: "ui-ux", editorial: true, skip: false, skills: [], packages: [] },
   { plugin: "designer", editorial: true, skip: false, skills: ["designer"], packages: [] },
   { plugin: "optimizer", editorial: true, skip: false, skills: ["optimizer"], packages: [] },
+  { plugin: "product-manager", editorial: true, skip: false, skills: ["pm-gate"], packages: [] },
   { plugin: "hyperstack", editorial: false, skip: true, skills: [], packages: [] },
 ];
