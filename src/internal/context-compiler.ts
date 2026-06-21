@@ -203,7 +203,7 @@ export function compileUsingHyperstackBootstrap(source: string): { content: stri
     ...roleRegistry,
     "",
     "## Personas",
-    "- Personas are internal judgment lenses that own and gate a decision class.",
+    "- Personas are internal domain-expert lenses (gate or capability) that hyper auto-engages by domain.",
     ...personaRegistry,
     "",
     "## Routing Summary",

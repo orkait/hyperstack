@@ -1,0 +1,13 @@
+# StoryBrand SB7 (Donald Miller) - the customer is the hero, the brand is the guide
+
+Cast the message as a story where the CUSTOMER is the hero (never the brand):
+1. A Character (the customer) who wants something.
+2. has a Problem - on 3 levels: external (the tangible problem), internal (how it makes them feel), philosophical (why it is just plain wrong).
+3. meets a Guide (your brand) who shows empathy + authority.
+4. who gives them a Plan (clear, simple steps to buy and succeed).
+5. and Calls them to Action (a direct CTA + a transitional CTA for the not-ready).
+6. that helps them avoid Failure (the stakes - what is at risk if they do nothing).
+7. and ends in Success (the transformation - who they become).
+
+Rule: the brand is the GUIDE, not the hero. Lead with the customer's want + problem, not your features.
+One-liner template: "Most [customers] struggle with [problem]. We offer [solution] so you can [success]."

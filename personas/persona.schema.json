@@ -2,23 +2,27 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "Hyperstack Persona Manifest",
   "type": "object",
-  "required": ["id", "name", "version", "owns", "engages_when", "gate_policy"],
+  "required": ["id", "name", "version", "owns", "engages_when"],
   "properties": {
     "id": { "type": "string", "pattern": "^[a-z][a-z0-9-]*$" },
     "name": { "type": "string" },
     "version": { "type": "string" },
+    "mode": { "enum": ["gate", "capability"], "description": "gate owns a risk and blocks; capability produces domain output" },
+    "engaged_by": { "type": "string" },
     "owns": {
       "type": "object",
-      "required": ["risks", "plugin", "skills"],
+      "required": ["plugin", "skills"],
       "properties": {
-        "risks": { "type": "array", "items": { "type": "string" } },
         "plugin": { "type": "string" },
-        "skills": { "type": "array", "items": { "type": "string" } }
+        "skills": { "type": "array", "items": { "type": "string" } },
+        "risks": { "type": "array", "items": { "type": "string" }, "description": "gate personas only" },
+        "capabilities": { "type": "array", "items": { "type": "string" }, "description": "capability personas only" }
       }
     },
     "engages_when": { "type": "array", "items": { "type": "string" } },
     "gate_policy": {
       "type": "object",
+      "description": "gate personas only",
       "required": ["net_new", "tweak", "override"],
       "properties": {
         "net_new": { "enum": ["hard", "advisory"] },

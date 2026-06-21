@@ -1,0 +1,13 @@
+# Landing page anatomy (conversion order)
+
+1. Hero: headline (the #1 value/outcome) + subhead (who it is for + how) + primary CTA + a hero visual/proof. Pass the 5-second test: a stranger instantly gets what it is, who it is for, why care.
+2. Social-proof bar: logos / user counts / ratings directly under the hero.
+3. Problem -> solution: name the pain in the customer's words, then show the mechanism.
+4. Benefits, not features: FAB - lead each block with the outcome.
+5. How it works: 3 simple steps (the "plan" - reduce perceived effort).
+6. Proof: testimonials, case studies, data, before/after.
+7. Objection handling / FAQ: kill the top 3-5 reasons NOT to buy (price, risk, switching cost, trust).
+8. Risk reversal: guarantee / free trial / "cancel anytime".
+9. Final CTA: restate the core value + the single action.
+
+Above the fold must answer: what is it, who is it for, what do I get, what do I do next. One primary action per page.

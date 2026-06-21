@@ -1,0 +1,21 @@
+# Prioritization frameworks - pick the one that fits the decision. (RICE is the default scorer; here are the rest.)
+
+## MoSCoW - scope a release
+Must have (non-negotiable, it breaks without it) / Should have (high value, not blocking) / Could have (nice, first to drop under pressure) / Won't have (explicitly out, this release). Forces the "Won't" - the discipline of saying no out loud.
+
+## Kano model (Noriaki Kano) - classify features by how they drive satisfaction
+- Basic / must-be: expected; absent = anger, present = neutral. Table stakes.
+- Performance / linear: more is better; satisfaction scales with how well you do it.
+- Excitement / delighters: unexpected; present = delight, absent = no harm. The differentiators.
+- Indifferent: nobody cares - cut it.
+- Reverse: its presence actively annoys some users.
+Rule: cover all Basics, compete on Performance, win on a few Excitement. Delighters decay into Basics over time.
+
+## ICE = Impact x Confidence x Ease. Fast and rough; good for experiment/growth backlogs (highest-learning, lowest-effort first).
+
+## WSJF (Weighted Shortest Job First, SAFe) = Cost of Delay / Job Duration. Do high-cost-of-delay short jobs first.
+- Cost of Delay = user/business value + time criticality + risk-reduction / opportunity-enablement.
+
+## Opportunity scoring (Ulwick / ODI) - find gaps where IMPORTANCE is high and SATISFACTION is low. That gap is the underserved opportunity. Score ~ importance + (importance - satisfaction).
+
+## Rule: prioritize against a desired OUTCOME, not a feature wish-list. Prioritization is the act of saying no to good ideas.

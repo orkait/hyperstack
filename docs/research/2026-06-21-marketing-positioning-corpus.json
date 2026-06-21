@@ -1,0 +1,351 @@
+{
+  "summary": "Deep research harness — fan-out web searches, fetch sources, adversarially verify claims, synthesize a cited report.",
+  "agentCount": 109,
+  "logs": [
+    "Q: How do the best product marketers and brand strategists do POSITIONING, MESSAGIN…",
+    "Decomposed into 6 angles: Positioning frameworks (primary source, step-by-step), Messaging & value proposition (StoryBrand SB7, VPC, strategic narrative), Category design & differentiation POV, Evidence-based brand growth laws (Sharp, Binet & Field), Brand archetypes, voice, segmentation & STP templates, Anti-patterns & behavioral positioning (mistakes, Rory Sutherland)",
+    "Positioning frameworks (primary source, step-by-step): 6 results",
+    "Category design & differentiation POV: 6 results",
+    "Evidence-based brand growth laws (Sharp, Binet & Field): 6 results",
+    "Evidence-based brand growth laws (Sharp, Binet & Field): 4 novel (2 filtered)",
+    "Messaging & value proposition (StoryBrand SB7, VPC, strategic narrative): 6 results",
+    "Messaging & value proposition (StoryBrand SB7, VPC, strategic narrative): 4 novel (2 filtered)",
+    "Anti-patterns & behavioral positioning (mistakes, Rory Sutherland): 6 results",
+    "Anti-patterns & behavioral positioning (mistakes, Rory Sutherland): 2 novel (4 filtered)",
+    "Brand archetypes, voice, segmentation & STP templates: 6 results",
+    "Brand archetypes, voice, segmentation & STP templates: 4 novel (2 filtered)",
+    "Fetched 26 sources → 122 claims → verifying top 25",
+    "\"Positioning is defined as making a product a leade…\": 3-0 ✓",
+    "\"April Dunford's positioning methodology decomposes…\": 3-0 ✓",
+    "\"The positioning process runs in a specific ordered…\": 3-0 ✓",
+    "\"April Dunford's positioning framework consists of …\": 3-0 ✓",
+    "\"Dunford's framework defines three distinct 'styles…\": 3-0 ✓",
+    "\"Raskin frames the company story as identical to co…\": 3-0 ✓",
+    "\"The Value Proposition Canvas has two sides: the Cu…\": 3-0 ✓",
+    "\"Customer Jobs are defined as the functional, socia…\": 3-0 ✓",
+    "\"Andy Raskin's strategic narrative method leads wit…\": 1-2 ✗",
+    "\"The book ships 11 named, fill-in-the-blank exercis…\": 3-0 ✓",
+    "\"Category Design's core thesis is 'different, not b…\": 3-0 ✓",
+    "\"'Fit' (problem-solution / product-market fit) is a…\": 0-3 ✗",
+    "\"The book provides a codifiable category-creation m…\": 3-0 ✓",
+    "\"Play Bigger's category design methodology follows …\": 1-2 ✗",
+    "\"The central thesis of category design is that a co…\": 3-0 ✓",
+    "\"The Category Design Scorecard codifies exactly fiv…\": 3-0 ✓",
+    "\"A defining trait of category designers is having a…\": 3-0 ✓",
+    "\"Tone of voice can be codified along four measurabl…\": 3-0 ✓",
+    "\"Maximum profit requires running BOTH brand buildin…\": 3-0 ✓",
+    "[v1:JTBD directs marketers to align product ] failed: You've hit your session limit · resets 1:10am (Asia/Kolkata)",
+    "[v2:JTBD directs marketers to align product ] failed: You've hit your session limit · resets 1:10am (Asia/Kolkata)",
+    "[v2:JTBD prescribes outcome-based segmentati] failed: You've hit your session limit · resets 1:10am (Asia/Kolkata)",
+    "[v1:JTBD prescribes outcome-based segmentati] failed: You've hit your session limit · resets 1:10am (Asia/Kolkata)",
+    "[v2:The recommended process for defining bra] failed: You've hit your session limit · resets 1:10am (Asia/Kolkata)",
+    "\"The recommended process for defining brand voice i…\": 2-0 (1 abstain) ✓",
+    "[v0:JTBD prescribes outcome-based segmentati] failed: You've hit your session limit · resets 1:10am (Asia/Kolkata)",
+    "\"JTBD prescribes outcome-based segmentation (groupi…\": 0-0 (3 abstain) ✗",
+    "\"The optimal marketing budget split is approximatel…\": 2-1 ✓",
+    "[v2:JTBD codifies customer needs as measurab] failed: You've hit your session limit · resets 1:10am (Asia/Kolkata)",
+    "[v0:JTBD directs marketers to align product ] failed: You've hit your session limit · resets 1:10am (Asia/Kolkata)",
+    "\"JTBD directs marketers to align product developmen…\": 0-0 (3 abstain) ✗",
+    "[v0:JTBD codifies customer needs as measurab] failed: You've hit your session limit · resets 1:10am (Asia/Kolkata)",
+    "[v0:Emotional advertising campaigns drive la] failed: You've hit your session limit · resets 1:10am (Asia/Kolkata)",
+    "[v2:Emotional advertising campaigns drive la] failed: You've hit your session limit · resets 1:10am (Asia/Kolkata)",
+    "\"Emotional advertising campaigns drive larger long-…\": 1-0 (2 abstain) ✗",
+    "[v1:JTBD codifies customer needs as measurab] failed: You've hit your session limit · resets 1:10am (Asia/Kolkata)",
+    "\"JTBD codifies customer needs as measurable 'desire…\": 0-0 (3 abstain) ✗",
+    "Verify done: 25 claims → 18 confirmed, 7 killed",
+    "[synthesize] failed: You've hit your session limit · resets 1:10am (Asia/Kolkata)"
+  ],
+  "result": {
+    "question": "How do the best product marketers and brand strategists do POSITIONING, MESSAGING, and BRAND STRATEGY? Cover concretely with codifiable frameworks: (1) Positioning - April Dunford's framework from Obviously Awesome (competitive alternatives, unique attributes, value/benefits, target market characteristics, market category, relevant trends) and her 10-step positioning process; Ries & Trout positioning principles; category design (Play Bigger / Category Pirates - the POV, the category narrative). (2) Messaging - Donald Miller StoryBrand SB7 framework (character, problem with 3 levels, guide, plan, call to action, failure, success); value proposition design (Osterwalder/Strategyn value proposition canvas - jobs/pains/gains, pain relievers, gain creators); messaging hierarchy and message pillars; the 'why now' narrative; Andy Raskin strategic narrative. (3) Segmentation & targeting - STP (segmentation-targeting-positioning), ICP definition, jobs-to-be-done applied to marketing. (4) Brand strategy - Mark & Pearson's 12 brand archetypes (the hero, the sage, the outlaw, etc. with traits/voice each); Byron Sharp 'How Brands Grow' evidence-based laws (mental availability, physical availability, distinctive brand assets, light buyers, double jeopardy law); Binet & Field 'The Long and the Short of It' (60/40 brand-vs-activation, emotional vs rational); Rory Sutherland behavioral/psychological positioning; brand voice and personality definition. Emphasize CODIFIABLE: step-by-step templates, fill-in-the-blank structures, named laws/principles, checklists, decision rules, and ANTI-PATTERNS (common positioning/branding mistakes). Prioritize primary sources (named authors' books, blogs, talks). The output will become the ground-truth corpus for a marketing persona/agent in an AI coding-agent system that must position and message ANY brand from scratch, so favor concrete reusable structures over generic advice.",
+    "summary": "Synthesis step was skipped or failed — returning 18 verified claims unmerged.",
+    "findings": [],
+    "confirmed": [
+      {
+        "claim": "April Dunford's positioning framework consists of five named components: (1) Competitive Alternatives, (2) Key Unique Attributes, (3) Value (benefits the attributes enable), (4) Target Customer Segmentation, and (5) Market Category.",
+        "source": "https://www.aprildunford.com/post/a-quickstart-guide-to-positioning",
+        "quote": "1. **Competitive Alternatives** - What customers would do if your solution didn't exist\n2. **Key Unique Attributes** - Differentiated features or capabilities your product has that alternatives lack\n3. **Value** - The benefits those capabilities enable for buyers\n4. **Target Customer Segmentation** - Customers that care most about your differentiated value\n5. **Market Category** - The context positioning your product so value is obvious to targets",
+        "vote": "3-0"
+      },
+      {
+        "claim": "The positioning process runs in a specific ordered sequence: start with competitive alternatives, then derive unique attributes, then translate attributes into value via 'So what for customers?', then define the target customers who care most about that value, then select the market category last.",
+        "source": "https://www.aprildunford.com/post/a-quickstart-guide-to-positioning",
+        "quote": "1. Start with **Competitive Alternatives**\n2. Identify **Key Unique Attributes** (what you have that alternatives lack)\n3. Determine **Value** (ask \"So what for customers?\")\n4. Define **Target Customers** (who cares most about this value?)\n5. Select **Market Category** (\"the context we position our product\")",
+        "vote": "3-0"
+      },
+      {
+        "claim": "Positioning is defined as making a product a leader at delivering something a well-defined customer set cares about, and is explicitly distinct from messaging, taglines, and brand story/vision/why.",
+        "source": "https://www.aprildunford.com/post/a-quickstart-guide-to-positioning",
+        "quote": "\"Positioning defines how your product is a leader at delivering something that a well-defined set of customers cares a lot about.\"",
+        "vote": "3-0"
+      },
+      {
+        "claim": "April Dunford's positioning methodology decomposes positioning into five component pieces, and a core part of the method is understanding how those pieces relate to each other.",
+        "source": "https://www.aprildunford.com/books",
+        "quote": "How to break positioning down into five component pieces ... How the component pieces relate to each other and why that matters",
+        "vote": "3-0"
+      },
+      {
+        "claim": "Dunford's framework defines three distinct 'styles of positioning' as a decision tool for choosing the best market/category for a product.",
+        "source": "https://www.aprildunford.com/books",
+        "quote": "How to choose the best market for your product, including three styles of positioning",
+        "vote": "3-0"
+      },
+      {
+        "claim": "Raskin frames the company story as identical to company strategy - the narrative is not decoration but the strategic backbone that aligns sales, marketing, fundraising, product, and recruiting.",
+        "source": "https://andyraskin.com/",
+        "quote": "The company story _is_ the company strategy. (Ben Horowitz, Andreessen Horowitz)",
+        "vote": "3-0"
+      },
+      {
+        "claim": "The Value Proposition Canvas has two sides: the Customer Profile (Customer Jobs, Customer Pains, Customer Gains) and the Value Map (Products & Services, Pain Relievers, Gain Creators), where Pain Relievers map to pains and Gain Creators map to gains.",
+        "source": "https://www.strategyzer.com/library/value-proposition-design-book-summary",
+        "quote": "Pain Relievers — \"how your products and services alleviate specific customer pains\"; Gain Creators — \"how your offerings create positive outcomes customers desire\"",
+        "vote": "3-0"
+      },
+      {
+        "claim": "Customer Jobs are defined as the functional, social, and emotional tasks customers try to accomplish, making 'jobs' a three-dimensional construct rather than purely functional.",
+        "source": "https://www.strategyzer.com/library/value-proposition-design-book-summary",
+        "quote": "Customer Jobs — \"functional, social, and emotional tasks customers try to accomplish\"",
+        "vote": "3-0"
+      },
+      {
+        "claim": "Category Design's core thesis is 'different, not better': success comes from creating and dominating a new/different category rather than competing on incremental improvement. The book codifies this as a named exercise ('Be Different, Not Better') and a discipline that lets a company capture the majority of a category's value (citing Play Bigger research that one company earns 76% of total market-cap value created in tech categories).",
+        "source": "https://www.amazon.com/Laws-Category-Design-Somewhere-Different/dp/195693457X",
+        "quote": "Category Design is purpose-built for people who want to make an experiential difference, not an incremental better. Category Design is a business discipline that helps companies earn the majority of the value created in a specific new or different category of products or services. (Primary research on Category Design in Play Bigger... shows that in technology categories, one company earns 76% of the total market cap value created.)",
+        "vote": "3-0"
+      },
+      {
+        "claim": "The book provides a codifiable category-creation methodology built on three named levers - a unique POV (point of view), Languaging, and a marketing strategy called a Lightning Strike - which together make a company the 'Category King or Queen' and make it impossible for competitors to copy.",
+        "source": "https://www.amazon.com/Laws-Category-Design-Somewhere-Different/dp/195693457X",
+        "quote": "22 Category Design principles that, when combined together, can help you become a Category King or Queen and make it impossible for someone else to \"do what you do\" How to create new categories and redefine existing ones using a unique POV, Languaging, and a powerful marketing strategy called a Lightning Strike",
+        "vote": "3-0"
+      },
+      {
+        "claim": "The book ships 11 named, fill-in-the-blank exercises (a reusable template set) including 'Start Rejecting the Premise', 'Put Your Category First, and Your Brand Second', 'How to Frame, Name, and Claim a Category', 'Be Different, Not Better', and 'How to Find Your Superconsumers' - directly codifying the positioning/category-design workflow.",
+        "source": "https://www.amazon.com/Laws-Category-Design-Somewhere-Different/dp/195693457X",
+        "quote": "You will start applying these principles through 11 in-book exercises: Start Rejecting the Premise How to Find Your Superconsumers Put Your Category First, and Your Brand Second How to Frame, Name, and Claim a Category Be Different, Not Better Create Net-New Demand For Your Category and Company Build Your DAM the Demand Strategy Create Your Digital Air Offerings Figure Out Your Pricing Innovate Your Business Model Find Your WOM Super-Geos",
+        "vote": "3-0"
+      },
+      {
+        "claim": "The central thesis of category design is that a company should design and lead a new category rather than compete in an existing one, because the market does not yet perceive the company's differentiation.",
+        "source": "https://www.playbigger.com/",
+        "quote": "DESIGN THE CATEGORY, CREATE THE CONDITIONS TO WIN... design the category they can lead - and build the belief to make it real.",
+        "vote": "3-0"
+      },
+      {
+        "claim": "The Category Design Scorecard codifies exactly five named indicators that distinguish category designers/creators from companies merely competing in existing categories: (1) Category POV, (2) Future Category Reimagined and Without Compromise, (3) Radically Different Offer + Business Model, (4) The Data Flywheel, (5) Depth & Degree of Customer Outcomes.",
+        "source": "https://lochhead.com/category-design-scorecard/",
+        "quote": "The tool identifies \"five key indicators\" that differentiate category designers from other successful companies.",
+        "vote": "3-0"
+      },
+      {
+        "claim": "A defining trait of category designers is having a clear Category Point of View framed around a large problem treated as a noble cause/purpose, not incremental product positioning.",
+        "source": "https://lochhead.com/category-design-scorecard/",
+        "quote": "\"Category designers...are going after something that they see as a noble cause, a noble purpose, or a giant problem worth solving.\"",
+        "vote": "3-0"
+      },
+      {
+        "claim": "The optimal marketing budget split is approximately 60% brand building and 40% sales activation, identified by maximizing the number of business effects across the IPA case databank.",
+        "source": "https://www.newisnew.lt/wp-content/uploads/2016/07/1.-Les-Binet.pdf",
+        "quote": "Budgets must be balanced ... Optimum mix: ~60% brand, ~40% activation",
+        "vote": "2-1"
+      },
+      {
+        "claim": "Maximum profit requires running BOTH brand building and sales activation together; the 'Both' campaign objective yields a higher profit effect than either brand building alone or activation alone.",
+        "source": "https://www.newisnew.lt/wp-content/uploads/2016/07/1.-Les-Binet.pdf",
+        "quote": "For maximum profit, you need both ... Profit effect ... Brand buiding | Both | Sales activation",
+        "vote": "3-0"
+      },
+      {
+        "claim": "Tone of voice can be codified along four measurable dimensions, each defined by two opposing poles: Formal vs. Casual, Serious vs. Funny, Respectful vs. Irreverent, and Matter-of-fact vs. Enthusiastic. This gives a brand a reusable scoring framework for defining and auditing its voice.",
+        "source": "https://www.nngroup.com/articles/tone-of-voice-dimensions/",
+        "quote": "Formal vs. Casual: 'Is the writing formal? Informal? Casual?' Serious vs. Funny: 'Is the writer trying to be humorous? Or is the subject approached in a serious way?' Respectful vs. Irreverent: 'Does the writer approach the subject in a respectful way? Or does she take an irreverent approach?' Matter-of-fact vs. Enthusiastic: 'Does the writer seem to be enthusiastic about the subject?... Or is the writing dry and matter-of-fact?'",
+        "vote": "3-0"
+      },
+      {
+        "claim": "The recommended process for defining brand voice is to first pick where the brand sits on the four dimensions, then refine with more specific target tone words (e.g. 'playful', 'quirky', 'sarcastic'), and to explicitly choose 'anti-tone' words naming the tones the brand wants to avoid.",
+        "source": "https://www.nngroup.com/articles/tone-of-voice-dimensions/",
+        "quote": "Decide what combination of dimensions makes sense best for your company... Refine your tone strategy by choosing more specific tone target words like 'playful,' 'quirky,' or 'sarcastic.'... Consider choosing anti-tone words. These are the tones that you want to avoid creating.",
+        "vote": "2-0"
+      }
+    ],
+    "refuted": [
+      {
+        "claim": "Andy Raskin's strategic narrative method leads with the customer's future end-state ('the Promised Land') rather than with the product, making the desired customer experience the starting point of the story.",
+        "vote": "1-2",
+        "source": "https://andyraskin.com/"
+      },
+      {
+        "claim": "'Fit' (problem-solution / product-market fit) is achieved when the value proposition addresses the customer's most important pains and gains, with a codifiable target of roughly 50-70% of the most significant pains and gains.",
+        "vote": "0-3",
+        "source": "https://www.strategyzer.com/library/value-proposition-design-book-summary"
+      },
+      {
+        "claim": "Play Bigger's category design methodology follows a named four-stage blueprint: Define the problem, Frame the category, Mobilize the company, Own the market.",
+        "vote": "1-2",
+        "source": "https://www.playbigger.com/"
+      },
+      {
+        "claim": "Emotional advertising campaigns drive larger long-term profit growth than rational campaigns, with the profit gap widening over a 1, 2, and 3+ year horizon; rational and emotional campaigns work differently (rational stronger on short-term activation, emotional stronger on brand effects).",
+        "vote": "1-0",
+        "source": "https://www.newisnew.lt/wp-content/uploads/2016/07/1.-Les-Binet.pdf"
+      },
+      {
+        "claim": "JTBD codifies customer needs as measurable 'desired outcomes' - the metrics customers use to judge success at getting a job done - not vague preferences, which gives marketers concrete, checkable need statements to message against.",
+        "vote": "0-0",
+        "source": "https://strategyn.com/jobs-to-be-done/"
+      },
+      {
+        "claim": "JTBD prescribes outcome-based segmentation (grouping customers by unique sets of unmet needs) as a replacement for demographic, psychographic, or behavioral segmentation, which it claims cannot surface these segments.",
+        "vote": "0-0",
+        "source": "https://strategyn.com/jobs-to-be-done/"
+      },
+      {
+        "claim": "JTBD directs marketers to align product development, messaging, and positioning to the unmet desired outcomes of a target segment, and to align the whole organization around one consistent, problem-focused messaging strategy.",
+        "vote": "0-0",
+        "source": "https://strategyn.com/jobs-to-be-done/"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://www.aprildunford.com/post/a-quickstart-guide-to-positioning",
+        "quality": "primary",
+        "claimCount": 5
+      },
+      {
+        "url": "https://www.heinzmarketing.com/blog/10-step-positioning-process-an-obviously-awesome-book-summary-part-3/",
+        "quality": "secondary",
+        "claimCount": 5
+      },
+      {
+        "url": "https://www.kathirvel.com/guide-april-dunford-positioning-framework/",
+        "quality": "secondary",
+        "claimCount": 5
+      },
+      {
+        "url": "https://www.aprildunford.com/books",
+        "quality": "primary",
+        "claimCount": 5
+      },
+      {
+        "url": "https://readingraphics.com/book-summary-obviously-awesome/",
+        "quality": "secondary",
+        "claimCount": 4
+      },
+      {
+        "url": "https://userlist.com/blog/positioning-overhaul/",
+        "quality": "blog",
+        "claimCount": 5
+      },
+      {
+        "url": "https://medium.com/the-mission/the-greatest-sales-deck-ive-ever-seen-4f4ef3391ba0",
+        "quality": "blog",
+        "claimCount": 5
+      },
+      {
+        "url": "https://andyraskin.com/",
+        "quality": "primary",
+        "claimCount": 5
+      },
+      {
+        "url": "https://www.strategyzer.com/library/value-proposition-design-book-summary",
+        "quality": "primary",
+        "claimCount": 5
+      },
+      {
+        "url": "https://www.creativeo.co/post/storybrand-framework",
+        "quality": "blog",
+        "claimCount": 5
+      },
+      {
+        "url": "https://www.categorypirates.com/post/what-is-category-design",
+        "quality": "blog",
+        "claimCount": 5
+      },
+      {
+        "url": "https://www.amazon.com/Laws-Category-Design-Somewhere-Different/dp/195693457X",
+        "quality": "primary",
+        "claimCount": 5
+      },
+      {
+        "url": "https://www.amazon.com/Category-Design-Toolkit-Frameworks-Dominating/dp/195693412X",
+        "quality": "secondary",
+        "claimCount": 5
+      },
+      {
+        "url": "https://medium.com/firm-narrative/to-create-a-new-category-name-the-new-game-70c2e55edc2e",
+        "quality": "blog",
+        "claimCount": 3
+      },
+      {
+        "url": "https://www.playbigger.com/",
+        "quality": "primary",
+        "claimCount": 4
+      },
+      {
+        "url": "https://lochhead.com/category-design-scorecard/",
+        "quality": "primary",
+        "claimCount": 5
+      },
+      {
+        "url": "https://marketingscience.info/news-and-insights/summary-on-byron-sharps-laws-of-brand-growth-with-examples",
+        "quality": "secondary",
+        "claimCount": 3
+      },
+      {
+        "url": "https://www.alexmurrell.co.uk/summaries/byron-sharp-how-brands-grow",
+        "quality": "blog",
+        "claimCount": 5
+      },
+      {
+        "url": "https://www.alexmurrell.co.uk/summaries/les-binet-and-peter-field-the-long-and-the-short-of-it",
+        "quality": "blog",
+        "claimCount": 5
+      },
+      {
+        "url": "https://www.newisnew.lt/wp-content/uploads/2016/07/1.-Les-Binet.pdf",
+        "quality": "primary",
+        "claimCount": 5
+      },
+      {
+        "url": "https://iconicfox.com.au/brand-archetypes/",
+        "quality": "blog",
+        "claimCount": 5
+      },
+      {
+        "url": "https://www.nngroup.com/articles/tone-of-voice-dimensions/",
+        "quality": "primary",
+        "claimCount": 3
+      },
+      {
+        "url": "https://strategyn.com/jobs-to-be-done/",
+        "quality": "primary",
+        "claimCount": 5
+      },
+      {
+        "url": "https://fullfunnel.io/ideal-customer-profile/",
+        "quality": "blog",
+        "claimCount": 5
+      },
+      {
+        "url": "https://www.42courses.com/blog/home/rory-sutherlands-11-rules-of-alchemy",
+        "quality": "secondary",
+        "claimCount": 5
+      },
+      {
+        "url": "https://strategicmarketingtribe.com/marketing-news/b/positioning-ries-trout-summary-small-business",
+        "quality": "blog",
+        "claimCount": 5
+      }
+    ],
+    "stats": {
+      "angles": 6,
+      "sources": 26,
+      "claims": 122,
+      "verified": 25,
+      "confirmed": 18,
+      "killed": 7,
+      "afterSynthesis": 0
+    }
+  }
+}

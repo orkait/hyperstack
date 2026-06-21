@@ -1,0 +1,13 @@
+# Product launch
+
+## Tier the launch to the news (do not tentpole a minor update)
+- Tier 1 / tentpole - major product or category moment: full narrative, press, event, coordinated channels, exec involvement.
+- Tier 2 / standard - notable feature: blog + email + social + in-app + sales enablement.
+- Tier 3 / soft - minor update: changelog + in-app note.
+
+## Phases
+1. Pre-launch - positioning + narrative locked, assets ready, beta/early access, build a waitlist/audience, brief sales & support.
+2. Launch - coordinate ALL channels in one window: homepage, email, social, PR, Product Hunt/community, in-app. One message, many surfaces.
+3. Post-launch - measure (signups, activation, coverage), follow-up content, nurture, iterate the message on what actually landed.
+
+Rule: a launch is a MESSAGE moment, not a feature dump. Lead with the customer outcome and the "why now", never the feature list.

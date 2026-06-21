@@ -1,0 +1,12 @@
+# Marketing anti-patterns (red flags - catch these in any output)
+
+- Feature-dumping - listing features instead of customer value. Fix: FAB, end every line on the benefit.
+- "We-we" copy - every sentence starts with we/our/I. Fix: make the customer the hero ("you"); use their words.
+- Vague claims - "best-in-class", "world-class", "seamless", "revolutionary" with no proof. Fix: a number, a named customer, a demo.
+- Marketing to everyone - targeting "everyone" so it lands with no one. Fix: pick the segment that cares most.
+- Better, not different - competing on incremental "better" in a crowded category. Fix: reframe the category or own a sub-segment.
+- Copy before positioning - writing words before deciding what you are and who for. Fix: position -> message -> write, in that order.
+- Premature scaling - spending on a channel before it is proven, or scaling before retention works. Fix: Bullseye-test first; fix retention before acquisition.
+- Vanity metrics - optimizing impressions/signups that do not tie to value or revenue. Fix: North Star + AARRR (activation, retention).
+- Jargon over clarity - clever/punny copy the reader must decode. Fix: clarity beats cleverness, always.
+- Out-claiming a tired market - a bigger number nobody believes. Fix: out-mechanism (explain HOW) and identify with the reader.

@@ -1,0 +1,13 @@
+# Go-to-market motions - pick by deal size, complexity, and who decides.
+
+| motion | fits when | engine |
+|---|---|---|
+| Product-led (PLG) | low price, self-serve, fast time-to-value, individual/team adopts | the product IS the funnel: free/trial -> activation -> expansion. Optimize onboarding + the "aha" moment. |
+| Sales-led | high ACV, complex, multi-stakeholder, security/procurement | reps + demos + pilots; marketing feeds pipeline (demand gen, MQL -> SQL). |
+| Marketing-led | mid-market, content + brand drive inbound | content/SEO/ads build demand, light-touch sales closes. |
+| Community-led | developer / prosumer / passion categories | community, advocacy, and word of mouth drive adoption. |
+
+## Rules
+- Short time-to-value + low price -> PLG. High price + buying committee -> sales-led.
+- Do not bolt enterprise sales onto a product nobody activates in; do not put PLG friction in front of a $100k deal.
+- The motion must match the product: a self-serve product needs self-serve GTM.

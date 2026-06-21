@@ -1,0 +1,13 @@
+# Channels: the 19 traction channels + the Bullseye framework (Traction, Weinberg & Mares)
+
+## The 19 channels (scan ALL - do not default to the 1-2 you already know)
+Viral marketing · PR · Unconventional PR (stunts) · SEM (paid search) · Social & display ads · Offline ads · SEO · Content marketing · Email marketing · Engineering as marketing (free tools/calculators) · Targeting blogs · Business development (partnerships) · Sales · Affiliate programs · Existing platforms (app stores, marketplaces) · Trade shows · Offline events · Speaking engagements · Community building.
+
+## Bullseye framework (how to choose)
+1. Brainstorm - a realistic idea for EVERY one of the 19 channels (the outer ring).
+2. Rank into 3 columns: A promising (inner ring), B possible, C long-shot.
+3. Prioritize - pick the ~3 most promising for the middle ring.
+4. Test - cheap, fast, parallel experiments on those 3 (measure cost, conversion, volume, payback).
+5. Focus - pour resources into the ONE channel that is working (the bullseye).
+
+Rule: most startups get traction from a SINGLE channel at a time, and it is usually not the one you assumed. Test before you scale.

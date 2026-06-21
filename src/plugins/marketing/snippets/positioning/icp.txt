@@ -1,0 +1,18 @@
+# Ideal Customer Profile (ICP) - who EXACTLY, not "everyone"
+
+The ICP is the narrow set who get the most value, buy fastest, and tell others. It deepens positioning component 4 (target).
+
+## Define on
+- Firmographics (B2B): industry, company size, revenue, geo, stage, tech stack.
+- Demographics + psychographics (B2C): role, life stage, values, identity, habits.
+- Triggers: the event that makes them look NOW (new job, growth spurt, a failure, a deadline, a new regulation).
+- Job-to-be-done + the pain ranked #1 for them.
+
+## The "who cares most" test (Dunford): rank candidate segments by who values your UNIQUE attributes the most. Start with the one that buys fast and refers.
+
+## Early-vangelist (Steve Blank) for new products - the best first customer:
+has the problem · knows they have it · is actively looking · has cobbled together a stopgap · has budget.
+
+## Anti-ICP: explicitly name who you do NOT serve. A sharp "not for X" makes the "for Y" credible and the message louder.
+
+Rule: niche down until the message feels almost too specific - that is when it converts. "For everyone" lands with no one.

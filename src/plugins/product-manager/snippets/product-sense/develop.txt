@@ -1,0 +1,22 @@
+# How to develop product sense (Jules Walter, Julie Zhuo) - a learned skill, not a gift. Deliberate practice.
+
+## 1. Customer immersion (the foundation)
+- Talk to users regularly: scheduled interviews, usability tests, read support tickets. Ask open-ended questions; watch body language and emotion.
+- Shadow users at work: sit beside a real customer doing a real task (yours or a competitor's). You see what surveys miss - environment, interruptions, workarounds, emotional cues.
+- Do support and sales calls yourself. Empathy is raw data.
+
+## 2. Product teardowns / critiques (build pattern recognition)
+- Spend 1-2 hours a month trying new products and deconstructing them: why does this work, why does that not?
+- Use Julie Zhuo's critique questions: what is the signup / getting-started experience? what is the core flow? what would I change and why?
+- Compare 3+ products in the SAME category - how does each solve the same job differently? Keep a written pattern library.
+
+## 3. Principles-first, not technique-copying (Cagan)
+- Master enduring principles so you can judge WHEN a technique applies, instead of copying trendy frameworks. Techniques churn; principles endure.
+
+## 4. Close the loop (calibrate your intuition)
+- Before shipping, PREDICT the outcome and write it down. After shipping, compare to what actually happened. The gap is where product sense sharpens.
+
+## 5. Learn from strong product thinkers
+- Work near them and critique with them if you can. If not, study Julie Zhuo, Stewart Butterfield, Rahul Vohra, Marty Cagan, Shreyas Doshi.
+
+Rule: product sense = heavy customer exposure + deliberate teardowns + closing the predict/outcome loop, repeated. A practice, not a vibe.

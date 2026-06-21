@@ -1,0 +1,15 @@
+# MVP & scope-cutting - ship the smallest thing that creates and captures value
+
+## MVP = the smallest version that lets you LEARN the riskiest thing (or deliver the core value) - not a tiny pile of features, not a broken half-product. "Viable" matters as much as "minimal".
+
+## Riskiest Assumption Test (RAT): instead of building the whole MVP, find the assumption that, if wrong, kills the idea, and test THAT first with the cheapest experiment that de-risks it. Often a landing page, a concierge / Wizard-of-Oz, or 5 customer tests - no code.
+
+## Slice vertically, not horizontally: ship a thin end-to-end "walking skeleton" (one real user does one real job start to finish), then thicken. Never ship a horizontal layer nobody can use yet.
+
+## Story slicing - cut a big story to the thinnest valuable slice: by workflow step, by user type, happy-path-first (defer edge cases), manual-before-automated, one-platform-first.
+
+## The cut test: for every item in scope ask "if we remove this, does the core value still work?" If yes, cut it from v1. Default to cutting.
+
+## De-risk order: value risk first (do they want it?), then usability, then feasibility. Do not perfect the build of something nobody wants.
+
+Anti-pattern: gold-plating v1, building all edge cases before validating the core, an "MVP" that is secretly a full product.

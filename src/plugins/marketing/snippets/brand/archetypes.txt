@@ -1,0 +1,18 @@
+# The 12 Brand Archetypes (Mark & Pearson) - pick ONE primary (optionally one secondary) for a consistent personality.
+
+| archetype | core desire | voice | example |
+|---|---|---|---|
+| Innocent | safety, simplicity | optimistic, honest, pure | Dove |
+| Sage | truth, understanding | wise, measured, expert | Google |
+| Explorer | freedom, discovery | adventurous, bold, restless | Patagonia |
+| Outlaw | revolution, disruption | rebellious, raw, defiant | Harley-Davidson |
+| Magician | transformation, wonder | visionary, charismatic | Disney |
+| Hero | mastery, courage | bold, confident, motivating | Nike |
+| Lover | intimacy, connection | warm, sensual, expressive | Chanel |
+| Jester | enjoyment, fun | playful, irreverent, witty | Old Spice |
+| Everyman | belonging | down-to-earth, friendly, real | IKEA |
+| Caregiver | service, protection | reassuring, nurturing | Johnson & Johnson |
+| Ruler | control, order | authoritative, polished, premium | Rolex |
+| Creator | innovation, self-expression | imaginative, inventive | Lego, Adobe |
+
+Rule: ONE primary archetype, applied everywhere. It sets the vocabulary, tone, imagery, and - just as important - what the brand would never say.

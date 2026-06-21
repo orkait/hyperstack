@@ -1,0 +1,23 @@
+# Voice of Customer (VoC) & message mining (Joanna Wiebe / Copyhackers)
+# This is HOW you get marketing words straight from the customer - the highest-leverage copy method.
+
+## Rule: do not write copy from your head. STEAL the customer's own words.
+
+## Mine these sources for raw language
+- Product reviews - yours AND competitors'. 3-star reviews are the most honest. (G2, Amazon, App Store, Trustpilot, Capterra.)
+- Support tickets, chat logs, sales-call recordings, win/loss interviews.
+- Survey open-ends: "what almost stopped you from buying?", "what's your #1 frustration with [job]?", "describe the moment you realized you needed this".
+- Communities: Reddit, forums, Discord, social replies, review-site Q&A.
+
+## What to pull (tag each verbatim quote)
+- Desired outcomes / jobs (what they're trying to get done).
+- Pains - in their EXACT phrasing of the frustration.
+- Objections / hesitations (what almost stopped them).
+- The moment of value ("I finally...", "now I can...", "it just...").
+
+## Turn quotes into copy
+- Use their exact phrases as headlines/subheads. Customers convert on THEIR language, not your jargon.
+- The "so what?" / "and that means..." test: take a feature, ask "so what for the customer?" until you reach the outcome they actually named.
+- Build a swipe file of the strongest verbatim lines; assemble the page from real quotes.
+
+Anti-pattern: aspirational brand language no real customer has ever said. If a customer wouldn't say it out loud, cut it.

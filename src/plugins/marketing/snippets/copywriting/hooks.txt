@@ -1,0 +1,24 @@
+# Hooks - the first 1-3 seconds (ads, short-form video, social, email subject, opening line)
+# Rule: if the hook does not land in 2-3 seconds, they scroll. The hook's only job is to buy the next 3 seconds.
+
+## Hook frameworks
+- Curiosity / open loop: pose a question or tease a payoff, delay the answer (open loop -> tease payoff -> withhold the explanation).
+- Pain-point: name the audience's exact frustration in the first line. "Still [painful thing]?"
+- Pattern interrupt: do or say something unexpected that breaks the scroll autopilot (visual or claim).
+- Contrarian / myth-bust: "Everyone tells you X. They're wrong."
+- Result / proof: lead with the outcome + specifics. "How I [result] in [time] without [pain]."
+- Step-by-step / listicle: "3 ways to [outcome]" - structured, low-overwhelm.
+- Warning / negative: "Stop doing X if you want Y."
+
+## Short-form video / ad structure (the 4 beats)
+1. Hook (0-3s) - a clear, specific promise + striking first frame + legible on-screen text. Use an outcome/number/contrast, not a vague topic.
+2. Value drop (4-15s) - deliver on the hook fast.
+3. Story / payoff (16-45s) - proof, demo, transformation.
+4. CTA (last ~5s) - one clear action.
+
+## Swipe openers
+- "If you [audience], stop scrolling."
+- "I tried [thing] for [time]. Here is what happened."
+- "Nobody talks about [surprising truth]."
+- "[Number] [things] that [outcome] - the last one is [twist]."
+- "POV: you [relatable situation]."

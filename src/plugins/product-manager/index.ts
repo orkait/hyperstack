@@ -9,6 +9,12 @@ import { register as opportunityVsSolution } from "./tools/opportunity-vs-soluti
 import { register as validateJobStatement } from "./tools/validate-job-statement.js";
 import { register as scoreRice } from "./tools/score-rice.js";
 import { register as resolveProductDecision } from "./tools/resolve-product-decision.js";
+import { register as getPrioritization } from "./tools/get-prioritization.js";
+import { register as getDecisionTools } from "./tools/get-decision-tools.js";
+import { register as getMvpScoping } from "./tools/get-mvp-scoping.js";
+import { register as getRoadmapping } from "./tools/get-roadmapping.js";
+import { register as getMetrics } from "./tools/get-metrics.js";
+import { register as getProductSense } from "./tools/get-product-sense.js";
 
 function register(server: McpServer): void {
   getFourRisks(server);
@@ -20,6 +26,12 @@ function register(server: McpServer): void {
   validateJobStatement(server);
   scoreRice(server);
   resolveProductDecision(server);
+  getPrioritization(server);
+  getDecisionTools(server);
+  getMvpScoping(server);
+  getRoadmapping(server);
+  getMetrics(server);
+  getProductSense(server);
 }
 
 export const productManagerPlugin: Plugin = {

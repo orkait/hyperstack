@@ -1,0 +1,15 @@
+# Value Proposition Canvas (Osterwalder / Strategyzer)
+
+Two sides that must FIT.
+
+## Customer profile (their world - observe, do not invent)
+- Jobs - the functional, social, AND emotional tasks the customer is trying to get done.
+- Pains - frustrations, risks, obstacles before/during/after the job.
+- Gains - outcomes and benefits they want (required, expected, desired, and unexpected).
+
+## Value map (your offer)
+- Products & services - what you offer.
+- Pain relievers - how your offer removes SPECIFIC customer pains (map each reliever to a pain).
+- Gain creators - how your offer produces SPECIFIC gains (map each creator to a gain).
+
+FIT = your pain relievers and gain creators address the customer's TOP-RANKED pains and gains, not all of them. Rank by importance to the customer, then build the message around the top 2-3.

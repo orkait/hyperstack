@@ -248,18 +248,21 @@ The bootstrap and orchestrator (`hyper`) choose the correct role based on the re
 
 ## Layer 4: Personas
 
-Personas are judgment lenses that OWN a class of decision and gate it before
-execution. They are internal and auto-engaged by `hyper`.
+Personas are domain-expert lenses that `hyper` engages for a domain. Two modes:
+GATE (owns a risk and blocks, e.g. product-manager) and CAPABILITY (produces
+domain output, e.g. marketing). Internal and auto-engaged.
 
-| Persona | Owns | Gate |
-|---|---|---|
-| `product-manager` | value + viability product risk | hard for net-new builds, advisory for tweaks, user override always |
+| Persona | Mode | Owns | Engages on |
+|---|---|---|---|
+| `product-manager` | gate | value + viability product risk | net-new feature/product/scope (hard gate, advisory tweaks, user override) |
+| `marketing` | capability | positioning, messaging, copy, brand, GTM | position/launch/name/write-copy/grow a product, app, or website |
 
 ## Persona Registry
 
 - `product-manager` - grounds build decisions in validated customer problems
   (opportunity-vs-solution, four risks, RICE), owns value+viability, hands back
   to `hyper`. Engaged before design/build on net-new feature/product/scope work.
+- `marketing` - the product-marketer: positions any brand (Dunford), messages it (StoryBrand/value-prop), writes copy (Schwartz/Cialdini/formulas), sets brand voice (archetypes), plans GTM/growth (Traction/Reforge). Produces; hands back to `hyper`.
 
 ---
 

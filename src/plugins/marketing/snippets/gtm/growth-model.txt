@@ -1,0 +1,24 @@
+# Growth model: AARRR metrics + growth loops
+
+## AARRR "pirate metrics" (Dave McClure) - instrument the whole journey
+- Acquisition - users arrive (from which channel?).
+- Activation - first valuable experience (the "aha"); the #1 lever for most products.
+- Retention - they come back (the FOUNDATION - without it the funnel leaks faster than you can fill it).
+- Referral - they bring others.
+- Revenue - they pay.
+Find the leakiest step first; fix activation/retention before pouring money into acquisition.
+
+## Growth loops > funnels (Brian Balfour / Reforge)
+A funnel is linear (pour in the top, leak out the bottom). A LOOP reinvests the output back into the input:
+  new users -> take an action producing an output (content, invites, data, revenue) -> that output drives NEW acquisition -> repeat.
+Loop types: viral (users invite users), content (UGC -> indexable pages -> SEO -> users), paid (revenue funds ads that acquire revenue-generating users).
+Design at least one loop; loops compound, funnels do not.
+
+## North Star metric: one number capturing delivered customer value (nights booked, messages sent, docs created). Align the team to move it.
+
+## Unit economics (know these cold)
+- CAC = total sales + marketing spend / new customers acquired (track per channel).
+- LTV = ARPA x gross margin / churn rate (or avg revenue x margin x avg lifetime).
+- LTV:CAC >= 3:1 is the healthy benchmark; < 1 means you lose money on every customer.
+- CAC payback < 12 months (SMB) or < 18-24 months (enterprise) is healthy.
+- Retention/churn is the master variable - a small churn improvement swings LTV massively. Fix retention before scaling acquisition.

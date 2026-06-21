@@ -12,6 +12,10 @@ import { register as oppVsSol } from "../src/plugins/product-manager/tools/oppor
 import { register as validateJob } from "../src/plugins/product-manager/tools/validate-job-statement.ts";
 import { register as scoreRiceTool } from "../src/plugins/product-manager/tools/score-rice.ts";
 import { register as resolveDecision } from "../src/plugins/product-manager/tools/resolve-product-decision.ts";
+import { register as getPrioritization } from "../src/plugins/product-manager/tools/get-prioritization.ts";
+import { register as getDecisionTools } from "../src/plugins/product-manager/tools/get-decision-tools.ts";
+import { register as getMvpScoping } from "../src/plugins/product-manager/tools/get-mvp-scoping.ts";
+import { register as getProductSense } from "../src/plugins/product-manager/tools/get-product-sense.ts";
 
 // --- data layer ---
 test("four risks are exactly the canonical four", () => {
@@ -108,4 +112,33 @@ test("resolve_product_decision PASSes when value and viability are supplied", as
     isNetNew: true,
   }));
   expect(text).toMatch(/PASS/);
+});
+
+test("get_prioritization includes Kano and MoSCoW", async () => {
+  const tool = captureTool(getPrioritization);
+  expect(tool.name).toBe("product_manager_get_prioritization");
+  const text = extractTextContent(await tool.invoke({}));
+  expect(text).toMatch(/Kano/);
+  expect(text).toMatch(/MoSCoW/);
+});
+
+test("get_decision_tools includes Type 1/Type 2 and pre-mortem", async () => {
+  const tool = captureTool(getDecisionTools);
+  const text = extractTextContent(await tool.invoke({}));
+  expect(text).toMatch(/Type 1/);
+  expect(text).toMatch(/[Pp]re-mortem/);
+});
+
+test("get_mvp_scoping includes the riskiest assumption test", async () => {
+  const tool = captureTool(getMvpScoping);
+  const text = extractTextContent(await tool.invoke({}));
+  expect(text).toMatch(/Riskiest Assumption|riskiest assumption/);
+});
+
+test("get_product_sense covers teardowns and customer immersion", async () => {
+  const tool = captureTool(getProductSense);
+  expect(tool.name).toBe("product_manager_get_product_sense");
+  const text = extractTextContent(await tool.invoke({}));
+  expect(text).toMatch(/teardown/i);
+  expect(text).toMatch(/immersion|customer/i);
 });

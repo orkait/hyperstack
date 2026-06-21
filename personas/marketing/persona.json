@@ -1,0 +1,20 @@
+{
+  "id": "marketing",
+  "name": "Product Marketer",
+  "version": "0.1.0",
+  "mode": "capability",
+  "owns": {
+    "capabilities": ["positioning", "messaging", "copywriting", "gtm", "brand"],
+    "plugin": "marketing",
+    "skills": ["marketing"]
+  },
+  "engaged_by": "hyper",
+  "engages_when": [
+    "position a product or brand",
+    "write marketing copy or words",
+    "go-to-market or launch",
+    "messaging or brand voice",
+    "growth or channel strategy",
+    "marketing recommendation for an app or website"
+  ]
+}
