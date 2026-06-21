@@ -6,6 +6,13 @@ Every user request enters through `hyper`.
 
 Users do not invoke internal roles directly. Roles are internal and auto-called.
 
+## Persona Gate
+
+Before routing a net-new feature, product, or scope decision to any specialist,
+`hyper` engages the `product-manager` persona gate (`pm-gate` skill). The gate must
+return PASS before design/build. Tweaks/bugfixes get an advisory brief, not a block.
+The user may explicitly override ("skip PM"), which is honoured and logged.
+
 ## Routing Matrix
 
 Route `hyper -> website-builder` when the request is primarily about:

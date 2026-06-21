@@ -25,6 +25,7 @@ Categories:
 | `lab` | Use when designing or revamping a frontend section or whole page and you want to explore real-React variants in an isola |
 | `optimizer` | Teaches runtime analysis - deriving Big-O straight from code - and how to derive a better algorithm by removing redundan |
 | `parallel-dispatch` | Use when facing 2+ independent tasks that can be investigated or executed without shared state or sequential dependencie |
+| `pm-gate` | Use BEFORE any net-new feature, product, or scope decision - the product-manager persona gate. Grounds the build in a va |
 | `run-plan` | Use when you have an existing plan, spec, or task list to execute. Validates the plan for gaps and MCP accuracy before a |
 | `ship-gate` | Use before claiming any work is complete, fixed, or passing. Run the verification command and show output before making  |
 | `subagent-ops` | Use when executing implementation plans with independent tasks. Dispatches one fresh subagent per task with two-stage re |
