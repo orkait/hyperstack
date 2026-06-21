@@ -191,4 +191,16 @@ Mirror existing `*-behaviour.test.ts`:
 
 ## Future personas (why the vertical, not a one-off)
 
-The vertical is justified only if more personas follow. Candidates that fit the same "judgment lens that owns a risk" shape: a security persona (owns risk/threat), a data/analytics persona (owns measurement), an SRE persona (owns reliability). Each = manifest + bound plugin/skill/agent. The registry, schema, and bootstrap layer built here are shared infrastructure.
+The vertical is justified only if more personas follow. Candidates that fit the same "judgment lens that owns a risk" shape: a security persona (owns risk/threat), a data/analytics persona (owns measurement), an SRE persona (owns reliability). Each = manifest + bound plugin/skill. The registry, schema, and bootstrap layer built here are shared infrastructure.
+
+## Validation pass (post-implementation correction)
+
+A secondary validation (1 empirical accuracy battery + 2 independent adversarial red-team agents) found that 3 of the 9 tools as first built were theater, and corrected them. This supersedes the earlier descriptions of those tools above:
+
+| Tool | As-built flaw | Corrected to |
+|---|---|---|
+| `resolve_product_decision` | hardcoded `NEEDS-INPUT`, never PASS/BLOCK - the "gate engine" could not gate | takes value+viability assessments as input; deterministic verdict PASS (both addressed) / BLOCK (net-new, missing) / ADVISORY (tweak). PASS earned, not automatic. |
+| `opportunity_vs_solution` | ~80% regex classifier emitting an exclusive verdict (the LLM does this better) | returns the Torres rubric + reframe examples for the agent to apply (ground-truth, no verdict) |
+| `validate_job_statement` | 3-regex pseudo-validator | returns the 7-point JTBD criteria for the agent to judge against |
+
+Also corrected: `persona.json` dropped the dangling `agent: product-manager` claim (no such agent exists; the persona is `engaged_by` hyper and realized via the `pm-gate` skill), and LIFECYCLE dropped an unimplemented "decision trail" claim. The 6 framework tools (`get_*` + `score_rice`) were sound and unchanged. Verdict labels are now PASS/BLOCK/ADVISORY (not NEEDS-INPUT). A runtime write-blocking hook was deliberately declined: all Hyperstack skills are prose-enforced via the bootstrap, and the diagnosed problem was decision quality, not enforcement mechanics.
