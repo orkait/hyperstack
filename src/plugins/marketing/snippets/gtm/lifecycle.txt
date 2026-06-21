@@ -1,0 +1,16 @@
+# Lifecycle / email marketing (the retention + monetization engine)
+# Trigger on BEHAVIOR (signups, feature use, drop-off), not on a blast calendar. Automated flows make roughly 3x the revenue of one-off campaigns.
+
+## The core flows (build in this order)
+1. Welcome (on signup) - set expectations, one clear next action, point at the "aha". Highest-converting automated email.
+2. Onboarding (first days) - educate toward the activation moment, do not sell. One feature/step per email; triggered by what they have and have not done.
+3. Nurture (pre-purchase / free users) - teach, give value, build the case; move them to the next stage.
+4. Engagement / retention - prompt the next valuable action, celebrate milestones, reactivate before they churn.
+5. Win-back (gone quiet) - "we miss you" + a real reason to return (new value or offer); cheaper than acquiring new.
+6. Transactional / behavioral - receipts, alerts, milestones, abandoned-cart (high intent, high revenue).
+
+## Rules
+- Right message, right moment: real-time behavioral triggers beat scheduled blasts.
+- Fewer, more relevant beats frequent + generic. Segment by stage and behavior.
+- One job per email, one primary CTA.
+- Measure to the value metric (activation, repeat purchase, retention), not opens.

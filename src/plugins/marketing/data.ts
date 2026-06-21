@@ -14,7 +14,7 @@ import { snippet } from "./loader.js";
 
 const join = (...parts: string[]) => parts.join("\n\n---\n\n");
 
-export const POSITIONING_DOC: string = join(snippet("positioning/dunford.txt"), snippet("positioning/styles.txt"));
+export const POSITIONING_DOC: string = join(snippet("positioning/dunford.txt"), snippet("positioning/styles.txt"), snippet("positioning/differentiation.txt"));
 export const MESSAGING_DOC: string = join(snippet("messaging/value-prop-canvas.txt"), snippet("messaging/storybrand.txt"), snippet("messaging/narrative.txt"));
 export const FORMULAS_DOC: string = snippet("copywriting/formulas.txt");
 export const AWARENESS_DOC: string = snippet("copywriting/awareness-stages.txt");
@@ -28,6 +28,8 @@ export const ANTI_PATTERNS_DOC: string = snippet("anti-patterns/marketing.txt");
 export const VOC_DOC: string = snippet("research/voice-of-customer.txt");
 export const ICP_DOC: string = snippet("positioning/icp.txt");
 export const PRICING_DOC: string = snippet("gtm/pricing.txt");
+export const HOOKS_DOC: string = snippet("copywriting/hooks.txt");
+export const LIFECYCLE_DOC: string = snippet("gtm/lifecycle.txt");
 
 // --- The brief assembler: deterministic, real (not a fake verdict). ---
 // Given which deliverables the brand needs, return the ordered workflow steps +
@@ -40,9 +42,9 @@ export const FULL_WORKFLOW: BriefStep[] = [
   { step: "Position", tools: "marketing_get_positioning, marketing_get_icp", why: "Dunford's 5 components in order + define the ICP; decide what it is and who exactly it is for." },
   { step: "Message", tools: "marketing_get_messaging", why: "value-prop canvas + StoryBrand + strategic narrative; build the message hierarchy." },
   { step: "Awareness", tools: "marketing_get_awareness_stages", why: "match the copy to how aware the market already is." },
-  { step: "Write", tools: "marketing_get_copywriting_formulas, marketing_get_persuasion", why: "pick a formula, write headline + body + CTA with proof - in the customer's words." },
+  { step: "Write", tools: "marketing_get_copywriting_formulas, marketing_get_hooks, marketing_get_persuasion", why: "hook the first 3 seconds, pick a formula, write headline + body + CTA with proof - in the customer's words." },
   { step: "Voice", tools: "marketing_get_voice", why: "pick a brand archetype + tone dimensions, apply consistently." },
-  { step: "GTM", tools: "marketing_get_gtm, marketing_get_channels, marketing_get_growth_model, marketing_get_pricing", why: "choose the motion, Bullseye the channels, design a growth loop, package the pricing." },
+  { step: "GTM", tools: "marketing_get_gtm, marketing_get_channels, marketing_get_growth_model, marketing_get_lifecycle, marketing_get_pricing", why: "choose the motion, Bullseye the channels, design a growth loop, set up lifecycle flows, package the pricing." },
   { step: "Check", tools: "marketing_get_anti_patterns", why: "no feature-dump, we-we copy, or vague unproven claims." },
 ];
 

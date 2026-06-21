@@ -15,6 +15,8 @@ import { register as brief } from "./tools/brief.js";
 import { register as getVoiceOfCustomer } from "./tools/get-voice-of-customer.js";
 import { register as getIcp } from "./tools/get-icp.js";
 import { register as getPricing } from "./tools/get-pricing.js";
+import { register as getHooks } from "./tools/get-hooks.js";
+import { register as getLifecycle } from "./tools/get-lifecycle.js";
 
 function register(server: McpServer): void {
   getPositioning(server);
@@ -31,6 +33,8 @@ function register(server: McpServer): void {
   getVoiceOfCustomer(server);
   getIcp(server);
   getPricing(server);
+  getHooks(server);
+  getLifecycle(server);
   brief(server);
 }
 
