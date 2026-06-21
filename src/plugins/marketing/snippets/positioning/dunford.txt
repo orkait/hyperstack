@@ -1,0 +1,20 @@
+# Positioning (April Dunford, Obviously Awesome)
+
+Positioning = making your product the obvious leader at delivering something a
+well-defined set of customers cares a lot about. It is NOT a tagline, messaging,
+or brand story - those come AFTER positioning.
+
+## The 5 components
+1. Competitive alternatives - what customers would do if you did not exist (not just rival products: a spreadsheet, an agency, hiring someone, doing nothing).
+2. Unique attributes - features/capabilities you have that the alternatives lack.
+3. Value - the benefit those attributes enable for the customer. Ask "so what, for the customer?" on every attribute until you reach a real outcome.
+4. Target customer segment - the customers who care MOST about that value (the ones who buy fast and tell their friends).
+5. Market category - the context you put the product in so the value is obvious to the target.
+
+## Process (run IN THIS ORDER)
+competitive alternatives -> unique attributes -> value ("so what?") -> target (who cares most) -> market category (chosen LAST, deliberately).
+
+Choosing the category last is the key move: the category frames everything, so pick the frame that makes your unique value obvious.
+
+## Output: a positioning statement the whole team can repeat
+For [target] who [need], [product] is the [category] that [unique value], unlike [alternative], because [unique attribute].

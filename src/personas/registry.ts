@@ -10,10 +10,13 @@ export interface PersonaManifest {
   id: string;
   name: string;
   version: string;
-  owns: { risks: string[]; plugin: string; skills: string[] };
+  // gate = owns a risk and blocks (e.g. product-manager); capability = produces
+  // domain output (e.g. marketing). Both are domain-expert lenses engaged by hyper.
+  mode?: "gate" | "capability";
+  owns: { plugin: string; skills: string[]; risks?: string[]; capabilities?: string[] };
   engaged_by?: string;
   engages_when: string[];
-  gate_policy: { net_new: "hard" | "advisory"; tweak: "hard" | "advisory"; override: string };
+  gate_policy?: { net_new: "hard" | "advisory"; tweak: "hard" | "advisory"; override: string };
 }
 
 function isValid(m: unknown): m is PersonaManifest {
@@ -22,8 +25,8 @@ function isValid(m: unknown): m is PersonaManifest {
     !!p &&
     typeof p.id === "string" &&
     !!p.owns &&
-    Array.isArray(p.owns.risks) &&
-    !!p.gate_policy
+    typeof p.owns.plugin === "string" &&
+    Array.isArray(p.owns.skills)
   );
 }
 

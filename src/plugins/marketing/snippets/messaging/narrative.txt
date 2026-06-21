@@ -1,0 +1,16 @@
+# Strategic narrative (Andy Raskin) - the company story IS the company strategy
+
+A great strategic narrative (sales decks, fundraising, recruiting, the homepage spine) runs:
+1. Name the big, undeniable SHIFT in the world (the "why now"). Make it feel inevitable.
+2. Show there will be winners and losers because of that shift (raise the stakes - tension).
+3. Tease the Promised Land - the desirable, hard-to-reach future the customer wants. This is a future STATE, not your product.
+4. Introduce your capabilities as "magic gifts" - the features that help the hero reach the Promised Land.
+5. Present evidence you can make the story come true (proof, customers, traction, demos).
+
+Lead with the shift and the stakes, NOT the product. One story aligns sales, marketing, product, and fundraising.
+
+## Message hierarchy (build once positioning is set)
+- 1 core message (the single thing you want remembered) ->
+- 3 supporting pillars (the proof themes) ->
+- evidence under each pillar (features, stats, proof points, customer quotes).
+Everything you write maps to this tree. If it does not ladder up to the core message, cut it.

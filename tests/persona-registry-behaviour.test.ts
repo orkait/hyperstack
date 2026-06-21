@@ -9,6 +9,14 @@ test("registry loads the product-manager persona manifest", () => {
   expect(pm!.gate_policy.net_new).toBe("hard");
 });
 
+test("registry loads the marketing capability persona", () => {
+  const personas = loadPersonas();
+  const m = personas.find((p) => p.id === "marketing");
+  expect(m).toBeDefined();
+  expect(m!.mode).toBe("capability");
+  expect(m!.owns.plugin).toBe("marketing");
+});
+
 test("a malformed manifest is skipped, not thrown", () => {
   expect(() => loadPersonas()).not.toThrow();
 });

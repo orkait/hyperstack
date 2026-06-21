@@ -17,10 +17,10 @@ function getRegisteredTools() {
   return tools;
 }
 
-test("all 14 plugins register at least one tool", () => {
+test("all 15 plugins register at least one tool", () => {
   const tools = getRegisteredTools();
   const pluginPrefixes = new Set(tools.map((t) => t.name.split("_")[0]));
-  expect(pluginPrefixes.size).toBe(14);
+  expect(pluginPrefixes.size).toBe(15);
 });
 
 test("product-manager plugin registers its gate tools", () => {
@@ -28,6 +28,13 @@ test("product-manager plugin registers its gate tools", () => {
   const toolNames = new Set(tools.map((t) => t.name));
   expect(toolNames.has("product_manager_get_four_risks")).toBe(true);
   expect(toolNames.has("product_manager_resolve_product_decision")).toBe(true);
+});
+
+test("marketing plugin registers its tools", () => {
+  const tools = getRegisteredTools();
+  const toolNames = new Set(tools.map((t) => t.name));
+  expect(toolNames.has("marketing_get_positioning")).toBe(true);
+  expect(toolNames.has("marketing_brief")).toBe(true);
 });
 
 test("every registered tool has a non-empty name and description", () => {

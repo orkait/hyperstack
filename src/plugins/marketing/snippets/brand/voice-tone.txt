@@ -1,0 +1,18 @@
+# Brand voice & tone
+
+VOICE = constant (the brand's personality, set by the archetype). TONE = varies by context (a celebration vs an error message).
+
+## Define voice on 4 tone dimensions (Nielsen Norman Group)
+1. Funny <-> serious
+2. Formal <-> casual
+3. Respectful <-> irreverent
+4. Enthusiastic <-> matter-of-fact
+
+Pick a point on each axis; that is the voice. Then write a "we are / we are not" table and 3-5 example rewrites so anyone can apply it.
+
+## Apply consistently
+- Vocabulary - words we use, words we never use.
+- Sentence rhythm and length.
+- How we handle errors, empty states, confirmations, and bad news.
+
+Tone shifts with the user's emotional state (a frustrated user = drop the jokes); voice never changes.

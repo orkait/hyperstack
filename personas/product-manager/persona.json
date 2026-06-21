@@ -2,6 +2,7 @@
   "id": "product-manager",
   "name": "Product Manager",
   "version": "0.1.0",
+  "mode": "gate",
   "owns": {
     "risks": ["value", "viability"],
     "plugin": "product-manager",
