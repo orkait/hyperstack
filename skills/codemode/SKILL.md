@@ -12,6 +12,7 @@ A disciplined protocol for understanding a codebase before acting on it. When in
 
 ```
 PRESENT THE PLAN BEFORE LOADING ANY FILES
+RUN INLINE - NEVER DISPATCH PARALLEL SUBAGENTS
 ```
 
 Announce the skill (`Using hyperstack:codemode - <purpose>`), then show the loading plan and the proposed scope. Do not read files or write code until the scope is confirmed. Scope decides what gets loaded; loading the wrong thing wastes the context budget.
@@ -53,7 +54,7 @@ If no scope is given, propose one from the repo signals and confirm before Phase
 
 Do NOT stuff the main context by reading every file. The main context is for the *synthesis*, not the raw dump. Two rules:
 
-1. **Fan out, don't inhale.** For broad reading, dispatch parallel read-only agents (`Explore` / `general-purpose`) - one per subsystem - and keep their conclusions, not their file contents. Read whole files into the main context only for the few load-bearing ones (entry points, core abstractions, anything fragile).
+1. **Single inline agent - NEVER parallel subagents.** Run codemode entirely in the current context, yourself, sequentially. Do NOT dispatch `Explore` / `general-purpose` / any subagents, and do NOT fan out. Keep the main context lean the right way: read only the load-bearing files whole (entry points, core abstractions, anything fragile), and use programmatic extraction (`rg`/`fd`/git) for breadth - never by delegating to agents.
 2. **Tier the context** (hot / warm / cold / never):
    - **Hot:** entry points, core modules, type definitions, config, the request itself.
    - **Warm:** the changed surface, recent verification results, targeted skill/MCP outputs.
@@ -70,7 +71,7 @@ Each phase produces a short summary, presented before the next. Scale each to th
 Guess the full file/dir layout from cheap signals (`git ls-files`, `fd`, manifests, language histogram). Exclude build artifacts and caches (`node_modules/`, `dist/`, `.git/`, `__pycache__/`, `.next/`). Present an annotated tree: what exists, what is in scope, what is excluded and why.
 
 ### Phase 2 - File Loading
-Load the in-scope logic per the loading discipline above (fan-out agents + targeted whole-file reads), prioritising entry points, core modules, config, and type definitions; deprioritising tests, fixtures, generated files. Present: what was loaded, what was skipped, and the approximate context cost. Stop loading well before the budget is exhausted - leave room to think.
+Load the in-scope logic per the loading discipline above (targeted whole-file reads + programmatic extraction, all inline - no subagents), prioritising entry points, core modules, config, and type definitions; deprioritising tests, fixtures, generated files. Present: what was loaded, what was skipped, and the approximate context cost. Stop loading well before the budget is exhausted - leave room to think.
 
 ### Phase 3 - Dependency Graph
 Build who-imports-what / who-calls-what / who-owns-what. Present a compact UTF-8 graph or an adjacency table (padded, aligned). Name the coupling: which modules are leaf islands, which are hubs everything depends on.
