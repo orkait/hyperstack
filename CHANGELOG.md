@@ -2,6 +2,11 @@
 
 All notable changes to Hyperstack are documented here. Format follows Keep a Changelog; versioning is SemVer.
 
+## [1.3.1] - 2026-06-24
+
+### Fixed
+- **`codemode`**: now runs as a single inline agent - never dispatches parallel subagents. The Iron Law gains "RUN INLINE - NEVER DISPATCH PARALLEL SUBAGENTS"; the loading discipline reads load-bearing files inline and uses `rg`/`fd`/git for breadth; the Phase 2 fan-out-agents instruction is removed.
+
 ## [1.3.0] - 2026-06-22
 
 ### Added
