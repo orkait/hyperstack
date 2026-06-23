@@ -390,6 +390,10 @@ export function registerClaudeCodePlugin(pluginRoot: string): void {
   const home = os.homedir();
   const claudeDir = path.join(home, ".claude");
   const settingsPath = path.join(claudeDir, "settings.json");
+  const pkgVersion: string = (() => {
+    try { return JSON.parse(fs.readFileSync(path.join(pluginRoot, "package.json"), "utf8")).version; }
+    catch { return "0.0.0"; }
+  })();
 
   if (!fs.existsSync(settingsPath)) {
     console.log("ℹ️  Claude Code not detected (no ~/.claude/settings.json). Skipping plugin registration.");
@@ -412,14 +416,14 @@ export function registerClaudeCodePlugin(pluginRoot: string): void {
       },
       metadata: {
         description: "Disciplined MCP server + skill system. Iron Laws, 1% Rule, rationalization tables, SessionStart hook injection.",
-        version: "1.0.0",
+        version: pkgVersion,
       },
       plugins: [
         {
           name: "hyperstack",
           source: "./",
           description: "Disciplined MCP server + skill system with adversarial enforcement gates.",
-          version: "1.0.0",
+          version: pkgVersion,
           category: "productivity",
           strict: true,
         },
@@ -432,7 +436,7 @@ export function registerClaudeCodePlugin(pluginRoot: string): void {
 
   // 2-3. Create symlinks (or directory copies on Windows if symlink fails)
   // installPath must point to the versioned leaf so Claude Code can find skills/ at <installPath>/skills/
-  const version = "1.0.0";
+  const version = pkgVersion;
   const marketplaceLink = path.join(claudeDir, "plugins", "marketplaces", "hyperstack");
   const cachePackageDir = path.join(claudeDir, "plugins", "cache", "hyperstack", "hyperstack");
   const cacheLink = path.join(cachePackageDir, version);
@@ -476,7 +480,7 @@ export function registerClaudeCodePlugin(pluginRoot: string): void {
     {
       scope: "user",
       installPath: cacheLink,
-      version: "1.0.0",
+      version: pkgVersion,
       installedAt: now,
       lastUpdated: now,
     },
