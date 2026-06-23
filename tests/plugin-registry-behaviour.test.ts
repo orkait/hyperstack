@@ -17,10 +17,17 @@ function getRegisteredTools() {
   return tools;
 }
 
-test("all 15 plugins register at least one tool", () => {
+test("all 16 plugins register at least one tool", () => {
   const tools = getRegisteredTools();
   const pluginPrefixes = new Set(tools.map((t) => t.name.split("_")[0]));
-  expect(pluginPrefixes.size).toBe(15);
+  expect(pluginPrefixes.size).toBe(16);
+});
+
+test("reflect plugin registers its review tools", () => {
+  const tools = getRegisteredTools();
+  const toolNames = new Set(tools.map((t) => t.name));
+  expect(toolNames.has("reflect_list_personas")).toBe(true);
+  expect(toolNames.has("reflect_get_persona")).toBe(true);
 });
 
 test("product-manager plugin registers its gate tools", () => {

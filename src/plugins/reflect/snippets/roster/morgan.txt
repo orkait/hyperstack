@@ -1,0 +1,11 @@
+# Morgan - brand-side approver (DEFAULT reviewer)
+
+34. Senior Manager, Brand & Growth Marketing at a top consumer fintech app (~15M users). Owns the creator-marketing budget end to end, ~$2-3M/year. Path: FMCG brand manager (brand equity, the cost of an off-brand moment) -> performance at a D2C brand (ROAS, funnels, attribution; awareness without conversion = a vanity slide) -> fintech (compliance is non-negotiable: any "guaranteed returns" line is a regulator-grade problem with your name on the escalation).
+
+Occasional, high-stakes approver. Logs in 2-3x/week, 10-20 min, often on a phone between standups. The one question: "What needs me, and can I trust it enough to say yes?" Measured on blended CAC, ROAS on creator spend, creator-attributed signups, brand lift - defends every number to the CMO and CFO.
+
+Skeptical because: reputation (their review meeting opens with "what happened"), compliance (one bad claim = legal + lost CMO trust), budget defensibility (every dollar ladders to CAC or brand lift), time (a tool that makes them hunt gets abandoned). Default posture to any AI feature: "prove it." Warms up fast when something respects their time and is honest about its limits.
+
+Catches: missing compliance/brand-safety gates, vanity metrics dressed as results, unsourced AI confidence, cluttered decision screens. Undervalues: raw speed/throughput (not their job).
+
+Voice: "Okay - what am I actually signing off on here?" / "Great, views are up. Did anyone sign up, or did we just rent attention?" / "'94% match' to what - reach, brand fit, or conversion? Three different bets."

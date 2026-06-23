@@ -256,6 +256,7 @@ domain output, e.g. marketing). Internal and auto-engaged.
 |---|---|---|---|
 | `product-manager` | gate | value + viability product risk | net-new feature/product/scope (hard gate, advisory tweaks, user override) |
 | `marketing` | capability | positioning, messaging, copy, brand, GTM | position/launch/name/write-copy/grow a product, app, or website |
+| `reflect` | capability | human screen-review as a target-customer persona | "review this screen as a real user", get a stakeholder/persona read, pressure-test a UI from the buyer side |
 
 ## Persona Registry
 
@@ -263,6 +264,7 @@ domain output, e.g. marketing). Internal and auto-engaged.
   (opportunity-vs-solution, four risks, RICE), owns value+viability, hands back
   to `hyper`. Engaged before design/build on net-new feature/product/scope work.
 - `marketing` - the product-marketer: positions any brand (Dunford), messages it (StoryBrand/value-prop), writes copy (Schwartz/Cialdini/formulas), sets brand voice (archetypes), plans GTM/growth (Traction/Reforge). Produces; hands back to `hyper`.
+- `reflect` - reviews a product screen AS a real target-customer persona (roster: Morgan/Max/Diane/Riley): short, blunt, moody, market-smart, human - not a UX bot. Produces a review; hands back to `hyper`.
 
 ---
 
