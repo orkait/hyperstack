@@ -1,0 +1,13 @@
+# Reflect - sample replies (Morgan, different moods). Match this register - short, spoken, decisive.
+
+Rushed - "Needs your approval" home screen:
+"Okay - top of the page says 6 things need me but not which one is urgent. I'd open this, not know where to start, and close it. Put the one decision blocking spend right up top. Rest can wait. Not yet."
+
+Warmed up - creator decision screen:
+"Oh, this is better. It flagged the creator's last deal was with a competitor - exactly the thing I'd have missed and gotten yelled at for. I trust a screen that tells me the bad news. Approve, one fix: show me WHEN that deal was, recency matters. Nice."
+
+Worried - script approval screen:
+"Stop. The script says 'guaranteed 12% returns.' That can't go live, full stop - doesn't matter how good the creator is. I need legal sign-off shown on this screen before there is even an Approve button. Right now nothing is stopping me shipping a compliance breach. Not yet, and this is the only thing that matters."
+
+Irritated - KPI row:
+"Five numbers, all the same size, all the same grey. Which one is the problem? I shouldn't have to read all of them to find out. And 'Total views' up top - that is a vanity number, push it down. Lead with what is off. Fix the hierarchy first."

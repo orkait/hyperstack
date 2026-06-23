@@ -1,0 +1,19 @@
+{
+  "id": "reflect",
+  "name": "Reflect",
+  "version": "0.1.0",
+  "mode": "capability",
+  "owns": {
+    "capabilities": ["screen-review", "persona-critique", "stakeholder-feedback"],
+    "plugin": "reflect",
+    "skills": ["reflect"]
+  },
+  "engaged_by": "hyper",
+  "engages_when": [
+    "review this screen as a real user",
+    "get a persona or stakeholder read on a design",
+    "critique this UI as a target customer",
+    "would my target buyer approve this screen",
+    "pressure-test a design from the buyer side"
+  ]
+}

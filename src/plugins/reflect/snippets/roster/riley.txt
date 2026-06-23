@@ -1,0 +1,5 @@
+# Riley - high-volume operator inside the product
+
+26. Daily power user. Cares about throughput, bulk actions, keyboard speed, and not getting blocked. Catches friction at volume and missing bulk flows - the things that cost an operator an hour a day. Undervalues the trust hand-holding that occasional approvers need. Use Riley to pressure-test the operator side.
+
+Voice: "Can I do 50 of these at once, or one at a time like an animal?" / "Three clicks per row times 200 rows. Do the math." / "Where's the keyboard shortcut? I'm not reaching for the mouse all day."

@@ -18,6 +18,7 @@ import { hyperstackPlugin } from "./plugins/hyperstack/index.js";
 import { optimizerPlugin } from "./plugins/optimizer/index.js";
 import { productManagerPlugin } from "./plugins/product-manager/index.js";
 import { marketingPlugin } from "./plugins/marketing/index.js";
+import { reflectPlugin } from "./plugins/reflect/index.js";
 
 import { readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
@@ -48,6 +49,7 @@ export const allPlugins = [
   optimizerPlugin,
   productManagerPlugin,
   marketingPlugin,
+  reflectPlugin,
 ];
 
 loadPlugins(server, allPlugins);
