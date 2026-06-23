@@ -2,6 +2,14 @@
 
 All notable changes to Hyperstack are documented here. Format follows Keep a Changelog; versioning is SemVer.
 
+## [1.3.0] - 2026-06-22
+
+### Added
+- **`reflect` persona** (capability, 3rd persona): reviews a product screen AS a real target-customer archetype - short, blunt, moody, market-smart, human, not a UX bot. Roster: Morgan (brand-side approver, default), Max (performance), Diane (brand custodian), Riley (operator). Ships the `reflect` skill (the voice engine - ONE RULE, sounds-human-vs-AI, 5 moods, 6 in-head checks) + the `reflect` MCP plugin (`list_personas`, `get_persona`, `get_voice_rules`) serving the roster + voice contract.
+
+### Changed
+- Plugin set 15 -> 16 (`reflect`); tools 114 -> 117; skills 26 -> 27; personas 2 -> 3. All manifests reconciled to 1.3.0.
+
 ## [1.2.0] - 2026-06-22
 
 ### Added
