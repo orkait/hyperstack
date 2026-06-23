@@ -2,6 +2,11 @@
 
 All notable changes to Hyperstack are documented here. Format follows Keep a Changelog; versioning is SemVer.
 
+## [1.3.2] - 2026-06-24
+
+### Fixed
+- **setup**: `registerClaudeCodePlugin` reads the version from `package.json` instead of hardcoding `1.0.0` - the plugin now registers (marketplace, installed_plugins, cache leaf) under its real version.
+
 ## [1.3.1] - 2026-06-24
 
 ### Fixed
