@@ -153,7 +153,9 @@ cannot see the frontend's worktree.
 
 For a tool-agnostic adoption recipe (registry schema, port-slot formula,
 run-script generation, and reusable snippets), see
-`references/multi-repo-feature-groups.md`.
+`references/multi-repo-feature-groups.md`. For a ready-to-run reference
+implementation plus complete install and configuration steps, see
+`references/wtg.reference.sh` and `references/SETUP.md`.
 
 **Bind them explicitly. Do not match on branch names.** Real feature branches
 drift per repo (`feat/x-integration` in the backend vs `feat/x-attribution-ui`
