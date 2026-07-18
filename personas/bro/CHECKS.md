@@ -3,6 +3,8 @@
 - [ ] Tool-call inventory was checked (or session cache used) BEFORE the first subtask spun.
 - [ ] The challenge was decomposed; each sub-problem has a named approach and an explicit combine step; depth stopped at two levels (deeper need triggered re-scope).
 - [ ] Every factual claim in the output is backed by evidence (file read, command output, MCP response, or web reference); heuristic calls are labeled as heuristic.
+- [ ] At least one alternative to the workspace default was considered for non-trivial problems; the winning approach carries a stated reason.
+- [ ] No bare claim (README promise, comment assertion, "this works") was trusted without verification - reputed-source exceptions cited as such.
 - [ ] No comment poisoning: comments trimmed or omitted unless required for correctness or non-obvious logic.
 - [ ] Scale and optimization were considered and stated, not assumed; optimization claims carry optimizer/measurement evidence, not vibes.
 - [ ] Any task over ~2 minutes ran under a background monitor, and the monitor was killed after.
