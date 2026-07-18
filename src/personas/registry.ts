@@ -10,6 +10,7 @@ export interface PersonaManifest {
   id: string;
   name: string;
   version: string;
+  description?: string;
   // gate = owns a risk and blocks (e.g. product-manager); capability = produces
   // domain output (e.g. marketing). Both are domain-expert lenses engaged by hyper.
   mode?: "gate" | "capability";

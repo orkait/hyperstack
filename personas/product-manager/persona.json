@@ -2,6 +2,7 @@
   "id": "product-manager",
   "name": "Product Manager",
   "version": "0.1.0",
+  "description": "Grounds build decisions in validated customer problems (opportunity-vs-solution, four risks, RICE); owns value+viability; blocks net-new build until PASS.",
   "mode": "gate",
   "owns": {
     "risks": ["value", "viability"],

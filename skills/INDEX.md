@@ -42,7 +42,7 @@ Categories:
 | `designer` |  |
 | `marketing` | Use to do product marketing for any brand - position it, find the message, write the copy ("marketing words"), set brand |
 | `readme-writer` | Writes or rewrites project README files using repository evidence instead of generic filler. Use when creating a new REA |
-| `reflect` | Review a product screen (screenshot, HTML, or description) AS a real target-customer persona - short, blunt, moody, mark |
+| `reflect` | Review a product screen OR a feature (shipped or planned) AS a real target-customer persona - short, blunt, moody, marke |
 | `security-review` | Security code review for vulnerabilities. Use when asked to "security review", "find vulnerabilities", "check for securi |
 | `shadcn-expert` | Advanced shadcn/ui architect specializing in Base UI, Tailwind v4, data-slot patterns, and component composition. Use wh |
 

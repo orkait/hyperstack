@@ -2,6 +2,7 @@
   "id": "marketing",
   "name": "Product Marketer",
   "version": "0.1.0",
+  "description": "The product-marketer: positions any brand (Dunford), messages it (StoryBrand/value-prop), writes copy (Schwartz/Cialdini/formulas), sets brand voice, plans GTM/growth.",
   "mode": "capability",
   "owns": {
     "capabilities": ["positioning", "messaging", "copywriting", "gtm", "brand"],

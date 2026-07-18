@@ -1,5 +1,6 @@
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
+import { loadPersonas, type PersonaManifest } from "../personas/registry.js";
 
 export interface ContextArtifact {
   outputPath: string;
@@ -47,7 +48,10 @@ const REQUIRED_BOOTSTRAP_MARKERS = [
   "website-builder",
   "Personas",
   "product-manager",
+  "marketing",
+  "reflect",
   "bro",
+  "Triggers:",
   "auto-called",
   "hyper -> website-builder",
 ];
@@ -158,12 +162,23 @@ function extractSimpleBullets(section: string): string[] {
     .map((line) => line);
 }
 
+function compilePersonaLines(personas: PersonaManifest[]): string[] {
+  const ordered = [...personas].sort((a, b) => {
+    const gateRank = (p: PersonaManifest) => (p.mode === "gate" ? 0 : 1);
+    return gateRank(a) - gateRank(b) || a.id.localeCompare(b.id);
+  });
+  return ordered.map((p) => {
+    const desc = p.description ? ` ${p.description}` : "";
+    return `- \`${p.id}\` (${p.mode ?? "capability"}) -${desc} Triggers: ${p.engages_when.join("; ")}.`;
+  });
+}
+
 export function generateHyperstackBootstrap(source: string): string {
   const { content } = compileUsingHyperstackBootstrap(source);
   return content;
 }
 
-export function compileUsingHyperstackBootstrap(source: string): { content: string; stats: BootstrapCompilationStats } {
+export function compileUsingHyperstackBootstrap(source: string, personas: PersonaManifest[] = loadPersonas()): { content: string; stats: BootstrapCompilationStats } {
   const body = stripFrontmatter(source);
   const criticalBlock = extractTaggedBlock(body, "EXTREMELY-IMPORTANT");
   const ironLaws = extractCodeBlock(extractSection(body, "The Iron Laws"));
@@ -171,7 +186,7 @@ export function compileUsingHyperstackBootstrap(source: string): { content: stri
   const workflowSkills = compactWorkflowTables(body);
   const instructionPriority = extractInstructionPriority(body);
   const roleRegistry = extractSimpleBullets(extractSection(body, "Role Registry"));
-  const personaRegistry = extractSimpleBullets(extractSection(body, "Persona Registry"));
+  const personaRegistry = compilePersonaLines(personas);
   const routingSummary = extractSimpleBullets(extractSection(body, "Routing Summary"));
   const allowedTransitions = extractSimpleBullets(extractSection(body, "Allowed Transitions"));
   const disallowedTransitions = extractSimpleBullets(extractSection(body, "Disallowed Transitions"));
@@ -203,8 +218,11 @@ export function compileUsingHyperstackBootstrap(source: string): { content: stri
     "- Roles are internal and auto-called. Users do not invoke them directly.",
     ...roleRegistry,
     "",
-    "## Personas",
-    "- Personas are internal domain-expert lenses (gate or capability) that hyper auto-engages by domain.",
+    "## Personas (Layer 4 - auto-engaged by trigger, never waiting to be named)",
+    "- One framework: each persona binds its MCP plugin + skills + role routing via personas/<id>/persona.json (single source of truth, compiled here).",
+    "- hyper MUST engage a persona BEFORE acting when a trigger matches the request - the trigger is the contract, the user naming the persona is optional. Acting = any design, planning, scaffolding, or code; workspace inspection and classification are the only pre-gate steps.",
+    "- Gate personas BLOCK until PASS, and PASS means the owned risks are addressed WITH EVIDENCE - populated assessment fields without evidence are NEEDS-INPUT, not PASS. Gates run before any design/build skill. Explicit user override is honoured and logged; capability personas produce and hand back to hyper.",
+    "- Net-new = new capability or scope (hard gate); a tweak/bugfix of existing behaviour gets an advisory brief, not a block. When in doubt, treat as net-new.",
     ...personaRegistry,
     "",
     "## Routing Summary",

@@ -72,7 +72,17 @@ ${"x".repeat(2000)}
 ### Steps
 1. Step 1
   `;
-  const { content } = compileUsingHyperstackBootstrap(source);
+  const { content } = compileUsingHyperstackBootstrap(source, [
+    {
+      id: "product-manager",
+      name: "Product Manager",
+      version: "0.0.0",
+      mode: "gate",
+      description: "PM gate.",
+      owns: { plugin: "product-manager", skills: ["pm-gate"] },
+      engages_when: ["net-new feature"],
+    },
+  ]);
 
   expect(content).toMatch(/invariant-1/);
   expect(content).toMatch(/invariant-2/);
