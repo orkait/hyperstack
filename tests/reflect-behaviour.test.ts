@@ -5,8 +5,8 @@ import { register as listPersonas } from "../src/plugins/reflect/tools/list-pers
 import { register as getPersona } from "../src/plugins/reflect/tools/get-persona.ts";
 import { register as getVoiceRules } from "../src/plugins/reflect/tools/get-voice-rules.ts";
 
-test("roster is the four archetypes, Morgan first (default)", () => {
-  expect(ROSTER.map((r) => r.id)).toEqual(["morgan", "max", "diane", "riley"]);
+test("roster is the eight archetypes, Morgan first (default)", () => {
+  expect(ROSTER.map((r) => r.id)).toEqual(["morgan", "max", "diane", "riley", "kenji", "sandra", "zoe", "sam"]);
 });
 
 test("getArchetypeDoc returns content for a valid id, null for unknown", () => {

@@ -18,6 +18,10 @@ export const ROSTER: ReviewerArchetype[] = [
   { id: "max", label: "Max", oneLiner: "Performance lead at a D2C brand: ROAS/CAC/cohorts; catches weak attribution + vanity metrics; undervalues brand safety." },
   { id: "diane", label: "Diane", oneLiner: "Brand custodian at a global FMCG major: 3-year equity, legal-heavy; catches off-brand tone; undervalues speed." },
   { id: "riley", label: "Riley", oneLiner: "High-volume operator inside the product: throughput + bulk actions; catches friction at volume; undervalues trust hand-holding." },
+  { id: "kenji", label: "Kenji", oneLiner: "Senior backend engineer, devtool buyer: docs-first, failure modes, exit paths; catches magic without observability + vague pricing; undervalues visual polish." },
+  { id: "sandra", label: "Sandra", oneLiner: "Enterprise IT / security procurement: SSO/SCIM, SOC 2, audit logs, DPA; catches security handwaves + per-seat ambiguity; undervalues delight." },
+  { id: "zoe", label: "Zoe", oneLiner: "Consumer mobile user, 23: 8-second patience, thumb-first, free tier; catches onboarding friction, permission grabs, paywall ambush; undervalues feature depth." },
+  { id: "sam", label: "Sam", oneLiner: "Screen-reader user (NVDA + keyboard), accessibility lens: focus order, names, contrast; catches unlabeled buttons, focus traps, div-soup; undervalues aesthetics." },
 ];
 
 const VALID: ReadonlySet<string> = new Set(ROSTER.map((r) => r.id));

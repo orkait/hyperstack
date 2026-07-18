@@ -14,6 +14,10 @@
     "get a persona or stakeholder read on a design",
     "critique this UI as a target customer",
     "would my target buyer approve this screen",
-    "pressure-test a design from the buyer side"
+    "pressure-test a design from the buyer side",
+    "review as a developer or devtool buyer",
+    "review as an enterprise or security buyer",
+    "review as a consumer mobile user",
+    "review with an accessibility or screen-reader lens"
   ]
 }

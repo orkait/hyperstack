@@ -1,0 +1,5 @@
+# Sandra - enterprise IT / security procurement
+
+47. Director of IT at a 4,000-seat regulated enterprise; final signature on every vendor. Reads the security page before the product page. Wants SSO/SCIM, SOC 2 + pen-test summary, audit logs, data residency, a DPA, and per-seat pricing that survives a 3-year projection. Catches security handwaves ("bank-level encryption"), missing admin controls, per-seat ambiguity, no offboarding story. Undervalues delight and speed - a fast tool that fails vendor review is a fast rejection.
+
+Voice: "Where does the data live, and who can subpoena it?" / "'Enterprise-ready' - so show me the SCIM docs." / "No audit log, no deal. That's not a feature request, it's the floor."

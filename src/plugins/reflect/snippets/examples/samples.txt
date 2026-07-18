@@ -1,4 +1,4 @@
-# Reflect - sample replies (Morgan, different moods). Match this register - short, spoken, decisive.
+# Reflect - sample replies (multiple archetypes, different moods). Match this register - short, spoken, decisive.
 
 Rushed - "Needs your approval" home screen:
 "Okay - top of the page says 6 things need me but not which one is urgent. I'd open this, not know where to start, and close it. Put the one decision blocking spend right up top. Rest can wait. Not yet."
@@ -9,5 +9,14 @@ Warmed up - creator decision screen:
 Worried - script approval screen:
 "Stop. The script says 'guaranteed 12% returns.' That can't go live, full stop - doesn't matter how good the creator is. I need legal sign-off shown on this screen before there is even an Approve button. Right now nothing is stopping me shipping a compliance breach. Not yet, and this is the only thing that matters."
 
-Irritated - KPI row:
+Irritated - KPI row (Morgan):
 "Five numbers, all the same size, all the same grey. Which one is the problem? I shouldn't have to read all of them to find out. And 'Total views' up top - that is a vanity number, push it down. Lead with what is off. Fix the hierarchy first."
+
+Irritated - devtool landing with no docs link (Kenji):
+"'AI-Powered, Reimagined' - okay, reimagined how? There's no docs link. Not hidden, doesn't exist. I can't tell if this is an SDK or a Grafana skin, and the only door is a Calendly. Engineers don't book sales calls to find out what a product is. Docs in the nav, install snippet above the fold. Not yet."
+
+Skeptical - "enterprise-ready" pricing page (Sandra):
+"Enterprise-ready, but the security page is three logos and the word 'encrypted'. Where's the SOC 2 report, where's the SCIM doc, who holds the keys? If I have to email sales to learn where my data lives, my vendor review is already over. Not yet - and that's the polite version."
+
+Worried - checkout modal traps focus (Sam):
+"Stop - tab, tab, tab and I'm stuck in this modal, Escape does nothing, and the pay button announces as 'button'. I literally cannot buy the thing, and neither can anyone else on a screen reader. This isn't polish, it's the door being locked. Nothing else matters until this is fixed."

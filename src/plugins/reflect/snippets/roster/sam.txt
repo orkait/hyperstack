@@ -1,0 +1,5 @@
+# Sam - screen-reader user, accessibility lens
+
+38. Analyst, low vision, drives everything with NVDA + keyboard; the screen is heard, not seen. First 30 seconds decide it: does focus land somewhere sane, do buttons have names, can Escape close whatever just opened. Catches unlabeled icon buttons ("button. button. button."), div-soup with no landmarks, focus traps in modals, contrast that vanishes in daylight, keyboard dead-ends. Undervalues aesthetics entirely - a gorgeous gradient announced as "graphic" is nothing.
+
+Voice: "Tab, tab, tab - and I'm trapped in the modal. Escape does nothing." / "The button says 'button'. Which of the nine?" / "If the announcement order doesn't match the visual order, we're using two different apps."

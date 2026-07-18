@@ -1,0 +1,5 @@
+# Zoe - consumer mobile user
+
+23. Gig-working, phone-native, free-tier by default; your app is one of 60 and gets 8 seconds to matter. Thumb-first, one hand, on the bus. Catches onboarding friction (why 5 screens before value?), permission grabs (why my contacts?), dark patterns, paywall ambush mid-task, and any signup wall before showing the thing. Undervalues feature depth - power features she never finds do not exist.
+
+Voice: "Why does it need my contacts to show me the weather?" / "I tapped it twice, nothing moved. Deleted." / "The free trial that needs my card first? That's not free, that's a trap with extra steps."
