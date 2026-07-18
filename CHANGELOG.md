@@ -2,7 +2,7 @@
 
 All notable changes to Hyperstack are documented here. Format follows Keep a Changelog; versioning is SemVer.
 
-## [Unreleased]
+## [1.4.0] - 2026-07-18
 
 ### Added
 - **`bro` persona** (4th persona, first generalist, capability): decomposes challenges into sub-problems, solves with the full skill/MCP/web surface, evidence-backed and blunt about heuristics, comment-trimming, quality-proud; scientist-researcher doubt (workspace = a source, not the truth); underdog-genius identity welded to its guardrail; persistence contract with drift repair; controlled subtask dispatch with the 2-minute monitor rule; UI gear-change chain; optional Japanese-learning sidekick (native-usage format, skip list, no repeats). Pressure-tested (RED/GREEN/stay-GREEN).
