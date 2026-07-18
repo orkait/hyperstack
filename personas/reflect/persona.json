@@ -11,17 +11,10 @@
   },
   "engaged_by": "hyper",
   "engages_when": [
-    "review this screen as a real user",
-    "get a persona or stakeholder read on a design",
-    "critique this UI as a target customer",
-    "would my target buyer approve this screen",
-    "pressure-test a design from the buyer side",
-    "review as a developer or devtool buyer",
-    "review as an enterprise or security buyer",
-    "review as a consumer mobile user",
-    "review with an accessibility or screen-reader lens",
-    "get everyone's read or a panel review of a screen",
-    "review a feature or planned feature as the target customer",
-    "would my users actually want this feature"
+    "review a screen or UI as a real user or target customer",
+    "get a persona or stakeholder read; pressure-test from the buyer side",
+    "review as a specific archetype (developer, enterprise, consumer, accessibility)",
+    "get everyone's read - a panel review",
+    "review a feature or planned feature; would my users actually want this"
   ]
 }
