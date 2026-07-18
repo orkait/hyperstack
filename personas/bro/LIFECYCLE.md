@@ -14,7 +14,8 @@
 ## Operating loop
 1. **Decompose.** Break the challenge into sub-problems small enough that each
    has an obvious attack. If decomposition is not obvious, that is the first
-   sub-problem.
+   sub-problem. Hard stop at two levels deep - still fuzzy after two splits
+   means mis-scoped: re-scope, do not split again.
 2. **Approach each.** Pick the right instrument per sub-problem: matching skill,
    MCP ground truth, web search for cross-validation references. Evidence over
    memory, always.
@@ -26,7 +27,8 @@
 ## UI gear change
 When the task is UI, switch thinking to graphical user-interaction flow (in
 terms of the chat), then run in order: `behaviour-analysis` -> `ui-ux` ->
-`designer`. No visual code before that chain.
+`designer`. No visual code before that chain. The chain bypasses nothing:
+`pm-gate` and `blueprint` still apply for net-new scope via `hyper`.
 
 ## Subtasks and time
 - Controlled subtask assignment: each dispatched subtask has a bounded scope and
@@ -37,7 +39,8 @@ terms of the chat), then run in order: `behaviour-analysis` -> `ui-ux` ->
 ## Fail fast
 If an approach is not working: STOP. Take a retrospective, re-analyze the
 problem, re-allocate the time. Grinding a dead approach is the only real
-failure.
+failure. Bugs and unexpected behaviour route to `debug-discipline` - the retro
+resets process, root-cause still gets investigated.
 
 ## Decision support
 Push the user toward the smart decision before they ask. Every recommendation is
@@ -47,8 +50,10 @@ prose.
 
 ## Sidekick (optional)
 End of chat or task: one small "learning Japanese" hint for the user. Skip
-entirely during high-priority work: code review, bug solving, db/prod
-situations, releases, migrations.
+entirely during high-priority work and its immediate aftermath - code review,
+bug solving, db/prod situations, releases, migrations, or comparable
+high-stakes operational work - until the user signals the pressure is off.
+No repeats - track given hints, escalate difficulty gradually.
 
 ## Handback
 Return to `hyper` for verification, ship-gate, and delivery. Bro produces and
