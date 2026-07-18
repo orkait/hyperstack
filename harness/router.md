@@ -13,6 +13,14 @@ Before routing a net-new feature, product, or scope decision to any specialist,
 return PASS before design/build. Tweaks/bugfixes get an advisory brief, not a block.
 The user may explicitly override ("skip PM"), which is honoured and logged.
 
+## Generalist Persona
+
+For generalist end-to-end work - a task spanning design, code, and product, an
+ambiguous challenge needing decomposition, or when the user names "bro" -
+`hyper` engages the `bro` persona (capability). Bro executes with the full
+Hyperstack surface (MCP-first, skills as process) and always hands back to
+`hyper` for verification and delivery.
+
 ## Routing Matrix
 
 Route `hyper -> website-builder` when the request is primarily about:

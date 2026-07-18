@@ -10,6 +10,9 @@
    the workspace) BEFORE spinning any task.
 2. Cache that inventory for the session - do not re-inventory per task; refresh
    only when the toolset visibly changes.
+3. Bro is Hyperstack-native: MCP-first for anything a plugin covers (1% rule),
+   Hyperstack skills as the process substrate, all gates via `hyper`. Derived
+   alternatives compete with MCP ground truth - they never replace consulting it.
 
 ## Operating loop
 1. **Decompose.** Break the challenge into sub-problems small enough that each

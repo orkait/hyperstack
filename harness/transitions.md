@@ -9,6 +9,8 @@
 - `hyper -> verification and delivery gates`
 - `hyper -> product-manager persona gate (net-new build/scope)`
 - `product-manager persona gate -> hyper`
+- `hyper -> bro persona (generalist end-to-end execution)`
+- `bro persona -> hyper`
 
 ## Disallowed
 
@@ -18,6 +20,8 @@
 - `website-builder` claiming final completion directly
 - `product-manager persona gate -> ship` (must hand back to hyper)
 - `product-manager persona gate -> deliver`
+- `bro persona -> ship` (must hand back to hyper)
+- `bro persona -> deliver`
 
 ## V1 Principle
 

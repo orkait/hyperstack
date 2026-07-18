@@ -47,6 +47,7 @@ const REQUIRED_BOOTSTRAP_MARKERS = [
   "website-builder",
   "Personas",
   "product-manager",
+  "bro",
   "auto-called",
   "hyper -> website-builder",
 ];

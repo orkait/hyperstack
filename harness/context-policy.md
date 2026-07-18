@@ -13,6 +13,11 @@ Each internal role should load only the context slice it needs.
   - package manifests and dependency signals
   - core frontend files for the active surface
   - website intent, page structure, website-experience constraints, website code
+- `bro` (persona)
+  - session tool-call inventory (cached once)
+  - the active sub-problem set and combine plan
+  - evidence for the current claims (reads, command output, MCP, web refs)
+  - targeted skill/MCP slices per sub-problem - never the whole reference forest
 
 ## Tiers
 
