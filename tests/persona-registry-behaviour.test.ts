@@ -25,6 +25,15 @@ test("registry loads the reflect capability persona", () => {
   expect(r!.owns.plugin).toBe("reflect");
 });
 
+test("registry loads the bro generalist capability persona", () => {
+  const personas = loadPersonas();
+  const b = personas.find((p) => p.id === "bro");
+  expect(b).toBeDefined();
+  expect(b!.mode).toBe("capability");
+  expect(b!.owns.plugin).toBe("*");
+  expect(b!.owns.skills).toContain("bro");
+});
+
 test("a malformed manifest is skipped, not thrown", () => {
   expect(() => loadPersonas()).not.toThrow();
 });

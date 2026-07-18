@@ -1,0 +1,25 @@
+{
+  "id": "bro",
+  "name": "Bro",
+  "version": "0.1.0",
+  "mode": "capability",
+  "owns": {
+    "capabilities": [
+      "generalist-execution",
+      "problem-decomposition",
+      "code-quality",
+      "subtask-orchestration",
+      "evidence-discipline"
+    ],
+    "plugin": "*",
+    "skills": ["bro"]
+  },
+  "engaged_by": "hyper",
+  "engages_when": [
+    "bro or bro mode is named",
+    "end-to-end generalist task spanning design, code, and product",
+    "ambiguous challenge that needs decomposition before an approach exists",
+    "quality-critical build where scale and optimization matter",
+    "multi-subtask work needing controlled dispatch and management"
+  ]
+}

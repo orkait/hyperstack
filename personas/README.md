@@ -15,6 +15,7 @@ compiles a Personas layer so `hyper` knows which personas exist and when they en
 | `product-manager` | gate | value + viability product risk |
 | `marketing` | capability | positioning, messaging, copy, brand, GTM |
 | `reflect` | capability | human screen-review as a target-customer persona |
+| `bro` | capability | generalist execution: decomposition, code quality, subtask orchestration, evidence discipline (binds the whole plugin surface via `"plugin": "*"`) |
 
 ## Anatomy of a persona
 
