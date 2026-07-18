@@ -52,6 +52,8 @@ const REQUIRED_BOOTSTRAP_MARKERS = [
   "reflect",
   "bro",
   "Triggers:",
+  "Token Economy",
+  "NEVER compress",
   "auto-called",
   "hyper -> website-builder",
 ];
@@ -67,6 +69,14 @@ function extractTaggedBlock(source: string, tag: string): string {
     throw new Error(`Could not extract <${tag}> block from source`);
   }
   return match[1].trim();
+}
+
+function extractOptionalSection(source: string, heading: string): string {
+  try {
+    return extractSection(source, heading);
+  } catch {
+    return "";
+  }
 }
 
 function extractSection(source: string, heading: string): string {
@@ -192,6 +202,7 @@ export function compileUsingHyperstackBootstrap(source: string, personas: Person
   const disallowedTransitions = extractSimpleBullets(extractSection(body, "Disallowed Transitions"));
   const finalCheck = extractFinalCheck(body);
   const redFlags = extractRedFlags(body);
+  const tokenEconomy = extractOptionalSection(body, "Token Economy (lite)");
 
   const content = [
     "<!-- GENERATED FILE. Edit skills/hyperstack/SKILL.md and re-run `bun run compile:context`. -->",
@@ -237,6 +248,7 @@ export function compileUsingHyperstackBootstrap(source: string, personas: Person
     "## High-Signal Red Flags",
     ...redFlags,
     "",
+    ...(tokenEconomy ? ["## Token Economy (lite)", tokenEconomy, ""] : []),
     "## Degraded Mode",
     "- If MCP unavailable, tell the user explicitly: \"MCP unavailable\" and flag answers as uncertain.",
     "",

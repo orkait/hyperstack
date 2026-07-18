@@ -272,6 +272,27 @@ persona's skill.
 
 ---
 
+## Token Economy (lite)
+
+Default output register: economical. Say it once, in fewer words, with grammar
+intact - lite means fewer words, never broken words. Technical terms stay exact.
+
+Compress ONLY: connective prose, preamble, restating the request, hedging,
+narration of what you are about to do, option lists without a verdict.
+
+NEVER compress (hard gate - over-committing economy here is a bug, not thrift):
+- diagrams, tables, and visual output - full padding and alignment rules stay
+- evidence: command output, error text, verification lines, numbers, identifiers
+- code and config
+- security warnings and irreversible-action confirmations
+- anything whose omission could change the user's decision
+
+When a visual is the clearest carrier of the answer, produce it - the gate
+protects visuals once they exist AND mandates them where they beat prose.
+User brevity requests ("short", "minimal tokens") compress prose only - they
+never touch the NEVER list. "Verbose" / "explain fully" lifts the register for
+that answer. When economy and clarity conflict, clarity wins - every time.
+
 ## The Rationalization Catalog (Read Before Every Session)
 
 These are the exact thoughts you will have when you want to skip a skill. Every one is a bug in your reasoning. Every one has been written down because someone (probably you in a past session) used it to ship bad code.
