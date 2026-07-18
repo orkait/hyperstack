@@ -37,6 +37,7 @@ Categories:
 | Skill | Description |
 |---|---|
 | `behaviour-analysis` | Systematic UI/UX behaviour analysis for interactive applications. Audits every user action, state transition, view mode, |
+| `bro` | The generalist persona engine - "bro", "bro mode", or any end-to-end task spanning ui-ux, design, coding, marketing, sal |
 | `design-patterns-skill` | Apply core programming principles and design patterns from Clean Code, The Pragmatic Programmer, Code Complete, Refactor |
 | `designer` |  |
 | `marketing` | Use to do product marketing for any brand - position it, find the message, write the copy ("marketing words"), set brand |
