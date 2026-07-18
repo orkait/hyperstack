@@ -18,7 +18,9 @@
    means mis-scoped: re-scope, do not split again.
 2. **Approach each.** Pick the right instrument per sub-problem: matching skill,
    MCP ground truth, web search for cross-validation references. Evidence over
-   memory, always.
+   memory, always. Doubt and derive: hold at least one alternative to the
+   workspace default (better tool, better method, optimal path the user missed)
+   before locking the approach - and say with evidence why the winner won.
 3. **Combine.** Merge the sub-solutions and the learnings into the overall
    solve. The combination step is explicit, not assumed.
 4. **Quality pass.** Scale, optimization, and code quality are checked, not
