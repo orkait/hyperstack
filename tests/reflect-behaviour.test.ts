@@ -4,6 +4,7 @@ import { captureTool, extractTextContent } from "./helpers.ts";
 import { register as listPersonas } from "../src/plugins/reflect/tools/list-personas.ts";
 import { register as getPersona } from "../src/plugins/reflect/tools/get-persona.ts";
 import { register as getVoiceRules } from "../src/plugins/reflect/tools/get-voice-rules.ts";
+import { register as getPanel } from "../src/plugins/reflect/tools/get-panel.ts";
 
 test("roster is the eight archetypes, Morgan first (default)", () => {
   expect(ROSTER.map((r) => r.id)).toEqual(["morgan", "max", "diane", "riley", "kenji", "sandra", "zoe", "sam"]);
@@ -33,6 +34,19 @@ test("get_persona handles an unknown id gracefully", async () => {
   const tool = captureTool(getPersona);
   const text = extractTextContent(await tool.invoke({ id: "zzz" }));
   expect(text).toMatch(/Unknown reviewer/);
+});
+
+test("get_panel serves the protocol plus seated lens docs, scoped by ids", async () => {
+  const tool = captureTool(getPanel);
+  expect(tool.name).toBe("reflect_get_panel");
+  const scoped = extractTextContent(await tool.invoke({ ids: ["kenji", "sam"] }));
+  expect(scoped).toMatch(/panel protocol/i);
+  expect(scoped).toMatch(/Kenji/);
+  expect(scoped).toMatch(/Sam/);
+  expect(scoped).not.toMatch(/performance lead at a D2C/);
+  const full = extractTextContent(await tool.invoke({}));
+  expect(full).toMatch(/Morgan/);
+  expect(full).toMatch(/Zoe/);
 });
 
 test("get_voice_rules carries the human-not-AI contract + moods", async () => {

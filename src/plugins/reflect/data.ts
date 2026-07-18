@@ -34,3 +34,4 @@ export function getArchetypeDoc(id: string): string | null {
 
 export const VOICE_RULES_DOC: string = snippet("rules/voice-and-moods.txt");
 export const SAMPLES_DOC: string = snippet("examples/samples.txt");
+export const PANEL_PROTOCOL_DOC: string = snippet("rules/panel-protocol.txt");

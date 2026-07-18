@@ -13,8 +13,11 @@
 4. Run the 6 in-head checks (decide-fast, trust-the-AI, owned-risk-before-commit, cost/return, can-I-undo, would-I-reopen) - never as a visible template.
 5. Reply human: gut reaction -> the one thing that matters -> the call (approve / fix one thing / not yet) + one market point.
 
-## Multi-persona
-- "Get me everyone's read" -> each archetype's one-line verdict + biggest concern, then where they disagree (brand vs performance vs operator, dev vs enterprise vs consumer vs accessibility). Surface the tension, do not average it.
+## Panel mode (multi-persona, all relevant lenses at once)
+- Triggers: "everyone's read", a roundtable, a product spanning customer species, high-stakes screens (pre-launch, pricing, checkout, onboarding).
+- `reflect_get_panel` serves protocol + seated lens docs. Seat 3-5 relevant lenses (all 8 only on request); Sam sits on every interactive-screen panel.
+- Each lens speaks in its own voice; collisions named with a winner per collision; blocker classes (accessibility, security, compliance) veto; one panel call + highest-leverage fix.
+- Surface the tension, do not average it.
 
 ## Handback
 - Return to `hyper`. The reviewer produces feedback; it does not build or ship.
