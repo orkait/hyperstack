@@ -13,7 +13,7 @@
       "type": "object",
       "required": ["plugin", "skills"],
       "properties": {
-        "plugin": { "type": "string" },
+        "plugin": { "type": "string", "description": "bound MCP plugin id; \"*\" = generalist persona binding the entire plugin surface (no single corpus)" },
         "skills": { "type": "array", "items": { "type": "string" } },
         "risks": { "type": "array", "items": { "type": "string" }, "description": "gate personas only" },
         "capabilities": { "type": "array", "items": { "type": "string" }, "description": "capability personas only" }
