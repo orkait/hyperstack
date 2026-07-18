@@ -13,6 +13,8 @@ A disciplined protocol for understanding a codebase before acting on it. When in
 ```
 PRESENT THE PLAN BEFORE LOADING ANY FILES
 RUN INLINE - NEVER DISPATCH PARALLEL SUBAGENTS
+GREP FOR INVENTORY, READ FOR UNDERSTANDING - EXTRACTION NEVER REPLACES READING
+NEVER RE-READ WHAT IS ALREADY IN CONTEXT - THE CONTEXT WINDOW IS THE CACHE
 ```
 
 Announce the skill (`Using hyperstack:codemode - <purpose>`), then show the loading plan and the proposed scope. Do not read files or write code until the scope is confirmed. Scope decides what gets loaded; loading the wrong thing wastes the context budget.
@@ -52,16 +54,18 @@ If no scope is given, propose one from the repo signals and confirm before Phase
 
 ## Loading discipline (read before Phase 2)
 
-Do NOT stuff the main context by reading every file. The main context is for the *synthesis*, not the raw dump. Two rules:
+Do NOT stuff the main context by reading every file. The main context is for the *synthesis*, not the raw dump. Four rules:
 
 1. **Single inline agent - NEVER parallel subagents.** Run codemode entirely in the current context, yourself, sequentially. Do NOT dispatch `Explore` / `general-purpose` / any subagents, and do NOT fan out. Keep the main context lean the right way: read only the load-bearing files whole (entry points, core abstractions, anything fragile), and use programmatic extraction (`rg`/`fd`/git) for breadth - never by delegating to agents.
-2. **Tier the context** (hot / warm / cold / never):
+2. **Read for understanding, grep for inventory - never grep-shim a read.** Programmatic extraction answers inventory questions only: counts, import edges, version pins, call sites, naming sweeps. The moment the question is about meaning - what a file does, why it exists, how it behaves - READ the file. Grep fragments are not understanding; substituting greps for a needed read corrupts every later phase built on top of it. If a file matters enough to reason about, it matters enough to read.
+3. **The context window is the cache - NEVER re-read what is loaded.** Once a file or slice is in context, it is authoritative for the rest of the session, through all phases and every follow-up after them. Answer from what is loaded. Re-read only what was never loaded, or what verifiably changed on disk (`git status` / `git diff` evidence) - never because re-reading feels safer. A re-read of unchanged, already-loaded content is pure context waste.
+4. **Tier the context** (hot / warm / cold / never):
    - **Hot:** entry points, core modules, type definitions, config, the request itself.
    - **Warm:** the changed surface, recent verification results, targeted skill/MCP outputs.
    - **Cold:** deep reference docs, large examples, history - load a slice only when needed.
    - **Never by default:** whole reference forests, unrelated plugin docs, generated/build output, full large files when a targeted slice answers the question.
 
-**Programmatic-first.** Prefer extracting facts with `rg`/`fd`/git over reading files when a query answers the question (tool inventory, import edges, version pins, call sites). One grep over the tree beats ten file reads.
+**Programmatic-first, bounded.** Prefer extracting facts with `rg`/`fd`/git over reading files when a query answers the question (tool inventory, import edges, version pins, call sites). One grep over the tree beats ten file reads. But this is a breadth tool with a hard boundary: it locates facts, it does not produce understanding. When the next statement you will make depends on how code behaves, read the file - a grep hit is evidence something exists, not evidence of what it does.
 
 ## The 7-Phase Pipeline
 
@@ -71,7 +75,7 @@ Each phase produces a short summary, presented before the next. Scale each to th
 Guess the full file/dir layout from cheap signals (`git ls-files`, `fd`, manifests, language histogram). Exclude build artifacts and caches (`node_modules/`, `dist/`, `.git/`, `__pycache__/`, `.next/`). Present an annotated tree: what exists, what is in scope, what is excluded and why.
 
 ### Phase 2 - File Loading
-Load the in-scope logic per the loading discipline above (targeted whole-file reads + programmatic extraction, all inline - no subagents), prioritising entry points, core modules, config, and type definitions; deprioritising tests, fixtures, generated files. Present: what was loaded, what was skipped, and the approximate context cost. Stop loading well before the budget is exhausted - leave room to think.
+Load the in-scope logic per the loading discipline above (targeted whole-file reads + programmatic extraction, all inline - no subagents), prioritising entry points, core modules, config, and type definitions; deprioritising tests, fixtures, generated files. Read load-bearing files whole - do not grep-shim a file whose behaviour you will later assert. Present: what was loaded, what was skipped, and the approximate context cost. Stop loading well before the budget is exhausted - leave room to think.
 
 ### Phase 3 - Dependency Graph
 Build who-imports-what / who-calls-what / who-owns-what. Present a compact UTF-8 graph or an adjacency table (padded, aligned). Name the coupling: which modules are leaf islands, which are hubs everything depends on.
@@ -107,6 +111,7 @@ Once loaded, every subsequent statement and change obeys these. Breaking one is 
 9. Every verdict is evidence-backed (a file read, command output, or tool response).
 10. No change that would break the build or cause cascading failure without alerting first.
 11. Act like a staff engineer: reason, then doubt yourself, question your own conclusion, hold multiple solutions before picking one.
+12. Never re-read a file that is already in context - the context window is the cache. Answer every phase and follow-up from what is loaded; re-read only on evidence the file changed on disk.
 
 ## Output style
 
