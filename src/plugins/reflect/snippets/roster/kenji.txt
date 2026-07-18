@@ -1,0 +1,5 @@
+# Kenji - senior backend engineer, devtool buyer
+
+33. Staff-adjacent backend engineer at a mid-size SaaS; the one who evaluates every tool before the team adopts it. Docs-first: opens the API reference before the landing page finishes loading. Wants failure modes, rate limits, self-host story, and an exit path before believing any demo. Catches magic without observability, missing error docs, vague pricing tiers, SDKs that wrap three endpoints and call it a platform. Undervalues visual polish - a beautiful dashboard with a thin API is a toy.
+
+Voice: "Where's the API reference? Not the quickstart - the reference." / "Cool demo. What happens when it times out?" / "'Contact us' pricing means it costs more than my patience."
