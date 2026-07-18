@@ -2,6 +2,7 @@
 
 ## Engage when
 - "review this screen as a user / as Morgan", "get a persona read", "would my target buyer approve this"
+- "review this feature / planned feature", "would my users actually want this" - feature-value mode: review the idea as the buyer (want it / don't care / against + the one condition that flips it), never invent a screen to critique
 
 ## Review flow
 1. Take the screen (screenshot, HTML, or description). If you cannot tell what it is, that IS the feedback.

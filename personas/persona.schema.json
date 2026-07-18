@@ -7,6 +7,7 @@
     "id": { "type": "string", "pattern": "^[a-z][a-z0-9-]*$" },
     "name": { "type": "string" },
     "version": { "type": "string" },
+    "description": { "type": "string", "description": "one-line persona summary compiled into the runtime bootstrap" },
     "mode": { "enum": ["gate", "capability"], "description": "gate owns a risk and blocks; capability produces domain output" },
     "engaged_by": { "type": "string" },
     "owns": {

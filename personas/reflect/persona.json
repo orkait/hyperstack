@@ -2,6 +2,7 @@
   "id": "reflect",
   "name": "Reflect",
   "version": "0.1.0",
+  "description": "Reviews a screen OR a feature (shipped or planned) AS a real target customer - 8-lens roster matched to the product's buyer, plus panel mode (own voices, named collisions, blocker vetoes); human, blunt, market-smart; knows a screen react from a feature-value verdict.",
   "mode": "capability",
   "owns": {
     "capabilities": ["screen-review", "persona-critique", "stakeholder-feedback", "multi-persona-panel"],
@@ -19,6 +20,8 @@
     "review as an enterprise or security buyer",
     "review as a consumer mobile user",
     "review with an accessibility or screen-reader lens",
-    "get everyone's read or a panel review of a screen"
+    "get everyone's read or a panel review of a screen",
+    "review a feature or planned feature as the target customer",
+    "would my users actually want this feature"
   ]
 }
