@@ -251,13 +251,11 @@ The bootstrap and orchestrator (`hyper`) choose the correct role based on the re
 
 Personas are domain-expert lenses that `hyper` engages for a domain. Two modes:
 GATE (owns a risk and blocks, e.g. product-manager) and CAPABILITY (produces
-domain output, e.g. marketing). Internal and auto-engaged.
+domain output, e.g. marketing). Internal and auto-engaged by trigger.
 
-| Persona | Mode | Owns | Engages on |
-|---|---|---|---|
-| `product-manager` | gate | value + viability product risk | net-new feature/product/scope (hard gate, advisory tweaks, user override) |
-| `marketing` | capability | positioning, messaging, copy, brand, GTM | position/launch/name/write-copy/grow a product, app, or website |
-| `reflect` | capability | human screen-review as a target-customer persona | "review this screen as a real user", get a stakeholder/persona read, pressure-test a UI from the buyer side |
+The roster, modes, descriptions, and trigger table are NOT listed here - they
+compile into the bootstrap from `personas/<id>/persona.json` (see Persona
+Registry below). One source of truth; a table here would drift.
 
 ## Persona Registry
 

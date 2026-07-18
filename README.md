@@ -204,9 +204,9 @@ Node 18+ required.
 
 ---
 
-## 🧠 The Three-Layer System
+## 🧠 The Four-Layer Framework
 
-Hyperstack's strength comes from the friction between **Ground Truth** (MCP), **Enforcement** (Skills), and **Orchestration** (Agents).
+One framework, four layers: **Ground Truth** (MCP), **Enforcement** (Skills), **Orchestration** (Roles), and **Personas** (domain lenses, auto-engaged by trigger). Each persona binds its plugin, skills, and routing through one manifest.
 
 ### Layer 1: MCP Plugins (Ground Truth)
 
@@ -218,9 +218,10 @@ Your AI calls these for deterministic data. Memory is not acceptable. Every plug
 | 🎨 **UI Engine** | `designer`, `design-tokens`, `ui-ux`, `shadcn` | Design Systems, OKLCH, Typography, Accessibility, Component Specs |
 | ⚛️ **Frontend** | `react`, `reactflow`, `motion`, `lenis` | Next.js 15, RSC, Animation Curves, Smooth Scroll, DAG Layouts |
 | 🐹 **Backend** | `echo`, `golang`, `rust` | Professional Go Recipes, Rust Borrow Checker patterns, Clean Architecture |
+| 📈 **Product & Growth** | `optimizer`, `product-manager`, `marketing`, `reflect` | DSA technique matching, Product risk gates (JTBD, RICE), Positioning & GTM, Target-customer screen/feature review |
 
 > [!TIP]
-> **80 Tools Total**. Every tool is designed to provide the "Senior Engineer" answer, bypassing the "AI Slop" default.
+> **118 tools across 16 plugins**. Every tool is designed to provide the "Senior Engineer" answer, bypassing the "AI Slop" default.
 
 ### Layer 2: Skills (Enforcement Teeth)
 
@@ -244,6 +245,17 @@ The internal harness is what ties the public layers together by managing process
 - `hyper` owns classification, routing, gates, and verification
 - `website-builder` specializes in website-facing design and implementation work
 - roles are internal and auto-called, not user-invoked commands
+
+### Layer 4: Personas (Domain Lenses)
+
+Domain-expert lenses `hyper` auto-engages when their triggers match the request - the user never has to name them. Each binds an MCP plugin + skills + routing via `personas/<id>/persona.json`, and the trigger table is compiled into the session bootstrap from those manifests (single source of truth).
+
+| Persona | Mode | Lens |
+|---|---|---|
+| `product-manager` | gate | blocks net-new builds until value + viability risks carry evidence |
+| `bro` | capability | generalist execution: decomposition, evidence discipline, code quality |
+| `marketing` | capability | positioning, messaging, copy, brand voice, GTM |
+| `reflect` | capability | reviews screens and features AS the real target customer (8 archetypes + panel mode) |
 
 <details>
 <summary><strong>🧱 Core (13)</strong> - workflow, discipline, gates used on every task</summary>

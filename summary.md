@@ -13,7 +13,7 @@ Redefine the relationship between a human developer and an AI coding assistant. 
 ## 🛠️ What We Have Accomplished
 
 ### 1. Monorepo Consolidation
-Merged two fragmented repositories (`unified-mcp` for data, `unified-skill` for persona) into a single high-cohesion repository. Hyperstack is now a **Three-Layer Ecosystem**:
+Merged two fragmented repositories (`unified-mcp` for data, `unified-skill` for persona) into a single high-cohesion repository. Hyperstack is now a **four-layer framework** (Layer 4, Personas, added later):
 - **Layer 1: Ground Truth (MCP)** - The "Brain": Deterministic data and tools
 - **Layer 2: Process (Skills)** - The "Body": Disciplined engineering workflows and gates
 - **Layer 3: Orchestration (Agents)** - The "Nervous System": Internal roles for routing and verification

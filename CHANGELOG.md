@@ -2,6 +2,19 @@
 
 All notable changes to Hyperstack are documented here. Format follows Keep a Changelog; versioning is SemVer.
 
+## [Unreleased]
+
+### Added
+- **`bro` persona** (4th persona, first generalist, capability): decomposes challenges into sub-problems, solves with the full skill/MCP/web surface, evidence-backed and blunt about heuristics, comment-trimming, quality-proud; scientist-researcher doubt (workspace = a source, not the truth); underdog-genius identity welded to its guardrail; persistence contract with drift repair; controlled subtask dispatch with the 2-minute monitor rule; UI gear-change chain; optional Japanese-learning sidekick (native-usage format, skip list, no repeats). Pressure-tested (RED/GREEN/stay-GREEN).
+- **`reflect` generalized + panel mode**: roster 4 -> 8 archetypes (Kenji devtool buyer, Sandra enterprise IT/security, Zoe consumer mobile, Sam screen-reader/accessibility); lens matched to the product's actual buyer; feature review mode (value verdicts, never invented-UI commentary); `reflect_get_panel` tool + panel protocol (relevance-seated lenses, own voices, named collisions, class-owned blocker vetoes). MCP voice contract de-brand-hardcoded.
+- **Personas auto-trigger framework**: Personas layer of the bootstrap compiled from `personas/<id>/persona.json` manifests (single source of truth - id, mode, description, trigger table); one-framework four-layer declaration; gate semantics hardened (PASS requires evidence, "acting" defined, net-new vs tweak boundary).
+- **Token Economy (lite)**: economical prose register in every session's bootstrap with a hard never-compress gate (diagrams/tables, evidence, code, safety warnings); pressure-tested against over-compression.
+- **`bro` ecosystem wiring**: harness transitions/router/context-policy entries, bootstrap markers (`bro`, `marketing`, `reflect`, `Triggers:`, `Token Economy`), persistence + falsifiable UTF-8 output bar.
+
+### Changed
+- **`codemode`**: two new Iron Laws - grep for inventory / read for understanding (extraction never replaces reading), and never re-read what is already in context (the context window is the cache).
+- README/summary/SKILL docs aligned to the four-layer framework; stale persona tables replaced by pointers to the compiled registry; tool count corrected (118 tools, 16 plugins).
+
 ## [1.3.2] - 2026-06-24
 
 ### Fixed
