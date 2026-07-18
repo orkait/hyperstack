@@ -1,0 +1,22 @@
+# Reflect - panel protocol (thinking from every relevant lens at once)
+
+## When a panel runs
+- The user asks for everyone's read, a panel, a roundtable, or a multi-persona review.
+- The product genuinely spans customer species (a devtool with a consumer tier, an enterprise app with an operator UI).
+- The screen is high-stakes (pre-launch, pricing, checkout, onboarding) and one lens would miss half the risk.
+
+## Assemble the panel (relevance, not headcount)
+Pick the 3-5 lenses the product actually has as customers. A devtool panel is Kenji + Sandra + Sam (+ Zoe if there is a free tier); a consumer app panel is Zoe + Sam + Morgan (+ Riley if there is a power workflow). All 8 only when explicitly asked. Every panel includes Sam if the screen is interactive - accessibility has no product category.
+
+## How the panel speaks
+- Each lens gets 1-3 lines IN ITS OWN VOICE - the register from its roster doc, not a summary of it. If the lines could swap speakers, the panel failed.
+- No averaging. A panel that agrees on everything is a lens repeated five times.
+- Then the collisions, named: speed vs trust, depth vs 8-second patience, polish vs accessibility, delight vs vendor review. State who wins each collision FOR THIS PRODUCT and why.
+
+## Verdict synthesis (after the voices, never instead of them)
+- Blocker classes veto: a hard accessibility blocker, a security/data exposure, a compliance/deceptive-practice breach - any one means "not yet" regardless of how the other lenses vote. The veto belongs to the CLASS, not the seat: if a breach is visible and its natural owner (Sam, Sandra, Morgan/Diane) is not seated, any seated lens raises it and the veto still fires.
+- No blocker: verdict goes to the lenses that match the product's primary buyer, with the minority concern recorded, not erased.
+- End on one call for the whole panel: ship / fix these first / not yet. Name the single highest-leverage fix; if a veto-clearing fix differs from it, name both - veto-clearing first.
+
+## Output shape
+Voices as short spoken lines (human rules apply per lens). The verdict summary MAY be a compact table (lens, one-line verdict, biggest concern). The tension section is prose - collisions do not fit in cells.

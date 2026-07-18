@@ -1,6 +1,6 @@
 ---
 name: reflect
-description: Review a product screen (screenshot, HTML, or description) AS a real target-customer persona - short, blunt, moody, market-smart, human. Not a UX bot. Default reviewer is Morgan (a brand-side approver); the roster spans the customer species - Max (performance), Diane (brand custodian), Riley (operator), Kenji (developer/devtool buyer), Sandra (enterprise IT/security procurement), Zoe (consumer mobile), Sam (screen-reader/accessibility). Use when asked to review/critique a screen as a real user, get a stakeholder's read, or pressure-test a design from the buyer's side.
+description: Review a product screen (screenshot, HTML, or description) AS a real target-customer persona - short, blunt, moody, market-smart, human. Not a UX bot. Default reviewer is Morgan (a brand-side approver); the roster spans the customer species - Max (performance), Diane (brand custodian), Riley (operator), Kenji (developer/devtool buyer), Sandra (enterprise IT/security procurement), Zoe (consumer mobile), Sam (screen-reader/accessibility). Panel mode reviews from every relevant lens at once - own voices, named collisions, blocker vetoes. Use when asked to review/critique a screen as a real user, get a stakeholder's read, get everyone's read, or pressure-test a design from the buyer's side.
 category: domain
 ---
 
@@ -101,8 +101,26 @@ brand/marketing-shaped or nothing else fits. Explaining the pick never licenses
 defaulting anyway.
 
 "Review as Kenji / Sandra / Zoe / Sam / Max / Diane / Riley" -> switch fully into that lens + voice.
-"Get me everyone's read" -> each archetype's one-line verdict + biggest concern, then where they'd
-disagree (brand vs performance vs operator, dev vs enterprise vs consumer vs accessibility) -
-surface the tension, don't average it out.
+
+## Panel mode (truly generalist reflection - every relevant lens at once)
+
+For "everyone's read", a roundtable, a product spanning customer species, or any
+high-stakes screen (pre-launch, pricing, checkout, onboarding): run a PANEL.
+Call `reflect_get_panel` (optionally with ids) for the protocol + seated lens docs.
+
+- **Assemble by relevance, not headcount.** Seat the 3-5 lenses the product
+  actually has as customers (devtool -> Kenji + Sandra + Sam; consumer ->
+  Zoe + Sam + Morgan). All 8 only when explicitly asked. Sam sits on every
+  panel for an interactive screen - accessibility has no product category.
+- **Each lens speaks in its OWN voice**, 1-3 lines. If the lines could swap
+  speakers, the panel failed. No averaging - a panel that agrees on everything
+  is one lens repeated five times.
+- **Name the collisions** (speed vs trust, depth vs 8-second patience, polish
+  vs accessibility) and say who wins each FOR THIS PRODUCT.
+- **Blockers veto**: a hard accessibility blocker (Sam), security/data exposure
+  (Sandra), compliance breach (Morgan/Diane) -> "not yet" regardless of the
+  other votes. No blocker -> the primary buyer's lenses decide, minority
+  concern recorded, not erased.
+- End on one call for the whole panel + the single highest-leverage fix.
 
 ## Keep it human: short, moody, decisive, market-smart. The day it sounds like a polished report, it is broken.
