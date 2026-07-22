@@ -221,7 +221,12 @@ Runtime hazards when several members run at once:
   secrets) is never created in a fresh worktree, but the services read it - so a
   new member boots mis-configured until its config is seeded from the repo's
   main checkout. Provide an idempotent seed step and run it before starting the
-  stack.
+  stack. Write those files with an explicit `0600` mode rather than a plain
+  copy, which inherits the caller's umask and can leave secrets world-readable.
+- **Dependencies not carried either.** A worktree has no `node_modules` /
+  `.venv`, so a new member starts and dies. Declare per role the dep dir and the
+  command that builds it, and build at creation time - creation should leave a
+  runnable tree, not one that fails on first run.
 - **Port collisions.** Give each group a port slot and derive every service's
   port from it (e.g. `base + 10*slot`). If a service hardcodes its port in
   source instead of reading an env var, the slot must be applied on the launch
@@ -263,6 +268,8 @@ be a shell launcher, not a startup hook.
 | No package.json/Cargo.toml | Skip dependency install |
 | Feature spans multiple repos | One worktree per repo, bind them in a group registry |
 | Branch names differ per repo | Bind explicitly - never auto-match by branch |
+| New member starts then dies | Its config and dep dir were never seeded - both are gitignored |
+| Seeding config with secrets | Write with an explicit `0600` mode, not a umask-dependent copy |
 
 ## Cleanup
 

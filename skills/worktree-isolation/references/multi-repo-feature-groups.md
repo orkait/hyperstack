@@ -36,15 +36,21 @@ subdirectory.
 
 | verb | does |
 |---|---|
-| `new <group> <role...>` | create a worktree + feature branch per role, bind them, assign the next free slot, generate a run script each |
+| `new <group> <role...>` | create a worktree + feature branch per role, bind them, assign the next free slot, generate a run script, seed config, build deps |
 | `add <group> <role...>` | add member(s) to an existing group, reusing its slot |
 | `bind <group> [role]` | fold the current worktree in, inheriting the group's slot |
 | `env <group>` | seed gitignored config (`.env`, secrets) from each repo's main checkout into the worktrees |
+| `deps <group>` | build each member's dependency dir (see "Dependencies" below) |
 | `up` / `down <group>` | run / stop every member's run script as one stack |
-| `st <group>` | cross-repo status: branch, dirty, ahead/behind, port per member |
+| `st <group>` | cross-repo status: branch, dirty, ahead/behind, behind-base, port, config, deps |
 | `rm` | unbind the current worktree (keep the checkout) |
 | `claim-oauth <group>` | move a group onto the OAuth-registered port (see below) |
 | `go [group]` | open one agent/editor session across the whole set |
+
+Bind-by-bare-name must resolve to an **existing** group. Otherwise a mistyped
+verb (`wtg downfoo`) silently creates a group, rebinds the current tree away from
+its real one, and overwrites its run script. Creating a group from the current
+tree should be its own explicit verb.
 
 ## Port slots (running several groups at once)
 
@@ -90,6 +96,22 @@ the group's BE port.
 local secrets) is never created in a fresh worktree, but services read it - so a
 new member boots mis-configured until you seed its config from the repo's main
 checkout. Make the seed step idempotent (skip existing files unless forced).
+
+Write seeded config with an explicit mode (`install -m 600`), not a plain copy.
+These files hold live credentials, and a copy inherits the caller's umask - on a
+common `0002` umask that leaves secrets world-readable at `0644`.
+
+## Dependencies are not carried either
+
+The same gap applies to build output: a worktree has no `node_modules`,
+`.venv`, or equivalent, so a freshly created member starts and immediately dies.
+Declare per role both the directory that must exist and the command that builds
+it, then run it at creation time. Skip a dir that is already present unless a
+force flag is passed, and log failures with the tail of the build log - a silent
+dependency failure looks identical to a broken run script later.
+
+Creation should therefore leave a **runnable** tree: worktree + branch + run
+script + config + dependencies. Anything less defers a failure to first run.
 
 ## Grouped session (working the set as one)
 
