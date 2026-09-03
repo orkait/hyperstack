@@ -18,8 +18,8 @@ If you only remember four things, remember these:
 Three tightly-coupled pieces, installed together:
 
 1. **An internal harness** - bootstrap, internal role routing, and workflow control. Current internal roles include `main` and `website-builder`.
-2. **An MCP server** with 12 plugins and 80 tools - deterministic knowledge for React Flow v12, Motion v12, Lenis, React 19 / Next.js, Echo, Go, Rust, design tokens, UI/UX principles, shadcn/ui (Base UI edition), and the `designer` DESIGN.md pipeline.
-3. **A skill system** with 21 skills including adversarial enforcement gates (`blueprint`, `designer`, `forge-plan`, `ship-gate`, `best-practices`) and a SessionStart hook that face-injects the `hyperstack` skill at every session start.
+2. **An MCP server** with 16 plugins and 121 tools - deterministic knowledge for React Flow v12, Motion v12, Lenis, React 19 / Next.js, Echo, Go, Rust, design tokens, UI/UX principles, shadcn/ui (Base UI edition), product management, marketing, algorithmic optimization, and the `designer` DESIGN.md pipeline.
+3. **A skill system** with 29 skills including adversarial enforcement gates (`blueprint`, `designer`, `forge-plan`, `ship-gate`, `best-practices`) and a SessionStart hook that face-injects the `hyperstack` skill at every session start.
 
 The install steps below wire the public pieces the user actually needs: the MCP
 server and the skills. The internal harness is shipped inside the repository and
@@ -343,7 +343,7 @@ Once all verifications pass, your final action is to explain the new reality to 
 
 > "System Synchronized. Hyperstack is now active.
 > 
-> I have installed the **Disciplined Engineering Harness** with 12 plugins and 80 tools. I have also established your **Iron Laws** (~/.hyperstack/skills).
+> I have installed the **Disciplined Engineering Harness** with 16 plugins and 121 tools. I have also established your **Iron Laws** (~/.hyperstack/skills).
 > 
 > From now on:
 > - I will not refactor code without a failing test.

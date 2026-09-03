@@ -12,8 +12,8 @@
 </p>
 
 <p>
-  <img src="https://img.shields.io/badge/12_plugins-80_tools-6366f1?style=flat-square" alt="Plugins" />
-  <img src="https://img.shields.io/badge/22_skills-adversarial_gates-a855f7?style=flat-square" alt="Skills" />
+  <img src="https://img.shields.io/badge/16_plugins-121_tools-6366f1?style=flat-square" alt="Plugins" />
+  <img src="https://img.shields.io/badge/29_skills-adversarial_gates-a855f7?style=flat-square" alt="Skills" />
   <img src="https://img.shields.io/badge/SessionStart-hook_injected-f59e0b?style=flat-square" alt="Hook" />
 </p>
 
@@ -25,7 +25,7 @@
 
 **Hyperstack is a disciplined engineering harness for AI coding agents.** 
 
-It provides the necessary **Ground Truth** (via 80 specialized MCP tools) and **Adversarial Enforcement** (via 22 rigorous skills) to transform a generic LLM into a high-precision Senior Engineer. 
+It provides the necessary **Ground Truth** (via 121 specialized MCP tools) and **Adversarial Enforcement** (via 29 rigorous skills) to transform a generic LLM into a high-precision Senior Engineer. 
 
 Unlike standard "polite" instructions, Hyperstack uses **Iron Laws** and a **SessionStart hook** to force agents to check real documentation, follow precise design specs, and provide binary verification before shipping.
 
@@ -85,8 +85,8 @@ If you aren't using the Autopilot, follow the **Unified Bootstrap** to set up bo
 It is not just a library; it is a **disciplined harness** made of three tightly-coupled layers:
 
 1.  **The Harness**: Bootstraps the agent, routes internal specialist roles (`hyper`, `website-builder`), and enforces global development invariants.
-2.  **The MCP Ground Truth**: 12 TypeScript plugins (80 tools) that provide deterministic data. No hallucinated imports or invented component specs.
-3.  **The Adversarial Gates**: 22 skills with **"Enforcement Teeth"**. These aren't suggestions; they are Iron Laws supported by rationalization tables that counter every excuse an agent uses to skip quality gates.
+2.  **The MCP Ground Truth**: 16 TypeScript plugins (121 tools) that provide deterministic data. No hallucinated imports or invented component specs.
+3.  **The Adversarial Gates**: 29 skills with **"Enforcement Teeth"**. These aren't suggestions; they are Iron Laws supported by rationalization tables that counter every excuse an agent uses to skip quality gates.
 
 > [!IMPORTANT]
 > **Use Hyperstack if** you want to force your agent to check docs, write designs first, and prove its work.
@@ -100,12 +100,12 @@ graph TD
     Harness --> Gates{Adversarial Gates}
 
     subgraph "The Enforcement Layer"
-        Gates -->|Iron Laws| Skills[21 Skills with Enforcement Teeth]
+        Gates -->|Iron Laws| Skills[29 Skills with Enforcement Teeth]
         Skills -->|SessionStart| Injection[Auto-Context Injection]
     end
 
     subgraph "The Knowledge Layer"
-        Skills -->|Ground Truth| MCP[12 MCP Plugins / 80 Tools]
+        Skills -->|Ground Truth| MCP[16 MCP Plugins / 121 Tools]
         MCP -->|Designer| Design[DESIGN.md Pipeline]
         MCP -->|Verified| Code[Programmatic Compliance Check]
     end
@@ -221,7 +221,7 @@ Your AI calls these for deterministic data. Memory is not acceptable. Every plug
 | 📈 **Product & Growth** | `optimizer`, `product-manager`, `marketing`, `reflect` | DSA technique matching, Product risk gates (JTBD, RICE), Positioning & GTM, Target-customer screen/feature review |
 
 > [!TIP]
-> **118 tools across 16 plugins**. Every tool is designed to provide the "Senior Engineer" answer, bypassing the "AI Slop" default.
+> **121 tools across 16 plugins**. Every tool is designed to provide the "Senior Engineer" answer, bypassing the "AI Slop" default.
 
 ### Layer 2: Skills (Enforcement Teeth)
 
@@ -303,7 +303,7 @@ Domain-expert lenses `hyper` auto-engages when their triggers match the request 
 
 </details>
 
-Full index at `skills/INDEX.md`. Regenerate with `bash scripts/generate-skills-index.sh` after adding or editing any skill.
+Full index at `skills/INDEX.md`. Regenerate with `bun scripts/generate-skills-index.ts` after adding or editing any skill.
 
 ---
 
@@ -503,7 +503,7 @@ We welcome contributions that follow the **Disciplined Engineering** standard.
 
 ```bash
 # Regenerate the skills index after editing
-bash scripts/generate-skills-index.sh
+bun scripts/generate-skills-index.ts
 ```
 
 ## 📄 License

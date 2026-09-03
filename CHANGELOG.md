@@ -2,6 +2,22 @@
 
 All notable changes to Hyperstack are documented here. Format follows Keep a Changelog; versioning is SemVer.
 
+## [1.5.0] - 2026-09-04
+
+### Added
+- **`react-pro-coder` skill**: 56 React and Next.js rules with stable IDs (`CD-3`, `ST-2`, `DF-5`) across component design, hooks, state placement, performance, data fetching (RSC, React 19 Actions, `use()`), TypeScript, styling and accessibility, architecture, testing, and production security. Gated on `react_get_constraints` so framework ground truth stays in the plugin. Ships a review checklist keyed to rule IDs, a 10-section output contract, and a negative-doubt routine.
+- **`python-pro-coder` skill**: 60 FastAPI + Pydantic v2 + SQLAlchemy 2.0 rules (`PD-4`, `AS-2`, `SE-5`) across project structure, modelling, endpoint design, settings, dependency injection, async and performance, security, error handling, database access, testing, and observability. Gated on a version-verified stack file that names the dead dependencies and their replacements: `python-jose` (abandoned, CVE-2024-33664) to PyJWT or joserfc, `passlib` (breaks on Python 3.13+) to pwdlib, `@app.on_event` to `lifespan`, `AsyncClient(app=app)` to `ASGITransport`.
+- **`best-practices` reference set**: four new files covering rules no skill held - coupling and abstraction (Law of Demeter, Command-Query Separation, flag arguments, rule of three, leaky abstractions, cargo cult), change hygiene (atomic commits, PR size, automate-before-human, review conduct, tracked debt), architecture at scale (modular monolith default, dependency direction, 12 factors, ADRs), and an operations baseline (structured logs, metrics vs logs, liveness vs readiness, graceful degradation, N+1).
+
+### Changed
+- **`engineering-discipline` + `design-patterns-skill` merged into `best-practices`**: the two skills shipped byte-identical copies of the same six pattern reference files (2172 duplicated lines), and `design-patterns-skill` was a strict subset of the other's Quick Reference mode. The merged skill keeps the pattern-selection table and AI-bias guidance that only `design-patterns-skill` carried, and declares `supersedes: ["engineering-discipline", "design-patterns-skill"]`. Callers updated across 20 files.
+- **`worktree-isolation`**: `wtg` reference refreshed to the current engine, with an expanded setup guide and multi-repo feature-group notes.
+- Manifest counts reconciled against the live server: 16 plugins, 121 tools, 29 skills, 4 personas. README badges, install guide, summary, and CREDITS carried stale figures from several releases back.
+
+### Removed
+- `skills/design-patterns-skill/` and `skills/engineering-discipline/` (both absorbed by `best-practices`).
+- `references/misc/overview.md`: an orphaned Kiro-era install document that restated `SKILL.md` and described a directory layout that no longer exists.
+
 ## [1.4.0] - 2026-07-18
 
 ### Added
