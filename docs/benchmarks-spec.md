@@ -13,7 +13,7 @@ This is the exact thing the quarterly audit proved by hand (Next 15->16 async pa
 | Goals | Non-goals (v1) |
 |---|---|
 | One claim, deterministic metric, multi-model | Measuring "code quality" broadly (fuzzy, needs a judge) |
-| Reproducible single command, raw results stamped | Benchmarking all 12 plugins (start with high-drift ones) |
+| Reproducible single command, raw results stamped | Benchmarking all 16 plugins (start with high-drift ones) |
 | A README number that replaces faith | A judge-model rubric (avoid fuzzy scoring in v1) |
 | Re-runnable each quarter alongside the audit | Proving the agent *will* call the tools (that is v2) |
 

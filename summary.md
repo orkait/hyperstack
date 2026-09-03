@@ -67,8 +67,8 @@ Hyperstack uses internal roles to manage complexity. These roles are **internal 
 - **`hyper` (Core):** The conductor. Owns request classification, routing, gate enforcement, final verification, and delivery.
 - **`website-builder` (Specialist):** Owns website-facing design/implementation, CTA hierarchy, and page structure. Delegates back to `hyper` for verification.
 
-### 9. The Skill System (21 skills, 3 categories)
-Every skill has a `category:` frontmatter field. The index at `skills/INDEX.md` is auto-generated from frontmatter by `bash scripts/generate-skills-index.sh`.
+### 9. The Skill System (29 skills, 3 categories)
+Every skill has a `category:` frontmatter field. The index at `skills/INDEX.md` is auto-generated from frontmatter by `bun scripts/generate-skills-index.ts`.
 
 - **Core (13):** blueprint, forge-plan, run-plan, best-practices, ship-gate, deliver, test-first, debug-discipline, code-review, autonomous-mode, subagent-ops, parallel-dispatch, worktree-isolation
 - **Domain (6):** designer, shadcn-expert, behaviour-analysis, security-review, readme-writer, python-pro-coder, react-pro-coder
@@ -113,7 +113,7 @@ Every skill references its upstream and downstream edges explicitly.
 
 **Active development.** Main branch is stable and the Docker image publishes automatically on push.
 
-Eleven plugins, seventy-nine tools, twenty-one skills, and two internal agents (`hyper` and `website-builder`). The SessionStart hook is wired. The adversarial enforcement is in place. The designer pipeline works end-to-end (verified via test harness). shadcn is integrated as an optional choice.
+Sixteen plugins, one hundred twenty-one tools, twenty-nine skills, four personas, and two internal agents (`hyper` and `website-builder`). The SessionStart hook is wired. The adversarial enforcement is in place. The designer pipeline works end-to-end (verified via test harness). shadcn is integrated as an optional choice.
 
 ### Remaining work
 - More pressure-test scenarios for gate skills (forge-plan, best-practices, behaviour-analysis, test-first)

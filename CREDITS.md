@@ -10,7 +10,7 @@ Hyperstack's gate skill enforcement pattern - Iron Laws, 1% Rule, rationalizatio
 
 Five Hyperstack workflow skills (`ship-gate`, `debug-discipline`, `run-plan`, `deliver`, `forge-plan`) are structurally derived from their superpowers equivalents. They have since been extended with MCP integration, DESIGN.md pipeline hooks, and Hyperstack-specific domain content.
 
-Everything else - the MCP server, 11 plugins, 79 tools, designer engine, DESIGN.md pipeline, React Flow / Motion / Lenis / Echo / Go / Rust / design tokens domain content, shadcn expert, and SessionStart hook - has no equivalent in superpowers and is original work.
+Everything else - the MCP server, 16 plugins, 121 tools, designer engine, DESIGN.md pipeline, React Flow / Motion / Lenis / Echo / Go / Rust / design tokens domain content, shadcn expert, and SessionStart hook - has no equivalent in superpowers and is original work.
 
 ---
 
