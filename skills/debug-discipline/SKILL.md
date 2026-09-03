@@ -125,7 +125,7 @@ Stop fixing. Present findings to user: what you tried, what each attempt reveale
 ## Integration
 
 - Use `hyperstack:ship-gate` before claiming any bug is fixed
-- Use `hyperstack:engineering-discipline` if Phase 4 escalation reveals architectural change needed
+- Use `hyperstack:best-practices` if Phase 4 escalation reveals architectural change needed
 - Use `hyperstack:blueprint` if fix requires building new functionality rather than correcting existing behaviour
 
 
@@ -135,7 +135,7 @@ Stop fixing. Present findings to user: what you tried, what each attempt reveale
 
 **Used inline during execution:**
 ```
-[autonomous-mode | subagent-ops | engineering-discipline] → debug-discipline (THIS)
+[autonomous-mode | subagent-ops | best-practices] → debug-discipline (THIS)
                                                                     ↓
                                                     [self-correction hierarchy]
                                                                     ↓
@@ -154,4 +154,4 @@ Stop fixing. Present findings to user: what you tried, what each attempt reveale
 |---|---|---|
 | 3 failed fix attempts | User | Architectural problem, not surface bug |
 | Fix requires new functionality | `blueprint` | Not a bug fix, needs design |
-| Fix requires architectural change | `engineering-discipline` | Step 3 architecture reasoning |
+| Fix requires architectural change | `best-practices` | Step 3 architecture reasoning |

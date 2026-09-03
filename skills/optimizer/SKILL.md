@@ -81,7 +81,7 @@ Gated by Coding Law 0 / YAGNI. **Do not optimize what does not need it.** A naiv
 | Connection | Wiring |
 |---|---|
 | Gated by | Coding Law 0 / YAGNI |
-| Deepens | `engineering-discipline` Step 8 (negative doubt: "try a better alternative") |
+| Deepens | `best-practices` Step 8 (negative doubt: "try a better alternative") |
 | Adds a dimension to | `code-review` - "right algorithm + complexity?" |
 | Hands off to | `golang_*` / `rust_*` / `react_*` for idiomatic implementation |
 | Verifies via | web search (catalog ships no code - algorithms are stable, specifics get checked) |

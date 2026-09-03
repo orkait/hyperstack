@@ -141,7 +141,7 @@ Then offer:
 >
 > 1. **Autonomous** - execute all tasks end-to-end without pausing. Tests, reviews, ship-gate run automatically. Only stops on failure.
 > 2. **Subagent-driven** (`hyperstack:subagent-ops`) - fresh agent per task, automated two-stage review between tasks.
-> 3. **Inline with checkpoints** (`hyperstack:engineering-discipline`) - execute tasks in this session, pause for human review at phase gates.
+> 3. **Inline with checkpoints** (`hyperstack:best-practices`) - execute tasks in this session, pause for human review at phase gates.
 >
 > Which approach?"
 
@@ -183,7 +183,7 @@ Every API call, prop name, hook signature, or library pattern must trace to an M
 
 - **Requires (backend/infra):** `hyperstack:blueprint` approved design
 - **Requires (visual/UX):** `hyperstack:designer` approved DESIGN.md
-- **Executes via:** Autonomous mode, `hyperstack:subagent-ops`, or `hyperstack:engineering-discipline`
+- **Executes via:** Autonomous mode, `hyperstack:subagent-ops`, or `hyperstack:best-practices`
 - **Completes via:** `hyperstack:ship-gate` → `hyperstack:deliver`
 
 ## Reverse Escalation
@@ -221,14 +221,14 @@ blueprint → forge-plan (THIS) → [execution] → ship-gate → deliver
 **Execution handoff (user chooses):**
 - `autonomous-mode` → full auto end-to-end
 - `subagent-ops` → fresh agent per task
-- `engineering-discipline` → manual with checkpoints
+- `best-practices` → manual with checkpoints
 
 ### Upstream Dependencies
 - `blueprint` → approved architecture note (backend/infra)
 - `designer` → approved DESIGN.md (visual/UX)
 
 ### Downstream Consumers
-- `autonomous-mode` | `subagent-ops` | `engineering-discipline` → executes plan
+- `autonomous-mode` | `subagent-ops` | `best-practices` → executes plan
 - `shadcn-expert` → if Q11b=shadcn, per-component guidance
 - `worktree-isolation` → clean workspace before execution
 

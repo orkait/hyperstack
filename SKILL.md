@@ -58,7 +58,7 @@ Before writing any code, proposing any fix, or starting any architecture, you MU
 
 1.  **Stop Rationalizing:** Do not skip steps to "be helpful." Thoroughness is the highest form of help. Skipping is laziness, not speed.
 2.  **Verify the Stack:** Consult the relevant MCP plugins below for 100% accurate API syntax. Memory is not acceptable. Pattern-matching is not acceptable. Only MCP output is acceptable.
-3.  **Load the Discipline:** Read `skills/engineering-discipline/SKILL.md` for architectural gates.
+3.  **Load the Discipline:** Read `skills/best-practices/SKILL.md` for architectural gates.
 4.  **Adopt Negative Doubt:** List 5 failure modes for your plan before you type a single line of code.
 
 **The 1% Rule:** If there is even a 1% chance a system rule applies to your task, you MUST read the corresponding file in the `skills/` directory BEFORE acting. You do not have a choice. You cannot rationalize your way out of this.
@@ -77,13 +77,13 @@ Follow this state machine for every non-trivial task. Do not skip phases.
 
 ### Phase 2: Reasoning (The Architecture)
 -   **Actions:** Define invariants, module boundaries, and public APIs.
--   **Skill:** Use `skills/engineering-discipline/SKILL.md`. Reason in order: Responsibilities -> Invariants -> Dependency Direction -> Syntax.
+-   **Skill:** Use `skills/best-practices/SKILL.md`. Reason in order: Responsibilities -> Invariants -> Dependency Direction -> Syntax.
 -   **Visual work:** If the task changes how something looks, feels, moves, or is interacted with, use `skills/designer/SKILL.md` FIRST to produce a DESIGN.md contract before any visual code. The DESIGN.md becomes the input spec for `forge-plan`.
 -   **Constraint:** Never start at syntax. If you do, you are building slop.
 
 ### Phase 3: Execution (The Implementation)
 -   **Actions:** Apply surgical changes. Use real commands from MCP patterns.
--   **Skill:** Use `skills/design-patterns-skill/SKILL.md` to select the correct abstraction (Factory, Strategy, etc.).
+-   **Skill:** Use `skills/best-practices/SKILL.md` to select the correct abstraction (Factory, Strategy, etc.) and to hold the coupling limits.
 -   **Debugging:** If you encounter a failure during implementation, invoke `skills/debug-discipline/SKILL.md` before attempting any fix.
 -   **Rules:** No `rAF`. No redundant comments. No speculative code.
 
@@ -138,10 +138,9 @@ These are static guidelines in the `skills/` directory. Read them using file too
 - **Parallel Dispatch** (`skills/parallel-dispatch/SKILL.md`): Concurrent agent dispatch for independent tasks.
 
 ### Domain Skills (execution guidance)
-- **Engineering Discipline** (`skills/engineering-discipline/SKILL.md`): The Senior SDE phase-gate framework.
+- **Best Practices** (`skills/best-practices/SKILL.md`): The Senior SDE phase-gate framework, Clean Code and GoF patterns, coupling limits, change and review hygiene, architecture-at-scale calls, operations baseline.
 - **Designer** (`skills/designer/SKILL.md`): Intention gate for visual/UX work. Produces DESIGN.md contract before any visual code. Auto-resolves industry/personality/style, routes to cognitive laws, enforces anti-slop rules. Use for: landing pages, dashboards, component libraries, redesigns, any new visual direction.
 - **Behaviour Analysis** (`skills/behaviour-analysis/SKILL.md`): State audits & Nielsen heuristics.
-- **Design Patterns** (`skills/design-patterns-skill/SKILL.md`): Clean Code & Pragmatic patterns.
 - **Security Review** (`skills/security-review/SKILL.md`): OWASP audits & vulnerability checklists.
 - **Readme Writer** (`skills/readme-writer/SKILL.md`): Evidence-based documentation standards.
 

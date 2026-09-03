@@ -993,7 +993,7 @@ After DESIGN.md approved:
 
 **From `hyperstack:blueprint`:** visual/UX intent detected → input raw request + codebase context → return approved DESIGN.md path
 
-**From `hyperstack` root:** Phase 2 detects visual work → routes here before engineering-discipline for any visual task
+**From `hyperstack` root:** Phase 2 detects visual work → routes here before best-practices for any visual task
 
 **From user direct:** "design", "build me a", "landing page", "DESIGN.md", any visual phrase → run full pipeline from Phase 1
 

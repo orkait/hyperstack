@@ -173,7 +173,7 @@ Run this skill before:
 - Reporting status to the user
 - Claiming a bug is fixed
 - Handing work off to a subagent or reviewer
-- Transitioning between phases in `hyperstack:engineering-discipline`
+- Transitioning between phases in `hyperstack:best-practices`
 
 
 ## Lifecycle Integration
@@ -182,7 +182,7 @@ Run this skill before:
 
 **All execution paths converge here:**
 ```
-[autonomous-mode | subagent-ops | engineering-discipline] → ship-gate (THIS) → deliver
+[autonomous-mode | subagent-ops | best-practices] → ship-gate (THIS) → deliver
 ```
 
 **DESIGN.md compliance (visual/UX only):**
@@ -193,7 +193,7 @@ ship-gate → designer_verify_implementation → [PASS → deliver | FAIL → fi
 ### Upstream Dependencies
 - `autonomous-mode` → final gate before delivery
 - `subagent-ops` → final gate after all tasks
-- `engineering-discipline` → per-task + final gate
+- `best-practices` → per-task + final gate
 
 ### Downstream Consumers
 - `deliver` → only proceeds if ship-gate passes

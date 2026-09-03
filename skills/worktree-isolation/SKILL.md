@@ -307,7 +307,7 @@ git worktree remove <path>
 
 **Pre-flight for all execution modes:**
 ```
-forge-plan -> worktree-isolation (THIS) -> [autonomous-mode | subagent-ops | engineering-discipline]
+forge-plan -> worktree-isolation (THIS) -> [autonomous-mode | subagent-ops | best-practices]
 ```
 
 **Cleanup after delivery:**

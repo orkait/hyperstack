@@ -111,7 +111,7 @@ Return: Summary of root cause and changes made.
 
 **Used when multiple independent failures:**
 ```
-[autonomous-mode | subagent-ops | engineering-discipline] → parallel-dispatch (THIS)
+[autonomous-mode | subagent-ops | best-practices] → parallel-dispatch (THIS)
                                                                     ↓
                                                     [concurrent agent investigations]
                                                                     ↓

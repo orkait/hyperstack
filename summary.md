@@ -70,8 +70,8 @@ Hyperstack uses internal roles to manage complexity. These roles are **internal 
 ### 9. The Skill System (21 skills, 3 categories)
 Every skill has a `category:` frontmatter field. The index at `skills/INDEX.md` is auto-generated from frontmatter by `bash scripts/generate-skills-index.sh`.
 
-- **Core (13):** blueprint, forge-plan, run-plan, engineering-discipline, ship-gate, deliver, test-first, debug-discipline, code-review, autonomous-mode, subagent-ops, parallel-dispatch, worktree-isolation
-- **Domain (6):** designer, shadcn-expert, behaviour-analysis, security-review, design-patterns-skill, readme-writer
+- **Core (13):** blueprint, forge-plan, run-plan, best-practices, ship-gate, deliver, test-first, debug-discipline, code-review, autonomous-mode, subagent-ops, parallel-dispatch, worktree-isolation
+- **Domain (6):** designer, shadcn-expert, behaviour-analysis, security-review, readme-writer, python-pro-coder, react-pro-coder
 - **Meta (2):** hyperstack, testing-skills
 
 ### 10. Skill Testing Discipline (`testing-skills`)
@@ -116,7 +116,7 @@ Every skill references its upstream and downstream edges explicitly.
 Eleven plugins, seventy-nine tools, twenty-one skills, and two internal agents (`hyper` and `website-builder`). The SessionStart hook is wired. The adversarial enforcement is in place. The designer pipeline works end-to-end (verified via test harness). shadcn is integrated as an optional choice.
 
 ### Remaining work
-- More pressure-test scenarios for gate skills (forge-plan, engineering-discipline, behaviour-analysis, test-first)
+- More pressure-test scenarios for gate skills (forge-plan, best-practices, behaviour-analysis, test-first)
 - Additional backend-focused loops (API-build workflow, security-audit loop)
 - End-to-end integration tests beyond the designer pipeline
 - More curated components in the shadcn plugin (currently 4: Button, Dialog, Field, Select)

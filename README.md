@@ -265,7 +265,7 @@ Domain-expert lenses `hyper` auto-engages when their triggers match the request 
 | `blueprint` | Hard gate: no code without an approved design |
 | `forge-plan` | MCP-verified task-by-task implementation plan |
 | `run-plan` | Execute an existing plan |
-| `engineering-discipline` | 8-step Senior SDE framework with 5 Iron Laws |
+| `best-practices` | 8-step Senior SDE framework, 5 Iron Laws, patterns, coupling, review and ops rules |
 | `ship-gate` | No completion claims without fresh verification evidence |
 | `deliver` | Final verification and delivery |
 | `test-first` | No production code without a failing test first |
@@ -279,7 +279,7 @@ Domain-expert lenses `hyper` auto-engages when their triggers match the request 
 </details>
 
 <details>
-<summary><strong>🎯 Domain (8)</strong> - specialized skills for specific contexts</summary>
+<summary><strong>🎯 Domain (7)</strong> - specialized skills for specific contexts</summary>
 
 | Skill | Role |
 |---|---|
@@ -288,7 +288,6 @@ Domain-expert lenses `hyper` auto-engages when their triggers match the request 
 | `react-pro-coder` | 56 React/Next.js rules with stable IDs - rendering, state placement, audits |
 | `behaviour-analysis` | UI/UX state audits, Nielsen heuristics, interaction matrices |
 | `security-review` | OWASP audits, vulnerability checklists |
-| `design-patterns-skill` | Clean Code + Pragmatic Programmer patterns |
 | `readme-writer` | Evidence-based README generation (this skill) |
 | `python-pro-coder` | 60 FastAPI/Pydantic v2/SQLAlchemy 2.0 rules - layering, schemas, async, dead deps |
 

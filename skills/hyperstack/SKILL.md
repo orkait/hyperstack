@@ -133,7 +133,7 @@ This is non-negotiable. Silent skill invocations are invisible to the user and c
 | `hyperstack:designer` | Before any visual/UX work - produces DESIGN.md contract | **HARD GATE** |
 | `hyperstack:forge-plan` | After design approval - MCP-verified implementation plan | Requires approved design |
 | `hyperstack:run-plan` | Have an existing plan - validate then execute | Requires plan |
-| `hyperstack:engineering-discipline` | During execution - Senior SDE phase gates | Phase gates |
+| `hyperstack:best-practices` | During execution - Senior SDE phase gates | Phase gates |
 | `hyperstack:ship-gate` | Before any completion claim - evidence required | **HARD GATE** |
 | `hyperstack:deliver` | After all tasks complete - final verification and delivery | Gate |
 
@@ -155,7 +155,7 @@ This is non-negotiable. Silent skill invocations are invisible to the user and c
 | `hyperstack:designer` | Before any visual/UX work - produces DESIGN.md |
 | `hyperstack:debug-discipline` | Any bug or unexpected behaviour - root cause first |
 | `hyperstack:behaviour-analysis` | UI/UX audits, state machine correctness |
-| `hyperstack:design-patterns-skill` | Selecting the right abstraction or design pattern |
+| `hyperstack:best-practices` | Selecting the right abstraction or design pattern, coupling limits, review and ops rules |
 | `hyperstack:security-review` | OWASP audits, API and infrastructure security |
 | `hyperstack:readme-writer` | Evidence-based documentation |
 | `hyperstack:codemode` | Understanding an unfamiliar codebase before reviewing or changing it - 7-phase context load |
@@ -174,7 +174,7 @@ Existing:              run-plan ──┤
                                   │
                                   ├→ autonomous-mode (full auto, stops only on failure)
                                   ├→ subagent-ops (fresh agent per task, two-stage review)
-                                  └→ engineering-discipline (manual, human checkpoints)
+                                  └→ best-practices (manual, human checkpoints)
 
 Before execution:  worktree-isolation (clean workspace)
 Debugging:         debug-discipline → parallel-dispatch (if independent failures)

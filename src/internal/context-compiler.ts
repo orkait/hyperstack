@@ -38,7 +38,7 @@ const REQUIRED_BOOTSTRAP_MARKERS = [
   "run-plan",
   "autonomous-mode",
   "subagent-ops",
-  "engineering-discipline",
+  "best-practices",
   "worktree-isolation",
   "debug-discipline",
   "parallel-dispatch",

@@ -73,7 +73,7 @@ Wait for user's decision.
 
 No issues → create task list and state:
 
-> "Plan validated. Starting execution with `hyperstack:engineering-discipline`."
+> "Plan validated. Starting execution with `hyperstack:best-practices`."
 
 ### Step 5: Execute
 
@@ -105,7 +105,7 @@ All tasks marked complete → invoke `hyperstack:deliver`.
 ## Integration
 
 - **Alternative entry:** No plan exists → `hyperstack:blueprint` → `hyperstack:forge-plan` first
-- **Execution:** Uses `hyperstack:engineering-discipline` phase gates per task
+- **Execution:** Uses `hyperstack:best-practices` phase gates per task
 - **Per-task gate:** `hyperstack:ship-gate` before marking each task complete
 - **Terminal:** `hyperstack:deliver` after all tasks complete
 
@@ -116,7 +116,7 @@ All tasks marked complete → invoke `hyperstack:deliver`.
 
 **Alternative entry (existing plan):**
 ```
-run-plan (THIS) → [autonomous-mode | subagent-ops | engineering-discipline] → ship-gate → deliver
+run-plan (THIS) → [autonomous-mode | subagent-ops | best-practices] → ship-gate → deliver
      ↓
 [MCP validation]
 ```
@@ -131,7 +131,7 @@ run-plan → [execution]                (existing plan)
 - User-provided plan (external or previous session)
 
 ### Downstream Consumers
-- `autonomous-mode` | `subagent-ops` | `engineering-discipline` → executes validated plan
+- `autonomous-mode` | `subagent-ops` | `best-practices` → executes validated plan
 - `deliver` → final delivery
 
 ### Escalation Paths
