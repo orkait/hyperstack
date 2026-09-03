@@ -41,6 +41,7 @@ Categories:
 | `design-patterns-skill` | Apply core programming principles and design patterns from Clean Code, The Pragmatic Programmer, Code Complete, Refactor |
 | `designer` |  |
 | `marketing` | Use to do product marketing for any brand - position it, find the message, write the copy ("marketing words"), set brand |
+| `python-pro-coder` | Staff-level Python API engineering discipline for FastAPI + Pydantic v2 + SQLAlchemy 2.0 - 60 enforced rules across proj |
 | `react-pro-coder` | Staff-level React and Next.js engineering discipline - 56 enforced rules across component design, hooks, state placement |
 | `readme-writer` | Writes or rewrites project README files using repository evidence instead of generic filler. Use when creating a new REA |
 | `reflect` | Review a product screen OR a feature (shipped or planned) AS a real target-customer persona - short, blunt, moody, marke |

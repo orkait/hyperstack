@@ -279,7 +279,7 @@ Domain-expert lenses `hyper` auto-engages when their triggers match the request 
 </details>
 
 <details>
-<summary><strong>🎯 Domain (7)</strong> - specialized skills for specific contexts</summary>
+<summary><strong>🎯 Domain (8)</strong> - specialized skills for specific contexts</summary>
 
 | Skill | Role |
 |---|---|
@@ -290,6 +290,7 @@ Domain-expert lenses `hyper` auto-engages when their triggers match the request 
 | `security-review` | OWASP audits, vulnerability checklists |
 | `design-patterns-skill` | Clean Code + Pragmatic Programmer patterns |
 | `readme-writer` | Evidence-based README generation (this skill) |
+| `python-pro-coder` | 60 FastAPI/Pydantic v2/SQLAlchemy 2.0 rules - layering, schemas, async, dead deps |
 
 </details>
 
