@@ -147,12 +147,12 @@ subagent-ops → implementer → code-review (THIS) → [fix loop] → next task
 
 **Pre-merge review:**
 ```
-[autonomous-mode | engineering-discipline] → code-review (THIS) → deliver
+[autonomous-mode | best-practices] → code-review (THIS) → deliver
 ```
 
 ### Upstream Dependencies
 - `subagent-ops` → per-task review cycle (automatic)
-- `engineering-discipline` → after completing major features
+- `best-practices` → after completing major features
 - `deliver` → pre-merge review
 
 ### Skills Used With

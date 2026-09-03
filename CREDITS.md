@@ -23,7 +23,7 @@ The designer plugin's knowledge base is distilled from publicly available design
 - **Typography and layout** - Bringhurst's *Elements of Typographic Style*, Müller-Brockmann's grid systems
 - **Design systems** - Patterns observed across Linear, Stripe, Vercel, Apple HIG, Carbon, shadcn, Notion, Supabase, and Figma - used as reference, not reproduced
 
-The design-patterns-skill draws on principles from:
+The best-practices skill draws on principles from:
 
 - *Clean Code* - Robert C. Martin
 - *The Pragmatic Programmer* - Hunt and Thomas

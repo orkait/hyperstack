@@ -154,7 +154,7 @@ git branch -d [branch-name]
 
 - **Requires:** All tasks in `forge-plan` or `run-plan` complete and individually verified
 - **Requires:** `hyperstack:ship-gate` passing on full implementation
-- **Invoked after:** `hyperstack:autonomous-mode`, `hyperstack:subagent-ops`, or `hyperstack:engineering-discipline` completes
+- **Invoked after:** `hyperstack:autonomous-mode`, `hyperstack:subagent-ops`, or `hyperstack:best-practices` completes
 
 ## Lifecycle Integration
 
@@ -162,7 +162,7 @@ git branch -d [branch-name]
 
 **Terminal state of all workflows:**
 ```
-[autonomous-mode | subagent-ops | engineering-discipline] -> ship-gate -> deliver (THIS)
+[autonomous-mode | subagent-ops | best-practices] -> ship-gate -> deliver (THIS)
 ```
 
 ### Upstream Dependencies

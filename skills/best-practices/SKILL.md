@@ -1,7 +1,7 @@
 ---
-name: engineering-discipline
+name: best-practices
 category: core
-description: Apply senior-level software engineering discipline including design patterns, SOLID principles, architectural reasoning, systematic verification, and safety gates. Use when writing production code, complex features, reviewing code, refactoring systems, or when engineering rigor and correctness are required. Supports both quick reference lookup and full step-by-step process mode.
+description: The language-agnostic engineering rulebook - Clean Code and Gang of Four patterns, SOLID, architectural reasoning, coupling and abstraction limits, change and review hygiene, architecture-at-scale decisions, an operations baseline, systematic verification, and safety gates. Use when writing production code, choosing an abstraction or design pattern, reviewing code, refactoring systems, deciding where a boundary goes, or when engineering rigor and correctness are required. Supports both quick reference lookup and full step-by-step process mode.
 triggers:
   - "build production code"
   - "design architecture"
@@ -13,6 +13,10 @@ triggers:
   - "safety gates"
   - "design pattern"
   - "SOLID principles"
+  - "clean code"
+  - "code quality"
+  - "best practices"
+  - "coding standards"
 activation:
   mode: fuzzy
   priority: normal
@@ -27,9 +31,14 @@ activation:
     - "safety gates"
     - "design pattern"
     - "SOLID principles"
+    - "clean code"
+    - "code quality"
+    - "best practices"
+    - "coding standards"
 compatibility: ">=2.0.0"
 metadata:
-  version: "2.0.0"
+  version: "3.0.0"
+  supersedes: ["engineering-discipline", "design-patterns-skill"]
 references:
   - references/patterns/readability.md
   - references/patterns/simplicity.md
@@ -37,6 +46,10 @@ references:
   - references/patterns/testing.md
   - references/patterns/error-handling.md
   - references/patterns/maintainability.md
+  - references/practices/coupling-and-abstraction.md
+  - references/practices/change-hygiene.md
+  - references/practices/architecture-scale.md
+  - references/practices/operations-baseline.md
   - references/architecture/task-classification.md
   - references/architecture/architecture-reasoning.md
   - references/architecture/verification-gates.md
@@ -44,7 +57,10 @@ references:
   - references/architecture/output-format.md
 ---
 
-# Engineering Discipline - Senior SDE-3 Framework
+# Best Practices - Senior SDE-3 Engineering Rulebook
+
+Absorbs the former `engineering-discipline` and `design-patterns-skill`. One source for how code is
+written, reviewed, and shipped in a Hyperstack-governed repository.
 
 ## Two Modes
 
@@ -92,11 +108,17 @@ These connect outward, they are not an island: Laws 1, 2, and 5 are the same fam
 
 ### Patterns & Principles
 - Readability & Clarity → `references/patterns/readability.md`
-- Simplicity & Efficiency → `references/patterns/simplicity.md`
-- Design & Architecture → `references/patterns/design-architecture.md`
+- Simplicity & Efficiency (KISS, DRY, YAGNI) → `references/patterns/simplicity.md`
+- Design & Architecture (SRP, composition, GoF patterns) → `references/patterns/design-architecture.md`
 - Testing & Quality → `references/patterns/testing.md`
 - Error Handling → `references/patterns/error-handling.md`
 - Maintainability → `references/patterns/maintainability.md`
+
+### Practices
+- Coupling & Abstraction (Demeter, CQS, flag args, rule of three, leaky abstractions) → `references/practices/coupling-and-abstraction.md`
+- Change Hygiene (commits, branches, PR size, review conduct, tracked debt) → `references/practices/change-hygiene.md`
+- Architecture at Scale (modular monolith, dependency direction, 12 factors, ADRs) → `references/practices/architecture-scale.md`
+- Operations Baseline (structured logs, metrics, health, degradation, N+1) → `references/practices/operations-baseline.md`
 
 ### Architecture & Process
 - Task Classification → `references/architecture/task-classification.md`
@@ -114,7 +136,7 @@ Verify runtime, package manager, dependencies. Do NOT proceed without valid envi
 Classify as exactly one: New feature | Refactor (behavior preserved) | Bug fix | Review/audit | Documentation only.
 Unclear → STOP and request clarification.
 
-**Visual/UX gate:** Task changes how something looks, feels, moves, or is interacted with → STOP, invoke `hyperstack:designer` first. Designer → DESIGN.md → input to `hyperstack:forge-plan`. Return to engineering-discipline only during execution of forge-plan tasks.
+**Visual/UX gate:** Task changes how something looks, feels, moves, or is interacted with → STOP, invoke `hyperstack:designer` first. Designer → DESIGN.md → input to `hyperstack:forge-plan`. Return to best-practices only during execution of forge-plan tasks.
 
 ### Step 2: Load Engineering Constraints 📋
 Hard rules: clear naming, single responsibility, explicit module boundaries, no circular dependencies, folder structure reflects architecture, tests before refactor, YAGNI, patterns only when forces are named.
@@ -161,6 +183,40 @@ Critical issue unaddressed → HARD STOP.
 | Error handling unclear | `references/patterns/error-handling.md` |
 | Architecture decisions | `references/architecture/architecture-reasoning.md` |
 | Standard response format | `references/architecture/output-format.md` |
+| Boundary, coupling, or "should this be abstracted" | `references/practices/coupling-and-abstraction.md` |
+| Commits, PR size, how to give review feedback | `references/practices/change-hygiene.md` |
+| Monolith vs services, dependency direction, ADR | `references/practices/architecture-scale.md` |
+| Logging, health checks, timeouts, degradation | `references/practices/operations-baseline.md` |
+
+## Pattern Selection Quick Reference
+
+| Situation | Apply |
+|-----------|-------|
+| Function > 20 lines | Split into smaller functions (SRP) |
+| Repeated code blocks, third occurrence | Extract to function or constant (DRY, rule of three) |
+| Complex conditionals | Strategy or State pattern |
+| Object creation logic | Factory pattern |
+| Cross-cutting concerns | Decorator or Observer pattern |
+| Incompatible interfaces | Adapter pattern |
+| Need undo or an audit log | Command pattern |
+| Global access point | Singleton, sparingly, and name the force |
+| Chained calls through another object's internals | Move the behavior (Law of Demeter) |
+| A boolean parameter selecting behavior | Two functions, no flag argument |
+
+Every row is subject to the Pattern Gate in Step 5. A row matching is not a reason; the named force is.
+
+## AI-Specific Guidance
+
+When generating or reviewing code, the failure modes are predictable:
+
+| Bias | Counter |
+|---|---|
+| Pattern prediction: reaching for the pattern that appears most in training data | Name the force first, then pick. No force, no pattern |
+| Generic naming: `data`, `temp`, `result`, `handler` | Name the concept, not the container |
+| Skipping edge cases because the happy path compiles | Null, empty, zero, max, negative, unicode, concurrent |
+| Combining unrelated operations into one function | One reason to change per unit |
+| Importing a convention from another project | Match the conventions already in this repository |
+| Over-commenting generated code | A comment explains a non-obvious why, never the what |
 
 ## Red Flags - STOP
 
@@ -197,7 +253,7 @@ Something cannot be done safely → say so and explain why.
 
 **Manual execution with phase gates:**
 ```
-forge-plan → engineering-discipline (THIS) → ship-gate → deliver
+forge-plan → best-practices (THIS) → ship-gate → deliver
                       ↓
          [8-step framework per task]
                       ↓
@@ -221,3 +277,24 @@ forge-plan → engineering-discipline (THIS) → ship-gate → deliver
 | Discovery | Escalate to | Action |
 |---|---|---|
 | Task changes look/feel/motion/interaction | `designer` | STOP, get DESIGN.md, return to forge-plan |
+
+### Owned Elsewhere - Route, Do Not Restate
+
+| Concern | Skill |
+|---|---|
+| Vulnerability hunting, OWASP mapping | `security-review` |
+| Complexity analysis, algorithmic wins | `optimizer` |
+| Dispatching a reviewer and handling feedback | `code-review` (this skill supplies the review conduct rules it applies) |
+| React and Next.js specifics | `react-pro-coder` |
+| FastAPI, Pydantic, SQLAlchemy specifics | `python-pro-coder` |
+| Visual and interaction design | `designer`, `ui-ux`, `design-tokens` |
+
+## Sources
+
+- *Clean Code* - Robert C. Martin
+- *A Philosophy of Software Design* - John Ousterhout
+- *The Pragmatic Programmer* - Hunt and Thomas
+- *Code Complete* - Steve McConnell
+- *Refactoring* - Martin Fowler
+- *Design Patterns* - Gang of Four
+- *The Twelve-Factor App* - 12factor.net

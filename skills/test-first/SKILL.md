@@ -122,7 +122,7 @@ Can't check all boxes? → You skipped TDD. Start over.
 
 ## Integration
 
-- **Invoked by:** `hyperstack:engineering-discipline` (Step 7), `hyperstack:forge-plan` (task steps), `hyperstack:subagent-ops` (implementer subagents)
+- **Invoked by:** `hyperstack:best-practices` (Step 7), `hyperstack:forge-plan` (task steps), `hyperstack:subagent-ops` (implementer subagents)
 - **Pairs with:** `hyperstack:debug-discipline` (write failing test after root cause found)
 - **Verified by:** `hyperstack:ship-gate` (checks test evidence before completion claims)
 
@@ -133,7 +133,7 @@ Can't check all boxes? → You skipped TDD. Start over.
 
 **Used inline during all implementation:**
 ```
-[autonomous-mode | subagent-ops | engineering-discipline] → test-first (THIS)
+[autonomous-mode | subagent-ops | best-practices] → test-first (THIS)
                                                                   ↓
                                                     [red-green-refactor per task]
 ```

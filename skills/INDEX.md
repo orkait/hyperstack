@@ -15,12 +15,12 @@ Categories:
 | Skill | Description |
 |---|---|
 | `autonomous-mode` | Use when the user chooses fully autonomous execution. Aggressively uses the entire Hyperstack to implement the solution  |
+| `best-practices` | The language-agnostic engineering rulebook - Clean Code and Gang of Four patterns, SOLID, architectural reasoning, coupl |
 | `blueprint` | Use before any feature build, component creation, or behaviour modification. MCP-surveyed design with a hard gate before |
 | `code-review` | Use when completing tasks, implementing features, or before merging - to dispatch a review subagent and handle feedback  |
 | `codemode` | Deep context-loading protocol. Use when you must understand an unfamiliar codebase before answering, reviewing, or chang |
 | `debug-discipline` | Use when encountering any bug, test failure, or unexpected behaviour. Root cause investigation is mandatory before any f |
 | `deliver` | Use after all implementation tasks are complete. Runs final verification, confirms the branch is clean, detects the work |
-| `engineering-discipline` | Apply senior-level software engineering discipline including design patterns, SOLID principles, architectural reasoning, |
 | `forge-plan` | Use after blueprint design approval to produce a task-by-task implementation plan grounded in MCP-verified API calls. No |
 | `lab` | Use when designing or revamping a frontend section or whole page and you want to explore real-React variants in an isola |
 | `optimizer` | Teaches runtime analysis - deriving Big-O straight from code - and how to derive a better algorithm by removing redundan |
@@ -38,7 +38,6 @@ Categories:
 |---|---|
 | `behaviour-analysis` | Systematic UI/UX behaviour analysis for interactive applications. Audits every user action, state transition, view mode, |
 | `bro` | The generalist persona engine - "bro", "bro mode", or any end-to-end task spanning ui-ux, design, coding, marketing, sal |
-| `design-patterns-skill` | Apply core programming principles and design patterns from Clean Code, The Pragmatic Programmer, Code Complete, Refactor |
 | `designer` |  |
 | `marketing` | Use to do product marketing for any brand - position it, find the message, write the copy ("marketing words"), set brand |
 | `python-pro-coder` | Staff-level Python API engineering discipline for FastAPI + Pydantic v2 + SQLAlchemy 2.0 - 60 enforced rules across proj |

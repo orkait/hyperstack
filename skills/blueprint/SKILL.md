@@ -149,7 +149,7 @@ blueprint (THIS) → forge-plan → [execution] → ship-gate → deliver
 **Execution Options (chosen at forge-plan handoff):**
 - `autonomous-mode` → full auto, stops only on failure
 - `subagent-ops` → fresh agent per task, two-stage review
-- `engineering-discipline` → manual with phase gates
+- `best-practices` → manual with phase gates
 
 ### Upstream Dependencies
 - None (entry point for feature work)
