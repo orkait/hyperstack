@@ -26,7 +26,7 @@ export const SOURCES: PluginSource[] = [
     packages: [{ name: "motion", registry: "npm", targetMajor: 12 }] },
   { plugin: "lenis", editorial: false, skip: false, skills: [],
     packages: [{ name: "lenis", registry: "npm", targetMajor: 1 }] },
-  { plugin: "react", editorial: false, skip: false, skills: [],
+  { plugin: "react", editorial: false, skip: false, skills: ["react-pro-coder"],
     packages: [
       { name: "react", registry: "npm", targetMajor: 19 },
       { name: "react-dom", registry: "npm", targetMajor: 19 },

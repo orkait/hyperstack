@@ -279,12 +279,13 @@ Domain-expert lenses `hyper` auto-engages when their triggers match the request 
 </details>
 
 <details>
-<summary><strong>🎯 Domain (6)</strong> - specialized skills for specific contexts</summary>
+<summary><strong>🎯 Domain (7)</strong> - specialized skills for specific contexts</summary>
 
 | Skill | Role |
 |---|---|
 | `designer` | Intention gate - produces DESIGN.md contract before any visual code |
 | `shadcn-expert` | shadcn/ui Base UI architect - ONLY when user picks shadcn in designer Q11b |
+| `react-pro-coder` | 56 React/Next.js rules with stable IDs - rendering, state placement, audits |
 | `behaviour-analysis` | UI/UX state audits, Nielsen heuristics, interaction matrices |
 | `security-review` | OWASP audits, vulnerability checklists |
 | `design-patterns-skill` | Clean Code + Pragmatic Programmer patterns |
