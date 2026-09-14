@@ -14,7 +14,7 @@ export interface SetupResult {
 
 export type PlatformFormat = "json-mcpServers" | "json-mcpServers-nested" | "json-servers" | "json-contextServers" | "toml-mcp_servers";
 
-const KNOWN_PLATFORMS: Record<string, {
+export const KNOWN_PLATFORMS: Record<string, {
   env?: string[];
   configFiles: string[];
   skillPath?: string;
@@ -72,6 +72,15 @@ const KNOWN_PLATFORMS: Record<string, {
     format: "json-mcpServers",
     notes: "Rules are project-level only: .cursor/rules/*.mdc (no global rules filesystem path)",
   },
+  // superclaw (orkait/supergraph harness) - global user config; loads Claude Code plugins natively
+  // Source: superclaw/README.md (September 2026)
+  "superclaw": {
+    env: ["SUPERCLAW_PLUGIN_ROOT"],
+    configFiles: [".config/superclaw/mcp.json"],
+    skillPath: ".config/superclaw/skills",
+    format: "json-mcpServers",
+    notes: "Plugin route instead of the skill symlink: superclaw plugin install --link <pluginRoot> loads skills, agents and the SessionStart hook",
+  },
   // Windsurf IDE (Codeium) - global user config
   // Source: windsurf.com official docs (April 2025)
   "windsurf": {
@@ -98,6 +107,7 @@ export function detectEnvironment(): string {
   if (process.env.ANTIGRAVITY_AGENT) return "antigravity";
   if (process.env.CLAUDE_PLUGIN_ROOT) return "claude-code";
   if (process.env.CURSOR_PLUGIN_ROOT) return "cursor";
+  if (process.env.SUPERCLAW_PLUGIN_ROOT) return "superclaw";
   // VSCODE_PID fires inside any VS Code-hosted terminal (Gemini, Roo Code, etc.)
   // Do NOT short-circuit here - fall through to config-file probing below.
   return "unknown";
