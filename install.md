@@ -47,6 +47,7 @@ The system automatically probes for signatures:
 - **Antigravity**: `ANTIGRAVITY_AGENT`
 - **Claude Code**: `CLAUDE_PLUGIN_ROOT`
 - **Cursor**: `CURSOR_PLUGIN_ROOT`
+- **superclaw**: `SUPERCLAW_PLUGIN_ROOT`
 - **VS Code**: `VSCODE_PID`
 - **Known Paths**: Probes for `.claude.json`, `.cursor/mcp.json`, `.codeium/windsurf/mcp_config.json`, `.gemini/settings.json`, `.kiro/settings/mcp.json`, `.codex/config.toml`.
 
@@ -78,6 +79,7 @@ Based on the environment you detected in Step 1, identify the correct target dir
 | **Antigravity** | `~/.gemini/antigravity/skills/hyperstack` | Global |
 | **Kiro** | `~/.kiro/skills/hyperstack` | Global |
 | **Codex** | `~/.codex/skills/hyperstack` | Global |
+| **superclaw** | `~/.config/superclaw/skills/hyperstack` | Global; or `superclaw plugin install --link ~/.hyperstack` for skills, agents and the bootstrap hook together |
 | **Cursor** | `.cursor/rules/hyperstack.mdc` | Project-level only |
 | **Windsurf** | `.windsurf/rules/hyperstack.md` | Project-level only |
 

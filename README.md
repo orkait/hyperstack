@@ -69,6 +69,7 @@ If you aren't using the Autopilot, follow the **Unified Bootstrap** to set up bo
 | **Qwen Code** | `~/.qwen/settings.json` | `~/.qwen/skills/hyperstack` | JSON `mcpServers` |
 | **Codex CLI** | `~/.codex/config.toml` | - | TOML `mcp_servers` |
 | **Cursor** | `~/.cursor/mcp.json` | `.cursor/rules/` (project) | JSON `mcpServers` |
+| **superclaw** | `~/.config/superclaw/mcp.json` | `~/.config/superclaw/skills/hyperstack` or `superclaw plugin install --link` | JSON `mcpServers` |
 | **Windsurf** | `~/.codeium/windsurf/mcp_config.json` | - | JSON `mcpServers` |
 | **Kiro** | `~/.kiro/settings/mcp.json` | - | JSON `mcpServers` |
 | **Zed** | `~/.config/zed/settings.json` | - | JSON `context_servers` |
